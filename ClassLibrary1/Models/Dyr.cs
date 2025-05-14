@@ -53,10 +53,26 @@ namespace ClassLibrary1.Models
                 "\n============================================================================ ";
         }
 
-        public string PrintLogs()
+        /// <summary>
+        /// Printer dyrets log.
+        /// skriv 1, hvis du vil have hele loggen
+        /// skriv 2, hvis du vil have besøg loggen
+        /// skriv 3, hvis du vil have medicinsk log
+        /// </summary>
+        /// <returns></returns>
+        public string PrintLogs(int i)
         {
-            // Kald på funktionalitet i DyreLog klassen
-            return ;
+           switch(i)
+            {
+                case 1:
+                    return 
+                case 2:
+                    return Log.BesøgssLog.ToString();
+                case 3:
+                    return Log.MedicinskLog.ToString();
+                default:
+                    return "!! Ugyldigt input til parameteret i Printlog methoden i dyre classen!!";
+            }
         }
 
     }
