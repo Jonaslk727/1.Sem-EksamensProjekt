@@ -6,7 +6,37 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.Models
 {
-    internal class Booking
+    public enum BookingType
     {
+        Aktivitet,
+        Besøg
+    }
+    public class Booking
+    {   
+        public int BookingId { get;}
+        public BookingType Type { get; set; }
+        public DateTime StartTid {  get; set; }
+        public DateTime SlutTid {
+            get { return StartTid.AddHours(Varighed); }
+            }
+        public int Varighed { get; set; } // i timer
+        public Kunde Booker { get;}
+
+        public Booking(BookingType type, int varighed, Kunde booker)
+        {
+            BookingId += 1;
+            Type = type;
+            StartTid = startTid;
+            Varighed = varighed;
+            Booker = booker;
+        }
+
+        public override string ToString()
+        {
+            return $"BookingId: {BookingId} | StartTid: {StartTid} | SlutTid: {SlutTid} | Varighed: {Varighed} timer " +
+                $"| Booker: {Booker}";
+        }
+
+
     }
 }
