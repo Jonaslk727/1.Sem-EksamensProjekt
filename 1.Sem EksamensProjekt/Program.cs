@@ -7,6 +7,7 @@
             bool kørProgram = true;
             while (kørProgram)
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Hovedmenu - vælge en kategori:");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -43,6 +44,7 @@
             bool fortsæt = true;
             while (fortsæt)
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Medarbejder menu - vælge en kategori:");
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -109,6 +111,7 @@
             bool fortsæt = true;
             while (fortsæt)
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Kunde menu - vælge en kategori:");
                 Console.ForegroundColor = ConsoleColor.Yellow;
