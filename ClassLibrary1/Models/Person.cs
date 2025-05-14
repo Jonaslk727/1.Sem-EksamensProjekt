@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.Models
 {
-    internal class Person
+    public class Person
     {
         public string Navn { get; set; }
         public string Email { get; set; }
@@ -19,6 +19,10 @@ namespace ClassLibrary1.Models
             Navn = navn;
             Email = email;
             Mobil = mobil;
+        }
+
+        public Person()
+        {
         }
     }
 }
