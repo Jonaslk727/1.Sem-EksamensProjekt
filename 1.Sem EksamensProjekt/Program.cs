@@ -5,24 +5,35 @@
         static void Main(string[] args)
         {
             bool kørProgram = true;
-
-            while(kørProgram)
+            while (kørProgram)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Hovedmenu: ");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Hovedmenu - vælge en kategori:");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1. Medarbejder");
-                Console.WriteLine("2. Kunde");
+                Console.WriteLine("1. Medarbejder menu");
+                Console.WriteLine("2. Kunde menu");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Stop program");
+                Console.ResetColor();
 
                 string valg = Console.ReadLine();
-
-                switch(valg)
+                switch (valg)
                 {
                     case "1":
                         MedarbejderMenu();
                         break;
                     case "2":
                         KundeMenu();
+                        break;
+                    case "0":
+                        kørProgram = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
                         break;
                 }
             }
@@ -32,48 +43,106 @@
             bool fortsæt = true;
             while (fortsæt)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Medarbejder Menu");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Medarbejder menu - vælge en kategori:");
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Dyr:")
+                Console.WriteLine("Dyr");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. Se oprettede dyr");
-                Console.WriteLine("2. Opret, slet eller rediger dyr");
+                Console.WriteLine("2. Opret, slet eller rediger");
+
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Kunde:")
+                Console.WriteLine("Kunde");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("3. Se oprettede kunder");
-                Console.WriteLine("4. Opret, slet eller rediger kunde");
+                Console.WriteLine("4. Se kommende besøg");
+                Console.WriteLine("5. Opret, slet eller rediger");
+
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Aktivitet:")
+                Console.WriteLine("Aktivitet");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("5. Se oprettede aktiviteter");
-                Console.WriteLine("6. Opret, slet eller rediger aktivitet"):
+                Console.WriteLine("6. Se oprettede aktiviteter og deltagere");
+                Console.WriteLine("7. Opret, slet eller rediger");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå tilbage");
+                Console.ResetColor();
 
                 string valg = Console.ReadLine();
                 switch (valg)
                 {
                     case "1":
-                        //Metode til 
+                        // Se oprettede dyr
                         break;
                     case "2":
-                        HåndterDyrMenu();
+                        // Opret, slet eller rediger dyr
                         break;
                     case "3":
-                        //Metode
+                        // Se oprettede kunder
+                        break;
+                    case "4":
+                        // Se kommende besøg
+                        break;
+                    case "5":
+                        // Opret, slet eller rediger kunde
+                        break;
+                    case "6":
+                        // Se oprettede aktiviteter
+                        break;
+                    case "7":
+                        // Opret, slet eller rediger aktivitet
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
                 }
             }
         }
         static void KundeMenu()
         {
+            bool fortsæt = true;
+            while (fortsæt)
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Kunde menu - vælge en kategori:");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. Se ledige dyr");
+                Console.WriteLine("2. Book tid til besøg dyr");
+                Console.WriteLine("3. Se og tilmeld kommende aktiviteter");
 
-      "4":
-                        HåndterKundeMenu();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå tilbage");
+                Console.ResetColor();
+
+                string valg = Console.ReadLine();
+                switch (valg)
+                {
+                    case "1":
+                        // Se ledige dyr
                         break;
-                    case "5"  }
-        static void HåndterDyrMenu()
-        {
-
+                    case "2":
+                        // Book tid til besøg dyr
+                        break;
+                    case "3":
+                        // Se og tilmeld kommende aktiviteter
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
+                }
+            }
         }
     }
 }
