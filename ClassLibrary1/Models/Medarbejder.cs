@@ -17,15 +17,23 @@ namespace ClassLibrary1.Models
 
 
 
+        public Medarbejder()
+        { 
+        }
+        
         public Medarbejder(string navn, int medarbejderId, string afdeling, string stilling, string email, string telefonnummer)
         {
-            Nnavn = navn;
+            Navn = navn;
             MedarbejderId = medarbejderId;
             Afdeling = afdeling;
             Stilling = stilling;
             Email = email;
             Telefonnummer = telefonnummer;
 
+        }
+        public void MedarbejderInfo()
+        {
+            Console.WriteLine($"Navn: {Navn},Id:{MedarbejderId},Afdeling:{Afdeling},Stilling {Stilling},Email:{Email},Telefonnummer {Telefonnummer}");
         }
     }
 }
