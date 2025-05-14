@@ -4,10 +4,12 @@
     {
         static void Main(string[] args)
         {
+            #region Hovedmenu
+            //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
             while (kørProgram)
             {
-                Console.Clear();
+                Console.Clear(); //Rydder konsollen for at gøre menuen mere overskuelig
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Hovedmenu - vælge en kategori:");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -18,48 +20,57 @@
                 Console.WriteLine("0. Stop program");
                 Console.ResetColor();
 
+                //Læser brugerens valg
                 string valg = Console.ReadLine();
                 switch (valg)
                 {
                     case "1":
+                        //Kalder medarbejdermenuen hvis brugeren vælger 1
                         MedarbejderMenu();
                         break;
                     case "2":
+                        //Kalder kundemenuen hvis brugeren vælger 2
                         KundeMenu();
                         break;
                     case "0":
+                        //Stopper programmet hvis brugeren vælger 0
                         kørProgram = false;
                         break;
                     default:
+                        //Fejlhåndtering hvis input er ugyldigt
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Ugyldigt valg, prøv igen.");
-                        Console.ReadKey();
+                        Console.ReadKey(); //Venter på brugerens input før den fortsætter
                         Console.ResetColor();
                         break;
                 }
             }
+            #endregion
         }
         static void MedarbejderMenu()
         {
+            #region MedarbejderMenu
+            //Undermenu for medarbejderen med funktioner til håndtere dyr, kunder og aktiviteter
             bool fortsæt = true;
             while (fortsæt)
             {
-                Console.Clear();
+                Console.Clear(); //Rydder konsollen hver gang menuen vises
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Medarbejder menu - vælge en kategori:");
+                //Sektion: Dyr
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Dyr");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. Se oprettede dyr");
                 Console.WriteLine("2. Opret, slet eller rediger");
-
+                //Sektion: Kunde
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Kunde");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("3. Se oprettede kunder");
                 Console.WriteLine("4. Se kommende besøg");
                 Console.WriteLine("5. Opret, slet eller rediger");
-
+                //Sektion: Aktivitet
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Aktivitet");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -105,13 +116,16 @@
                         break;
                 }
             }
+            #endregion
         }
         static void KundeMenu()
         {
+            #region KundeMenu
+            //Undermenu for kunden med funktioner til se ledige dyr, booke tid og se/tilmelde aktiviteter
             bool fortsæt = true;
             while (fortsæt)
             {
-                Console.Clear();
+                Console.Clear(); //Rydder konsollen hver gang menuen vises
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Kunde menu - vælge en kategori:");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -146,6 +160,7 @@
                         break;
                 }
             }
+            #endregion
         }
     }
 }
