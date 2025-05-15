@@ -9,23 +9,13 @@ using System.Threading.Tasks;
 namespace ClassLibrary1.Services
 {
     public class DyreLog
-    {
-        public List< string> MedicinskLogs = new List<string>();
+    {   // der skal laves en en læge log og en besøg log class
+        public List< string> LægeLogs = new List<string>();
         public Dictionary<int, Besøg> BesøgssLogs = new Dictionary<int, Besøg>();
 
         
         // skal kunne tage info fra booking og tilføje til bookingloggen
-        public void AddBesøg(string type)
-        {
-            if () (string.IsNullOrEmpty(type))
-            {
-                throw new ArgumentException("Besøgstype kan ikke være tom.");
-            }
-            else if (type.ToLower() == )
-            {
-
-            }
-        }
+        
        
 
         public void Read()

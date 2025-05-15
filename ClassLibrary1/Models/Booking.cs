@@ -22,13 +22,17 @@ namespace ClassLibrary1.Models
         public int Varighed { get; set; } // i timer
         public Kunde Booker { get;}
 
-        public Booking(BookingType type, int varighed, Kunde booker)
+        public Booking(BookingType type, DateTime startTid, int varighed, Kunde booker)
         {
             BookingId += 1;
             Type = type;
             StartTid = startTid;
             Varighed = varighed;
             Booker = booker;
+            if (Type == BookingType.Besøg)
+            {
+                // her sendes relavant info til dyreløggen
+            }
         }
 
         public override string ToString()

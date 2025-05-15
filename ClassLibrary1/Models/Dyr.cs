@@ -43,11 +43,14 @@ namespace ClassLibrary1.Models
             FødselsDag = fødselsdag;
             Vægt = vægt;
         }
-
+        /// <summary>
+        /// Udprinter dyrets properties i en string.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"===========================================================================" +
-                $"Id : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn{kø}" +
+                $"Id : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn{Køn}" +
                 $"\n Race: {Race} Fødselsdag: {FødselsDag}" +
                 $"\n Mere info: {Info}"+
                 "\n============================================================================ ";
@@ -65,7 +68,7 @@ namespace ClassLibrary1.Models
            switch(i)
             {
                 case 1:
-                    return 
+                    return Log.ToString();
                 case 2:
                     return Log.BesøgssLog.ToString();
                 case 3:
