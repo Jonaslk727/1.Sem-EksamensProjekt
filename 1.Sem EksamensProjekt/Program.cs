@@ -311,11 +311,11 @@ namespace _1.Sem_EksamensProjekt
 
             if (succes)
             {
-                Console.WriteLine("✅ Aktivitet er blevet opdateret!");
+                Console.WriteLine("Aktivitet er blevet opdateret!");
             }
             else
             {
-                Console.WriteLine("⚠️ Noget gik galt under opdatering.");
+                Console.WriteLine("Noget gik galt under opdatering.");
             }
 
             Console.WriteLine("Tryk på en tast for at fortsætte...");
