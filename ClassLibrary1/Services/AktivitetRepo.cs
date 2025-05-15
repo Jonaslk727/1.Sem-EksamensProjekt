@@ -57,5 +57,17 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        public bool RedigerAktivitet(int id, string nyTitle, DateTime nyStart, DateTime nySlut, string nyBeskrivelse)
+        {
+            if (AlleAktiviteter.TryGetValue(id, out Aktivitet aktivitet))
+            {
+                aktivitet.Title = nyTitle;
+                aktivitet.StartTid = nyStart;
+                aktivitet.SlutTid = nySlut;
+                aktivitet.Beskrivelse = nyBeskrivelse;
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "2":
                         //Kalder kundemenuen hvis brugeren vælger 2
-                        //KundeMenu();
+                        KundeMenu();
                         break;
                     case "0":
                         //Stopper programmet hvis brugeren vælger 0
@@ -149,7 +149,7 @@ namespace _1.Sem_EksamensProjekt
                             SletAktivitet(AkRepo);
                             break;
                         case "3":
-                            //Metode til redigere aktivitet
+                            RedigerAktivitet(AkRepo);
                             break;
                         case "0":
                             fortsæt = false;
@@ -265,50 +265,91 @@ namespace _1.Sem_EksamensProjekt
             {
                 Console.WriteLine($"Ingen aktivitet med ID {id} fundet.");
             }
-            static void KundeMenu()
+        }
+        static void RedigerOprettetAktivitet(AktivitetRepo AkRepo)
+        {
+            Console.WriteLine("Indtast ID på aktivitet du vil redigere:");
+            if (!int.TryParse(Console.ReadLine(), out int id))
             {
-                #region KundeMenu
-                //Undermenu for kunden med funktioner til se ledige dyr, booke tid og se/tilmelde aktiviteter
-                bool fortsæt = true;
-                while (fortsæt)
-                {
-                    Console.Clear(); //Rydder konsollen hver gang menuen vises
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Kunde menu - vælge en kategori:");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("1. Se ledige dyr");
-                    Console.WriteLine("2. Book tid til besøg dyr");
-                    Console.WriteLine("3. Se og tilmeld kommende aktiviteter");
-
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("0. Gå tilbage");
-                    Console.ResetColor();
-
-                    string valg = Console.ReadLine();
-                    switch (valg)
-                    {
-                        case "1":
-                            // Se ledige dyr
-                            break;
-                        case "2":
-                            // Book tid til besøg dyr
-                            break;
-                        case "3":
-                            // Se og tilmeld kommende aktiviteter
-                            break;
-                        case "0":
-                            fortsæt = false;
-                            break;
-                        default:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Ugyldigt valg, prøv igen.");
-                            Console.ReadKey();
-                            Console.ResetColor();
-                            break;
-                    }
-                }
-                #endregion
+                Console.WriteLine("Ugyldigt ID, prøv igen.");
+                return;
             }
+            if (!AkRepo.AlleAktiviteter.ContainsKey(id))
+            {
+                Console.WriteLine("Aktivitet med ID findes ikke");
+                return;
+            }
+            Console.WriteLine("Indtast ny titel:");
+            string nyTitle = Console.ReadLine();
+            Console.WriteLine("Indtast ny start dato (dd-MM-yyyy):");
+            if(!DateTime.TryParse(Console.ReadLine(), out DateTime nyStart))
+            {
+                Console.WriteLine("Ugyldig dato, prøv igen.");
+                return;
+            }
+            Console.WriteLine("Indtast ny slut dato (dd-MM-yyyy):");
+            if(!DateTime.TryParse(Console.ReadLine(), out DateTime nySlut))
+            {
+                Console.WriteLine("Ugyldig dato, prøv igen");
+                return; 
+            }
+            Console.WriteLine("Indtast ny beskrivelse)");
+            string nyBeskrivelse = Console.ReadLine();
+            bool succes = AkRepo.RedigerAktivitet(id, nyTitle, nyStart, nySlut, nyBeskrivelse);
+            if (succes)
+            {
+                Console.WriteLine("Aktivitet redigeret");
+            }
+            else
+            {
+                Console.WriteLine("Noget gik galt");
+            }
+            Console.WriteLine("Tryk på en tast for at fortsætte...");
+            Console.ReadKey();
+        }
+        static void KundeMenu()
+        {
+            #region KundeMenu
+            //Undermenu for kunden med funktioner til se ledige dyr, booke tid og se/tilmelde aktiviteter
+            bool fortsæt = true;
+            while (fortsæt)
+            {
+                Console.Clear(); //Rydder konsollen hver gang menuen vises
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Kunde menu - vælge en kategori:");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. Se ledige dyr");
+                Console.WriteLine("2. Book tid til besøg dyr");
+                Console.WriteLine("3. Se og tilmeld kommende aktiviteter");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå tilbage");
+                Console.ResetColor();
+
+                string valg = Console.ReadLine();
+                switch (valg)
+                {
+                    case "1":
+                        // Se ledige dyr
+                        break;
+                    case "2":
+                        // Book tid til besøg dyr
+                        break;
+                    case "3":
+                        // Se og tilmeld kommende aktiviteter
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
+                }
+            }
+            #endregion
         }
     }
 }
