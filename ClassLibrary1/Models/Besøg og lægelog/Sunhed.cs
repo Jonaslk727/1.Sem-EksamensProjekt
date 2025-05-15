@@ -16,5 +16,11 @@ namespace ClassLibrary1.Models.Besøg_og_lægelog
             Lægebesøg = lægebesøg;
             Journal = journal;
         }
+
+        public override string ToString()
+        {
+            return $"-------------------------------------------------" +
+                $"Lægebesøg: {Lægebesøg} | Journal: {Journal}";
+        }
     }
 }
