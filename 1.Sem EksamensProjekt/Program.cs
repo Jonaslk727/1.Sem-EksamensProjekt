@@ -1,10 +1,15 @@
-﻿namespace _1.Sem_EksamensProjekt
+﻿using System.Runtime.InteropServices;
+using ClassLibrary1.Models;
+using ClassLibrary1.Services;
+
+namespace _1.Sem_EksamensProjekt
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            TestDataAktivitet(AktivitetRepo);
+            var AkRepo = new AktivitetRepo();
+            TestDataAktivitet(AkRepo);
             #region Hovedmenu
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
@@ -27,11 +32,11 @@
                 {
                     case "1":
                         //Kalder medarbejdermenuen hvis brugeren vælger 1
-                        MedarbejderMenu();
+                        MedarbejderMenu(AkRepo);
                         break;
                     case "2":
                         //Kalder kundemenuen hvis brugeren vælger 2
-                        KundeMenu();
+                        //KundeMenu();
                         break;
                     case "0":
                         //Stopper programmet hvis brugeren vælger 0
@@ -48,7 +53,7 @@
             }
             #endregion
         }
-        static void MedarbejderMenu()
+        static void MedarbejderMenu(AktivitetRepo AkRepo)
         {
             #region MedarbejderMenu
             //Undermenu for medarbejderen med funktioner til håndtere dyr, kunder og aktiviteter
@@ -101,7 +106,7 @@
                         // Opret, slet eller rediger kunde
                         break;
                     case "6":
-                        // Se oprettede aktiviteter
+                        VisAlleAktivitet(AkRepo);
                         break;
                     case "7":
                         // Opret, slet eller rediger aktivitet
@@ -118,6 +123,46 @@
                 }
             }
             #endregion
+            static void RedigerAktivitet(AktivitetRepo AkRepo)
+            {
+                bool fortsæt = true;
+                while (fortsæt)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("Rediger aktivitet - vælge en kategori:");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("1. Opret aktivitet");
+                    Console.WriteLine("2. Slet aktivitet");
+                    Console.WriteLine("3. Rediger oprettet aktivitet");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("0. Gå tilbage");
+                    Console.ResetColor();
+
+                    string valg = Console.ReadLine();
+                    switch (valg)
+                    {
+                        case "1":
+                            OpretAktivitet(AkRepo);
+                            break;
+                        case "2":
+                            SletAktivitet(AkRepo);
+                            break;
+                        case "3":
+                            //Metode til redigere aktivitet
+                            break;
+                        case "0":
+                            fortsæt = false;
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Ugyldigt valg, prøv igen.");
+                            Console.ReadKey();
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+            }
         }
         public static void TestDataAktivitet(AktivitetRepo repo)
         {
@@ -162,18 +207,30 @@
             Console.WriteLine("Indtast dag:");
             int day = int.Parse(Console.ReadLine());
             Console.WriteLine("Indtast time:");
-            DateOnly dateOnly = new(year, month, day);
-
             int time = int.Parse(Console.ReadLine());
             Console.WriteLine("Indtast minut:");
             int minute = int.Parse(Console.ReadLine());
-            TimeOnly timeOnly = new TimeOnly(time, minute);
-            DateTime dateTime = new DateTime(dateOnly, timeOnly);
-            Console.WriteLine($"Dato: {dateTime.ToString("dd-MM-yyyy HH:mm")}");
+
+            DateTime startTid = new DateTime(year, month, day, time, minute, 0);
+
+            Console.WriteLine("Indtast slut måned:");
+            int endMonth = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast slut dag:");
+            int endDay = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast slut time:");
+            int endTime = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast slut minut:");
+            int endMinute = int.Parse(Console.ReadLine());
+
+            DateTime slutTid = new DateTime(year, endMonth, endDay, endTime, endMinute, 0);
+
+            Console.WriteLine($"Start Dato: {startTid:dd-MM-yyyy HH:mm}");
+            Console.WriteLine($"Slut Dato: {slutTid:dd-MM-yyyy HH:mm}");
             Console.WriteLine();
             Console.WriteLine("Skriv mere info");
             string info = Console.ReadLine();
-            AkRepo.OpretAktivitet(title, dateTime, info);
+
+            AkRepo.OpretAktivitet(title, startTid, slutTid, info);
             Console.WriteLine("Aktivitet oprettet");
             Console.ReadKey();
         }
@@ -181,7 +238,7 @@
         {
             Console.WriteLine("Liste over aktiviteter:");
             var Aktiviteter = AkRepo.AlleAktiviteter;
-            if(Aktiviteter.Count == 0)
+            if (Aktiviteter.Count == 0)
             {
                 Console.WriteLine("Ingen aktiviteter oprettet endnu.");
             }
@@ -199,50 +256,59 @@
         {
             Console.WriteLine("Skriv ID på aktiviteten du vil slette:");
             int id = int.Parse(Console.ReadLine());
-        }
-        static void KundeMenu()
-        {
-            #region KundeMenu
-            //Undermenu for kunden med funktioner til se ledige dyr, booke tid og se/tilmelde aktiviteter
-            bool fortsæt = true;
-            while (fortsæt)
+            bool slettet = AkRepo.SletAktivitet(id);
+            if (slettet)
             {
-                Console.Clear(); //Rydder konsollen hver gang menuen vises
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Kunde menu - vælge en kategori:");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1. Se ledige dyr");
-                Console.WriteLine("2. Book tid til besøg dyr");
-                Console.WriteLine("3. Se og tilmeld kommende aktiviteter");
-
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("0. Gå tilbage");
-                Console.ResetColor();
-
-                string valg = Console.ReadLine();
-                switch (valg)
-                {
-                    case "1":
-                        // Se ledige dyr
-                        break;
-                    case "2":
-                        // Book tid til besøg dyr
-                        break;
-                    case "3":
-                        // Se og tilmeld kommende aktiviteter
-                        break;
-                    case "0":
-                        fortsæt = false;
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Ugyldigt valg, prøv igen.");
-                        Console.ReadKey();
-                        Console.ResetColor();
-                        break;
-                }
+                Console.WriteLine($"Aktivitet med ID {id} er slettet.");
             }
-            #endregion
+            else
+            {
+                Console.WriteLine($"Ingen aktivitet med ID {id} fundet.");
+            }
+            static void KundeMenu()
+            {
+                #region KundeMenu
+                //Undermenu for kunden med funktioner til se ledige dyr, booke tid og se/tilmelde aktiviteter
+                bool fortsæt = true;
+                while (fortsæt)
+                {
+                    Console.Clear(); //Rydder konsollen hver gang menuen vises
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("Kunde menu - vælge en kategori:");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("1. Se ledige dyr");
+                    Console.WriteLine("2. Book tid til besøg dyr");
+                    Console.WriteLine("3. Se og tilmeld kommende aktiviteter");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("0. Gå tilbage");
+                    Console.ResetColor();
+
+                    string valg = Console.ReadLine();
+                    switch (valg)
+                    {
+                        case "1":
+                            // Se ledige dyr
+                            break;
+                        case "2":
+                            // Book tid til besøg dyr
+                            break;
+                        case "3":
+                            // Se og tilmeld kommende aktiviteter
+                            break;
+                        case "0":
+                            fortsæt = false;
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Ugyldigt valg, prøv igen.");
+                            Console.ReadKey();
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+                #endregion
+            }
         }
     }
 }
