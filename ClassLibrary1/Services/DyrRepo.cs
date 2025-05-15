@@ -74,7 +74,6 @@ namespace ClassLibrary1.Services
                     }
                     break;
 
-                
                 case SøgDyrType.Art:
                     Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
                     string artInput = Console.ReadLine();
@@ -92,15 +91,6 @@ namespace ClassLibrary1.Services
                     else
                     {
                         Console.WriteLine("Ugyldig art indtastet.");
-                    }
-                    break;
-                    
-                    foreach (var dyr in DyrList.Values)
-                    {
-                        if (dyr.Art.ToString().Equals(art))
-                        {
-                            dyrList.Add(dyr);
-                        }
                     }
                     break;
 

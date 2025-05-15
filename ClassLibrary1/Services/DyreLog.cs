@@ -12,22 +12,22 @@ namespace ClassLibrary1.Services
 {
     public class DyreLog
     {   // der skal laves en en læge log og en besøg log class
-        public List<string> LægeLogs = new List<string>();
+        public Dictionary<int, Lægelog> LægeLogs = new Dictionary<int, Lægelog>();
         public List<Besøg> BesøgssLogs = new List<Besøg>();
 
-        
         // skal kunne tage info fra booking og tilføje til bookingloggen
         
-       
+        public void CreateBesøgLog(DateTime Dato, Models.Kunde besøger)
+        {
+            Besøg besøg = new Besøg(Dato, besøger);
+            BesøgssLogs.Add(besøg);
+        }
+        public void CreateLægeLog(DateTime dato, string journal)
+        {
+            Lægelog lægelog = new Lægelog(dato, journal);
+            LægeLogs.Add(lægelog.Id, lægelog);
+        }
 
-        public void Read()
-        {
-            // Implementer logik til at læse loggen
-        }
-        public void Update()
-        {
-            // Implementer logik til at opdatere loggen
-        }
         public void Delete()
         {
             // Implementer logik til at slette loggen

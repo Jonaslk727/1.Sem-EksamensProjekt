@@ -23,6 +23,7 @@ namespace ClassLibrary1.Models
     {
         #region Properties
         static private int _nextId = 0;
+        public bool IsBooked { get; set; } = false;
         public string Navn { get; set; } = "None";
         public ArtType Art { get; set; }
         public string Race { get; set; } = "none";

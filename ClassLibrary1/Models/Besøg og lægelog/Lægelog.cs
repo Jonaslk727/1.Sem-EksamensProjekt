@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.Models.Besøg_og_lægelog
 {
-    internal class Lægelog
+    public class Lægelog
     {
+        static private int _next = 0;
+        public int Id { get; init; }
         public DateTime Dato { get; set; }
         public string Journal { get; set; } = "none";
 
         public Lægelog(DateTime dato, string journal)
         {
+            Id = _next++;
             Dato = dato;
             Journal = journal;
         }
 
         public override string ToString()
         {
-            return $"-------------------------------------------------" +
+            return $"--------------------------------------------------------" +
                 $"Lægebesøg: {Dato} | Journal: {Journal}";
         }
     }

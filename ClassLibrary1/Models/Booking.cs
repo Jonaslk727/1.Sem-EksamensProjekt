@@ -19,6 +19,7 @@ namespace ClassLibrary1.Models
         public DateTime SlutTid { get { return StartTid.AddHours(Varighed); } }
         public int Varighed { get; set; } // i timer
         public Kunde Booker { get;}
+        public Dyr BookedDyr { get; set; } // Dyr der bookes til aktiviteten
 
         public Booking(BookingType type, DateTime startTid, int varighed, Kunde booker)
         {
