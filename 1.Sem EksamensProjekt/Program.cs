@@ -186,22 +186,21 @@ namespace _1.Sem_EksamensProjekt
                 {
                     Console.WriteLine("Skriv årstal for start tid:");
                     input = Console.ReadLine();
-                    if (input.Length != 4 || input == null)
+
+                    if (input != null && input.Length == 4 && int.TryParse(input, out year))
+                    {
+                        fortsæt = true;
+                    }
+                    else
                     {
                         Console.WriteLine("Ugyldigt input, prøv igen.");
                     }
-                    year = int.Parse(input);
-                    fortsæt = true;
                 }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Ugyldigt input, prøv igen.");
-                }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Console.WriteLine("Skriv et gyldigt årstal");
                 }
-            } while (fortsæt == true);
+            } while (!fortsæt);
             Console.WriteLine("Indtast måned:");
             int month = int.Parse(Console.ReadLine());
             Console.WriteLine("Indtast dag:");
