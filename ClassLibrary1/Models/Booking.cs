@@ -13,12 +13,10 @@ namespace ClassLibrary1.Models
     }
     public class Booking
     {   
-        public int BookingId { get;}
+        public int BookingId { get; set; }
         public BookingType Type { get; set; }
         public DateTime StartTid {  get; set; }
-        public DateTime SlutTid {
-            get { return StartTid.AddHours(Varighed); }
-            }
+        public DateTime SlutTid { get { return StartTid.AddHours(Varighed); } }
         public int Varighed { get; set; } // i timer
         public Kunde Booker { get;}
 
@@ -29,10 +27,6 @@ namespace ClassLibrary1.Models
             StartTid = startTid;
             Varighed = varighed;
             Booker = booker;
-            if (Type == BookingType.Besøg)
-            {
-                // her sendes relavant info til dyreløggen
-            }
         }
 
         public override string ToString()
