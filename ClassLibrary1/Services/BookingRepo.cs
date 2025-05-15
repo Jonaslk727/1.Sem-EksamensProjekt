@@ -14,8 +14,7 @@ namespace ClassLibrary1.Services
 
         public void Creat()
         {
-            Booking n = new Booking();
-            bookings.Add(n.BookingId, n);
+           
             
         }
     }
