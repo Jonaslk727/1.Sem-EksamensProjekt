@@ -35,7 +35,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         //Kalder medarbejdermenuen hvis brugeren vælger 1
-                        MedarbejderMenu(AkRepo);
+                        MedarbejderMenu(AkRepo, DyrRep);
                         break;
                     case "2":
                         //Kalder kundemenuen hvis brugeren vælger 2
@@ -56,7 +56,7 @@ namespace _1.Sem_EksamensProjekt
             }
             #endregion
         }
-        static void MedarbejderMenu(AktivitetRepo AkRepo)
+        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep)
         {
             MedarbejderRepo repo = new MedarbejderRepo();
 
@@ -99,6 +99,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         // Se oprettede dyr
+                        dyrRep.PrintDyrList();
                         break;
                     case "2":
                         // Opret, slet eller rediger dyr
@@ -435,6 +436,14 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
+        #endregion
+
+        #region MetoderTilDyr
+        public void SletRedigerOpretDyrMeny()
+        {
+
+        }
+
         #endregion
         static void KundeMenu()
         {

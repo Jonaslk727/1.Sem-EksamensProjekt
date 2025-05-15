@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ClassLibrary1.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using ClassLibrary1.Models;
 
 namespace ClassLibrary1.Services
 {
@@ -20,9 +21,30 @@ namespace ClassLibrary1.Services
     {
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
 
-        public void Create(string name, ArtType art, string race, double vægt, DateTime fødselsdag)
-        {
-            Dyr nytDyr = new (name, art, race, vægt, fødselsdag);
+        public void Create()
+        {   // input til dyrets navn
+            Console.WriteLine("Indtast dyrets navn:");
+            string navn = Console.ReadLine();
+            // indput til dyrets Art
+            string artInput;
+            ArtType artType;
+            do
+            {
+                Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
+                artInput = Console.ReadLine();
+            } while (!Enum.TryParse(artInput, true, out artType));
+            // indput til dyrets race
+            Console.WriteLine("indtast dyrets race: ");
+            string race = Console.ReadLine();
+
+            // indput til dyrets vægt
+            Console.WriteLine("Indtast dyrets Vægt i kg:");
+            double.TryParse(Console.ReadLine(), out double vægt);
+            // indput til dyrets fødselsdag
+            Console.WriteLine("Indtast dyrets fødselsdag (dd/MM/yyyy):");
+            DateTime.TryParse(Console.ReadLine(), out DateTime fødselsdag);
+
+            Dyr nytDyr = new(navn, artType, race, vægt, fødselsdag);
             DyrList.Add(nytDyr.ChipNummer, nytDyr);
         }
 
@@ -139,6 +161,25 @@ namespace ClassLibrary1.Services
             return false;
         }
 
+        public void PrintDyrList()
+        {
+            
+            if (DyrList.Count() == 0)
+            {
+                Console.WriteLine("Ingen dyr i systemet.");
+            }
+            else
+            {
+                Console.WriteLine("Dyr i systemet:");
+                foreach (var dyr in DyrList.Values)
+                {
+                    Console.WriteLine(dyr.ToString());
+                }
+            }
+            Console.ReadKey();
+        }
+        
+            
 
     }
 }

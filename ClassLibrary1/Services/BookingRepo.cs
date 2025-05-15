@@ -52,11 +52,14 @@ namespace ClassLibrary1.Services
                     AktivitetsRep.AlleAktiviteter[id].Tilmeldte.Add(booker);
                     Console.WriteLine($"du er hermed tilmeldt til:\n{AktivitetsRep.AlleAktiviteter[id]}");
                 }
+                else
+                {
+                    Console.WriteLine("Aktivitet med dette Id findes ikke.");
+                }
             }
             else
             {
                 Console.WriteLine("Ugyldig booking type.");
-                return;
                
             }
                 //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
