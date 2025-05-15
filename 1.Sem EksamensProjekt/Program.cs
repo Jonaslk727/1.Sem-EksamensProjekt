@@ -3,7 +3,7 @@ using ClassLibrary1.Models;
 using ClassLibrary1.Services;
 
 namespace _1.Sem_EksamensProjekt
-{
+{ //TODO: Rykke menuer til interfaces mappe
     internal class Program
     {
         static void Main(string[] args)
