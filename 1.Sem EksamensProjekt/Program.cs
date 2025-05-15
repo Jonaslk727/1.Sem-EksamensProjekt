@@ -267,42 +267,57 @@ namespace _1.Sem_EksamensProjekt
         }
         static void RedigerOprettetAktivitet(AktivitetRepo AkRepo)
         {
+            Console.Clear();
             Console.WriteLine("Indtast ID på aktivitet du vil redigere:");
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("Ugyldigt ID, prøv igen.");
                 return;
             }
-            if (!AkRepo.AlleAktiviteter.ContainsKey(id))
+
+            if (!AkRepo.AlleAktiviteter.TryGetValue(id, out var aktivitet))
             {
-                Console.WriteLine("Aktivitet med ID findes ikke");
+                Console.WriteLine("Aktivitet med ID findes ikke.");
                 return;
             }
-            Console.WriteLine("Indtast ny titel:");
+
+            Console.WriteLine($"Nuværende titel: {aktivitet.Title}");
+            Console.Write("Ny titel: ");
             string nyTitle = Console.ReadLine();
-            Console.WriteLine("Indtast ny start dato (dd-MM-yyyy):");
-            if(!DateTime.TryParse(Console.ReadLine(), out DateTime nyStart))
+
+            DateTime nyStart;
+            while (true)
             {
-                Console.WriteLine("Ugyldig dato, prøv igen.");
-                return;
+                Console.Write("Ny startdato og tid (dd-MM-yyyy HH:mm): ");
+                if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out nyStart))
+                    break;
+                Console.WriteLine("Ugyldigt format. Prøv igen.");
             }
-            Console.WriteLine("Indtast ny slut dato (dd-MM-yyyy):");
-            if(!DateTime.TryParse(Console.ReadLine(), out DateTime nySlut))
+
+            DateTime nySlut;
+            while (true)
             {
-                Console.WriteLine("Ugyldig dato, prøv igen");
-                return; 
+                Console.Write("Ny slutdato og tid (dd-MM-yyyy HH:mm): ");
+                if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out nySlut))
+                    break;
+                Console.WriteLine("Ugyldigt format. Prøv igen.");
             }
-            Console.WriteLine("Indtast ny beskrivelse)");
+
+            Console.WriteLine("Nuværende beskrivelse: " + aktivitet.Beskrivelse);
+            Console.Write("Ny beskrivelse: ");
             string nyBeskrivelse = Console.ReadLine();
+
             bool succes = AkRepo.RedigerAktivitet(id, nyTitle, nyStart, nySlut, nyBeskrivelse);
+
             if (succes)
             {
-                Console.WriteLine("Aktivitet redigeret");
+                Console.WriteLine("✅ Aktivitet er blevet opdateret!");
             }
             else
             {
-                Console.WriteLine("Noget gik galt");
+                Console.WriteLine("⚠️ Noget gik galt under opdatering.");
             }
+
             Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
