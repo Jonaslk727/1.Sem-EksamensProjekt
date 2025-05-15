@@ -1,12 +1,25 @@
-﻿using System;
+﻿using ClassLibrary1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ClassLibrary1.Interfaces
+
 {
-    internal interface IMedarbejder
+    public interface IMedarbejder
     {
+        void TilføjMedarbejder(Medarbejder medarbejder);
+
+        void VisMedarbejder();
+
+        bool FindMedarbejder(int medarbejderId);
+
+        void OpdaterMedarbejder(int medarbejederId, Medarbejder medarbejder);
+
+        void SletMedarbejder(int medarbejderId);
+
+        List<Medarbejder> HentAlleMedarbejdere();
     }
 }

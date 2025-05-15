@@ -17,7 +17,7 @@ namespace ClassLibrary1.Models
         public string Beskrivelse { get; set; }
         #endregion
 
-        //public List<Kunde> Tilmeldte { get; set; } = new List<Kunde>();
+        public List<Kunde> Tilmeldte { get; set; } = new List<Kunde>();
 
         public Aktivitet(string title, DateTime start, DateTime slut, string beskrivelse)
         {

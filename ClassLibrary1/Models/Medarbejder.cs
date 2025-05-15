@@ -18,9 +18,9 @@ namespace ClassLibrary1.Models
 
 
         public Medarbejder()
-        { 
+        {
         }
-        
+
         public Medarbejder(string navn, int medarbejderId, string afdeling, string stilling, string email, string telefonnummer)
         {
             Navn = navn;
@@ -31,10 +31,20 @@ namespace ClassLibrary1.Models
             Telefonnummer = telefonnummer;
 
         }
-        public void MedarbejderInfo()
+        public override string ToString()
         {
-            Console.WriteLine($"Navn: {Navn},Id:{MedarbejderId},Afdeling:{Afdeling},Stilling {Stilling},Email:{Email},Telefonnummer {Telefonnummer}");
+            return "----------------------------------\n" + // Separator line
+                   "Navn      : " + Navn + "\n" +
+                   "ID        : " + MedarbejderId + "\n" +
+                   "Afdeling  : " + Afdeling + "\n" +
+                   "Stilling  : " + Stilling + "\n" +
+                   "Email     : " + Email + "\n" +
+                   "Telefon   : " + Telefonnummer + "\n" +
+                   "----------------------------------"; // Separator line
         }
+
+
+
     }
 }
-   
+
