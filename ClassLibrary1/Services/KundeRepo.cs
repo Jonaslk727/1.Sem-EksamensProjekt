@@ -37,7 +37,7 @@ public class KundeRepo
 
         kunde.Navn = nyNavn;
         kunde.Email = nyEmail;
-        kunde.Mobil = nyMobil;
+        kunde.Mobil = nyMobil.ToString();
         return true;
     }
 
