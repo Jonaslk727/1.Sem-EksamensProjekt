@@ -124,6 +124,8 @@ namespace _1.Sem_EksamensProjekt
             }
             #endregion
         }
+        
+        #region MetoderTilAktivitet
         static void RedigerAktivitet(AktivitetRepo AkRepo)
         {
             bool fortsæt = true;
@@ -321,6 +323,7 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
+        #endregion
         static void KundeMenu()
         {
             #region KundeMenu
