@@ -5,13 +5,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClassLibrary1.Models;
 
 namespace ClassLibrary1.Services
 {
     public class DyreLog
     {   // der skal laves en en læge log og en besøg log class
         public List< string> LægeLogs = new List<string>();
-        public Dictionary<int, Besøg> BesøgssLogs = new Dictionary<int, Besøg>();
+        public List< Besøg> BesøgssLogs = new Dictionary<int, Besøg>();
 
         
         // skal kunne tage info fra booking og tilføje til bookingloggen

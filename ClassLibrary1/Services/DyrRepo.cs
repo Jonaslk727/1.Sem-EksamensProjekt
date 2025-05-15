@@ -111,10 +111,42 @@ namespace ClassLibrary1.Services
             }
             return dyrList;
         }
-       
-        public bool Update(int id)
-        {
-
+        /// <summary>
+        /// man skal indsætte id'et på det dyr der skal ændres og de værdier der skal ændres.
+        /// Du insætter derefter de værdier du vil ændre og de vil blive opdateret i objektet.
+        /// Hermed behøver man ikke at indsætte alle parametre, kun dem der skal ændres.
+        /// </summary>
+        /// <param name="nyNavn"></param>
+        /// <param name="nyArt"></param>
+        /// <param name="nyRace"></param>
+        /// <param name="nyVægt"></param>
+        /// <param name="nyFødselsdag"></param>
+        /// <param name="nyKøn"></param>
+        /// <param name="nyInfo"></param>
+        /// <returns></returns>
+        public bool Update(
+            int id,
+            string? nyNavn = null,
+            ArtType? nyArt = null,
+            string? nyRace = null,
+            double? nyVægt = null,
+            DateTime? nyFødselsdag = null,
+            kønType? nyKøn = null,
+            string? nyInfo = null
+            )
+        {   // TryGetValue er en metode der kikker om id findes i dictionaryen og outputter objektet
+            if (DyrList.TryGetValue(id, out Dyr dyr))
+            {
+                if (nyNavn != null) dyr.Navn = nyNavn;
+                if (nyArt.HasValue) dyr.Art = nyArt.Value;
+                if (nyRace != null) dyr.Race = nyRace;
+                if (nyVægt.HasValue) dyr.Vægt = nyVægt.Value;
+                if (nyFødselsdag.HasValue) dyr.FødselsDag = nyFødselsdag.Value;
+                if (nyKøn.HasValue) dyr.Køn = nyKøn.Value;
+                if (nyInfo != null) dyr.Info = nyInfo;
+                return true;
+            }
+            return false;
         }
 
 
