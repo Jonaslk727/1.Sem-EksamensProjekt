@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.Interfaces
 {
-    internal class Kunde : IKunde
+    internal class Kunde
     {
         
     }

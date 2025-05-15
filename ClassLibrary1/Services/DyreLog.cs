@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary1.Models.Besøg_og_lægelog;
+using ClassLibrary1.Models;
 
 namespace ClassLibrary1.Services
 {

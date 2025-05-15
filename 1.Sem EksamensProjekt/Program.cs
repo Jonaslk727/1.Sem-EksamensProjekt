@@ -109,7 +109,7 @@ namespace _1.Sem_EksamensProjekt
                         VisAlleAktivitet(AkRepo);
                         break;
                     case "7":
-                        // Opret, slet eller rediger aktivitet
+                        RedigerAktivitet(AkRepo);
                         break;
                     case "0":
                         fortsæt = false;
@@ -123,44 +123,44 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
             #endregion
-            static void RedigerAktivitet(AktivitetRepo AkRepo)
+        }
+        static void RedigerAktivitet(AktivitetRepo AkRepo)
+        {
+            bool fortsæt = true;
+            while (fortsæt)
             {
-                bool fortsæt = true;
-                while (fortsæt)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Rediger aktivitet - vælge en kategori:");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("1. Opret aktivitet");
-                    Console.WriteLine("2. Slet aktivitet");
-                    Console.WriteLine("3. Rediger oprettet aktivitet");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("0. Gå tilbage");
-                    Console.ResetColor();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Rediger aktivitet - vælge en kategori:");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. Opret aktivitet");
+                Console.WriteLine("2. Slet aktivitet");
+                Console.WriteLine("3. Rediger oprettet aktivitet");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå tilbage");
+                Console.ResetColor();
 
-                    string valg = Console.ReadLine();
-                    switch (valg)
-                    {
-                        case "1":
-                            OpretAktivitet(AkRepo);
-                            break;
-                        case "2":
-                            SletAktivitet(AkRepo);
-                            break;
-                        case "3":
-                            RedigerAktivitet(AkRepo);
-                            break;
-                        case "0":
-                            fortsæt = false;
-                            break;
-                        default:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Ugyldigt valg, prøv igen.");
-                            Console.ReadKey();
-                            Console.ResetColor();
-                            break;
-                    }
+                string valg = Console.ReadLine();
+                switch (valg)
+                {
+                    case "1":
+                        OpretAktivitet(AkRepo);
+                        break;
+                    case "2":
+                        SletAktivitet(AkRepo);
+                        break;
+                    case "3":
+                        RedigerOprettetAktivitet(AkRepo);
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
                 }
             }
         }
@@ -186,22 +186,21 @@ namespace _1.Sem_EksamensProjekt
                 {
                     Console.WriteLine("Skriv årstal for start tid:");
                     input = Console.ReadLine();
-                    if (input.Length != 4 || input == null)
+
+                    if (input != null && input.Length == 4 && int.TryParse(input, out year))
+                    {
+                        fortsæt = true;
+                    }
+                    else
                     {
                         Console.WriteLine("Ugyldigt input, prøv igen.");
                     }
-                    year = int.Parse(input);
-                    fortsæt = true;
                 }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Ugyldigt input, prøv igen.");
-                }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Console.WriteLine("Skriv et gyldigt årstal");
                 }
-            } while (fortsæt == true);
+            } while (!fortsæt);
             Console.WriteLine("Indtast måned:");
             int month = int.Parse(Console.ReadLine());
             Console.WriteLine("Indtast dag:");
@@ -268,42 +267,57 @@ namespace _1.Sem_EksamensProjekt
         }
         static void RedigerOprettetAktivitet(AktivitetRepo AkRepo)
         {
+            Console.Clear();
             Console.WriteLine("Indtast ID på aktivitet du vil redigere:");
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("Ugyldigt ID, prøv igen.");
                 return;
             }
-            if (!AkRepo.AlleAktiviteter.ContainsKey(id))
+
+            if (!AkRepo.AlleAktiviteter.TryGetValue(id, out var aktivitet))
             {
-                Console.WriteLine("Aktivitet med ID findes ikke");
+                Console.WriteLine("Aktivitet med ID findes ikke.");
                 return;
             }
-            Console.WriteLine("Indtast ny titel:");
+
+            Console.WriteLine($"Nuværende titel: {aktivitet.Title}");
+            Console.Write("Ny titel: ");
             string nyTitle = Console.ReadLine();
-            Console.WriteLine("Indtast ny start dato (dd-MM-yyyy):");
-            if(!DateTime.TryParse(Console.ReadLine(), out DateTime nyStart))
+
+            DateTime nyStart;
+            while (true)
             {
-                Console.WriteLine("Ugyldig dato, prøv igen.");
-                return;
+                Console.Write("Ny startdato og tid (dd-MM-yyyy HH:mm): ");
+                if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out nyStart))
+                    break;
+                Console.WriteLine("Ugyldigt format. Prøv igen.");
             }
-            Console.WriteLine("Indtast ny slut dato (dd-MM-yyyy):");
-            if(!DateTime.TryParse(Console.ReadLine(), out DateTime nySlut))
+
+            DateTime nySlut;
+            while (true)
             {
-                Console.WriteLine("Ugyldig dato, prøv igen");
-                return; 
+                Console.Write("Ny slutdato og tid (dd-MM-yyyy HH:mm): ");
+                if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out nySlut))
+                    break;
+                Console.WriteLine("Ugyldigt format. Prøv igen.");
             }
-            Console.WriteLine("Indtast ny beskrivelse)");
+
+            Console.WriteLine("Nuværende beskrivelse: " + aktivitet.Beskrivelse);
+            Console.Write("Ny beskrivelse: ");
             string nyBeskrivelse = Console.ReadLine();
+
             bool succes = AkRepo.RedigerAktivitet(id, nyTitle, nyStart, nySlut, nyBeskrivelse);
+
             if (succes)
             {
-                Console.WriteLine("Aktivitet redigeret");
+                Console.WriteLine("Aktivitet er blevet opdateret!");
             }
             else
             {
-                Console.WriteLine("Noget gik galt");
+                Console.WriteLine("Noget gik galt under opdatering.");
             }
+
             Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
