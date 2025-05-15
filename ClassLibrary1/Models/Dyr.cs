@@ -63,20 +63,20 @@ namespace ClassLibrary1.Models
         /// skriv 3, hvis du vil have medicinsk log
         /// </summary>
         /// <returns></returns>
-        public string PrintLogs(int i)
-        {
-           switch(i)
-            {
-                case 1:
-                    return Log.ToString();
-                case 2:
-                    return Log.BesøgssLog.ToString();
-                case 3:
-                    return Log.MedicinskLog.ToString();
-                default:
-                    return "!! Ugyldigt input til parameteret i Printlog methoden i dyre classen!!";
-            }
-        }
+        //public string PrintLogs(int i)
+        //{
+        //   switch(i)
+        //    {
+        //        case 1:
+        //            return Log.ToString();
+        //        case 2:
+        //            return Log.BesøgssLog.ToString();
+        //        case 3:
+        //            return Log.MedicinskLog.ToString();
+        //        default:
+        //            return "!! Ugyldigt input til parameteret i Printlog methoden i dyre classen!!";
+        //    }
+        //}
 
     }
 }
