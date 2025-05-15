@@ -109,7 +109,7 @@ namespace _1.Sem_EksamensProjekt
                         VisAlleAktivitet(AkRepo);
                         break;
                     case "7":
-                        // Opret, slet eller rediger aktivitet
+                        RedigerAktivitet(AkRepo);
                         break;
                     case "0":
                         fortsæt = false;
@@ -123,44 +123,44 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
             #endregion
-            static void RedigerAktivitet(AktivitetRepo AkRepo)
+        }
+        static void RedigerAktivitet(AktivitetRepo AkRepo)
+        {
+            bool fortsæt = true;
+            while (fortsæt)
             {
-                bool fortsæt = true;
-                while (fortsæt)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Rediger aktivitet - vælge en kategori:");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("1. Opret aktivitet");
-                    Console.WriteLine("2. Slet aktivitet");
-                    Console.WriteLine("3. Rediger oprettet aktivitet");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("0. Gå tilbage");
-                    Console.ResetColor();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Rediger aktivitet - vælge en kategori:");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. Opret aktivitet");
+                Console.WriteLine("2. Slet aktivitet");
+                Console.WriteLine("3. Rediger oprettet aktivitet");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå tilbage");
+                Console.ResetColor();
 
-                    string valg = Console.ReadLine();
-                    switch (valg)
-                    {
-                        case "1":
-                            OpretAktivitet(AkRepo);
-                            break;
-                        case "2":
-                            SletAktivitet(AkRepo);
-                            break;
-                        case "3":
-                            RedigerAktivitet(AkRepo);
-                            break;
-                        case "0":
-                            fortsæt = false;
-                            break;
-                        default:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Ugyldigt valg, prøv igen.");
-                            Console.ReadKey();
-                            Console.ResetColor();
-                            break;
-                    }
+                string valg = Console.ReadLine();
+                switch (valg)
+                {
+                    case "1":
+                        OpretAktivitet(AkRepo);
+                        break;
+                    case "2":
+                        SletAktivitet(AkRepo);
+                        break;
+                    case "3":
+                        RedigerOprettetAktivitet(AkRepo);
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
                 }
             }
         }
