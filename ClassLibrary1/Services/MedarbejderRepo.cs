@@ -12,7 +12,20 @@ namespace ClassLibrary1.Repositories
 
         public void TilføjMedarbejder(Medarbejder medarbejder)
         {
+            for (int i = 0; i < medarbejdere.Count; i++)
+            {
+                if (medarbejdere[i].MedarbejderId == medarbejder.MedarbejderId)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n==========================================");
+                    Console.WriteLine("Medarbejder findes allerede.");
+                    Console.WriteLine("==========================================\n");
+                    Console.ResetColor();
+                    return;
+                }
+            }
             medarbejdere.Add(medarbejder);
+            Console.WriteLine("Medarbejder tilføjet.");
         }
 
         public void VisMedarbejder()
@@ -67,12 +80,18 @@ namespace ClassLibrary1.Repositories
                 if (medarbejdere[i].MedarbejderId == medarbejderId)
                 {
                     medarbejdere.RemoveAt(i);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n==========================================");
+                    Console.WriteLine("Medarbejder med ID " + medarbejderId + " er blevet slettet.");
+                    Console.WriteLine("==========================================\n");
+                    Console.ResetColor();
+
                     break;
                 }
             }
         }
 
-        public List<Medarbejder> HentAlleMedarbejdere()
+            public List<Medarbejder> HentAlleMedarbejdere()
         {
             return medarbejdere;
         }
