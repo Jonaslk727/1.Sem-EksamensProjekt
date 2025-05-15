@@ -42,20 +42,20 @@ namespace ClassLibrary1.Services
                 Console.WriteLine("---------------------------");
             }
         }
-        //public bool TilmeldAktivitet(int id, List<Kunde> Kunder)
-        //{
-        //    foreach(Aktivitet b in AlleAktiviteter.Values)
-        //    {
-        //        if (b.AktivitetID == id)
-        //        {
-        //            foreach(Kunde k in Kunder)
-        //            {
-        //                b.Tilmeldte.Add(m);
-        //            }
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
+        public bool TilmeldAktivitet(int id, List<Kunde> Kunder)
+        {
+            foreach (Aktivitet b in AlleAktiviteter.Values)
+            {
+                if (b.AktivitetID == id)
+                {
+                    foreach (Kunde k in Kunder)
+                    {
+                        b.Tilmeldte.Add(k);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

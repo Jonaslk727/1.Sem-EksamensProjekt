@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            TestDataAktivitet(AktivitetRepo);
             #region Hovedmenu
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
@@ -117,6 +118,87 @@
                 }
             }
             #endregion
+        }
+        public static void TestDataAktivitet(AktivitetRepo repo)
+        {
+            string Title = "Hundetræning";
+            DateTime StartTid = new(2025, 10, 1, 10, 0, 0);
+            DateTime SlutTid = new(2025, 10, 1, 12, 0, 0);
+            string info = "Træning for hunde og ejere";
+            repo.OpretAktivitet(Title, StartTid, SlutTid, info);
+        }
+        public static void OpretAktivitet(AktivitetRepo AkRepo)
+        {
+            Console.WriteLine("Skriv en tittel til Aktiviteten:");
+            string title = Console.ReadLine();
+
+            bool fortsæt = false;
+            int year = 0;
+            string input;
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Skriv årstal for start tid:");
+                    input = Console.ReadLine();
+                    if (input.Length != 4 || input == null)
+                    {
+                        Console.WriteLine("Ugyldigt input, prøv igen.");
+                    }
+                    year = int.Parse(input);
+                    fortsæt = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Ugyldigt input, prøv igen.");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Skriv et gyldigt årstal");
+                }
+            } while (fortsæt == true);
+            Console.WriteLine("Indtast måned:");
+            int month = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast dag:");
+            int day = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast time:");
+            DateOnly dateOnly = new(year, month, day);
+
+            int time = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast minut:");
+            int minute = int.Parse(Console.ReadLine());
+            TimeOnly timeOnly = new TimeOnly(time, minute);
+            DateTime dateTime = new DateTime(dateOnly, timeOnly);
+            Console.WriteLine($"Dato: {dateTime.ToString("dd-MM-yyyy HH:mm")}");
+            Console.WriteLine();
+            Console.WriteLine("Skriv mere info");
+            string info = Console.ReadLine();
+            AkRepo.OpretAktivitet(title, dateTime, info);
+            Console.WriteLine("Aktivitet oprettet");
+            Console.ReadKey();
+        }
+        public static void VisAlleAktivitet(AktivitetRepo AkRepo)
+        {
+            Console.WriteLine("Liste over aktiviteter:");
+            var Aktiviteter = AkRepo.AlleAktiviteter;
+            if(Aktiviteter.Count == 0)
+            {
+                Console.WriteLine("Ingen aktiviteter oprettet endnu.");
+            }
+            else
+            {
+                foreach (var aktivitet in Aktiviteter)
+                {
+                    Console.WriteLine(aktivitet);
+                }
+            }
+            Console.WriteLine("Tryk på en tast for at fortsætte...");
+            Console.ReadKey();
+        }
+        static public void SletAktivitet(AktivitetRepo AkRepo)
+        {
+            Console.WriteLine("Skriv ID på aktiviteten du vil slette:");
+            int id = int.Parse(Console.ReadLine());
         }
         static void KundeMenu()
         {
