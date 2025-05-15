@@ -30,7 +30,7 @@ public class KundeRepo
     }
 
     // Opdater en kunde (RedigerKunde)
-    public bool RedigerKunde(int id, string nyNavn, string nyEmail, int nyMobil)
+    public bool RedigerKunde(int id, string nyNavn, string nyEmail, string nyMobil)
     {
         var kunde = OpenKunde(id);
         if (kunde == null) return false;
