@@ -19,15 +19,37 @@ namespace ClassLibrary1.Services
 
         #region OpretBooking
         //Opret ny booking
-        public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker)
+        public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker, DyrRepo dyrRep)
         {
             var booking = new Booking(type, startTid, varighed, booker)
             {
                 BookingId = _nextId++
             };
-            //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
-            //Det sikre hurtig adgang til bookinger via et unikt ID
-            _bookings.Add(booking.BookingId, booking);
+            // ændre logikken hhv. type: Besøg eller Aktivitet
+            if (type == BookingType.Besøg)
+            {
+                Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
+                string inputId = Console.ReadLine();
+                if (int.TryParse(inputId, out int id) && dyrRep.DyrList.ContainsKey(id))
+                {   
+                    booking.BookedDyr = dyrRep.DyrList[id];
+                    dyrRep.DyrList[id].IsBooked = true;
+                    Bookings.Add(booking.BookingId, booking);
+                }
+            }
+            else if (type == BookingType.Aktivitet)
+            {
+                Console.WriteLine("Skriv Id'et på den Aktivitet du vil medles til:");
+                int.TryParse(Console.ReadLine(), out int id);
+            }
+            else
+            {
+                Console.WriteLine("Ugyldig booking type.");
+                return;
+                //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
+                //Det sikre hurtig adgang til bookinger via et unikt ID
+                _bookings.Add(booking.BookingId, booking);
+            }
         }
         #endregion
 

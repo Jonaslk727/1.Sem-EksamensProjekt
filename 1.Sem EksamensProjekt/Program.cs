@@ -8,6 +8,8 @@ namespace _1.Sem_EksamensProjekt
     {
         static void Main(string[] args)
         {
+            var DyrRep = new DyrRepo();
+            var BookingRep = new BookingRepo();
             var AkRepo = new AktivitetRepo();
             TestDataAktivitet(AkRepo);
             #region Hovedmenu
