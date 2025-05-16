@@ -45,5 +45,9 @@ namespace ClassLibrary1.Models
             RegistrationDate = registrationDate;
             IsPremiumMember = isPremiumMember;
         }
+
+        public Kunde()
+        {
+        }
     }
 }

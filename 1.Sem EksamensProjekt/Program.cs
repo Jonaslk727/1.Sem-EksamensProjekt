@@ -140,7 +140,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine("5. Tilbage");
                             Console.WriteLine("=====================================");
                             Console.Write("Vælg en mulighed: ");
-                            string medarbejderValg = Console.ReadLine();
+                            string kundeValg = Console.ReadLine();
 
                             switch (kundeValg)
                             {
