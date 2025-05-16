@@ -9,15 +9,9 @@ namespace ClassLibrary1.Services
 {
     public class BookingRepo
     {
-        private Dictionary<int, Booking> _bookings = new Dictionary<int, Booking>();
-        private int _nextId = 1;
 
-        #region Properties  
-        public Dictionary<int, Booking> AlleBokinger => _bookings;
-        #endregion
--
-        #region OpretBooking
-        //Opret ny booking
+        public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
+
         public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker, 
             DyrRepo dyrRep, AktivitetRepo AktivitetsRep)
         {
@@ -37,7 +31,7 @@ namespace ClassLibrary1.Services
                     dyrRep.DyrList[id].IsBooked = true;
                     dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
                     
-                    Bookings.Add(booking);// skal fikses
+                    AlleBokinger.Add(booking.BookingId,booking);// skal fikses
                 }
             }
             else if (type == BookingType.Aktivitet)
@@ -65,7 +59,7 @@ namespace ClassLibrary1.Services
             }
                 //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
                 //Det sikre hurtig adgang til bookinger via et unikt ID
-                _bookings.Add(booking.BookingId, booking);
+                AlleBokinger.Add(booking.BookingId, booking);
         }
         #endregion
 
@@ -73,7 +67,7 @@ namespace ClassLibrary1.Services
         // Slet en booking  
         public bool DeleteBooking(int bookingID)
         {
-            if (_bookings.Remove(bookingID))
+            if (AlleBokinger.Remove(bookingID))
             {
                 Console.WriteLine($"Booking {bookingID} slettet"); // Fixed variable name  
                 return true;
@@ -88,7 +82,7 @@ namespace ClassLibrary1.Services
         public bool EditBooking(int bookingId, BookingType newType, DateTime newStartTid,
             int newVarighed)
         {
-            if (!_bookings.TryGetValue(bookingId, out var booking))
+            if (!AlleBokinger.TryGetValue(bookingId, out var booking))
             {
                 Console.WriteLine($"Booking {bookingId} ikke fundet");
                 return false;
@@ -106,7 +100,7 @@ namespace ClassLibrary1.Services
         #region Vis Bookinger
         public void VisAlleBookinger()
         {
-            if (_bookings.Count == 0)
+            if (AlleBokinger.Count == 0)
             {
                 Console.WriteLine("Ingen bookinger at vise");
                 return;
@@ -114,7 +108,7 @@ namespace ClassLibrary1.Services
 
             Console.WriteLine("\nALLE BOOKINGER:");
             Console.WriteLine("----------------------------------");
-            foreach (var booking in _bookings.Values)
+            foreach (var booking in AlleBokinger.Values)
             {
                 Console.WriteLine(booking.ToString());
                 Console.WriteLine("----------------------------------");
@@ -123,7 +117,7 @@ namespace ClassLibrary1.Services
 
         public void VisBooking(int bookingId)
         {
-            if (_bookings.TryGetValue(bookingId, out var booking))
+            if (AlleBokinger.TryGetValue(bookingId, out var booking))
             {
                 Console.WriteLine("\nBOOKING DETALJER:");
                 Console.WriteLine("----------------------------------");

@@ -29,8 +29,8 @@ namespace ClassLibrary1.Services
             // indput til dyrets Art
             string artInput;
             string kønInput;
-            kønType køn = default;
             ArtType artType;
+            kønType køn = default;
             do
             {
                 Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
