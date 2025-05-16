@@ -22,7 +22,7 @@ namespace ClassLibrary1.Models
     public class Dyr
     {
         #region Properties
-        static private int _nextId = 0;
+        static private int _nextId = 1;
         public bool IsBooked { get; set; } = false;
         public string Navn { get; set; } = "None";
         public ArtType Art { get; set; }
@@ -31,18 +31,21 @@ namespace ClassLibrary1.Models
         public kønType Køn { get; set; }
         public int ChipNummer { get; set; }
         public double Vægt { get; set; }
-        public string Info { get; set; }
+        public string Info { get; set; } = "None";
         public DyreLog Log { get; set; } = new DyreLog();
 
         #endregion
-        public Dyr (string name, ArtType art, string race, double vægt, DateTime fødselsdag)
+        public Dyr (string navn, ArtType art, string race, double vægt, DateTime fødselsdag, kønType køn, string info)
         {
             ChipNummer = _nextId++;
-            name = Navn;
+            Navn = navn;
             Art = art;
             Race = race;
             FødselsDag = fødselsdag;
             Vægt = vægt;
+            Køn = køn;
+            Info = info;
+
         }
         /// <summary>
         /// Udprinter dyrets properties i en string.
@@ -51,11 +54,12 @@ namespace ClassLibrary1.Models
         public override string ToString()
         {
             return $"===========================================================================" +
-                $"Id : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn{Køn}" +
-                $"\n Race: {Race} Fødselsdag: {FødselsDag}" +
+                $"\nId : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn: {Køn}" +
+                $"\n Race: {Race} | Fødselsdag: {FødselsDag} | Vægt: {Vægt} kg" +
                 $"\n Mere info: {Info}"+
-                "\n============================================================================ ";
-        }
+                "\n============================================================================ "+
+                "\n";
+        }!Enum.TryParse(artInput, true, out artType)
 
         /// <summary>
         /// Printer dyrets log.

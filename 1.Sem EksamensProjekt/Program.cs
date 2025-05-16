@@ -103,6 +103,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "2":
                         // Opret, slet eller rediger dyr
+                        SletRedigerOpretDyrMeny(dyrRep);
                         break;
                     case "3":
                         // Se oprettede kunder
@@ -496,30 +497,48 @@ namespace _1.Sem_EksamensProjekt
                 return;
             }
             // input til dyrets navn
-            Console.WriteLine("Indtast dyrets navn:");
+            Console.WriteLine("kun indtast noget hvis du vil ændre det ellers tryk enter");
+            Console.WriteLine($"Nuværende navn: {dyr.Navn}");
+            Console.WriteLine("Indtast det nye navn:");
             string navn = Console.ReadLine();
             // indput til dyrets Art
             string artInput;
+            string kønInput;
+            kønType køn = default;
             ArtType artType;
             do
             {
-                Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
+                Console.WriteLine($"Nuværende art: {dyr.Art}");
+                Console.WriteLine("Indtast dyrets nye art (Hund, Kat, Fugl):");
                 artInput = Console.ReadLine();
-            } while (!Enum.TryParse(artInput, true, out artType));
+
+                Console.WriteLine($"Nuværende Køn: {dyr.Køn}");
+                Console.WriteLine("Indtast dyrets nye Køn (Hankøn / Hunkøn):");
+                kønInput = Console.ReadLine();
+
+            } while (!Enum.TryParse(artInput, true, out artType) && !Enum.TryParse(kønInput, true, out køn));
             // indput til dyrets race
-            Console.WriteLine("indtast dyrets race: ");
+            Console.WriteLine($"Dyrets nuværende race: {dyr.Race}");
+            Console.WriteLine("indtast dyrets nye race: ");
             string race = Console.ReadLine();
 
             // indput til dyrets vægt
-            Console.WriteLine("Indtast dyrets Vægt i kg:");
+            Console.WriteLine($"Dyrets nuværende vægt: {dyr.Vægt} kg");
+            Console.WriteLine("Indtast dyrets nye Vægt i kg:");
             double.TryParse(Console.ReadLine(), out double vægt);
             // indput til dyrets fødselsdag
-            Console.WriteLine("Indtast dyrets fødselsdag (dd/MM/yyyy):");
+            Console.WriteLine($"Dyrets nuværende fødselsdag: {dyr.FødselsDag:dd-MM-yyyy}");
+            Console.WriteLine("Indtast dyrets nye fødselsdag (dd/MM/yyyy):");
             DateTime.TryParse(Console.ReadLine(), out DateTime fødselsdag);
 
-            if (!dyrRep.Update(id, navn, artType, race, vægt, fødselsdag)) 
+            Console.WriteLine($"Dyrets nuværende fødselsdag: {dyr.FødselsDag}");
+            Console.WriteLine("Indtast ny info:");
+            string info = Console.ReadLine();
+
+            if (!dyrRep.Update(id, navn, artType, race, vægt, fødselsdag, køn, info)) 
             {
                 Console.WriteLine("noget gik galt");
+                Console.ReadKey();
             }
             else
             {

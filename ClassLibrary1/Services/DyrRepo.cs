@@ -28,12 +28,17 @@ namespace ClassLibrary1.Services
             string navn = Console.ReadLine();
             // indput til dyrets Art
             string artInput;
+            string kønInput;
+            kønType køn = default;
             ArtType artType;
             do
             {
                 Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
                 artInput = Console.ReadLine();
-            } while (!Enum.TryParse(artInput, true, out artType));
+                Console.WriteLine("Indtast dyrets Køn (Hankøn / Hunkøn):");
+                kønInput = Console.ReadLine();
+
+            } while (!Enum.TryParse(artInput, true, out artType) && !Enum.TryParse(kønInput, true, out køn));
             // indput til dyrets race
             Console.WriteLine("indtast dyrets race: ");
             string race = Console.ReadLine();
@@ -45,8 +50,14 @@ namespace ClassLibrary1.Services
             Console.WriteLine("Indtast dyrets fødselsdag (dd/MM/yyyy):");
             DateTime.TryParse(Console.ReadLine(), out DateTime fødselsdag);
 
-            Dyr nytDyr = new(navn, artType, race, vægt, fødselsdag);
+            Console.WriteLine("Indtast mere info:");
+            string info = Console.ReadLine();
+            // hvorfor skal jeg gøre to forskellige til for at få enum til at virke?
+            Dyr nytDyr = new(navn, artType, race, vægt, fødselsdag, køn, info);
             DyrList.Add(nytDyr.ChipNummer, nytDyr);
+
+            Console.WriteLine($"Dyr med ID {nytDyr.ChipNummer} er blevet oprettet.");
+            Console.ReadKey();
         }
 
         public bool Delete()
@@ -136,6 +147,7 @@ namespace ClassLibrary1.Services
         /// man skal indsætte id'et på det dyr der skal ændres og de værdier der skal ændres.
         /// Du insætter derefter de værdier du vil ændre og de vil blive opdateret i objektet.
         /// Hermed behøver man ikke at indsætte alle parametre, kun dem der skal ændres.
+        /// Returns true hvis det lykkedes at ændre dyret og false hvis dyret ikke findes.
         /// </summary>
         /// <param name="nyNavn"></param>
         /// <param name="nyArt"></param>
