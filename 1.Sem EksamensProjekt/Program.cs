@@ -14,7 +14,7 @@ namespace _1.Sem_EksamensProjekt
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
             var AkRepo = new AktivitetRepo();
-            MogdataDyr();
+            MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
@@ -657,8 +657,9 @@ namespace _1.Sem_EksamensProjekt
             int id = int.Parse(Console.ReadLine());
             if (DyrRep.DyrList.ContainsKey(id))
             {
-                DyrRep.DyrList[id].IsBooked = true;
-                cwriteLine($"Ok ");
+                // skal implementere en ny kunde 
+
+                //Skal have userinput svarende til kravene i bookingKonstrukotoren
 
                 BookingRep.OpenBooking(BookingType.Besøg, DateTime.Now, 1, new Kunde(), DyrRep, null);
 
