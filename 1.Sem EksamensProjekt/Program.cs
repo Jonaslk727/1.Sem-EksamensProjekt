@@ -35,7 +35,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         //Kalder medarbejdermenuen hvis brugeren vælger 1
-                        MedarbejderMenu(AkRepo);
+                        MedarbejderMenu(AkRepo, DyrRep);
                         break;
                     case "2":
                         //Kalder kundemenuen hvis brugeren vælger 2
@@ -56,7 +56,7 @@ namespace _1.Sem_EksamensProjekt
             }
             #endregion
         }
-        static void MedarbejderMenu(AktivitetRepo AkRepo)
+        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep)
         {
             MedarbejderRepo repo = new MedarbejderRepo();
 
@@ -99,9 +99,11 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         // Se oprettede dyr
+                        dyrRep.PrintDyrList();
                         break;
                     case "2":
                         // Opret, slet eller rediger dyr
+                        SletRedigerOpretDyrMeny(dyrRep);
                         break;
                     case "3":
                         // Se oprettede kunder
@@ -435,6 +437,116 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
+        #endregion
+
+        #region MetoderTilDyr
+        static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
+        {
+            bool fortsæt = true;
+            while (fortsæt)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Rediger Dyr - vælge en kategori:");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. Opret et dyr");
+                Console.WriteLine("2. Slet dyr");
+                Console.WriteLine("3. Rediger et oprettet dyr");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå tilbage");
+                Console.ResetColor();
+
+                string valg = Console.ReadLine();
+                switch (valg)
+                {
+                    case "1":
+                        dyrRep.Create();
+                        break;
+                    case "2":
+                        dyrRep.Delete();
+                        break;
+                    case "3":
+                        Updater(dyrRep);
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
+                }
+            }
+        }
+
+        static void Updater(DyrRepo dyrRep)
+        {
+            Console.WriteLine("Indtast ID på dyret du vil redigere:");
+            if (!int.TryParse(Console.ReadLine(), out int id)) // prøver at parse id'et til int
+            {
+                Console.WriteLine("Ugyldigt ID, prøv igen.");
+                Console.ReadKey();
+                return;
+            }
+            if (!dyrRep.DyrList.TryGetValue(id, out var dyr)) // prøver at finde dyret i listen
+            {
+                Console.WriteLine("Dyr med ID findes ikke.");
+                Console.ReadKey();
+                return;
+            }
+            // input til dyrets navn
+            Console.WriteLine("kun indtast noget hvis du vil ændre det ellers tryk enter");
+            Console.WriteLine($"Nuværende navn: {dyr.Navn}");
+            Console.WriteLine("Indtast det nye navn:");
+            string navn = Console.ReadLine();
+            // indput til dyrets Art
+            string artInput;
+            string kønInput;
+            kønType køn = default;
+            ArtType artType;
+            do
+            {
+                Console.WriteLine($"Nuværende art: {dyr.Art}");
+                Console.WriteLine("Indtast dyrets nye art (Hund, Kat, Fugl):");
+                artInput = Console.ReadLine();
+
+                Console.WriteLine($"Nuværende Køn: {dyr.Køn}");
+                Console.WriteLine("Indtast dyrets nye Køn (Hankøn / Hunkøn):");
+                kønInput = Console.ReadLine();
+
+            } while (!Enum.TryParse(artInput, true, out artType) && !Enum.TryParse(kønInput, true, out køn));
+            // indput til dyrets race
+            Console.WriteLine($"Dyrets nuværende race: {dyr.Race}");
+            Console.WriteLine("indtast dyrets nye race: ");
+            string race = Console.ReadLine();
+
+            // indput til dyrets vægt
+            Console.WriteLine($"Dyrets nuværende vægt: {dyr.Vægt} kg");
+            Console.WriteLine("Indtast dyrets nye Vægt i kg:");
+            double.TryParse(Console.ReadLine(), out double vægt);
+            // indput til dyrets fødselsdag
+            Console.WriteLine($"Dyrets nuværende fødselsdag: {dyr.FødselsDag:dd-MM-yyyy}");
+            Console.WriteLine("Indtast dyrets nye fødselsdag (dd/MM/yyyy):");
+            DateTime.TryParse(Console.ReadLine(), out DateTime fødselsdag);
+
+            Console.WriteLine($"Dyrets nuværende fødselsdag: {dyr.FødselsDag}");
+            Console.WriteLine("Indtast ny info:");
+            string info = Console.ReadLine();
+
+            if (!dyrRep.Update(id, navn, artType, race, vægt, fødselsdag, køn, info)) 
+            {
+                Console.WriteLine("noget gik galt");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Dyret er blevet opdateret!");
+                Console.ReadKey();
+            }
+        }  
+
         #endregion
         static void KundeMenu()
         {
