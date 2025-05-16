@@ -15,7 +15,7 @@ namespace ClassLibrary1.Services
         #region Properties  
         public Dictionary<int, Booking> AlleBokinger => _bookings;
         #endregion
-
+-
         #region OpretBooking
         //Opret ny booking
         public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker,
@@ -30,12 +30,14 @@ namespace ClassLibrary1.Services
             {
                 Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
                 string inputId = Console.ReadLine();
-                if (int.TryParse(inputId, out int id) && dyrRep.DyrList.ContainsKey(id))
+                if (int.TryParse(inputId, out int id) && dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false)
                 {
+
                     booking.BookedDyr = dyrRep.DyrList[id];
                     dyrRep.DyrList[id].IsBooked = true;
                     dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
-                    Bookings.Add(booking);
+                    
+                    Bookings.Add(booking);// skal fikses
                 }
             }
             else if (type == BookingType.Aktivitet)
