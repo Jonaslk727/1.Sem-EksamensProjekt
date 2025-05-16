@@ -18,16 +18,25 @@ namespace _1.Sem_EksamensProjekt
             bool kørProgram = true;
             while (kørProgram)
             {
-                Console.Clear(); //Rydder konsollen for at gøre menuen mere overskuelig
+                Console.Clear(); // Rydder konsollen for at gøre menuen mere overskuelig
+
+                // Header Section
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Hovedmenu - vælge en kategori:");
+                Console.WriteLine("\n=========================================");
+                Console.WriteLine("           HOVEDMENU - Vælg Kategori    ");
+                Console.WriteLine("=========================================");
+                Console.ResetColor();
+
+                // Menu Options
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1. Medarbejder menu");
-                Console.WriteLine("2. Kunde menu");
+                Console.WriteLine("\n 1. Medarbejder Menu");
+                Console.WriteLine(" 2. Kunde Menu");
 
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("0. Stop program");
+                Console.WriteLine("\n 0. Stop Program");
                 Console.ResetColor();
+
+                Console.WriteLine("\n=========================================");
 
                 //Læser brugerens valg
                 string valg = Console.ReadLine();
@@ -67,32 +76,43 @@ namespace _1.Sem_EksamensProjekt
             while (fortsæt)
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Medarbejder menu - vælge en kategori:");  
-                
-                //Sektion: Dyr
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Dyr");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1. Se oprettede dyr");
-                Console.WriteLine("2. Opret, slet eller rediger");
-                //Sektion: Kunde
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Kunde");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("3. Se oprettede kunder");
-                Console.WriteLine("4. Se kommende besøg");
-                Console.WriteLine("5. Opret, slet eller rediger");
-                //Sektion: Aktivitet
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Aktivitet");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("6. Se oprettede aktiviteter og deltagere");
-                Console.WriteLine("7. Opret, slet eller rediger");
 
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("0. Gå tilbage");
+                // Title Header
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n=========================================");
+                Console.WriteLine("       Medarbejder Menu - Vælg Kategori  ");
+                Console.WriteLine("=========================================");
                 Console.ResetColor();
+
+                // Section: Dyr
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("\n Dyr");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("  1. Se oprettede dyr");
+                Console.WriteLine("  2. Opret, slet eller rediger");
+
+                // Section: Kunde
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("\n Kunde");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("  3. Se oprettede kunder");
+                Console.WriteLine("  4. Se kommende besøg");
+                Console.WriteLine("  5. Opret, slet eller rediger");
+
+                // Section: Aktivitet
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("\n Aktivitet");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("  6. Se oprettede aktiviteter og deltagere");
+                Console.WriteLine("  7. Opret, slet eller rediger");
+                Console.WriteLine("  8. Medarbejder management");
+
+                // Exit Option
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n 0. Gå tilbage");
+                Console.ResetColor();
+
+                Console.WriteLine("\n=========================================");
 
                 string valg = Console.ReadLine();
                 switch (valg)
@@ -152,7 +172,7 @@ namespace _1.Sem_EksamensProjekt
                         RedigerAktivitet(AkRepo);
                         break;
                     case "8":
-                        // **Medarbejder management submenu**
+                       
                         bool kør = true;
                         while (kør)
                         {
@@ -232,7 +252,7 @@ namespace _1.Sem_EksamensProjekt
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("\n=====================================");
-                                        Console.WriteLine($"❌ Ingen medarbejder fundet med ID {opdaterId}.");
+                                        Console.WriteLine($" Ingen medarbejder fundet med ID {opdaterId}.");
                                         Console.WriteLine("=====================================");
                                         Console.ResetColor();
                                     }
@@ -277,16 +297,25 @@ namespace _1.Sem_EksamensProjekt
             while (fortsæt)
             {
                 Console.Clear();
+
+                // Header Section
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Rediger aktivitet - vælge en kategori:");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1. Opret aktivitet");
-                Console.WriteLine("2. Slet aktivitet");
-                Console.WriteLine("3. Rediger oprettet aktivitet");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("0. Gå tilbage");
+                Console.WriteLine("\n=========================================");
+                Console.WriteLine("       Rediger Aktivitet - Vælg Kategori ");
+                Console.WriteLine("=========================================");
                 Console.ResetColor();
 
+                // Menu Options
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n1. Opret Aktivitet");
+                Console.WriteLine("2. Slet Aktivitet");
+                Console.WriteLine("3. Rediger Oprettet Aktivitet");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n0. Gå Tilbage");
+                Console.ResetColor();
+
+                Console.WriteLine("\n=========================================");
                 string valg = Console.ReadLine();
                 switch (valg)
                 {
@@ -586,17 +615,26 @@ namespace _1.Sem_EksamensProjekt
             bool fortsæt = true;
             while (fortsæt)
             {
-                Console.Clear(); //Rydder konsollen hver gang menuen vises
+                Console.Clear();
+
+                // Header Section
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Kunde menu - vælge en kategori:");
+                Console.WriteLine("\n=========================================");
+                Console.WriteLine("        REDIGER AKTIVITET - VÆLG KATEGORI ");
+                Console.WriteLine("=========================================");
+                Console.ResetColor();
+
+                // Menu Options
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("1. Se ledige dyr");
-                Console.WriteLine("2. Book tid til besøg dyr");
-                Console.WriteLine("3. Se og tilmeld kommende aktiviteter");
+                Console.WriteLine("\n 1. Opret Aktivitet");
+                Console.WriteLine(" 2. Slet Aktivitet");
+                Console.WriteLine(" 3. Rediger Oprettet Aktivitet");
 
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("0. Gå tilbage");
+                Console.WriteLine("\n 0. Gå Tilbage");
                 Console.ResetColor();
+
+                Console.WriteLine("\n=========================================");
 
                 string valg = Console.ReadLine();
                 switch (valg)
