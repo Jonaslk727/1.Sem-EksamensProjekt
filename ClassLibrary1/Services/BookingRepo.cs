@@ -15,7 +15,7 @@ namespace ClassLibrary1.Services
         #region Properties  
         public Dictionary<int, Booking> AlleBokinger => _bookings;
         #endregion
--
+
         #region OpretBooking
         //Opret ny booking
         public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker,
