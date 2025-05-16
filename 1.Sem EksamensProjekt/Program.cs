@@ -208,16 +208,18 @@ namespace _1.Sem_EksamensProjekt
                 switch (aktivitetValg)
                 {
                     case "1":
-                        RedigerAktivitet(AktivitetRepo AkRepo);
+                        RedigerAktivitet(AkRepo);
                         break;
                     case "2":
-                        VisAlleAktivitet(AktivitetRepo AkRepo);
+                        VisAlleAktivitet(AkRepo);
                         break;
                 }
             }
         }
         static void MedarbejderMedarbejderMenu()
         {
+            MedarbejderRepo repo = new MedarbejderRepo();
+
             bool kørMedarbejderMenu = true;
             while (kørMedarbejderMenu)
             {
@@ -306,7 +308,7 @@ namespace _1.Sem_EksamensProjekt
                         repo.SletMedarbejder(sletId);
                         break;
                     case "5":
-                        medarbejderMenueValg = false; // Exit the employee menu
+                        kørMedarbejderMenu = false; // Exit the employee menu
                         break;
 
                     default:
