@@ -37,7 +37,10 @@ namespace ClassLibrary1.Models
                 Console.WriteLine("Ugyldigt telefonnummer!");
             }
         }
+        public Kunde()
+        {
 
+        }
         public Kunde(int kundeId, DateTime dateOfBirth, DateTime registrationDate, bool isPremiumMember)
         {
             KundeId = kundeId;

@@ -128,6 +128,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "3":
                         // Se oprettede kunder
+                        break;
                         bool kør = true;
                         while (kør)
                         {
@@ -160,184 +161,186 @@ namespace _1.Sem_EksamensProjekt
                                     Console.Write("Telefon       : "); ny.Mobil = Console.ReadLine();
                                     break;
 
-                    case "4":
-                        // Se kommende besøg
-                        break;
-                    case "5":
-                        // Opret, slet eller rediger kunde
-                        break;
-                    case "6":
-                        VisAlleAktivitet(AkRepo);
-                        break;
-                    case "7":
-                        RedigerAktivitet(AkRepo);
-                        break;
-                    case "8":
-                       
-                        bool kør = true;
-                        while (kør)
-                        {
-                            Console.WriteLine("\n=====================================");
-                            Console.WriteLine("       --- Medarbejder Menu ---      ");
-                            Console.WriteLine("=====================================");
-                            Console.WriteLine("1. Tilføj medarbejder");
-                            Console.WriteLine("2. Vis alle medarbejdere");
-                            Console.WriteLine("3. Opdater medarbejder");
-                            Console.WriteLine("4. Slet medarbejder");
-                            Console.WriteLine("5. Tilbage");
-                            Console.WriteLine("=====================================");
-                            Console.Write("Vælg en mulighed: ");
-                            string medarbejderValg = Console.ReadLine();
-
-                            switch (medarbejderValg)
-                            {
-                                case "1":
-                                    Console.ForegroundColor = ConsoleColor.Cyan;
-                                    Console.WriteLine("\n=====================================");
-                                    Console.WriteLine("        Opret Ny Medarbejder         ");
-                                    Console.WriteLine("=====================================");
-                                    Console.ResetColor();
-
-                                    Medarbejder ny = new Medarbejder();
-
-                                    Console.Write("ID            : "); ny.MedarbejderId = int.Parse(Console.ReadLine());
-                                    Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
-                                    Console.Write("Afdeling      : "); ny.Afdeling = Console.ReadLine();
-                                    Console.Write("Stilling      : "); ny.Stilling = Console.ReadLine();
-                                    Console.Write("Email         : "); ny.Email = Console.ReadLine();
-                                    Console.Write("Telefon       : "); ny.Telefonnummer = Console.ReadLine();
-
-                                    repo.TilføjMedarbejder(ny);
-
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
-                                    Console.WriteLine("=====================================");
-                                    Console.ResetColor();
-                                    break;
-
-                                case "2":
-                                    repo.VisMedarbejder();
-                                    break;
-
-                                case "3":
-                                    Console.ForegroundColor = ConsoleColor.Cyan;
-                                    Console.WriteLine("\n=====================================");
-                                    Console.WriteLine("        Opdater Medarbejder           ");
-                                    Console.WriteLine("=====================================");
-                                    Console.ResetColor();
-
-                                    Console.Write("Indtast ID på medarbejder du vil opdatere: ");
-                                    int opdaterId = int.Parse(Console.ReadLine());
-
-                                    if (repo.FindMedarbejder(opdaterId))
-                                    {
-                                        Medarbejder opdateret = new Medarbejder { MedarbejderId = opdaterId };
-
-                                        Console.WriteLine("\nIndtast de nye oplysninger:");
-                                        Console.WriteLine("------------------------------------------------");
-                                        Console.Write("Nyt navn         : "); opdateret.Navn = Console.ReadLine();
-                                        Console.Write("Ny Afdeling      : "); opdateret.Afdeling = Console.ReadLine();
-                                        Console.Write("Ny Stilling      : "); opdateret.Stilling = Console.ReadLine();
-                                        Console.Write("Ny Email         : "); opdateret.Email = Console.ReadLine();
-                                        Console.Write("Nyt Telefonnummer: "); opdateret.Telefonnummer = Console.ReadLine();
-                                        Console.WriteLine("------------------------------------------------");
-
-                                        repo.OpdaterMedarbejder(opdaterId, opdateret);
-
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.WriteLine("\n Medarbejder opdateret succesfuldt!");
-                                        Console.WriteLine("=====================================");
-                                        Console.ResetColor();
-                                    }
-                                    else
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("\n=====================================");
-                                        Console.WriteLine($" Ingen medarbejder fundet med ID {opdaterId}.");
-                                        Console.WriteLine("=====================================");
-                                        Console.ResetColor();
-                                    }
-                                    break;
-
                                 case "4":
-                                    Console.Write("Indtast ID på medarbejder du vil slette: ");
-                                    int sletId = int.Parse(Console.ReadLine());
-                                    repo.SletMedarbejder(sletId);
+                                    // Se kommende besøg
                                     break;
-
                                 case "5":
-                                    kør = false; // Exit the employee menu
+                                    // Opret, slet eller rediger kunde
+                                    break;
+                                case "6":
+                                    VisAlleAktivitet(AkRepo);
+                                    break;
+                                case "7":
+                                    RedigerAktivitet(AkRepo);
+                                    break;
+                                case "8":
+
+                                    bool kørKundeMenue = true;
+                                    while (kør)
+                                    {
+                                        Console.WriteLine("\n=====================================");
+                                        Console.WriteLine("       --- Medarbejder Menu ---      ");
+                                        Console.WriteLine("=====================================");
+                                        Console.WriteLine("1. Tilføj medarbejder");
+                                        Console.WriteLine("2. Vis alle medarbejdere");
+                                        Console.WriteLine("3. Opdater medarbejder");
+                                        Console.WriteLine("4. Slet medarbejder");
+                                        Console.WriteLine("5. Tilbage");
+                                        Console.WriteLine("=====================================");
+                                        Console.Write("Vælg en mulighed: ");
+                                        string medarbejderMenueValg = Console.ReadLine();
+
+                                        switch (medarbejderMenueValg)
+                                        {
+                                            case "1":
+                                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                                Console.WriteLine("\n=====================================");
+                                                Console.WriteLine("        Opret NyMedarbejder         ");
+                                                Console.WriteLine("=====================================");
+                                                Console.ResetColor();
+
+                                                Medarbejder nye = new Medarbejder();
+
+                                                Console.Write("ID            : "); nye.MedarbejderId = int.Parse(Console.ReadLine());
+                                                Console.Write("Navn          : "); nye.Navn = Console.ReadLine();
+                                                Console.Write("Afdeling      : "); nye.Afdeling = Console.ReadLine();
+                                                Console.Write("Stilling      : "); nye.Stilling = Console.ReadLine();
+                                                Console.Write("Email         : "); nye.Email = Console.ReadLine();
+                                                Console.Write("Telefon       : "); nye.Telefonnummer = Console.ReadLine();
+
+                                                repo.TilføjMedarbejder(nye);
+
+                                                Console.ForegroundColor = ConsoleColor.Green;
+                                                Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
+                                                Console.WriteLine("=====================================");
+                                                Console.ResetColor();
+                                                break;
+
+                                            case "2":
+                                                repo.VisMedarbejder();
+                                                break;
+
+                                            case "3":
+                                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                                Console.WriteLine("\n=====================================");
+                                                Console.WriteLine("        Opdater Medarbejder           ");
+                                                Console.WriteLine("=====================================");
+                                                Console.ResetColor();
+
+                                                Console.Write("Indtast ID på medarbejder du vil opdatere: ");
+                                                int opdaterId = int.Parse(Console.ReadLine());
+
+                                                if (repo.FindMedarbejder(opdaterId))
+                                                {
+                                                    Medarbejder opdateret = new Medarbejder { MedarbejderId = opdaterId };
+
+                                                    Console.WriteLine("\nIndtast de nye oplysninger:");
+                                                    Console.WriteLine("------------------------------------------------");
+                                                    Console.Write("Nyt navn         : "); opdateret.Navn = Console.ReadLine();
+                                                    Console.Write("Ny Afdeling      : "); opdateret.Afdeling = Console.ReadLine();
+                                                    Console.Write("Ny Stilling      : "); opdateret.Stilling = Console.ReadLine();
+                                                    Console.Write("Ny Email         : "); opdateret.Email = Console.ReadLine();
+                                                    Console.Write("Nyt Telefonnummer: "); opdateret.Telefonnummer = Console.ReadLine();
+                                                    Console.WriteLine("------------------------------------------------");
+
+                                                    repo.OpdaterMedarbejder(opdaterId, opdateret);
+
+                                                    Console.ForegroundColor = ConsoleColor.Green;
+                                                    Console.WriteLine("\n Medarbejder opdateret succesfuldt!");
+                                                    Console.WriteLine("=====================================");
+                                                    Console.ResetColor();
+                                                }
+                                                else
+                                                {
+                                                    Console.ForegroundColor = ConsoleColor.Red;
+                                                    Console.WriteLine("\n=====================================");
+                                                    Console.WriteLine($" Ingen medarbejder fundet med ID {opdaterId}.");
+                                                    Console.WriteLine("=====================================");
+                                                    Console.ResetColor();
+                                                }
+                                                break;
+
+                                            case "4":
+                                                Console.Write("Indtast ID på medarbejder du vil slette: ");
+                                                int sletId = int.Parse(Console.ReadLine());
+                                                repo.SletMedarbejder(sletId);
+                                                break;
+
+                                            case "5":
+                                                kør = false; // Exit the employee menu
+                                                break;
+
+                                            default:
+                                                Console.WriteLine("Ugyldigt valg, prøv igen.");
+                                                break;
+                                        }
+                                    }
                                     break;
 
+
+                                case "0":
+                                    fortsæt = false;
+                                    break;
                                 default:
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("Ugyldigt valg, prøv igen.");
+                                    Console.ReadKey();
+                                    Console.ResetColor();
                                     break;
                             }
                         }
-                        break;
-                        
 
-                    case "0":
-                        fortsæt = false;
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Ugyldigt valg, prøv igen.");
-                        Console.ReadKey();
-                        Console.ResetColor();
-                        break;
                 }
-            }
-            
-        }
-        
-        #region MetoderTilAktivitet
-        static void RedigerAktivitet(AktivitetRepo AkRepo)
-        {
-            bool fortsæt = true;
-            while (fortsæt)
-            {
-                Console.Clear();
 
-                // Header Section
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("\n=========================================");
-                Console.WriteLine("       Rediger Aktivitet - Vælg Kategori ");
-                Console.WriteLine("=========================================");
-                Console.ResetColor();
-
-                // Menu Options
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\n1. Opret Aktivitet");
-                Console.WriteLine("2. Slet Aktivitet");
-                Console.WriteLine("3. Rediger Oprettet Aktivitet");
-
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n0. Gå Tilbage");
-                Console.ResetColor();
-
-                Console.WriteLine("\n=========================================");
-                string valg = Console.ReadLine();
-                switch (valg)
+                #region MetoderTilAktivitet
+                static void RedigerAktivitet(AktivitetRepo AkRepo)
                 {
-                    case "1":
-                        OpretAktivitet(AkRepo);
-                        break;
-                    case "2":
-                        SletAktivitet(AkRepo);
-                        break;
-                    case "3":
-                        RedigerOprettetAktivitet(AkRepo);
-                        break;
-                    case "0":
-                        fortsæt = false;
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Ugyldigt valg, prøv igen.");
-                        Console.ReadKey();
+                    bool fortsæt = true;
+                    while (fortsæt)
+                    {
+                        Console.Clear();
+
+                        // Header Section
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\n=========================================");
+                        Console.WriteLine("       Rediger Aktivitet - Vælg Kategori ");
+                        Console.WriteLine("=========================================");
                         Console.ResetColor();
-                        break;
+
+                        // Menu Options
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n1. Opret Aktivitet");
+                        Console.WriteLine("2. Slet Aktivitet");
+                        Console.WriteLine("3. Rediger Oprettet Aktivitet");
+
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n0. Gå Tilbage");
+                        Console.ResetColor();
+
+                        Console.WriteLine("\n=========================================");
+                        string valg = Console.ReadLine();
+                        switch (valg)
+                        {
+                            case "1":
+                                OpretAktivitet(AkRepo);
+                                break;
+                            case "2":
+                                SletAktivitet(AkRepo);
+                                break;
+                            case "3":
+                                RedigerOprettetAktivitet(AkRepo);
+                                break;
+                            case "0":
+                                fortsæt = false;
+                                break;
+                            default:
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Ugyldigt valg, prøv igen.");
+                                Console.ReadKey();
+                                Console.ResetColor();
+                                break;
+                        }
+                    }
                 }
             }
         }
