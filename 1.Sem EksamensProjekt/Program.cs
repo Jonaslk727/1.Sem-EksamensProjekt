@@ -36,10 +36,10 @@ namespace _1.Sem_EksamensProjekt
 
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n 0. Stop Program");
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Magenta;
 
                 Console.WriteLine("\n=========================================");
-
+                Console.ResetColor();
                 //Læser brugerens valg
                 string valg = Console.ReadLine();
                 switch (valg)
