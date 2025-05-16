@@ -12,13 +12,12 @@ namespace ClassLibrary1.Services
 
         public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
 
+
         public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker, 
             DyrRepo dyrRep, AktivitetRepo AktivitetsRep)
         {
-            var booking = new Booking(type, startTid, varighed, booker)
-            {
-                BookingId = _nextId++
-            };
+            var booking = new Booking(type, startTid, varighed, booker);
+            
             // ændre logikken hhv. type: Besøg eller Aktivitet
             if (type == BookingType.Besøg)
             {
@@ -61,7 +60,7 @@ namespace ClassLibrary1.Services
                 //Det sikre hurtig adgang til bookinger via et unikt ID
                 AlleBokinger.Add(booking.BookingId, booking);
         }
-        #endregion
+        
 
         #region SletBooking  
         // Slet en booking  
