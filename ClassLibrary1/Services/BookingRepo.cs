@@ -16,7 +16,7 @@ namespace ClassLibrary1.Services
         //property liste for alle bookinger.
         public List<Booking> Bookings => _bookings.Values.ToList();
         #endregion
-
+-
         #region OpretBooking
         //Opret ny booking
         public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker, 
