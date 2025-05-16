@@ -136,7 +136,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("=====================================");
                 Console.WriteLine("1. Opret, slet eller redigr dyr");
                 Console.WriteLine("2. Vis alle dyr");
-                Console.WriteLine("3'0. Tilbage");
+                Console.WriteLine("0. Tilbage");
                 Console.WriteLine("=====================================");
                 string dyrValg = Console.ReadLine();
                 switch (dyrValg)
