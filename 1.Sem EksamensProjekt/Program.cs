@@ -48,7 +48,7 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep);
                         break;
                     case "2":
-                        KundeMenu();
+                        KundeMenu(DyrRep, BookingRep);
                         break;
                     case "0":
                         kørProgram = false;
@@ -354,7 +354,7 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void KundeMenu()
+        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep)
         {
             bool fortsæt = true;
             while (fortsæt)
@@ -388,7 +388,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         // KundeDyrMenu();
-                        KundeDyrMenu();
+                        KundeDyrMenu(DyrRep, BookingRep);
                         break;
                     case "2":
                         // KundeAktivitetMenu();
