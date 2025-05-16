@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClassLibrary1.Models.Besøg_og_lægelog;
 using ClassLibrary1.Services;
 
 namespace ClassLibrary1.Models
@@ -33,6 +34,7 @@ namespace ClassLibrary1.Models
         public double Vægt { get; set; }
         public string Info { get; set; } = "None";
         public DyreLog Log { get; set; } = new DyreLog();
+        public List<Lægelog> Lægelogs { get; set; } = new List<Lægelog>();
 
         #endregion
         public Dyr (string navn, ArtType art, string race, double vægt, DateTime fødselsdag, kønType køn, string info)
@@ -81,6 +83,22 @@ namespace ClassLibrary1.Models
         //            return "!! Ugyldigt input til parameteret i Printlog methoden i dyre classen!!";
         //    }
         //}
+        public void TilføjLægelog(DateTime dato, string journal)
+        {
+            Lægelog nyLog = new Lægelog(dato, journal);
+            Lægelogs.Add(nyLog);
+        }
+        public string VisLægelogs()
+        {
+            if (Lægelogs.Count == 0)
+                return "Ingen lægelogs registreret.";
 
+            StringBuilder sb = new StringBuilder();
+            foreach (var log in Lægelogs)
+            {
+                sb.AppendLine(log.ToString());
+            }
+            return sb.ToString();
+        }
     }
 }
