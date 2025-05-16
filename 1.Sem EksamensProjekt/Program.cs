@@ -136,7 +136,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("=====================================");
                 Console.WriteLine("1. Opret, slet eller redigr dyr");
                 Console.WriteLine("2. Vis alle dyr");
-                Console.WriteLine("3. Tilbage");
+                Console.WriteLine("3'0. Tilbage");
                 Console.WriteLine("=====================================");
                 string dyrValg = Console.ReadLine();
                 switch (dyrValg)
@@ -147,7 +147,7 @@ namespace _1.Sem_EksamensProjekt
                     case "2":
                         dyrRep.PrintDyrList();
                         break;
-                    case "3":
+                    case "0":
                         kørDyrMenu = false; // Exit the animal menu
                         break;
                     default:
@@ -169,7 +169,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("2. Vis alle Kunder");
                 Console.WriteLine("3. Opdater Kunder");
                 Console.WriteLine("4. Slet Kunder");
-                Console.WriteLine("5. Tilbage");
+                Console.WriteLine("0. Tilbage");
                 Console.WriteLine("=====================================");
 
                 string kundeValg = Console.ReadLine();
@@ -198,7 +198,7 @@ namespace _1.Sem_EksamensProjekt
                     case "4":
                         // Slet kunde
                         break;
-                    case "5":
+                    case "0":
                         kør = false;
                         break;
                 }
@@ -215,7 +215,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("=====================================");
                 Console.WriteLine("1. Opret, Slet eller Rediger Aktivitet");
                 Console.WriteLine("2. Vis alle Aktiviteter");
-                Console.WriteLine("5. Tilbage");
+                Console.WriteLine("0. Tilbage");
                 Console.WriteLine("=====================================");
                 string aktivitetValg = Console.ReadLine();
                 switch (aktivitetValg)
@@ -226,7 +226,7 @@ namespace _1.Sem_EksamensProjekt
                     case "2":
                         VisAlleAktivitet(AkRepo);
                         break;
-                    case "3":
+                    case "0":
                         kørAktivitetMenu = false; // Exit the activity menu
                         break;
                     default:
@@ -250,7 +250,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("2. Vis alle medarbejdere");
                 Console.WriteLine("3. Opdater medarbejder");
                 Console.WriteLine("4. Slet medarbejder");
-                Console.WriteLine("5. Tilbage");
+                Console.WriteLine("0. Tilbage");
                 Console.WriteLine("=====================================");
                 Console.Write("Vælg en mulighed: ");
                 string medarbejderMenueValg = Console.ReadLine();
@@ -327,7 +327,7 @@ namespace _1.Sem_EksamensProjekt
                         int sletId = int.Parse(Console.ReadLine());
                         repo.SletMedarbejder(sletId);
                         break;
-                    case "5":
+                    case "0":
                         kørMedarbejderMenu = false; // Exit the employee menu
                         break;
 
