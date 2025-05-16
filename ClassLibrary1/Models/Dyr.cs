@@ -59,7 +59,7 @@ namespace ClassLibrary1.Models
                 $"\n Mere info: {Info}"+
                 "\n============================================================================ "+
                 "\n";
-        }!Enum.TryParse(artInput, true, out artType)
+        }
 
         /// <summary>
         /// Printer dyrets log.

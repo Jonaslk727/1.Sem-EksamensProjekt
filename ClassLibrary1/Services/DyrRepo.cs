@@ -194,7 +194,7 @@ namespace ClassLibrary1.Services
                 Console.WriteLine("Dyr i systemet:");
                 foreach (var dyr in DyrList.Values)
                 {
-                    Console.WriteLine(dyr.ToString());
+                    Console.WriteLine(dyr);
                 }
             }
             Console.ReadKey();
