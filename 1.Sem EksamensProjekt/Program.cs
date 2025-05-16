@@ -140,7 +140,12 @@ namespace _1.Sem_EksamensProjekt
                 switch (dyrValg)
                 {
                     case "1":
-                        SletRedigerOpretDyrMeny(DyrRepo dyrRep);
+                        SletRedigerOpretDyrMeny(dyrRep);
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        kørDyrMenu = false; // Exit the employee menu
                         break;
                 }
             }
