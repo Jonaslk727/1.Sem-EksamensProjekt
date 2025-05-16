@@ -12,7 +12,6 @@ namespace ClassLibrary1.Services
 
         public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
 
-
         public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker, 
             DyrRepo dyrRep, AktivitetRepo AktivitetsRep)
         {

@@ -12,6 +12,7 @@ namespace _1.Sem_EksamensProjekt
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
             var AkRepo = new AktivitetRepo();
+            MogdataDyr();
             TestDataAktivitet(AkRepo);
             #region Hovedmenu
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
@@ -500,6 +501,14 @@ namespace _1.Sem_EksamensProjekt
         #endregion
 
         #region MetoderTilDyr
+
+        static void MogdataDyr()
+        {
+            Dyr dyr1 = new Dyr("Max", ArtType.Hund, "Labrador", 30, new DateTime(2020, 5, 1), kønType.Hankøn, "Venlig hund");
+            Dyr dyr2 = new Dyr("Bella", ArtType.Kat, "Perser", 5, new DateTime(2021, 3, 15), kønType.Hunkøn, "Legesyg kat");
+            Dyr dyr3 = new Dyr("Charlie", ArtType.Fugl, "Parakit", 0.5, new DateTime(2022, 8, 10), kønType.Hankøn, "Sangfugl");
+        }
+
         static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
         {
             bool fortsæt = true;

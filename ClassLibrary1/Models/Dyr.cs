@@ -45,7 +45,6 @@ namespace ClassLibrary1.Models
             Vægt = vægt;
             Køn = køn;
             Info = info;
-
         }
         /// <summary>
         /// Udprinter dyrets properties i en string.
