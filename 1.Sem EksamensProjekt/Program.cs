@@ -79,7 +79,6 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("\n=========================================");
                 Console.WriteLine("       Medarbejder Menu - Vælg Kategori  ");
                 Console.WriteLine("=========================================");
-                Console.ResetColor();
 
                 // Section: Dyr
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -92,18 +91,17 @@ namespace _1.Sem_EksamensProjekt
                 // Section: Aktivitet
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("\n 3. Aktivitet");
-                Console.ForegroundColor = ConsoleColor.Yellow;
 
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("\n 4. Medarbejder");
-                Console.ForegroundColor = ConsoleColor.Yellow;
 
                 // Exit Option
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n 0. Gå tilbage");
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Magenta;
 
                 Console.WriteLine("\n=========================================");
+                Console.ResetColor();
 
                 string valg = Console.ReadLine();
                 switch (valg)
@@ -131,13 +129,18 @@ namespace _1.Sem_EksamensProjekt
             bool kørDyrMenu = true;
             while (kørDyrMenu)
             {   Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Dyr Menu ---      ");
                 Console.WriteLine("=====================================");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Opret, slet eller redigr dyr");
                 Console.WriteLine("2. Vis alle dyr");
-                Console.WriteLine("3. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("=====================================");
+                Console.ResetColor();
                 string dyrValg = Console.ReadLine();
                 switch (dyrValg)
                 {
@@ -147,7 +150,7 @@ namespace _1.Sem_EksamensProjekt
                     case "2":
                         dyrRep.PrintDyrList();
                         break;
-                    case "3":
+                    case "0":
                         kørDyrMenu = false; // Exit the animal menu
                         break;
                     default:
@@ -162,15 +165,20 @@ namespace _1.Sem_EksamensProjekt
             while (kør)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Kunde Menu ---      ");
                 Console.WriteLine("=====================================");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Tilføj Kunder");
                 Console.WriteLine("2. Vis alle Kunder");
                 Console.WriteLine("3. Opdater Kunder");
                 Console.WriteLine("4. Slet Kunder");
-                Console.WriteLine("5. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("=====================================");
+                Console.ResetColor();
 
                 string kundeValg = Console.ReadLine();
                 switch (kundeValg)
@@ -198,7 +206,7 @@ namespace _1.Sem_EksamensProjekt
                     case "4":
                         // Slet kunde
                         break;
-                    case "5":
+                    case "0":
                         kør = false;
                         break;
                 }
@@ -210,13 +218,17 @@ namespace _1.Sem_EksamensProjekt
             while (kørAktivitetMenu)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Aktivitet Menu ---      ");
                 Console.WriteLine("=====================================");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Opret, Slet eller Rediger Aktivitet");
                 Console.WriteLine("2. Vis alle Aktiviteter");
-                Console.WriteLine("5. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Tilbage");
                 Console.WriteLine("=====================================");
+                Console.ResetColor();
                 string aktivitetValg = Console.ReadLine();
                 switch (aktivitetValg)
                 {
@@ -226,7 +238,7 @@ namespace _1.Sem_EksamensProjekt
                     case "2":
                         VisAlleAktivitet(AkRepo);
                         break;
-                    case "3":
+                    case "0":
                         kørAktivitetMenu = false; // Exit the activity menu
                         break;
                     default:
@@ -243,15 +255,20 @@ namespace _1.Sem_EksamensProjekt
             while (kørMedarbejderMenu)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Medarbejder Menu ---      ");
                 Console.WriteLine("=====================================");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Tilføj medarbejder");
                 Console.WriteLine("2. Vis alle medarbejdere");
                 Console.WriteLine("3. Opdater medarbejder");
                 Console.WriteLine("4. Slet medarbejder");
-                Console.WriteLine("5. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("=====================================");
+                Console.ResetColor();
                 Console.Write("Vælg en mulighed: ");
                 string medarbejderMenueValg = Console.ReadLine();
 
@@ -327,7 +344,7 @@ namespace _1.Sem_EksamensProjekt
                         int sletId = int.Parse(Console.ReadLine());
                         repo.SletMedarbejder(sletId);
                         break;
-                    case "5":
+                    case "0":
                         kørMedarbejderMenu = false; // Exit the employee menu
                         break;
 
