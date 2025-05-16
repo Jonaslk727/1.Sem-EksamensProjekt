@@ -353,7 +353,7 @@ namespace _1.Sem_EksamensProjekt
 
                 // Section: Dyr
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("\n 1. Dyr");
+                Console.WriteLine("\n 1. Besøg Dyr");
 
                 // Section: Aktivitet
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -371,6 +371,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         // KundeDyrMenu();
+                        KundeDyrMenu();
                         break;
                     case "2":
                         // KundeAktivitetMenu();
@@ -629,6 +630,29 @@ namespace _1.Sem_EksamensProjekt
             }
         }
 
+        static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep)
+        {
+            Console.Clear();
+            Console.WriteLine("==========================================");
+            Console.WriteLine("               Besøg et dyr");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Skriv id på dyret du vil booke et besøg til:");
+            int id = int.Parse(Console.ReadLine());
+            if (DyrRep.DyrList.ContainsKey(id))
+            {
+                DyrRep.DyrList[id].IsBooked = true;
+                cwriteLine($"Ok ");
+
+                BookingRep.OpenBooking(BookingType.Besøg, DateTime.Now, 1, new Kunde(), DyrRep, null);
+
+            }
+            else
+            {
+                Console.WriteLine("Dyret findes ikke.");
+            }
+
+        }
+
         static void Updater(DyrRepo dyrRep)
         {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
@@ -695,11 +719,14 @@ namespace _1.Sem_EksamensProjekt
             }
         }
         //TEST DATA:
-        static void MogdataDyr()
+        static void MogdataDyr(DyrRepo DyrRep)
         {
             Dyr dyr1 = new Dyr("Max", ArtType.Hund, "Labrador", 30, new DateTime(2020, 5, 1), kønType.Hankøn, "Venlig hund");
             Dyr dyr2 = new Dyr("Bella", ArtType.Kat, "Perser", 5, new DateTime(2021, 3, 15), kønType.Hunkøn, "Legesyg kat");
             Dyr dyr3 = new Dyr("Charlie", ArtType.Fugl, "Parakit", 0.5, new DateTime(2022, 8, 10), kønType.Hankøn, "Sangfugl");
+            DyrRep.DyrList.Add(dyr1.ChipNummer, dyr1);
+            DyrRep.DyrList.Add(dyr2.ChipNummer, dyr2);
+            DyrRep.DyrList.Add(dyr3.ChipNummer, dyr3);
         }
         public static void TestDataAktivitet(AktivitetRepo repo)
         {
