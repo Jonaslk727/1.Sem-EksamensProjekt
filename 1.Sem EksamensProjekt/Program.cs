@@ -143,6 +143,15 @@ namespace _1.Sem_EksamensProjekt
                     case "1":
                         SletRedigerOpretDyrMeny(dyrRep);
                         break;
+                    case "2":
+                        dyrRep.PrintDyrList();
+                        break;
+                    case "3":
+                        kørDyrMenu = false; // Exit the animal menu
+                        break;
+                    default:
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        break;
                 }
             }
         }
