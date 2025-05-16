@@ -107,13 +107,13 @@ namespace _1.Sem_EksamensProjekt
                 switch (valg)
                 {
                     case "1":
-                        MedarbejderDyrMenu();
+                        MedarbejderDyrMenu(dyrRep);
                         break;
                     case "2":
                         MedarbejderKundeMenu();
                         break;
                     case "3":
-                        MedarbejderAktivitetMenu();
+                        MedarbejderAktivitetMenu(AkRepo);
                         break;
                     case "4":
                         MedarbejderMedarbejderMenu();
@@ -141,11 +141,6 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         SletRedigerOpretDyrMeny(dyrRep);
-                        break;
-                    case "2":
-                        break;
-                    case "3":
-                        kørDyrMenu = false; // Exit the employee menu
                         break;
                 }
             }
