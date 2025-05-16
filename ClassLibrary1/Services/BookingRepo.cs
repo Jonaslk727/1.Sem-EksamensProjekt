@@ -18,7 +18,7 @@ namespace ClassLibrary1.Services
 
         #region OpretBooking
         //Opret ny booking
-        public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker, 
+        public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker,
             DyrRepo dyrRep, AktivitetRepo AktivitetsRep)
         {
             var booking = new Booking(type, startTid, varighed, booker)
@@ -59,11 +59,11 @@ namespace ClassLibrary1.Services
             else
             {
                 Console.WriteLine("Ugyldig booking type.");
-               
+
             }
-                //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
-                //Det sikre hurtig adgang til bookinger via et unikt ID
-                _bookings.Add(booking.BookingId, booking);
+            //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
+            //Det sikre hurtig adgang til bookinger via et unikt ID
+            _bookings.Add(booking.BookingId, booking);
         }
         #endregion
 
@@ -133,6 +133,6 @@ namespace ClassLibrary1.Services
                 Console.WriteLine($"Booking {bookingId} ikke fundet");
             }
         }
-        #endregion
+        #endregion        
     }
 }

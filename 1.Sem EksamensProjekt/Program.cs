@@ -106,7 +106,38 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "3":
                         // Se oprettede kunder
-                        break;
+                        bool kør = true;
+                        while (kør)
+                        {
+                            Console.WriteLine("\n=====================================");
+                            Console.WriteLine("       --- Kunde Menu ---      ");
+                            Console.WriteLine("=====================================");
+                            Console.WriteLine("1. Tilføj Kunder");
+                            Console.WriteLine("2. Vis alle Kunder");
+                            Console.WriteLine("3. Opdater Kunder");
+                            Console.WriteLine("4. Slet Kunder");
+                            Console.WriteLine("5. Tilbage");
+                            Console.WriteLine("=====================================");
+                            Console.Write("Vælg en mulighed: ");
+                            string medarbejderValg = Console.ReadLine();
+
+                            switch (kundeValg)
+                            {
+                                case "1":
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine("\n=====================================");
+                                    Console.WriteLine("        Opret Ny Kunde         ");
+                                    Console.WriteLine("=====================================");
+                                    Console.ResetColor();
+
+                                    Kunde ny = new Kunde();
+
+                                    Console.Write("ID            : "); ny.KundeId = int.Parse(Console.ReadLine());
+                                    Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
+                                    Console.Write("Email         : "); ny.Email = Console.ReadLine();
+                                    Console.Write("Telefon       : "); ny.Mobil = Console.ReadLine();
+                                    break;
+
                     case "4":
                         // Se kommende besøg
                         break;
