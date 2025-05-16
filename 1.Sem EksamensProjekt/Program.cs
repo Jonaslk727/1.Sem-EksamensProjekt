@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text;
 using ClassLibrary1.Models;
 using ClassLibrary1.Repositories;
 using ClassLibrary1.Services;
@@ -212,6 +213,12 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "2":
                         VisAlleAktivitet(AkRepo);
+                        break;
+                    case "3":
+                        kørAktivitetMenu = false; // Exit the activity menu
+                        break;
+                    default:
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
                         break;
                 }
             }
@@ -566,6 +573,8 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
+
+        #region Dyr
         static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
         {
             bool fortsæt = true;
@@ -687,5 +696,6 @@ namespace _1.Sem_EksamensProjekt
             string info = "Træning for hunde og ejere";
             repo.OpretAktivitet(Title, StartTid, SlutTid, info);
         }
+        #endregion
     }
 }
