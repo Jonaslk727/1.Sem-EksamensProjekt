@@ -48,7 +48,7 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep);
                         break;
                     case "2":
-                        KundeMenu(DyrRep, BookingRep);
+                        KundeMenu(DyrRep, BookingRep, AkRepo);
                         break;
                     case "0":
                         kørProgram = false;
@@ -354,7 +354,7 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep)
+        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep)
         {
             bool fortsæt = true;
             while (fortsæt)
@@ -388,7 +388,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         // KundeDyrMenu();
-                        KundeDyrMenu(DyrRep, BookingRep);
+                        KundeDyrMenu(DyrRep, BookingRep, AktivitetRep);
                         break;
                     case "2":
                         // KundeAktivitetMenu();
@@ -647,7 +647,7 @@ namespace _1.Sem_EksamensProjekt
             }
         }
 
-        static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep)
+        static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep)
         {
             Console.Clear();
             Console.WriteLine("==========================================");
@@ -658,10 +658,10 @@ namespace _1.Sem_EksamensProjekt
             if (DyrRep.DyrList.ContainsKey(id))
             {
                 // skal implementere en ny kunde 
-
+                Kunde kunde = new Kunde();
                 //Skal have userinput svarende til kravene i bookingKonstrukotoren
 
-                BookingRep.OpenBooking(BookingType.Besøg, DateTime.Now, 1, new Kunde(), DyrRep, null);
+                BookingRep.OpenBooking(BookingType.Besøg, dato, varighed, kunde, DyrRep, AktivitetsRep);
 
             }
             else
