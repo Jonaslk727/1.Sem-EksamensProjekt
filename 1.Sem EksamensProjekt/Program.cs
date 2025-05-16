@@ -130,7 +130,7 @@ namespace _1.Sem_EksamensProjekt
         {
             bool kørDyrMenu = true;
             while (kørDyrMenu)
-            {
+            {   Console.Clear();
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Dyr Menu ---      ");
                 Console.WriteLine("=====================================");
@@ -161,6 +161,7 @@ namespace _1.Sem_EksamensProjekt
             bool kør = true;
             while (kør)
             {
+                Console.Clear();
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Kunde Menu ---      ");
                 Console.WriteLine("=====================================");
@@ -208,6 +209,7 @@ namespace _1.Sem_EksamensProjekt
             bool kørAktivitetMenu = true;
             while (kørAktivitetMenu)
             {
+                Console.Clear();
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Aktivitet Menu ---      ");
                 Console.WriteLine("=====================================");
@@ -240,6 +242,7 @@ namespace _1.Sem_EksamensProjekt
             bool kørMedarbejderMenu = true;
             while (kørMedarbejderMenu)
             {
+                Console.Clear();
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Medarbejder Menu ---      ");
                 Console.WriteLine("=====================================");
