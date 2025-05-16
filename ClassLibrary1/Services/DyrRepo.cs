@@ -7,6 +7,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using ClassLibrary1.Interfaces;
 
 namespace ClassLibrary1.Services
 {
@@ -48,15 +49,23 @@ namespace ClassLibrary1.Services
             DyrList.Add(nytDyr.ChipNummer, nytDyr);
         }
 
-        public void Delete(int id)
+        public bool Delete()
         {
+            Console.WriteLine("Indtast dyrets ID, som du vil slette::");
+            int id = int.Parse(Console.ReadLine());
+
             if (DyrList.ContainsKey(id))
             {
                 DyrList.Remove(id);
+                Console.WriteLine($"Dyr med ID {id} er blevet slettet.");
+                Console.ReadKey();
+                return true;
             }
             else
             {
                 Console.WriteLine("Dyr med dette ID findes ikke.");
+                Console.ReadKey();
+                return false;
             }
         }
 

@@ -439,10 +439,94 @@ namespace _1.Sem_EksamensProjekt
         #endregion
 
         #region MetoderTilDyr
-        public void SletRedigerOpretDyrMeny()
+        static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
         {
+            bool fortsæt = true;
+            while (fortsæt)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Rediger Dyr - vælge en kategori:");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. Opret et dyr");
+                Console.WriteLine("2. Slet dyr");
+                Console.WriteLine("3. Rediger et oprettet dyr");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå tilbage");
+                Console.ResetColor();
 
+                string valg = Console.ReadLine();
+                switch (valg)
+                {
+                    case "1":
+                        dyrRep.Create();
+                        break;
+                    case "2":
+                        dyrRep.Delete();
+                        break;
+                    case "3":
+                        Updater(dyrRep);
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
+                }
+            }
         }
+
+        static void Updater(DyrRepo dyrRep)
+        {
+            Console.WriteLine("Indtast ID på dyret du vil redigere:");
+            if (!int.TryParse(Console.ReadLine(), out int id)) // prøver at parse id'et til int
+            {
+                Console.WriteLine("Ugyldigt ID, prøv igen.");
+                Console.ReadKey();
+                return;
+            }
+            if (!dyrRep.DyrList.TryGetValue(id, out var dyr)) // prøver at finde dyret i listen
+            {
+                Console.WriteLine("Dyr med ID findes ikke.");
+                Console.ReadKey();
+                return;
+            }
+            // input til dyrets navn
+            Console.WriteLine("Indtast dyrets navn:");
+            string navn = Console.ReadLine();
+            // indput til dyrets Art
+            string artInput;
+            ArtType artType;
+            do
+            {
+                Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
+                artInput = Console.ReadLine();
+            } while (!Enum.TryParse(artInput, true, out artType));
+            // indput til dyrets race
+            Console.WriteLine("indtast dyrets race: ");
+            string race = Console.ReadLine();
+
+            // indput til dyrets vægt
+            Console.WriteLine("Indtast dyrets Vægt i kg:");
+            double.TryParse(Console.ReadLine(), out double vægt);
+            // indput til dyrets fødselsdag
+            Console.WriteLine("Indtast dyrets fødselsdag (dd/MM/yyyy):");
+            DateTime.TryParse(Console.ReadLine(), out DateTime fødselsdag);
+
+            if (!dyrRep.Update(id, navn, artType, race, vægt, fødselsdag)) 
+            {
+                Console.WriteLine("noget gik galt");
+            }
+            else
+            {
+                Console.WriteLine("Dyret er blevet opdateret!");
+                Console.ReadKey();
+            }
+        }  
 
         #endregion
         static void KundeMenu()
