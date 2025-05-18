@@ -22,6 +22,7 @@ namespace ClassLibrary1.Services
     {
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
 
+
         public void Create()
         {   // input til dyrets navn
             Console.WriteLine("Indtast dyrets navn:");
@@ -175,11 +176,11 @@ namespace ClassLibrary1.Services
             if (DyrList.TryGetValue(id, out Dyr dyr))
             {
                 if (nyNavn != null) dyr.Navn = nyNavn;
-                if (nyArt.HasValue) dyr.Art = nyArt.Value;
+                if (!nyArt.HasValue) dyr.Art = nyArt.Value;
                 if (nyRace != null) dyr.Race = nyRace;
                 if (nyVægt.HasValue) dyr.Vægt = nyVægt.Value;
                 if (nyFødselsdag.HasValue) dyr.FødselsDag = nyFødselsdag.Value;
-                if (nyKøn.HasValue) dyr.Køn = nyKøn.Value;
+                if (!nyKøn.HasValue) dyr.Køn = nyKøn.Value;
                 if (nyInfo != null) dyr.Info = nyInfo;
                 return true;
             }

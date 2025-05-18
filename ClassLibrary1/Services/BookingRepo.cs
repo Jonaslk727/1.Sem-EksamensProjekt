@@ -12,6 +12,7 @@ namespace ClassLibrary1.Services
 
         public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
 
+
         /// <summary>
         /// Opretter en relavant bookning, og tilføjer den til en liste.
         /// Kaldern skal selv vælge hvilken type booking der ønskes.
