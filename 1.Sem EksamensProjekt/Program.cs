@@ -697,37 +697,24 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("==========================================");
             Console.WriteLine("1. hvis alle ledige dyr:");
             Console.WriteLine("2. book et besøg:");
-            Console.WriteLine("3. Søg på et ledigt dyr");
             string input = Console.ReadLine();
             switch (input)
             {
                 case "1":
                     // viser ledige dyr
+                    DyrRep.PrintLedigeDyr();
                     break;
                 case "2":
                 // booking logik
-                //BookingRep.OpretBooking(BookingType.Besøg, DyrRep);
-                case "3":
-                    // søg på ledige dyr
+                    //BookingRep.OpretBooking(BookingType.Besøg, DyrRep);
                     break;
-               
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Ugyldigt valg, prøv igen.");
+                    Console.ReadKey();
+                    Console.ResetColor();
+                    break;
             }
-            int.TryParse(Console.ReadLine(), out int id);
-
-            if (DyrRep.DyrList.TryGetValue(id, out Dyr dyr) && dyr.IsBooked == false)
-            {
-                // skal implementere en ny kunde 
-                //Kunde kunde = new Kunde();
-                //Skal have userinput svarende til kravene i booking Konstrukotoren
-
-                //BookingRep.OpenBooking(BookingType.Besøg, dato, varighed, kunde, DyrRep, AktivitetsRep);
-
-            }
-            else
-            {
-                Console.WriteLine("Dyret er allerede booket.");
-            }
-
         }
 
         static void Updater(DyrRepo dyrRep)

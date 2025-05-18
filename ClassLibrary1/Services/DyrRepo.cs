@@ -204,8 +204,23 @@ namespace ClassLibrary1.Services
             }
             Console.ReadKey();
         }
-        
-            
+
+        public void PrintLedigeDyr()
+        {
+            List<Dyr> ledigeDyr = new List<Dyr>();
+
+            foreach (var dyr in DyrList.Values)
+            {
+                if (dyr.IsBooked == false)
+                {
+                    Console.WriteLine(dyr); ;
+                }
+            }
+
+            Console.ReadKey();
+        }
+
+
 
     }
 }
