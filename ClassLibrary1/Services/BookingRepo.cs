@@ -12,52 +12,79 @@ namespace ClassLibrary1.Services
 
         public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
 
-        public void OpenBooking(BookingType type, DateTime startTid, int varighed, Kunde booker, 
-            DyrRepo dyrRep, AktivitetRepo AktivitetsRep)
+        /// <summary>
+        /// Opretter en relavant bookning, og tilføjer den til en liste.
+        /// Kaldern skal selv vælge hvilken type booking der ønskes.
+        /// </summary>
+        /// <param name="type"></param>
+        public void OpretBooking(BookingType type, DyrRepo dyrRep)
         {
-            var booking = new Booking(type, startTid, varighed, booker);
+            //// ændre logikken hhv. type: Besøg eller Aktivitet
+            //switch (type)
+            //{
+            //    //case BookingType.Besøg:
+
+            //    //    Booking booking = new Booking(type, DateTime.Now, 1, booker);
+
+            //    //    Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
+            //    //    string inputId = Console.ReadLine();
+            //    //    if (int.TryParse(inputId, out int id) && dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false)
+            //    //    {
+
+            //    //        booking.BookedDyr = dyrRep.DyrList[id];
+            //    //        dyrRep.DyrList[id].IsBooked = true;
+            //    //        dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
+
+            //    //        AlleBokinger.Add(booking.BookingId, booking);// skal fikses
+            //    //    }
+            //    //    break;
+
+            //    //case BookingType.Aktivitet:
+            //    //    // int id;
+            //    //    // do
+            //    //    // {
+            //    //    //    Console.WriteLine("Skriv Id'et på den Aktivitet du vil medles til:");
+            //    //    // } while (!int.TryParse(Console.ReadLine(), out id));
+
+            //    //    //if (AktivitetsRep.AlleAktiviteter.ContainsKey(id))
+            //    //    //{   // her tiljøjes bookeren til aktiviteten
+            //    //    //    AktivitetsRep.AlleAktiviteter[id].Tilmeldte.Add(booker);
+            //    //    //    Console.WriteLine($"du er hermed tilmeldt til:\n{AktivitetsRep.AlleAktiviteter[id]}");
+            //    //    //}
+            //    //    //else
+            //    //    //{
+            //    //    //    Console.WriteLine("Aktivitet med dette Id findes ikke.");
+            //    //    //}
+            //    //    break;
+                
+            //}
             
-            // ændre logikken hhv. type: Besøg eller Aktivitet
-            if (type == BookingType.Besøg)
-            {
-                Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
-                string inputId = Console.ReadLine();
-                if (int.TryParse(inputId, out int id) && dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false)
-                {
+            //else if (type == BookingType.Aktivitet)
+            //{
+            //    int id;
+            //    do
+            //    {
+            //        Console.WriteLine("Skriv Id'et på den Aktivitet du vil medles til:");
+            //    } while (!int.TryParse(Console.ReadLine(), out id));
 
-                    booking.BookedDyr = dyrRep.DyrList[id];
-                    dyrRep.DyrList[id].IsBooked = true;
-                    dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
-                    
-                    AlleBokinger.Add(booking.BookingId,booking);// skal fikses
-                }
-            }
-            else if (type == BookingType.Aktivitet)
-            {
-                int id;
-                do
-                {
-                    Console.WriteLine("Skriv Id'et på den Aktivitet du vil medles til:");
-                } while (!int.TryParse(Console.ReadLine(), out id));
+            //    if (AktivitetsRep.AlleAktiviteter.ContainsKey(id))
+            //    {   // her tiljøjes bookeren til aktiviteten
+            //        AktivitetsRep.AlleAktiviteter[id].Tilmeldte.Add(booker);
+            //        Console.WriteLine($"du er hermed tilmeldt til:\n{AktivitetsRep.AlleAktiviteter[id]}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Aktivitet med dette Id findes ikke.");
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Ugyldig booking type.");
 
-                if (AktivitetsRep.AlleAktiviteter.ContainsKey(id))
-                {   // her tiljøjes bookeren til aktiviteten
-                    AktivitetsRep.AlleAktiviteter[id].Tilmeldte.Add(booker);
-                    Console.WriteLine($"du er hermed tilmeldt til:\n{AktivitetsRep.AlleAktiviteter[id]}");
-                }
-                else
-                {
-                    Console.WriteLine("Aktivitet med dette Id findes ikke.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Ugyldig booking type.");
-
-            }
-                //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
-                //Det sikre hurtig adgang til bookinger via et unikt ID
-                AlleBokinger.Add(booking.BookingId, booking);
+            //}
+            //    //Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
+            //    //Det sikre hurtig adgang til bookinger via et unikt ID
+            //    AlleBokinger.Add(booking.BookingId, booking);
         }
         
 

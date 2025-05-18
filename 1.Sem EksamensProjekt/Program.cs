@@ -136,6 +136,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Opret, slet eller redigr dyr");
                 Console.WriteLine("2. Vis alle dyr");
+                Console.WriteLine("3. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Tilbage");
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -145,10 +146,15 @@ namespace _1.Sem_EksamensProjekt
                 switch (dyrValg)
                 {
                     case "1":
+                        // vider sender til en ny menu
                         SletRedigerOpretDyrMeny(dyrRep);
                         break;
                     case "2":
                         dyrRep.PrintDyrList();
+                        break;
+                    case "3":
+                        // Søg efter dyr
+                        SøgDyr(dyrRep);
                         break;
                     case "0":
                         kørDyrMenu = false; // Exit the animal menu
@@ -618,6 +624,8 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("1. Opret et dyr");
                 Console.WriteLine("2. Slet dyr");
                 Console.WriteLine("3. Rediger et oprettet dyr");
+                Console.WriteLine("4. LægeLog af et dyr.");
+                Console.WriteLine("5. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå tilbage");
                 Console.ResetColor();
@@ -634,6 +642,12 @@ namespace _1.Sem_EksamensProjekt
                     case "3":
                         Updater(dyrRep);
                         break;
+                    case "4":
+                        // mangler 
+                        break;
+                    case "5":
+                        SøgDyr(dyrRep);
+                        break;
                     case "0":
                         fortsæt = false;
                         break;
@@ -647,26 +661,71 @@ namespace _1.Sem_EksamensProjekt
             }
         }
 
+        static void SøgDyr(DyrRepo dyrRep)
+        {   
+            Console.WriteLine("Søg efter dyr:");
+            Console.WriteLine("1. Søg efter navn");
+            Console.WriteLine("2. Søg efter ID");
+            Console.WriteLine("3. Søg efter art");
+            string valg = Console.ReadLine();
+            Console.WriteLine();
+            switch (valg)
+            {
+                case "1":
+                    dyrRep.Read(SøgDyrType.Navn);
+                    break;
+                case "2":
+                    dyrRep.Read(SøgDyrType.Id);
+                    break;
+                case "3":
+                    dyrRep.Read(SøgDyrType.Art);
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Ugyldigt valg, prøv igen.");
+                    Console.ReadKey();
+                    Console.ResetColor();
+                    break;
+            }
+        }
+
         static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep)
         {
             Console.Clear();
             Console.WriteLine("==========================================");
             Console.WriteLine("               Besøg et dyr");
             Console.WriteLine("==========================================");
-            Console.WriteLine("Skriv id på dyret du vil booke et besøg til:");
-            int id = int.Parse(Console.ReadLine());
-            if (DyrRep.DyrList.ContainsKey(id))
+            Console.WriteLine("1. hvis alle ledige dyr:");
+            Console.WriteLine("2. book et besøg:");
+            Console.WriteLine("3. Søg på et ledigt dyr");
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    // viser ledige dyr
+                    break;
+                case "2":
+                // booking logik
+                //BookingRep.OpretBooking(BookingType.Besøg, DyrRep);
+                case "3":
+                    // søg på ledige dyr
+                    break;
+               
+            }
+            int.TryParse(Console.ReadLine(), out int id);
+
+            if (DyrRep.DyrList.TryGetValue(id, out Dyr dyr) && dyr.IsBooked == false)
             {
                 // skal implementere en ny kunde 
-                Kunde kunde = new Kunde();
-                //Skal have userinput svarende til kravene i bookingKonstrukotoren
+                //Kunde kunde = new Kunde();
+                //Skal have userinput svarende til kravene i booking Konstrukotoren
 
-                BookingRep.OpenBooking(BookingType.Besøg, dato, varighed, kunde, DyrRep, AktivitetsRep);
+                //BookingRep.OpenBooking(BookingType.Besøg, dato, varighed, kunde, DyrRep, AktivitetsRep);
 
             }
             else
             {
-                Console.WriteLine("Dyret findes ikke.");
+                Console.WriteLine("Dyret er allerede booket.");
             }
 
         }
@@ -692,6 +751,8 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Indtast det nye navn:");
             string navn = Console.ReadLine();
             // indput til dyrets Art
+            // baggrund for at tillade null er at update kikker efter om et parameter er null 
+            // og hvis det er så ændres det ikke
             string artInput;
             string kønInput;
             kønType køn = default;
@@ -702,11 +763,16 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("Indtast dyrets nye art (Hund, Kat, Fugl):");
                 artInput = Console.ReadLine();
 
+            } while (!Enum.TryParse(artInput, true, out artType));
+            // input til dyrets køn
+            do
+            {
                 Console.WriteLine($"Nuværende Køn: {dyr.Køn}");
                 Console.WriteLine("Indtast dyrets nye Køn (Hankøn / Hunkøn):");
                 kønInput = Console.ReadLine();
 
-            } while (!Enum.TryParse(artInput, true, out artType) && !Enum.TryParse(kønInput, true, out køn));
+            } while (!Enum.TryParse(kønInput, true, out køn));
+
             // indput til dyrets race
             Console.WriteLine($"Dyrets nuværende race: {dyr.Race}");
             Console.WriteLine("indtast dyrets nye race: ");
@@ -721,7 +787,7 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Indtast dyrets nye fødselsdag (dd/MM/yyyy):");
             DateTime.TryParse(Console.ReadLine(), out DateTime fødselsdag);
 
-            Console.WriteLine($"Dyrets nuværende fødselsdag: {dyr.FødselsDag}");
+            Console.WriteLine($"Dyrets nuværende ínfo: {dyr.Info}");
             Console.WriteLine("Indtast ny info:");
             string info = Console.ReadLine();
 
