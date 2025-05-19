@@ -53,14 +53,14 @@ public class KundeRepo
     public void PrintKundeList()
     {
 
-        if (KundeList.Count() == 0)
+        if (_kunder.Count() == 0)
         {
             Console.WriteLine("Ingen dyr i systemet.");
         }
         else
         {
             Console.WriteLine("Dyr i systemet:");
-            foreach (var dyr in KundeList.Values)
+            foreach (var dyr in _kunder)
             {
                 Console.WriteLine(dyr);
             }

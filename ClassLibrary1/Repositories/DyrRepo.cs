@@ -229,8 +229,12 @@ namespace ClassLibrary1.Services
         /// Spøger user om hvilken log der skal udskrives. og udskriver den valgte log.
         /// </summary>
         /// <param name="id"></param>
-        public void PrintDyretsLog(int id)
+        public void PrintDyretsLog()
         {
+            int id;
+            Console.WriteLine("Indtast dyrets ID:");
+            int.TryParse(Console.ReadLine(), out id);
+
             if (DyrList.ContainsKey(id))
             {
                 bool fortsæt = true;

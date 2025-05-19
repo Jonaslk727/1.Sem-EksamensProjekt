@@ -686,8 +686,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("1. Opret et dyr");
                 Console.WriteLine("2. Slet dyr");
                 Console.WriteLine("3. Rediger et oprettet dyr");
-                Console.WriteLine("4. Vis LægeLog af et dyr.");
-                Console.WriteLine("5. Vis BesøgsLog af et dyr");
+                Console.WriteLine("4. Vis DyretLogs");
                 Console.WriteLine("6. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå tilbage");
@@ -706,12 +705,9 @@ namespace _1.Sem_EksamensProjekt
                         Updater(dyrRep);
                         break;
                     case "4":
-                        
+                        dyrRep.PrintDyretsLog();
                         break;
-                        case "5":
-                    //VisBesøgsLog(dyrRep);
-                        break;
-                    case "6":
+                    case "5":
                         SøgDyr(dyrRep);
                         break;
                     case "0":
