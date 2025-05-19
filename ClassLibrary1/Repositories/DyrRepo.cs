@@ -245,6 +245,7 @@ namespace ClassLibrary1.Services
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("1. Vis Dyrets LægeLog");
                     Console.WriteLine("2. Vis Dyrets BesøgsLog");
+                    Console.WriteLine("3 se alle kunder");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("0. Gå tilbage");
                     Console.ResetColor();

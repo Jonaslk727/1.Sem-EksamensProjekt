@@ -34,7 +34,7 @@ namespace ClassLibrary1.Services
         public string GetBesøgsLog()
         {
             StringBuilder sb = new StringBuilder();
-            if (LægeLogs.Count == 0)
+            if (BesøgssLogs.Count == 0)
             {
                 sb.AppendLine("´Der er ingen besøgsLogs");
                 return sb.ToString();

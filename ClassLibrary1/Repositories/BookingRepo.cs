@@ -34,7 +34,9 @@ namespace ClassLibrary1.Services
                     {
                         Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
                         inputId = Console.ReadLine();
-                    } while (!int.TryParse(inputId, out id));
+                        if (int.TryParse(inputId, out id)) break;
+                        else Console.WriteLine("Ugyldigt ID. Prøv igen.");
+                    } while (true);
 
                     if (dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false)
                     {   // får Id på kunden
@@ -43,14 +45,16 @@ namespace ClassLibrary1.Services
                         do
                         {
                             Console.WriteLine("Skriv Id'et på kunden der vil booke:");
-                            inputId = Console.ReadLine();
-
-
-                        } while (!int.TryParse(inputId, out bookerId) && kundeRep.HentKunde(bookerId) != null);
+                            if (!int.TryParse(Console.ReadLine(), out bookerId)) Console.WriteLine("Ugyldigt ID. Prøv igen.");
+                            else if (kundeRep.HentKunde(bookerId) == null) Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
+                            else if (!int.TryParse(Console.ReadLine(), out bookerId) && kundeRep.HentKunde(bookerId) != null) break;
+                            
+                        } while (true);
 
                         booker = kundeRep.HentKunde(bookerId);// får kunden
                         booking.BookedDyr = dyrRep.DyrList[id]; // tilføjer dyret til bookingen
                         dyrRep.DyrList[id].IsBooked = true;
+
                         DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking formate(dd/mm/yyyy HH:mm)");
                         dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
                         Console.WriteLine($"Succes Du har oprettet:\n{booking}");
@@ -82,6 +86,7 @@ namespace ClassLibrary1.Services
                                 booker = kundeRep.HentKunde(id);
                                 isValid = true;
                             }
+
                         } while (!isValid);
 
                         AktivitetsRep.AlleAktiviteter[id].Tilmeldte.Add(booker);
