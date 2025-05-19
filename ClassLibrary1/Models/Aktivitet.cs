@@ -15,6 +15,7 @@ namespace ClassLibrary1.Models
         public DateTime StartTid { get; set; }
         public DateTime SlutTid { get; set; }
         public string Beskrivelse { get; set; }
+        public bool IsBooked => Tilmeldte.Count > 0;
         #endregion
 
         public List<Kunde> Tilmeldte { get; set; } = new List<Kunde>();
@@ -39,6 +40,7 @@ namespace ClassLibrary1.Models
                 $"Titel      : {Title}\n" +
                 $"Start tid  : {StartTid:dd-MM-yyyy HH:mm}\n" +
                 $"Slut tid   : {SlutTid:dd-MM-yyyy HH:mm}\n" +
+                $"Booket     : {(IsBooked ? "Ja" : "Nej")}\n" +
                 $"Beskrivelse:\n{Beskrivelse}\n" +
                 "-------------------------------";
         }
