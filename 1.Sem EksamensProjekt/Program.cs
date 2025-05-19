@@ -857,7 +857,6 @@ namespace _1.Sem_EksamensProjekt
                         Console.WriteLine("Tryk på en tast for at fortsætte...");
                         Console.ReadKey();
                         break;
-                        break;
                     case "0":
                         fortsæt = false;
                         break;
