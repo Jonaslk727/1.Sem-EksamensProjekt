@@ -171,12 +171,13 @@ namespace ClassLibrary1.Services
 
         public DateTime GetDateTimeInput(string prompt)
         {
-            bool isValid = false;
+            bool isValid = true;
+            DateTime dateTime = default;
             while (isValid)
             {
                 Console.WriteLine(prompt);
                 string input = Console.ReadLine();
-                if (DateTime.TryParse(input, out dateTime)) isValid = true;
+                if (DateTime.TryParse(input, out dateTime)) isValid = false;
                 else { Console.WriteLine("Ugyldigt format. Prøv igen."); }
             }
             return dateTime;

@@ -63,10 +63,12 @@ namespace ClassLibrary1.Services
 
         public bool Delete()
         {
+            int id;
             do
             {
                 Console.WriteLine("Indtast dyrets ID, som du vil slette::");
-            } while(int id = int.Parse(Console.ReadLine());
+
+            } while (int.TryParse(Console.ReadLine(), out id));
             
 
             if (DyrList.ContainsKey(id))
