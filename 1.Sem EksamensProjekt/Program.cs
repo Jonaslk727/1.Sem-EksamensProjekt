@@ -689,7 +689,9 @@ namespace _1.Sem_EksamensProjekt
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("==========================================");
                 Console.WriteLine("Rediger Dyr - vælge en kategori:");
+                Console.WriteLine("==========================================");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. Opret et dyr");
                 Console.WriteLine("2. Slet dyr");
@@ -953,12 +955,20 @@ namespace _1.Sem_EksamensProjekt
         //TEST DATA:
         static void MogdataDyr(DyrRepo DyrRep)
         {
-            Dyr dyr1 = new Dyr("Max", ArtType.Hund, "Labrador", 30, new DateTime(2020, 5, 1), kønType.Hankøn, "Venlig hund");
-            Dyr dyr2 = new Dyr("Bella", ArtType.Kat, "Perser", 5, new DateTime(2021, 3, 15), kønType.Hunkøn, "Legesyg kat");
-            Dyr dyr3 = new Dyr("Charlie", ArtType.Fugl, "Parakit", 0.5, new DateTime(2022, 8, 10), kønType.Hankøn, "Sangfugl");
-            DyrRep.DyrList.Add(dyr1.ChipNummer, dyr1);
-            DyrRep.DyrList.Add(dyr2.ChipNummer, dyr2);
-            DyrRep.DyrList.Add(dyr3.ChipNummer, dyr3);
+            List<Dyr> dyrList = new List<Dyr>()
+            {
+                new Dyr("Max", ArtType.Hund, "Labrador", 30, new DateTime(2020, 5, 1), kønType.Hankøn, "Venlig hund"),
+                new Dyr("Bella", ArtType.Kat, "Perser", 5, new DateTime(2021, 3, 15), kønType.Hunkøn, "Legesyg kat"),
+                new Dyr("Charlie", ArtType.Fugl, "Parakit", 0.5, new DateTime(2022, 8, 10), kønType.Hankøn, "Sangfugl"),
+                new Dyr("Luna", ArtType.Hund, "Schæfer", 35, new DateTime(2019, 11, 20), kønType.Hunkøn, "Intelligent hund"),
+                new Dyr("Oliver", ArtType.Kat, "Maine", 7, new DateTime(2020, 1, 5), kønType.Hankøn, "Nysgerrig kat"),
+                new Dyr("Coco", ArtType.Hund, "Chihuahua", 3, new DateTime(2022, 6, 30), kønType.Hunkøn, "Lille og sød"),
+                new Dyr("Rocky", ArtType.Hund, "Bulldog", 25, new DateTime(2018, 4, 12), kønType.Hankøn, "Stærk og venlig"),
+            };
+            for (int i = 0; i < dyrList.Count(); i++)
+            {
+                DyrRep.DyrList.Add(dyrList[i].ChipNummer, dyrList[i]);
+            }
         }
         public static void TestDataAktivitet(AktivitetRepo repo)
         {
