@@ -53,7 +53,7 @@ namespace ClassLibrary1.Services
                         dyrRep.DyrList[id].IsBooked = true;
                         DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking formate(dd/mm/yyyy HH:mm)");
                         dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
-
+                        Console.WriteLine($"Succes Du har oprettet:\n{booking}");
                         AlleBokinger.Add(booking.BookingId, booking);// skal fikses
                     }
                     else
@@ -171,15 +171,13 @@ namespace ClassLibrary1.Services
 
         public DateTime GetDateTimeInput(string prompt)
         {
-            DateTime dateTime;
-            while (true)
+            bool isValid = false;
+            while (isValid)
             {
                 Console.WriteLine(prompt);
                 string input = Console.ReadLine();
-                if (DateTime.TryParse(input, out dateTime))
-                    break;
-
-                Console.WriteLine("Ugyldigt format. Prøv igen.");
+                if (DateTime.TryParse(input, out dateTime)) isValid = true;
+                else { Console.WriteLine("Ugyldigt format. Prøv igen."); }
             }
             return dateTime;
         }

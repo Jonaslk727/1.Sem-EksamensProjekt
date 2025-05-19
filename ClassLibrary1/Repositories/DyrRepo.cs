@@ -63,8 +63,11 @@ namespace ClassLibrary1.Services
 
         public bool Delete()
         {
-            Console.WriteLine("Indtast dyrets ID, som du vil slette::");
-            int id = int.Parse(Console.ReadLine());
+            do
+            {
+                Console.WriteLine("Indtast dyrets ID, som du vil slette::");
+            } while(int id = int.Parse(Console.ReadLine());
+            
 
             if (DyrList.ContainsKey(id))
             {
@@ -244,9 +247,11 @@ namespace ClassLibrary1.Services
                     {
                         case "1":
                             Console.WriteLine(DyrList[id].GetLogs(1));
+                            Console.ReadKey();
                             break;
                         case "2":
                             Console.WriteLine(DyrList[id].GetLogs(2));
+                            Console.ReadKey();
                             break;
                         case "0":
                             fortsæt = false;
