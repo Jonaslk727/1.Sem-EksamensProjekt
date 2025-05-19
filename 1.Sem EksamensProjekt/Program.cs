@@ -50,7 +50,8 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep, MedarbejderRep);
                         break;
                     case "2":
-                        KundeMenu(DyrRep, BookingRep, AkRepo, KundeRepo);
+                        var kundeRepo = new KundeRepo();
+                        KundeMenu(DyrRep, BookingRep, AkRepo, kundeRepo);
                         break;
                     case "0":
                         kørProgram = false;
