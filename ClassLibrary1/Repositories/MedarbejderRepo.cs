@@ -12,6 +12,8 @@ namespace ClassLibrary1.Repositories
 
         public void TilføjMedarbejder(Medarbejder medarbejder)
         {
+            try
+            { 
             for (int i = 0; i < medarbejdere.Count; i++)
             {
                 if (medarbejdere[i].MedarbejderId == medarbejder.MedarbejderId)
@@ -26,6 +28,13 @@ namespace ClassLibrary1.Repositories
             }
             medarbejdere.Add(medarbejder);
             Console.WriteLine("Medarbejder tilføjet.");
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fejl ved tilføjelse af medarbejder: " + ex.Message);
+                Console.ResetColor();
+            }
         }
 
         public void VisMedarbejder()
