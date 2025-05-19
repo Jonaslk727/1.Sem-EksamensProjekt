@@ -220,7 +220,52 @@ namespace ClassLibrary1.Services
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Spøger user om hvilken log der skal udskrives. og udskriver den valgte log.
+        /// </summary>
+        /// <param name="id"></param>
+        public void PrintDyretsLog(int id)
+        {
+            if (DyrList.ContainsKey(id))
+            {
+                bool fortsæt = true;
+                while (fortsæt)
+                {
+                    Console.Clear();
 
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("1. Vis Dyrets LægeLog");
+                    Console.WriteLine("2. Vis Dyrets BesøgsLog");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("0. Gå tilbage");
+                    Console.ResetColor();
+                    string valg = Console.ReadLine();
+                    switch (valg)
+                    {
+                        case "1":
+                            Console.WriteLine(DyrList[id].GetLogs(1));
+                            break;
+                        case "2":
+                            Console.WriteLine(DyrList[id].GetLogs(2));
+                            break;
+                        case "0":
+                            fortsæt = false;
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Ugyldigt valg, prøv igen.");
+                            Console.ReadKey();
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Dyr med dette ID findes ikke.");
+                Console.ReadKey();
+            }
+        }
 
     }
 }

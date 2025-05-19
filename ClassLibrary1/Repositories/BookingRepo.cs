@@ -174,7 +174,7 @@ namespace ClassLibrary1.Services
             DateTime dateTime;
             while (true)
             {
-                Console.Write(prompt);
+                Console.WriteLine(prompt);
                 string input = Console.ReadLine();
                 if (DateTime.TryParse(input, out dateTime))
                     break;

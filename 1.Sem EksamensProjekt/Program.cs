@@ -13,8 +13,8 @@ namespace _1.Sem_EksamensProjekt
         {
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
-            var AkRepo = new AktivitetRepo();                
-            var KundeRepo = new KundeRepo();
+            var AkRepo = new AktivitetRepo();
+            var MedarbejderRep = new MedarbejderRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
 
@@ -47,10 +47,11 @@ namespace _1.Sem_EksamensProjekt
                 switch (valg)
                 {
                     case "1":
-                        MedarbejderMenu(AkRepo, DyrRep);
+                        MedarbejderMenu(AkRepo, DyrRep, MedarbejderRep);
                         break;
                     case "2":
-                        KundeMenu(DyrRep, BookingRep, AkRepo, KundeRepo);
+                        var kundeRepo = new KundeRepo();
+                        KundeMenu(DyrRep, BookingRep, AkRepo, kundeRepo);
                         break;
                     case "0":
                         kørProgram = false;
@@ -64,12 +65,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep)
+        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, MedarbejderRepo medarbejderRepo)
         {
-            MedarbejderRepo repo = new MedarbejderRepo();
 
-            repo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 1, Navn = "Tim", Afdeling = "IT", Stilling = "Udvikler", Email = "tim@example.com", Telefonnummer = "12345678" });
-            repo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 2, Navn = "Sara Jensen", Afdeling = "HR", Stilling = "HR Chef", Email = "sara@example.com", Telefonnummer = "87654321" });
+
+            medarbejderRepo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 1, Navn = "Tim", Afdeling = "IT", Stilling = "Udvikler", Email = "tim@example.com", Telefonnummer = "12345678" });
+            medarbejderRepo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 2, Navn = "Sara Jensen", Afdeling = "HR", Stilling = "HR Chef", Email = "sara@example.com", Telefonnummer = "87654321" });
 
             bool fortsæt = true;
             while (fortsæt)
@@ -118,7 +119,7 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderAktivitetMenu(AkRepo);
                         break;
                     case "4":
-                        MedarbejderMedarbejderMenu();
+                        MedarbejderMedarbejderMenu(medarbejderRepo);
                         break;
                     case "0":
                         fortsæt = false;
@@ -315,10 +316,8 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void MedarbejderMedarbejderMenu()
+        static void MedarbejderMedarbejderMenu(MedarbejderRepo repo)
         {
-            MedarbejderRepo repo = new MedarbejderRepo();
-
             bool kørMedarbejderMenu = true;
             while (kørMedarbejderMenu)
             {
@@ -367,6 +366,8 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "2":
                         repo.VisMedarbejder();
+                        Console.WriteLine("\nTryk på en tast for at vende tilbage...");
+                        Console.ReadKey();
                         break;
                     case "3":
                         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -685,8 +686,9 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("1. Opret et dyr");
                 Console.WriteLine("2. Slet dyr");
                 Console.WriteLine("3. Rediger et oprettet dyr");
-                Console.WriteLine("4. LægeLog af et dyr.");
-                Console.WriteLine("5. Søg efter dyr");
+                Console.WriteLine("4. Vis LægeLog af et dyr.");
+                Console.WriteLine("5. Vis BesøgsLog af et dyr");
+                Console.WriteLine("6. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå tilbage");
                 Console.ResetColor();
@@ -706,7 +708,10 @@ namespace _1.Sem_EksamensProjekt
                     case "4":
                         
                         break;
-                    case "5":
+                        case "5":
+                    //VisBesøgsLog(dyrRep);
+                        break;
+                    case "6":
                         SøgDyr(dyrRep);
                         break;
                     case "0":
