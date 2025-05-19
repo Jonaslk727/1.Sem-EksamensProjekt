@@ -48,7 +48,6 @@ namespace ClassLibrary1.Services
 
                         Kunde booker = kundeRep.OpenKunde(bookerId); 
 
-
                         booking.BookedDyr = dyrRep.DyrList[id]; // tilføjer dyret til bookingen
                         dyrRep.DyrList[id].IsBooked = true;
                         DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking formate(dd/mm/yyyy HH:mm)");
