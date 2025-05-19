@@ -11,12 +11,10 @@ using ClassLibrary1.Models;
 namespace ClassLibrary1.Services
 {
     public class DyreLog
-    {   // der skal laves en en læge log og en besøg log class
+    {  
         public Dictionary<int, Lægelog> LægeLogs = new Dictionary<int, Lægelog>();
         public List<Besøg> BesøgssLogs = new List<Besøg>();
 
-        // skal kunne tage info fra booking og tilføje til bookingloggen
-        
         public void CreateBesøgLog(DateTime Dato, Models.Kunde besøger)
         {
             Besøg besøg = new Besøg(Dato, besøger);

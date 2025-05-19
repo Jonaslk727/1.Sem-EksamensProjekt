@@ -643,7 +643,7 @@ namespace _1.Sem_EksamensProjekt
                         Updater(dyrRep);
                         break;
                     case "4":
-                        // mangler 
+                        
                         break;
                     case "5":
                         SøgDyr(dyrRep);
@@ -808,5 +808,22 @@ namespace _1.Sem_EksamensProjekt
             repo.OpretAktivitet(Title, StartTid, SlutTid, info);
         }
         #endregion
+
+        #region Nyttige metoder
+        public static DateTime GetDateTimeInput(string prompt)
+        {
+            DateTime dateTime;
+            while (true)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+                if (DateTime.TryParse(input, out dateTime)) 
+                    break;
+
+                Console.WriteLine("Ugyldigt format. Prøv igen.");
+            }
+            return dateTime;
+        }
     }
 }
+        #endregion
