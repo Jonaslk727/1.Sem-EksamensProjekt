@@ -13,10 +13,11 @@ namespace _1.Sem_EksamensProjekt
         {
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
-            var AkRepo = new AktivitetRepo();
+            var AkRepo = new AktivitetRepo();                
             var KundeRepo = new KundeRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
+
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
             while (kørProgram)
@@ -168,8 +169,14 @@ namespace _1.Sem_EksamensProjekt
         }
         static void MedarbejderKundeMenu()
         {
-            bool kør = true;
-            while (kør)
+            KundeRepo repo = new KundeRepo();
+
+            repo.TilføjKunde(new Kunde { KundeId = 1, Navn = "John", Email = "JohnDeere@eksempel.com", Mobil = "20223420" });
+            repo.TilføjKunde(new Kunde { KundeId = 2, Navn = "Søren", Email = "SørenBregne@eksempel.com", Mobil = "90100910" });
+
+
+            bool kørKundeMenu = true;
+            while (kørKundeMenu)
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -186,8 +193,9 @@ namespace _1.Sem_EksamensProjekt
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("=====================================");
                 Console.ResetColor();
-
+                Console.Write("Vælg en mulighed: ");
                 string kundeValg = Console.ReadLine();
+
                 switch (kundeValg)
                 {
                     case "1":
@@ -203,18 +211,71 @@ namespace _1.Sem_EksamensProjekt
                         Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
                         Console.Write("Email         : "); ny.Email = Console.ReadLine();
                         Console.Write("Telefon       : "); ny.Mobil = Console.ReadLine();
+
+                        repo.TilføjKunde(ny);
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
+                        Console.WriteLine("=====================================");
+                        Console.ResetColor();
                         break;
+
                     case "2":
-                        // Vis alle kunder
+                        repo.VisKunder();// Vis alle kunder
                         break;
+
                     case "3":
                         // Opdater kunde
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\n=====================================");
+                        Console.WriteLine("        Opdater Kunde           ");
+                        Console.WriteLine("=====================================");
+                        Console.ResetColor();
+
+                        Console.Write("Indtast ID på Kunde du vil opdatere: ");
+                        int opdaterId = int.Parse(Console.ReadLine());
+
+                        if (repo.FindKunde(opdaterId))
+                        {
+                            Kunde opdateret = new Kunde { KundeId = opdaterId };
+
+                            Console.WriteLine("\nIndtast de nye oplysninger:");
+                            Console.WriteLine("------------------------------------------------");
+                            Console.Write("Nyt navn         : "); opdateret.Navn = Console.ReadLine();
+                            Console.Write("Ny Email         : "); opdateret.Email = Console.ReadLine();
+                            Console.Write("Nyt Telefonnummer: "); opdateret.Mobil = Console.ReadLine();
+                            Console.WriteLine("------------------------------------------------");
+                            
+                            repo.OpdaterKunde(opdateret.KundeId, opdateret.Navn, opdateret.Email, opdateret.Mobil);
+
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n Kunde opdateret succesfuldt!");
+                            Console.WriteLine("=====================================");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n=====================================");
+                            Console.WriteLine($" Ingen Kunde fundet med ID {opdaterId}.");
+                            Console.WriteLine("=====================================");
+                            Console.ResetColor();
+                        }
                         break;
+
                     case "4":
                         // Slet kunde
+                        Console.Write("Indtast ID på Kunde du vil slette: ");
+                        int sletId = int.Parse(Console.ReadLine());
+                        repo.SletKunde(sletId);
                         break;
+
                     case "0":
-                        kør = false;
+                        kørKundeMenu = false; //forlad kunde menuen
+                        break;
+
+                    default:
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
                         break;
                 }
             }
@@ -736,28 +797,40 @@ namespace _1.Sem_EksamensProjekt
         }
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
         {
-            Console.Clear();
-            Console.WriteLine("==========================================");
-            Console.WriteLine("               Besøg en aktivitet");
-            Console.WriteLine("==========================================");
-            Console.WriteLine("1. hvis alle kommende aktiviteter:");
-            Console.WriteLine("2. tilmeld en aktivitet:");
-            string input = Console.ReadLine();
-            switch (input)
+            bool fortsæt = true;
+            do
             {
-                case "1":
-                    VisAlleAktivitet(AktivitetRep);
-                    break;
-                case "2":
-                    BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Ugyldigt valg, prøv igen.");
-                    Console.ReadKey();
-                    Console.ResetColor();
-                    break;
-            }
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("==========================================");
+                Console.WriteLine("               Besøg en aktivitet");
+                Console.WriteLine("==========================================");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. hvis alle kommende aktiviteter:");
+                Console.WriteLine("2. tilmeld en aktivitet:");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Gå Tilbage");
+                Console.ResetColor();
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        VisAlleAktivitet(AktivitetRep);
+                        break;
+                    case "2":
+                        BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
+                }
+            } while (fortsæt);
         }
         static void Updater(DyrRepo dyrRep)
         {
