@@ -30,26 +30,29 @@ namespace ClassLibrary1.Services
 
                     string inputId;
                     int id;
+                    // sikre gyldigt Dyr ID
                     do
                     {
                         Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
                         inputId = Console.ReadLine();
-                        if (int.TryParse(inputId, out id)) break;
-                        else Console.WriteLine("Ugyldigt ID. Prøv igen.");
+                        if (!int.TryParse(inputId, out id)) Console.WriteLine("du skal skrive et tal");// at input er et tal
+                        else if (dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false) break;
+                            
+                        Console.WriteLine("Dyr med dette Id findes ikke");
+                       
                     } while (true);
 
-                    if (dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false)
-                    {   // får Id på kunden
-                        int bookerId;
-                        
-                        do
-                        {
-                            Console.WriteLine("Skriv Id'et på kunden der vil booke:");
-                            if (!int.TryParse(Console.ReadLine(), out bookerId)) Console.WriteLine("Ugyldigt ID. Prøv igen.");
-                            else if (kundeRep.HentKunde(bookerId) == null) Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
-                            else if (!int.TryParse(Console.ReadLine(), out bookerId) && kundeRep.HentKunde(bookerId) != null) break;
+                    // sikre gyldigt Kunde ID
+                    int bookerId;
+                    do
+                    {
+                        Console.WriteLine("Skriv Id'et på kunden der vil booke:");
+                        if (int.TryParse(Console.ReadLine(), out bookerId) && kundeRep.HentKunde(bookerId) != null) break;
+                        // fejlmeddelelser:
+                        else if (!int.TryParse(Console.ReadLine(), out bookerId)) Console.WriteLine("Ugyldigt ID. Prøv igen.");
+                        else if (kundeRep.HentKunde(bookerId) == null) Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
                             
-                        } while (true);
+                    } while (true);
 
                         booker = kundeRep.HentKunde(bookerId);// får kunden
                         booking.BookedDyr = dyrRep.DyrList[id]; // tilføjer dyret til bookingen
@@ -57,13 +60,11 @@ namespace ClassLibrary1.Services
 
                         DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking formate(dd/mm/yyyy HH:mm)");
                         dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
-                        Console.WriteLine($"Succes Du har oprettet:\n{booking}");
+                        Console.WriteLine($"Succes Du har oprettet:\n{dyrRep.DyrList[id].Log.BesøgssLogs.Last()}");// udskriver det sidste element i besøgsloggen
+                        
                         AlleBokinger.Add(booking.BookingId, booking);// skal fikses
-                    }
-                    else
-                    {
-                        Console.WriteLine("Dyr med dette ID findes ikke eller er allerede booket.");
-                    }
+                        Console.ReadKey();  
+
                     break;
 
                 case BookingType.Aktivitet:
