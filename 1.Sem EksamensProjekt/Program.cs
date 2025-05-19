@@ -736,13 +736,17 @@ namespace _1.Sem_EksamensProjekt
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("==========================================");
                 Console.WriteLine("               Besøg en aktivitet");
                 Console.WriteLine("==========================================");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. hvis alle kommende aktiviteter:");
                 Console.WriteLine("2. tilmeld en aktivitet:");
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå Tilbage");
-            string input = Console.ReadLine();
+                Console.ResetColor();
+                string input = Console.ReadLine();
                 switch (input)
                 {
                     case "1":
