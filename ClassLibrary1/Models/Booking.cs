@@ -30,6 +30,11 @@ namespace ClassLibrary1.Models
             Varighed = varighed;
             Booker = booker;
         }
+        public Booking()
+        {
+            BookingId = _nextId++;
+        }
+
         public override string ToString()
         {
             return $"BookingId: {BookingId} | StartTid: {StartTid} | SlutTid: {SlutTid} | Varighed: {Varighed} timer " +

@@ -13,7 +13,7 @@ namespace ClassLibrary1.Services
 {
     public enum SøgDyrType
     {
-        Name,
+        Navn,
         Id,
         Art,
     }
@@ -21,6 +21,7 @@ namespace ClassLibrary1.Services
     public class DyrRepo
     {
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
+
 
         public void Create()
         {   // input til dyrets navn
@@ -83,21 +84,23 @@ namespace ClassLibrary1.Services
         /// <summary>
         /// En søge method der tager en eneum SøgeDyrType [Navn, Id, Art] 
         /// og søger via den valgte type.
-        /// Det er op til kalderen at sikre et gyldigt input/parameter
+        /// Det er op til kalderen at sikre et gyldigt input/parameter.
         /// <param name="type"></param>
-        /// <returns>List<Dyr></Dyr></returns>
+        /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-        public List<Dyr> Read (SøgDyrType type)
+        public void Read (SøgDyrType type)
         {
             List<Dyr> dyrList = new List<Dyr>();
             switch (type)
             {
-                case SøgDyrType.Name:
+                case SøgDyrType.Navn:
                     Console.WriteLine("Indtast dyrets navn:");
                     string name = Console.ReadLine();
                     foreach (var dyr in DyrList.Values)
-                    {   // kikker efter om inputtet er en del af dyrets navn
-                        if (dyr.Navn.Contains(name))
+                    {   
+                        string dyrNavn = dyr.Navn.ToLower();
+                        // kikker efter om inputtet er en del af dyrets navn
+                        if (dyrNavn.Contains(name.ToLower()))
                         {
                             dyrList.Add(dyr);
                         }
@@ -130,18 +133,20 @@ namespace ClassLibrary1.Services
                             }
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("Ugyldig art indtastet.");
-                    }
-                    break;
-
-                default:
-                    Console.WriteLine("Ugyldig søgetype.");
                     break;
 
             }
-            return dyrList;
+            if (dyrList.Count == 0)
+            {
+                Console.WriteLine("Ingen dyr fundet.");
+                Console.ReadKey();
+                return;
+            }
+            foreach (var dyr in dyrList)
+            {
+                Console.WriteLine(dyr);
+            }
+            Console.ReadKey();
         }
         /// <summary>
         /// man skal indsætte id'et på det dyr der skal ændres og de værdier der skal ændres.
@@ -171,11 +176,11 @@ namespace ClassLibrary1.Services
             if (DyrList.TryGetValue(id, out Dyr dyr))
             {
                 if (nyNavn != null) dyr.Navn = nyNavn;
-                if (nyArt.HasValue) dyr.Art = nyArt.Value;
+                if (!nyArt.HasValue) dyr.Art = nyArt.Value;
                 if (nyRace != null) dyr.Race = nyRace;
                 if (nyVægt.HasValue) dyr.Vægt = nyVægt.Value;
                 if (nyFødselsdag.HasValue) dyr.FødselsDag = nyFødselsdag.Value;
-                if (nyKøn.HasValue) dyr.Køn = nyKøn.Value;
+                if (!nyKøn.HasValue) dyr.Køn = nyKøn.Value;
                 if (nyInfo != null) dyr.Info = nyInfo;
                 return true;
             }
@@ -199,8 +204,23 @@ namespace ClassLibrary1.Services
             }
             Console.ReadKey();
         }
-        
-            
+
+        public void PrintLedigeDyr()
+        {
+            List<Dyr> ledigeDyr = new List<Dyr>();
+
+            foreach (var dyr in DyrList.Values)
+            {
+                if (dyr.IsBooked == false)
+                {
+                    Console.WriteLine(dyr); ;
+                }
+            }
+
+            Console.ReadKey();
+        }
+
+
 
     }
 }
