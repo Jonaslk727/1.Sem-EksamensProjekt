@@ -703,7 +703,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("1. hvis alle ledige dyr:");
                 Console.WriteLine("2. book et besøg:");
                 Console.ResetColor();
-                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. gå tilbage:");
                 Console.ResetColor();
                 string input = Console.ReadLine();
