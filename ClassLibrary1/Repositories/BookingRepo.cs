@@ -75,19 +75,20 @@ namespace ClassLibrary1.Services
 
                     if (AktivitetsRep.AlleAktiviteter.ContainsKey(id))
                     {   // her tiljøjes bookeren til aktiviteten
-                        bool isValid = false;
+                        
                         do
                         {
                             Console.WriteLine("Skriv Id'et på kunden der vil tilmeldes til den givne Aktivitet:");
-                            int.TryParse(Console.ReadLine(), out id);
+                            if (!int.TryParse(Console.ReadLine(), out id)) Console.WriteLine("Du skal skrive et tal");
 
                             if (kundeRep.HentKunde(id) != null)
                             {
                                 booker = kundeRep.HentKunde(id);
-                                isValid = true;
+                                break;
                             }
+                            Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
 
-                        } while (!isValid);
+                        } while (true);
 
                         AktivitetsRep.AlleAktiviteter[id].Tilmeldte.Add(booker);
                         Console.WriteLine($"du er hermed tilmeldt til:\n{AktivitetsRep.AlleAktiviteter[id]}");
