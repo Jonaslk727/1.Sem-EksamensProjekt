@@ -716,7 +716,6 @@ namespace _1.Sem_EksamensProjekt
                     break;
             }
         }
-
         static void Updater(DyrRepo dyrRep)
         {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
