@@ -393,11 +393,10 @@ namespace _1.Sem_EksamensProjekt
                 switch (valg)
                 {
                     case "1":
-                        // KundeDyrMenu();
                         KundeDyrMenu(DyrRep, BookingRep, AktivitetRep);
                         break;
                     case "2":
-                        // KundeAktivitetMenu();
+                        KundeAktivitetMenu(AktivitetRep);
                         break;
                     case "0":
                         fortsæt = false;
@@ -707,6 +706,31 @@ namespace _1.Sem_EksamensProjekt
                 case "2":
                 // booking logik
                     //BookingRep.OpretBooking(BookingType.Besøg, DyrRep);
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Ugyldigt valg, prøv igen.");
+                    Console.ReadKey();
+                    Console.ResetColor();
+                    break;
+            }
+        }
+        static void KundeAktivitetMenu(AktivitetRepo AkRepo)
+        {
+            Console.Clear();
+            Console.WriteLine("==========================================");
+            Console.WriteLine("               Besøg en aktivitet");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("1. hvis alle kommende aktiviteter:");
+            Console.WriteLine("2. tilmeld en aktivitet:");
+            string input = Console.ReadLine();
+            switch (input)
+            {
+                case "1":
+                    VisAlleAktivitet(AkRepo);
+                    break;
+                case "2":
+                    // booking logik
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
