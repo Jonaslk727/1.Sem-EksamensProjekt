@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary1.Models; //Model klasserne kan tilgås
@@ -68,7 +69,6 @@ namespace ClassLibrary1.Services
                     break;
 
                 case BookingType.Aktivitet:
-
                     do
                     {
                         Console.WriteLine("Skriv Id'et på den Aktivitet du vil medles til:");
