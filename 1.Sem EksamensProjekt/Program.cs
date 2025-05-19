@@ -222,7 +222,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
 
                     case "2":
-                        repo.PrintKundeList();// Vis alle kunder
+                        repo.HentAlleKunder();// Vis alle kunder
                         break;
 
                     case "3":
