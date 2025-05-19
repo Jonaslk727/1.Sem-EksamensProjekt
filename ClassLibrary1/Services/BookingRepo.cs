@@ -44,11 +44,11 @@ namespace ClassLibrary1.Services
                         {
                             Console.WriteLine("Skriv Id'et på kunden der vil booke:");
                             inputId = Console.ReadLine();
-                        } while (!int.TryParse(inputId, out bookerId));
-
-                        Kunde booker = kundeRep.OpenKunde(bookerId); 
 
 
+                        } while (!int.TryParse(inputId, out bookerId) && kundeRep.OpenKunde(bookerId) != null);
+
+                        booker = kundeRep.OpenKunde(bookerId);// får kunden
                         booking.BookedDyr = dyrRep.DyrList[id]; // tilføjer dyret til bookingen
                         dyrRep.DyrList[id].IsBooked = true;
                         DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking formate(dd/mm/yyyy HH:mm)");
