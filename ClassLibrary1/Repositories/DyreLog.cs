@@ -34,21 +34,37 @@ namespace ClassLibrary1.Services
         public string GetBesøgsLog()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var log in BesøgssLogs)
+            if (LægeLogs.Count == 0)
             {
-                sb.AppendLine(log.ToString());
+                sb.AppendLine("´Der er ingen besøgsLogs");
+                return sb.ToString();
             }
-            return sb.ToString();
+            else
+            {
+                foreach (var log in LægeLogs.Values)
+                {
+                    sb.AppendLine(log.ToString());
+                }
+                return sb.ToString();
+            }
         }
 
         public string GetLægeLog()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var log in LægeLogs.Values)
+            if (LægeLogs.Count == 0)
             {
-                sb.AppendLine(log.ToString());
+                sb.AppendLine("´Der er ingen lægeLogs");
+                return sb.ToString();
             }
-            return sb.ToString();
+            else
+            {
+                foreach (var log in LægeLogs.Values)
+                {
+                    sb.AppendLine(log.ToString());
+                }
+                return sb.ToString();
+            }
         }
 
 

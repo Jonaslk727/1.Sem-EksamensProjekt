@@ -686,8 +686,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("1. Opret et dyr");
                 Console.WriteLine("2. Slet dyr");
                 Console.WriteLine("3. Rediger et oprettet dyr");
-                Console.WriteLine("4. Vis LægeLog af et dyr.");
-                Console.WriteLine("5. Vis BesøgsLog af et dyr");
+                Console.WriteLine("4. Vis DyretLogs");
                 Console.WriteLine("6. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå tilbage");
@@ -706,12 +705,9 @@ namespace _1.Sem_EksamensProjekt
                         Updater(dyrRep);
                         break;
                     case "4":
-                        
+                        dyrRep.PrintDyretsLog();
                         break;
-                        case "5":
-                    //VisBesøgsLog(dyrRep);
-                        break;
-                    case "6":
+                    case "5":
                         SøgDyr(dyrRep);
                         break;
                     case "0":
@@ -809,6 +805,8 @@ namespace _1.Sem_EksamensProjekt
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. hvis alle kommende aktiviteter:");
                 Console.WriteLine("2. tilmeld en aktivitet:");
+                Console.WriteLine("3. Se tilmeldte aktiviteter");
+                Console.WriteLine("4. Afmeld aktivitet");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå Tilbage");
                 Console.ResetColor();
@@ -820,6 +818,14 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "2":
                         BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
+                        break;
+                    case "3":
+                        AktivitetRep.VisBookedeAktiviteter();
+                        Console.WriteLine("\nTryk en tast for at gå tilbage...");
+                        Console.ReadKey();
+                        break;
+                    case "4":
+                        // afmeld aktivitet
                         break;
                     case "0":
                         fortsæt = false;

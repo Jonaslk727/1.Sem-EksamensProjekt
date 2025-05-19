@@ -90,6 +90,15 @@ public class KundeRepo
             Console.WriteLine("Ingen kunder fundet.");
             return;
         }
+        else
+        {
+            Console.WriteLine("Dyr i systemet:");
+            foreach (var dyr in _kunder)
+            {
+                Console.WriteLine(dyr);
+            }
+        }
+        Console.ReadKey();
 
         Console.WriteLine("\n=== Liste over kunder ===");
         foreach (var kunde in _kunder)
@@ -115,6 +124,28 @@ public class KundeRepo
             }
         }
         return false;
+    }
+    public Kunde VælgKunde() //Bruges i KundeMenu - tilmeld aktivitet
+    {
+        Console.Write("Indtast dit kunde-ID: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            foreach (Kunde k in _kunder)
+            {
+                if (k.KundeId == id)
+                {
+                    Console.WriteLine($"Velkommen, {k.Navn}!");
+                    return k;
+                }
+            }
+            Console.WriteLine("Kunde ikke fundet.");
+        }
+        else
+        {
+            Console.WriteLine("Ugyldigt input.");
+        }
+
+        return null;
     }
 
     public void OpdaterKunde(int kundeId, string? navn, string? email, string? mobil)

@@ -63,8 +63,13 @@ namespace ClassLibrary1.Services
 
         public bool Delete()
         {
-            Console.WriteLine("Indtast dyrets ID, som du vil slette::");
-            int id = int.Parse(Console.ReadLine());
+            int id;
+            do
+            {
+                Console.WriteLine("Indtast dyrets ID, som du vil slette::");
+
+            } while (int.TryParse(Console.ReadLine(), out id));
+            
 
             if (DyrList.ContainsKey(id))
             {
@@ -224,8 +229,12 @@ namespace ClassLibrary1.Services
         /// Spøger user om hvilken log der skal udskrives. og udskriver den valgte log.
         /// </summary>
         /// <param name="id"></param>
-        public void PrintDyretsLog(int id)
+        public void PrintDyretsLog()
         {
+            int id;
+            Console.WriteLine("Indtast dyrets ID:");
+            int.TryParse(Console.ReadLine(), out id);
+
             if (DyrList.ContainsKey(id))
             {
                 bool fortsæt = true;
@@ -244,9 +253,11 @@ namespace ClassLibrary1.Services
                     {
                         case "1":
                             Console.WriteLine(DyrList[id].GetLogs(1));
+                            Console.ReadKey();
                             break;
                         case "2":
                             Console.WriteLine(DyrList[id].GetLogs(2));
+                            Console.ReadKey();
                             break;
                         case "0":
                             fortsæt = false;
