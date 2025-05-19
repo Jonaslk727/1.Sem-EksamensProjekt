@@ -1,25 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using ClassLibrary1.Interfaces;
 using ClassLibrary1.Models;
 
 public class KundeRepo
 {
-    private readonly List<Kunde> _kunder = new List<Kunde>();
-    private int _nextId = 1;
+    private List<Kunde> _kunder = new List<Kunde>();
 
     // Tilføj en ny kunde
     public void TilføjKunde(Kunde kunde)
     {
-        kunde.Id = _nextId++;
+        foreach (var eksisterendeKunde in _kunder)
+        {
+            if (eksisterendeKunde.Id == kunde.Id)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n==========================================");
+                Console.WriteLine("Kunde findes allerede.");
+                Console.WriteLine("==========================================\n");
+                Console.ResetColor();
+                return;
+            }
+        }
         _kunder.Add(kunde);
+        Console.WriteLine("Kunde tilføjet.");
     }
 
-    // Hent en kunde ved ID (HentKunde)
+    // Hent en kunde ved ID
     public Kunde HentKunde(int id)
     {
-        foreach (Kunde kunde in _kunder)
+        foreach (var kunde in _kunder)
         {
             if (kunde.Id == id)
             {
@@ -29,33 +38,57 @@ public class KundeRepo
         return null; // Hvis ingen kunde blev fundet
     }
 
-    // Slet en kunde (SletKunde)
-    public bool SletKunde(int id)
+    // Slet en kunde
+    public void SletKunde(int id)
     {
-        var kunde = HentKunde(id);
-        if (kunde == null) return false;
-        return _kunder.Remove(kunde);
-    }
-
-    // Opdater en kunde (RedigerKunde)
-    public bool OpdaterKunde(int id, string nyNavn, string nyEmail, string nyMobil)
-    {
-        var kunde = HentKunde(id);
-        if (kunde == null) return false;
-
-        kunde.Navn = nyNavn;
-        kunde.Email = nyEmail;
-        kunde.Mobil = nyMobil.ToString();
-        return true;
-    }
-
-    // Hent alle kunder (SeAlleKunder)
-    public void PrintKundeList()
-    {
-
-        if (_kunder.Count() == 0)
+        for (int i = 0; i < _kunder.Count; i++)
         {
-            Console.WriteLine("Ingen dyr i systemet.");
+            if (_kunder[i].Id == id)
+            {
+                _kunder.RemoveAt(i);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n==========================================");
+                Console.WriteLine("Kunde med ID " + id + " er blevet slettet.");
+                Console.WriteLine("==========================================\n");
+                Console.ResetColor();
+                return;
+            }
+        }
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\n==========================================");
+        Console.WriteLine("Ingen kunde fundet med ID " + id + ".");
+        Console.WriteLine("==========================================\n");
+        Console.ResetColor();
+    }
+
+    // Opdater en kunde
+    public void OpdaterKunde(int id, string? navn, string? email, Kunde opdateretKunde)
+    {
+        foreach (var kunde in _kunder)
+        {
+            if (kunde.Id == id)
+            {
+                kunde.Navn = opdateretKunde.Navn;
+                kunde.Email = opdateretKunde.Email;
+                kunde.Mobil = opdateretKunde.Mobil;
+                Console.WriteLine("Kunde opdateret.");
+                return;
+            }
+        }
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\n==========================================");
+        Console.WriteLine("Ingen kunde fundet med ID " + id + ".");
+        Console.WriteLine("==========================================\n");
+        Console.ResetColor();
+    }
+
+    // Vis alle kunder
+    public void VisKunder()
+    {
+        if (_kunder.Count == 0)
+        {
+            Console.WriteLine("Ingen kunder fundet.");
+            return;
         }
         else
         {
@@ -66,13 +99,26 @@ public class KundeRepo
             }
         }
         Console.ReadKey();
+
+        Console.WriteLine("\n=== Liste over kunder ===");
+        foreach (var kunde in _kunder)
+        {
+            Console.WriteLine($"ID: {kunde.Id}, Navn: {kunde.Navn}, Email: {kunde.Email}, Mobil: {kunde.Mobil}");
+        }
     }
 
-    public bool FindKunde(int kundeId)
+    // Hent alle kunder
+    public List<Kunde> HentAlleKunder()
     {
-        foreach (Kunde kunde in _kunder)
+        return _kunder;
+    }
+
+    // Find en kunde ved ID
+    public bool FindKunde(int id)
+    {
+        foreach (var kunde in _kunder)
         {
-            if (kunde.Id == kundeId)
+            if (kunde.Id == id)
             {
                 return true;
             }
@@ -101,5 +147,9 @@ public class KundeRepo
 
         return null;
     }
-}
 
+    public void OpdaterKunde(int kundeId, string? navn, string? email, string? mobil)
+    {
+        throw new NotImplementedException();
+    }
+}

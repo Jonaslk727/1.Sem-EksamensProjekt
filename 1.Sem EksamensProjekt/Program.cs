@@ -15,9 +15,10 @@ namespace _1.Sem_EksamensProjekt
             var BookingRep = new BookingRepo();
             var AkRepo = new AktivitetRepo();
             var MedarbejderRep = new MedarbejderRepo();
+            var kundeRepo = new KundeRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
-
+            TestDataKunder(kundeRepo);
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
             while (kørProgram)
@@ -50,7 +51,6 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep, MedarbejderRep);
                         break;
                     case "2":
-                        var kundeRepo = new KundeRepo();
                         KundeMenu(DyrRep, BookingRep, AkRepo, kundeRepo);
                         break;
                     case "0":
@@ -222,7 +222,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
 
                     case "2":
-                        repo.PrintKundeList();// Vis alle kunder
+                        repo.HentAlleKunder();// Vis alle kunder
                         break;
 
                     case "3":
@@ -825,7 +825,38 @@ namespace _1.Sem_EksamensProjekt
                         Console.ReadKey();
                         break;
                     case "4":
-                        // afmeld aktivitet
+                        Console.Write("Indtast ID på aktivitet du vil afmelde: ");
+                        if (!int.TryParse(Console.ReadLine(), out int aktivitetId))
+                        {
+                            Console.WriteLine("Ugyldigt ID.");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        Console.Write("Indtast dit kunde-ID: ");
+                        if (!int.TryParse(Console.ReadLine(), out int kundeId))
+                        {
+                            Console.WriteLine("Ugyldigt kunde-ID.");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, kundeId);
+
+                        if (afmeldt)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Du er nu afmeldt fra aktiviteten.");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Kunne ikke finde aktivitet eller kunde.");
+                        }
+                        Console.ResetColor();
+                        Console.WriteLine("Tryk på en tast for at fortsætte...");
+                        Console.ReadKey();
+                        break;
                         break;
                     case "0":
                         fortsæt = false;
@@ -929,9 +960,21 @@ namespace _1.Sem_EksamensProjekt
             string info = "Træning for hunde og ejere";
             repo.OpretAktivitet(Title, StartTid, SlutTid, info);
         }
-        #endregion
-
-        #region Nyttige metoder
+        public static void TestDataKunder(KundeRepo kundeRepo)
+        {
+            kundeRepo.TilføjKunde(new Kunde
+            {
+                KundeId = 1,
+                Navn = "Anders Jensen",
+                Email = "anders@example.com",
+                Mobil = "12345678",
+                DateOfBirth = new DateTime(1998, 5, 14),
+                RegistrationDate = DateTime.Now,
+                IsPremiumMember = true
+            });
+        }
+            #endregion
+            #region Nyttige metoder
         public static DateTime GetDateTimeInput(string prompt)
         {
             DateTime dateTime;
