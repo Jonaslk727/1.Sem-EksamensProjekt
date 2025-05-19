@@ -63,7 +63,7 @@ namespace ClassLibrary1.Services
                     break;
 
                 case BookingType.Aktivitet:
-                    
+
                     do
                     {
                         Console.WriteLine("Skriv Id'et på den Aktivitet du vil medles til:");
