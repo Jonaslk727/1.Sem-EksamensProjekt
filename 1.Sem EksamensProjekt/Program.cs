@@ -14,6 +14,7 @@ namespace _1.Sem_EksamensProjekt
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
             var AkRepo = new AktivitetRepo();
+            var KundeRepo = new KundeRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
@@ -48,7 +49,7 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep);
                         break;
                     case "2":
-                        KundeMenu(DyrRep, BookingRep, AkRepo);
+                        KundeMenu(DyrRep, BookingRep, AkRepo, KundeRepo);
                         break;
                     case "0":
                         kørProgram = false;
@@ -360,7 +361,7 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep)
+        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
         {
             bool fortsæt = true;
             while (fortsæt)
@@ -393,7 +394,7 @@ namespace _1.Sem_EksamensProjekt
                 switch (valg)
                 {
                     case "1":
-                        KundeDyrMenu(DyrRep, BookingRep, AktivitetRep);
+                        KundeDyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
                         break;
                     case "2":
                         KundeAktivitetMenu(AktivitetRep);
@@ -688,32 +689,42 @@ namespace _1.Sem_EksamensProjekt
             }
         }
 
-        static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep)
+        static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
         {
-            Console.Clear();
-            Console.WriteLine("==========================================");
-            Console.WriteLine("               Besøg et dyr");
-            Console.WriteLine("==========================================");
-            Console.WriteLine("1. hvis alle ledige dyr:");
-            Console.WriteLine("2. book et besøg:");
-            string input = Console.ReadLine();
-            switch (input)
+            
+            bool fortsæt = true;
+            do
             {
-                case "1":
-                    // viser ledige dyr
-                    DyrRep.PrintLedigeDyr();
-                    break;
-                case "2":
-                // booking logik
-                    //BookingRep.OpretBooking(BookingType.Besøg, DyrRep);
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Ugyldigt valg, prøv igen.");
-                    Console.ReadKey();
-                    Console.ResetColor();
-                    break;
-            }
+                Console.Clear();
+                Console.WriteLine("==========================================");
+                Console.WriteLine("               Besøg et dyr");
+                Console.WriteLine("==========================================");
+                Console.WriteLine("1. hvis alle ledige dyr:");
+                Console.WriteLine("2. book et besøg:");
+                Console.WriteLine("0. gå tilbage:");
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        // viser ledige dyr
+                        DyrRep.PrintLedigeDyr();
+                        break;
+                    case "2":
+                        // booking logik
+                        BookingRep.OpretBooking(BookingType.Besøg, DyrRep, KundeRepo, AktivitetRep);
+                        break;
+                    case "3":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
+                }
+            } while (fortsæt);
+            
         }
         static void KundeAktivitetMenu(AktivitetRepo AkRepo)
         {
