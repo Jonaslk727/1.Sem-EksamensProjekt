@@ -732,28 +732,36 @@ namespace _1.Sem_EksamensProjekt
         }
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
         {
-            Console.Clear();
-            Console.WriteLine("==========================================");
-            Console.WriteLine("               Besøg en aktivitet");
-            Console.WriteLine("==========================================");
-            Console.WriteLine("1. hvis alle kommende aktiviteter:");
-            Console.WriteLine("2. tilmeld en aktivitet:");
-            string input = Console.ReadLine();
-            switch (input)
+            bool fortsæt = true;
+            do
             {
-                case "1":
-                    VisAlleAktivitet(AktivitetRep);
-                    break;
-                case "2":
-                    BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Ugyldigt valg, prøv igen.");
-                    Console.ReadKey();
-                    Console.ResetColor();
-                    break;
-            }
+                Console.Clear();
+                Console.WriteLine("==========================================");
+                Console.WriteLine("               Besøg en aktivitet");
+                Console.WriteLine("==========================================");
+                Console.WriteLine("1. hvis alle kommende aktiviteter:");
+                Console.WriteLine("2. tilmeld en aktivitet:");
+                Console.WriteLine("0. Gå Tilbage");
+            string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        VisAlleAktivitet(AktivitetRep);
+                        break;
+                    case "2":
+                        BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
+                        break;
+                    case "0":
+                        fortsæt = false;
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        break;
+                }
+            } while (fortsæt);
         }
         static void Updater(DyrRepo dyrRep)
         {
