@@ -13,12 +13,11 @@ namespace _1.Sem_EksamensProjekt
         {
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
-            var AkRepo = new AktivitetRepo();
-            var repo = new KundeRepo();
-            MogdataDyr();
+            var AkRepo = new AktivitetRepo();                
             var KundeRepo = new KundeRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
+
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
             while (kørProgram)
@@ -171,6 +170,11 @@ namespace _1.Sem_EksamensProjekt
         static void MedarbejderKundeMenu()
         {
             KundeRepo repo = new KundeRepo();
+
+            repo.TilføjKunde(new Kunde { KundeId = 1, Navn = "John", Email = "JohnDeere@eksempel.com", Mobil = "20223420" });
+            repo.TilføjKunde(new Kunde { KundeId = 2, Navn = "Søren", Email = "SørenBregne@eksempel.com", Mobil = "90100910" });
+
+
             bool kørKundeMenu = true;
             while (kørKundeMenu)
             {

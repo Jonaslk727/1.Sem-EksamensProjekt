@@ -46,9 +46,9 @@ namespace ClassLibrary1.Services
                             inputId = Console.ReadLine();
 
 
-                        } while (!int.TryParse(inputId, out bookerId) && kundeRep.OpenKunde(bookerId) != null);
+                        } while (!int.TryParse(inputId, out bookerId) && kundeRep.HentKunde(bookerId) != null);
 
-                        booker = kundeRep.OpenKunde(bookerId);// får kunden
+                        booker = kundeRep.HentKunde(bookerId);// får kunden
                         booking.BookedDyr = dyrRep.DyrList[id]; // tilføjer dyret til bookingen
                         dyrRep.DyrList[id].IsBooked = true;
                         DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking formate(dd/mm/yyyy HH:mm)");
@@ -77,9 +77,9 @@ namespace ClassLibrary1.Services
                             Console.WriteLine("Skriv Id'et på kunden der vil tilmeldes til den givne Aktivitet:");
                             int.TryParse(Console.ReadLine(), out id);
 
-                            if (kundeRep.OpenKunde(id) != null)
+                            if (kundeRep.HentKunde(id) != null)
                             {
-                                booker = kundeRep.OpenKunde(id);
+                                booker = kundeRep.HentKunde(id);
                                 isValid = true;
                             }
                         } while (!isValid);
