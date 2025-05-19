@@ -21,12 +21,12 @@ namespace ClassLibrary1.Services
         public void OpretBooking(BookingType type, DyrRepo dyrRep, KundeRepo kundeRep, AktivitetRepo AktivitetsRep)
         {
             //// ændre logikken hhv. type: Besøg eller Aktivitet
+            Booking booking = new Booking();
+            Kunde booker = new Kunde();
+
             switch (type)
             {
                 case BookingType.Besøg:
-
-                    Booking booking = new Booking();
-                    Kunde booker = new Kunde(); 
 
                     string inputId;
                     int id;
