@@ -30,5 +30,27 @@ namespace ClassLibrary1.Services
         {
             // Implementer logik til at slette loggen
         }
+
+        public string GetBesøgsLog()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var log in BesøgssLogs)
+            {
+                sb.AppendLine(log.ToString());
+            }
+            return sb.ToString();
+        }
+
+        public string GetLægeLog()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var log in LægeLogs.Values)
+            {
+                sb.AppendLine(log.ToString());
+            }
+            return sb.ToString();
+        }
+
+
     }
 }

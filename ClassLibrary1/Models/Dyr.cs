@@ -35,7 +35,7 @@ namespace ClassLibrary1.Models
         public string Info { get; set; } = "None";
         public DyreLog Log { get; set; } = new DyreLog();
         #endregion
-        public Dyr (string navn, ArtType art, string race, double vægt, DateTime fødselsdag, kønType køn, string info)
+        public Dyr(string navn, ArtType art, string race, double vægt, DateTime fødselsdag, kønType køn, string info)
         {
             ChipNummer = _nextId++;
             Navn = navn;
@@ -55,31 +55,32 @@ namespace ClassLibrary1.Models
             return $"===========================================================================" +
                 $"\nId : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn: {Køn}" +
                 $"\n Race: {Race} | Fødselsdag: {FødselsDag} | Vægt: {Vægt} kg" +
-                $"\n Mere info: {Info}"+
-                "\n============================================================================ "+
+                $"\n Mere info: {Info}" +
+                "\n============================================================================ " +
                 "\n";
         }
 
         /// <summary>
-        /// Printer dyrets log.
-        /// skriv 1, hvis du vil have hele loggen
-        /// skriv 2, hvis du vil have besøg loggen
-        /// skriv 3, hvis du vil have medicinsk log
+        /// 1 Returnerer læge loggen, 2 returnerer besøgs loggen.
         /// </summary>
-        /// <returns></returns>
-        //public string PrintLogs(int i)
-        //{
-        //   switch(i)
-        //    {
-        //        case 1:
-        //            return Log.ToString();
-        //        case 2:
-        //            return Log.BesøgssLog.ToString();
-        //        case 3:
-        //            return Log.MedicinskLog.ToString();
-        //        default:
-        //            return "!! Ugyldigt input til parameteret i Printlog methoden i dyre classen!!";
-        //    }
-        //}
+        /// <param name="i">int i, specifisere hvilken log der returneres <list type="bullet"> <item><description>1: Retrieves
+        /// the "Læge" log.</description></item> <item><description>2: Retrieves the "Besøgs" log.</description></item>
+        /// </list></param>
+        /// <returns>A string containing the requested log data.</returns>
+        /// <exception cref="AggregateException">Thrown if the provided <paramref name="i"/> does not match a valid log type.</exception>
+        public string GetLogs(int i)
+        {
+            switch (i)
+            {
+                case 1:
+                    return Log.GetLægeLog();
+                case 2:
+                    return Log.GetBesøgsLog();
+                default:
+                    throw new AggregateException();
+                    break;
+            }
+
+        }
     }
 }

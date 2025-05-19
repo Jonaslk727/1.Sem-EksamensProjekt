@@ -23,7 +23,7 @@ namespace ClassLibrary1.Models.Besøg_og_lægelog
         public override string ToString()
         {
             return $"--------------------------------------------------------" +
-                $"Lægebesøg: {Dato} | Journal: {Journal}";
+                $"\n Lægebesøg: {Dato} | \n Journal: {Journal}";
         }
     }
 }
