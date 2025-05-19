@@ -79,4 +79,27 @@ public class KundeRepo
         }
         return false;
     }
+    public Kunde VælgKunde() //Bruges i KundeMenu - tilmeld aktivitet
+    {
+        Console.Write("Indtast dit kunde-ID: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            foreach (Kunde k in _kunder)
+            {
+                if (k.KundeId == id)
+                {
+                    Console.WriteLine($"Velkommen, {k.Navn}!");
+                    return k;
+                }
+            }
+            Console.WriteLine("Kunde ikke fundet.");
+        }
+        else
+        {
+            Console.WriteLine("Ugyldigt input.");
+        }
+
+        return null;
+    }
+}
 }
