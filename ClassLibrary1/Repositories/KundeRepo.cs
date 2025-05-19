@@ -29,10 +29,8 @@ public class KundeRepo
         return null; // Hvis ingen kunde blev fundet
     }
 
-
-
-// Slet en kunde (SletKunde)
-public bool SletKunde(int id)
+    // Slet en kunde (SletKunde)
+    public bool SletKunde(int id)
     {
         var kunde = HentKunde(id);
         if (kunde == null) return false;
@@ -52,21 +50,33 @@ public bool SletKunde(int id)
     }
 
     // Hent alle kunder (SeAlleKunder)
-    public List<Kunde> VisKunder()
+    public void PrintKundeList()
     {
-        return new List<Kunde>(_kunder); // Returner en kopi for at undgå ekstern manipulation
+
+        if (KundeList.Count() == 0)
+        {
+            Console.WriteLine("Ingen dyr i systemet.");
+        }
+        else
+        {
+            Console.WriteLine("Dyr i systemet:");
+            foreach (var dyr in KundeList.Values)
+            {
+                Console.WriteLine(dyr);
+            }
+        }
+        Console.ReadKey();
     }
 
     public bool FindKunde(int kundeId)
     {
         foreach (Kunde kunde in _kunder)
         {
-            if (kunde.KundeId == kundeId)
+            if (kunde.Id == kundeId)
             {
                 return true;
             }
         }
         return false;
     }
-
 }
