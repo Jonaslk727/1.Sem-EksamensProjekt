@@ -97,7 +97,7 @@ namespace ClassLibrary1.Services
                         //////Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
                         //////Det sikre hurtig adgang til bookinger via et unikt ID
                         AlleBokinger.Add(booking.BookingId, booking);
-                    }
+                    } 
                     else
                     {
                         Console.WriteLine("Aktivitet med dette Id findes ikke.");
