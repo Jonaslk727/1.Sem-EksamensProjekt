@@ -66,7 +66,7 @@ namespace ClassLibrary1.Services
                         AlleBokinger.Add(booking.BookingId, booking);// skal fikses
                         Console.ReadKey();  
 
-                    break;
+                break;
 
                 case BookingType.Aktivitet:
                     do

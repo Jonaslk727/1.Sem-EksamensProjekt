@@ -41,7 +41,7 @@ namespace ClassLibrary1.Services
             }
             else
             {
-                foreach (var log in LægeLogs.Values)
+                foreach (var log in BesøgssLogs)
                 {
                     sb.AppendLine(log.ToString());
                 }

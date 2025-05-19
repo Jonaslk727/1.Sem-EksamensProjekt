@@ -710,6 +710,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "4":
                         dyrRep.PrintDyretsLog();
+                        Console.ReadKey();
                         break;
                     case "5":
                         SøgDyr(dyrRep);

@@ -241,7 +241,6 @@ namespace ClassLibrary1.Services
                 while (fortsæt)
                 {
                     Console.Clear();
-
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("1. Vis Dyrets LægeLog");
                     Console.WriteLine("2. Vis Dyrets BesøgsLog");
@@ -266,7 +265,6 @@ namespace ClassLibrary1.Services
                         default:
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Ugyldigt valg, prøv igen.");
-                            Console.ReadKey();
                             Console.ResetColor();
                             break;
                     }
