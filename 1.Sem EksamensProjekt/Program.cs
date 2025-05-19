@@ -397,7 +397,7 @@ namespace _1.Sem_EksamensProjekt
                         KundeDyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
                         break;
                     case "2":
-                        //KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, booker);
+                        KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
                         break;
                     case "0":
                         fortsæt = false;
@@ -726,7 +726,7 @@ namespace _1.Sem_EksamensProjekt
             } while (fortsæt);
             
         }
-        static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, Kunde booker)
+        static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
         {
             Console.Clear();
             Console.WriteLine("==========================================");
@@ -741,7 +741,7 @@ namespace _1.Sem_EksamensProjekt
                     VisAlleAktivitet(AktivitetRep);
                     break;
                 case "2":
-                    //metode til oprette Booking
+                    BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
