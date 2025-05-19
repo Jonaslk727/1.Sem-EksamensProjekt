@@ -363,6 +363,7 @@ namespace _1.Sem_EksamensProjekt
                         Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
                         Console.WriteLine("=====================================");
                         Console.ResetColor();
+                        Console.ReadKey();
                         break;
                     case "2":
                         repo.VisMedarbejder();
@@ -398,6 +399,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine("\n Medarbejder opdateret succesfuldt!");
                             Console.WriteLine("=====================================");
                             Console.ResetColor();
+                            Console.ReadKey();
                         }
                         else
                         {
@@ -406,12 +408,14 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine($" Ingen medarbejder fundet med ID {opdaterId}.");
                             Console.WriteLine("=====================================");
                             Console.ResetColor();
+                            Console.ReadKey();
                         }
                         break;
                     case "4":
                         Console.Write("Indtast ID på medarbejder du vil slette: ");
                         int sletId = int.Parse(Console.ReadLine());
                         repo.SletMedarbejder(sletId);
+                        Console.ReadKey();
                         break;
                     case "0":
                         kørMedarbejderMenu = false; // Exit the employee menu
