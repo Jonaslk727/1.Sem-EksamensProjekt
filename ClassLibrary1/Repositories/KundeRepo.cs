@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ClassLibrary1.Interfaces;
 using ClassLibrary1.Models;
 
 public class KundeRepo
@@ -15,24 +16,33 @@ public class KundeRepo
         _kunder.Add(kunde);
     }
 
-    // Hent en kunde ved ID (OpenKunde)
-    public Kunde OpenKunde(int id)
+    // Hent en kunde ved ID (HentKunde)
+    public Kunde HentKunde(int id)
     {
-        return _kunder.FirstOrDefault(k => k.Id == id);
+        foreach (Kunde kunde in _kunder)
+        {
+            if (kunde.Id == id)
+            {
+                return kunde;
+            }
+        }
+        return null; // Hvis ingen kunde blev fundet
     }
 
-    // Slet en kunde (SletKunde)
-    public bool SletKunde(int id)
+
+
+// Slet en kunde (SletKunde)
+public bool SletKunde(int id)
     {
-        var kunde = OpenKunde(id);
+        var kunde = HentKunde(id);
         if (kunde == null) return false;
         return _kunder.Remove(kunde);
     }
 
     // Opdater en kunde (RedigerKunde)
-    public bool RedigerKunde(int id, string nyNavn, string nyEmail, string nyMobil)
+    public bool OpdaterKunde(int id, string nyNavn, string nyEmail, string nyMobil)
     {
-        var kunde = OpenKunde(id);
+        var kunde = HentKunde(id);
         if (kunde == null) return false;
 
         kunde.Navn = nyNavn;
@@ -42,8 +52,21 @@ public class KundeRepo
     }
 
     // Hent alle kunder (SeAlleKunder)
-    public List<Kunde> SeAlleKunder()
+    public List<Kunde> VisKunder()
     {
         return new List<Kunde>(_kunder); // Returner en kopi for at undgå ekstern manipulation
     }
+
+    public bool FindKunde(int kundeId)
+    {
+        foreach (Kunde kunde in _kunder)
+        {
+            if (kunde.KundeId == kundeId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
