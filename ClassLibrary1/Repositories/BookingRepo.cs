@@ -78,6 +78,7 @@ namespace ClassLibrary1.Services
                         
                         do
                         {
+                            id = 0;
                             Console.WriteLine("Skriv Id'et på kunden der vil tilmeldes til den givne Aktivitet:");
                             if (!int.TryParse(Console.ReadLine(), out id)) Console.WriteLine("Du skal skrive et tal");
 

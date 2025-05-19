@@ -962,7 +962,7 @@ namespace _1.Sem_EksamensProjekt
         }
         public static void TestDataKunder(KundeRepo kundeRepo)
         {
-            kundeRepo.TilføjKunde(new Kunde
+            Kunde NyKunde = new Kunde
             {
                 KundeId = 1,
                 Navn = "Anders Jensen",
@@ -971,8 +971,11 @@ namespace _1.Sem_EksamensProjekt
                 DateOfBirth = new DateTime(1998, 5, 14),
                 RegistrationDate = DateTime.Now,
                 IsPremiumMember = true
-            });
-        }
+            };
+
+            kundeRepo.TilføjKunde(NyKunde);
+        }  
+        
             #endregion
             #region Nyttige metoder
         public static DateTime GetDateTimeInput(string prompt)
