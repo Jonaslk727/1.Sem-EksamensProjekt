@@ -699,9 +699,13 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("==========================================");
                 Console.WriteLine("               Besøg et dyr");
                 Console.WriteLine("==========================================");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. hvis alle ledige dyr:");
                 Console.WriteLine("2. book et besøg:");
+                Console.ResetColor();
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. gå tilbage:");
+                Console.ResetColor();
                 string input = Console.ReadLine();
                 switch (input)
                 {
@@ -713,7 +717,7 @@ namespace _1.Sem_EksamensProjekt
                         // booking logik
                         BookingRep.OpretBooking(BookingType.Besøg, DyrRep, KundeRepo, AktivitetRep);
                         break;
-                    case "3":
+                    case "0":
                         fortsæt = false;
                         break;
                     default:
