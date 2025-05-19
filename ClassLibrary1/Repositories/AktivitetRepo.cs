@@ -42,6 +42,25 @@ namespace ClassLibrary1.Services
                 Console.WriteLine("---------------------------");
             }
         }
+        public void VisBookedeAktiviteter()
+        {
+            Console.WriteLine("=== Bookede Aktiviteter ===");
+            bool found = false;
+
+            foreach (var aktivitet in AlleAktiviteter.Values)
+            {
+                if (aktivitet.IsBooked)
+                {
+                    Console.WriteLine(aktivitet.ToString());
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("Ingen aktiviteter er booket endnu.");
+            }
+        }
         public bool TilmeldAktivitet(int id, List<Kunde> Kunder)
         {
             foreach (Aktivitet b in AlleAktiviteter.Values)
