@@ -68,20 +68,38 @@ namespace ClassLibrary1.Repositories
 
         public void OpdaterMedarbejder(int medarbejderId, Medarbejder opdateretMedarbejder)
         {
-            foreach (Medarbejder medarbejder in medarbejdere)
+            try
             {
-                if (medarbejder.MedarbejderId == medarbejderId)
+                if (opdateretMedarbejder == null)
                 {
-                    medarbejder.Navn = opdateretMedarbejder.Navn;
-                    medarbejder.Afdeling = opdateretMedarbejder.Afdeling;
-                    medarbejder.Stilling = opdateretMedarbejder.Stilling;
-                    medarbejder.Email = opdateretMedarbejder.Email;
-                    medarbejder.Telefonnummer = opdateretMedarbejder.Telefonnummer;
-                    break;
+                    Console.WriteLine("Opdateringsdata er ugyldige.");
+                    return;
                 }
-            }
 
+                foreach (Medarbejder medarbejder in medarbejdere)
+                {
+                    if (medarbejder.MedarbejderId == medarbejderId)
+                    {
+                        medarbejder.Navn = opdateretMedarbejder.Navn;
+                        medarbejder.Afdeling = opdateretMedarbejder.Afdeling;
+                        medarbejder.Stilling = opdateretMedarbejder.Stilling;
+                        medarbejder.Email = opdateretMedarbejder.Email;
+                        medarbejder.Telefonnummer = opdateretMedarbejder.Telefonnummer;
+                        Console.WriteLine("Medarbejder opdateret.");
+                        return;
+                    }
+                }
+
+                Console.WriteLine("Medarbejder ikke fundet.");
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fejl ved opdatering af medarbejder: " + ex.Message);
+                Console.ResetColor();
+            }
         }
+
         public void SletMedarbejder(int medarbejderId)
         {
             try

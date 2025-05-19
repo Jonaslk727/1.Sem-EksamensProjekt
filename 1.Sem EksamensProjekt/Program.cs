@@ -556,12 +556,16 @@ namespace _1.Sem_EksamensProjekt
                     Console.WriteLine("Skriv et gyldigt årstal");
                 }
             } while (!fortsæt);
+
             Console.WriteLine("Indtast måned:");
             int month = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Indtast dag:");
             int day = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Indtast time:");
             int time = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Indtast minut:");
             int minute = int.Parse(Console.ReadLine());
 
