@@ -707,19 +707,24 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         dyrRep.Create();
+                        Console.Clear();
                         break;
                     case "2":
                         dyrRep.Delete();
+                        Console.Clear();
                         break;
                     case "3":
                         Updater(dyrRep);
+                        Console.Clear();
                         break;
                     case "4":
                         dyrRep.PrintDyretsLog();
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "5":
                         SøgDyr(dyrRep);
+                        Console.Clear();
                         break;
                     case "0":
                         fortsæt = false;
@@ -740,8 +745,10 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("1. Søg efter navn");
             Console.WriteLine("2. Søg efter ID");
             Console.WriteLine("3. Søg efter art");
+            
             string valg = Console.ReadLine();
             Console.WriteLine();
+
             switch (valg)
             {
                 case "1":
@@ -753,6 +760,7 @@ namespace _1.Sem_EksamensProjekt
                 case "3":
                     dyrRep.Read(SøgDyrType.Art);
                     break;
+                
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Ugyldigt valg, prøv igen.");
@@ -760,6 +768,7 @@ namespace _1.Sem_EksamensProjekt
                     Console.ResetColor();
                     break;
             }
+
         }
 
         static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)

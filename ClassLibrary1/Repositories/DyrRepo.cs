@@ -177,7 +177,7 @@ namespace ClassLibrary1.Services
             kønType? nyKøn = null,
             string? nyInfo = null
             )
-        {   // TryGetValue er en metode der kikker om id findes i dictionaryen og outputter objektet
+        {   // TryGetValue er en metode der kikker om id findes i dictionaryen og outputter objektet, hvis det er der
             if (DyrList.TryGetValue(id, out Dyr dyr))
             {
                 if (nyNavn != null) dyr.Navn = nyNavn;
