@@ -26,34 +26,32 @@ namespace ClassLibrary1.Services
         public void Create()
         {   // input til dyrets navn
             Console.WriteLine("Indtast dyrets navn:");
-            string navn = Console.ReadLine();
-            // indput til dyrets Art
-            string artInput;
-            string kønInput;
-            ArtType artType;
-            kønType køn = default;
-            do
-            {
-                Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
-                artInput = Console.ReadLine();
-                Console.WriteLine("Indtast dyrets Køn (Hankøn / Hunkøn):");
-                kønInput = Console.ReadLine();
+            string navn = ValidateUserInput.GetString(Console.ReadLine());
 
-            } while (!Enum.TryParse(artInput, true, out artType) && !Enum.TryParse(kønInput, true, out køn));
+            // indput til dyrets Art
+            Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
+            ArtType artType = ValidateUserInput.GetArtType(Console.ReadLine());
+
+            // input til dyrets Køn
+            Console.WriteLine("Indtast dyrets køn (Hankøn, Hunkøn):");
+            kønType køn = ValidateUserInput.GetKønType(Console.ReadLine());
+
             // indput til dyrets race
             Console.WriteLine("indtast dyrets race: ");
-            string race = Console.ReadLine();
+            string race = ValidateUserInput.GetString(Console.ReadLine());
 
             // indput til dyrets vægt
             Console.WriteLine("Indtast dyrets Vægt i kg:");
-            double.TryParse(Console.ReadLine(), out double vægt);
+            double vægt = ValidateUserInput.GetDouble(Console.ReadLine());
+
             // indput til dyrets fødselsdag
             Console.WriteLine("Indtast dyrets fødselsdag (dd/MM/yyyy):");
-            DateTime.TryParse(Console.ReadLine(), out DateTime fødselsdag);
+            DateTime fødselsdag = ValidateUserInput.GetDateTime(Console.ReadLine());
 
+            // indput til dyrets info
             Console.WriteLine("Indtast mere info:");
             string info = Console.ReadLine();
-            // hvorfor skal jeg gøre to forskellige til for at få enum til at virke?
+
             Dyr nytDyr = new(navn, artType, race, vægt, fødselsdag, køn, info);
             DyrList.Add(nytDyr.ChipNummer, nytDyr);
 
