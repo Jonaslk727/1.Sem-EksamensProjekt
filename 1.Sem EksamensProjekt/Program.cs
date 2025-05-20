@@ -377,9 +377,10 @@ namespace _1.Sem_EksamensProjekt
                         else
                         {
                             Console.WriteLine("Enter et tal Id");
+                            Console.ReadKey();
                         }
 
-                        Console.ReadKey();
+                        
                         break;
                     case "2":
                         repo.VisMedarbejder();
@@ -415,7 +416,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine("\n Medarbejder opdateret succesfuldt!");
                             Console.WriteLine("=====================================");
                             Console.ResetColor();
-                            Console.ReadKey();
+                           
                         }
                         else
                         {
