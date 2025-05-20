@@ -50,7 +50,7 @@ namespace ClassLibrary1.Services
 
             // indput til dyrets info
             Console.WriteLine("Indtast mere info:");
-            string info = Console.ReadLine();
+            string info = ValidateUserInput.GetString(Console.ReadLine());
 
             Dyr nytDyr = new(navn, artType, race, vægt, fødselsdag, køn, info);
             DyrList.Add(nytDyr.ChipNummer, nytDyr);

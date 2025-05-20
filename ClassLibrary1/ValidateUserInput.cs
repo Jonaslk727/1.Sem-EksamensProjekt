@@ -54,7 +54,11 @@ namespace ClassLibrary1
             }
             return result;
         }
-
+        /// <summary>
+        /// for at sikre at input er et gyldigt decimaltal.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static double GetDouble(string input)
         {
             double result;
@@ -65,7 +69,11 @@ namespace ClassLibrary1
             }
             return result;
         }
-
+        /// <summary>
+        /// for at sikre at input er et gyldigt boolsk værdi.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static bool GetBool(string input)
         {
             bool result;
@@ -76,7 +84,11 @@ namespace ClassLibrary1
             }
             return result;
         }
-
+        /// <summary>
+        /// for at sikre at input er et gyldigt enum værdi: kønType: Hankøn eller Hunkøn.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static kønType GetKønType(string input)
         {
             kønType result;
@@ -87,7 +99,11 @@ namespace ClassLibrary1
             }
             return result;
         }
-
+        /// <summary>
+        /// for at sikre at input er et gyldigt enum værdi: ArtType: Hund, Kat eller Fugl.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static ArtType GetArtType(string input)
         {
             ArtType result;
