@@ -17,10 +17,11 @@ namespace _1.Sem_EksamensProjekt
             var AkRepo = new AktivitetRepo();
             var KundeRep = new KundeRepo();
             var MedarbejderRep = new MedarbejderRepo();
-            var kundeRepo = new KundeRepo();
-            MogdataDyr(DyrRep);
-            TestDataAktivitet(AkRepo);
-            TestDataKunder(kundeRepo);
+
+            // Tilføj testdata til KundeRepo
+            KundeRep.TilføjKunde(new Kunde(1, "Anders Jensen", "anders@example.com", "12345678", new DateTime(1998, 5, 14), DateTime.Now, true));
+            KundeRep.TilføjKunde(new Kunde(2, "Jonas Lolk", "jonas@example.com", "87654321", new DateTime(2002, 4, 16), DateTime.Now, false));
+
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
             while (kørProgram)
@@ -53,7 +54,7 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep, KundeRep, MedarbejderRep);
                         break;
                     case "2":
-                        KundeMenu(DyrRep, BookingRep, AkRepo, kundeRepo);
+                        KundeMenu(DyrRep, BookingRep, AkRepo, KundeRep);
                         break;
                     case "0":
                         kørProgram = false;
