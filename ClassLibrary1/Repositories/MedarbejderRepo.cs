@@ -12,6 +12,8 @@ namespace ClassLibrary1.Repositories
 
         public void TilføjMedarbejder(Medarbejder medarbejder)
         {
+            try
+            { 
             for (int i = 0; i < medarbejdere.Count; i++)
             {
                 if (medarbejdere[i].MedarbejderId == medarbejder.MedarbejderId)
@@ -26,6 +28,13 @@ namespace ClassLibrary1.Repositories
             }
             medarbejdere.Add(medarbejder);
             Console.WriteLine("Medarbejder tilføjet.");
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fejl ved tilføjelse af medarbejder: " + ex.Message);
+                Console.ResetColor();
+            }
         }
 
         public void VisMedarbejder()
@@ -49,7 +58,7 @@ namespace ClassLibrary1.Repositories
         {
             foreach (Medarbejder medarbejder in medarbejdere)
             {
-                if (medarbejder.MedarbejderId == medarbejderId)
+                if (int.TryParse(Console.ReadLine(), out medarbejderId) && medarbejder.MedarbejderId == medarbejderId)
                 {
                     return true;
                 }
@@ -59,39 +68,68 @@ namespace ClassLibrary1.Repositories
 
         public void OpdaterMedarbejder(int medarbejderId, Medarbejder opdateretMedarbejder)
         {
-            foreach (Medarbejder medarbejder in medarbejdere)
+            try
             {
-                if (medarbejder.MedarbejderId == medarbejderId)
+                if (opdateretMedarbejder == null)
                 {
-                    medarbejder.Navn = opdateretMedarbejder.Navn;
-                    medarbejder.Afdeling = opdateretMedarbejder.Afdeling;
-                    medarbejder.Stilling = opdateretMedarbejder.Stilling;
-                    medarbejder.Email = opdateretMedarbejder.Email;
-                    medarbejder.Telefonnummer = opdateretMedarbejder.Telefonnummer;
-                    break;
+                    Console.WriteLine("Opdateringsdata er ugyldige.");
+                    return;
                 }
-            }
 
+                foreach (Medarbejder medarbejder in medarbejdere)
+                {
+                    if (medarbejder.MedarbejderId == medarbejderId)
+                    {
+                        medarbejder.Navn = opdateretMedarbejder.Navn;
+                        medarbejder.Afdeling = opdateretMedarbejder.Afdeling;
+                        medarbejder.Stilling = opdateretMedarbejder.Stilling;
+                        medarbejder.Email = opdateretMedarbejder.Email;
+                        medarbejder.Telefonnummer = opdateretMedarbejder.Telefonnummer;
+                        Console.WriteLine("Medarbejder opdateret.");
+                        return;
+                    }
+                }
+
+                Console.WriteLine("Medarbejder ikke fundet.");
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fejl ved opdatering af medarbejder: " + ex.Message);
+                Console.ResetColor();
+            }
         }
+
         public void SletMedarbejder(int medarbejderId)
         {
-            for (int i = 0; i < medarbejdere.Count; i++)
+            try
             {
-                if (medarbejdere[i].MedarbejderId == medarbejderId)
+                for (int i = 0; i < medarbejdere.Count; i++)
                 {
-                    medarbejdere.RemoveAt(i);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\n==========================================");
-                    Console.WriteLine("Medarbejder med ID " + medarbejderId + " er blevet slettet.");
-                    Console.WriteLine("==========================================\n");
-                    Console.ResetColor();
-
-                    break;
+                    if (medarbejdere[i].MedarbejderId == medarbejderId)
+                    {
+                        medarbejdere.RemoveAt(i);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n==========================================");
+                        Console.WriteLine("Medarbejder med ID " + medarbejderId + " er blevet slettet.");
+                        Console.WriteLine("==========================================\n");
+                        Console.ResetColor();
+                        return;
+                    }
                 }
+
+                Console.WriteLine("Medarbejder med ID " + medarbejderId + " blev ikke fundet.");
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fejl ved sletning af medarbejder: " + ex.Message);
+                Console.ResetColor();
             }
         }
 
-            public List<Medarbejder> HentAlleMedarbejdere()
+
+        public List<Medarbejder> HentAlleMedarbejdere()
         {
             return medarbejdere;
         }

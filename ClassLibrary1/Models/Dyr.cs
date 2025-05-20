@@ -74,8 +74,10 @@ namespace ClassLibrary1.Models
             {
                 case 1:
                     return Log.GetLægeLog();
+                    break;
                 case 2:
                     return Log.GetBesøgsLog();
+                    break;
                 default:
                     throw new AggregateException();
                     break;

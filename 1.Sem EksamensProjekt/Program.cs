@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Runtime.InteropServices;
 using System.Text;
+using ClassLibrary1.Interfaces;
 using ClassLibrary1.Models;
 using ClassLibrary1.Repositories;
 using ClassLibrary1.Services;
@@ -16,9 +17,10 @@ namespace _1.Sem_EksamensProjekt
             var AkRepo = new AktivitetRepo();
             var KundeRep = new KundeRepo();
             var MedarbejderRep = new MedarbejderRepo();
+            var kundeRepo = new KundeRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
-
+            TestDataKunder(kundeRepo);
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
             while (kørProgram)
@@ -51,7 +53,6 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep, KundeRep, MedarbejderRep);
                         break;
                     case "2":
-                        var kundeRepo = new KundeRepo();
                         KundeMenu(DyrRep, BookingRep, AkRepo, kundeRepo);
                         break;
                     case "0":
@@ -353,20 +354,37 @@ namespace _1.Sem_EksamensProjekt
                         Console.ResetColor();
 
                         Medarbejder nye = new Medarbejder();
+                        int medarbejderId;
 
-                        Console.Write("ID            : "); nye.MedarbejderId = int.Parse(Console.ReadLine());
-                        Console.Write("Navn          : "); nye.Navn = Console.ReadLine();
-                        Console.Write("Afdeling      : "); nye.Afdeling = Console.ReadLine();
-                        Console.Write("Stilling      : "); nye.Stilling = Console.ReadLine();
-                        Console.Write("Email         : "); nye.Email = Console.ReadLine();
-                        Console.Write("Telefon       : "); nye.Telefonnummer = Console.ReadLine();
+                        // ID skal være tal
+                        Console.Write("ID            : ");
+                        string input = Console.ReadLine();
 
-                        repo.TilføjMedarbejder(nye);
+                        // Skal have numeric input
+                        if (int.TryParse(input, out medarbejderId))
+                        {
+                            nye.MedarbejderId = medarbejderId;
 
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
-                        Console.WriteLine("=====================================");
-                        Console.ResetColor();
+                            Console.Write("Navn          : "); nye.Navn = Console.ReadLine();
+                            Console.Write("Afdeling      : "); nye.Afdeling = Console.ReadLine();
+                            Console.Write("Stilling      : "); nye.Stilling = Console.ReadLine();
+                            Console.Write("Email         : "); nye.Email = Console.ReadLine();
+                            Console.Write("Telefon       : "); nye.Telefonnummer = Console.ReadLine();
+
+                            // Only add employee when ID input is valid
+                            repo.TilføjMedarbejder(nye);
+
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
+                            Console.WriteLine("=====================================");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter et tal Id");
+                        }
+
+                        Console.ReadKey();
                         break;
                     case "2":
                         repo.VisMedarbejder();
@@ -402,6 +420,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine("\n Medarbejder opdateret succesfuldt!");
                             Console.WriteLine("=====================================");
                             Console.ResetColor();
+                            Console.ReadKey();
                         }
                         else
                         {
@@ -410,12 +429,14 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine($" Ingen medarbejder fundet med ID {opdaterId}.");
                             Console.WriteLine("=====================================");
                             Console.ResetColor();
+                            Console.ReadKey();
                         }
                         break;
                     case "4":
                         Console.Write("Indtast ID på medarbejder du vil slette: ");
                         int sletId = int.Parse(Console.ReadLine());
                         repo.SletMedarbejder(sletId);
+                        Console.ReadKey();
                         break;
                     case "0":
                         kørMedarbejderMenu = false; // Exit the employee menu
@@ -556,12 +577,16 @@ namespace _1.Sem_EksamensProjekt
                     Console.WriteLine("Skriv et gyldigt årstal");
                 }
             } while (!fortsæt);
+
             Console.WriteLine("Indtast måned:");
             int month = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Indtast dag:");
             int day = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Indtast time:");
             int time = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Indtast minut:");
             int minute = int.Parse(Console.ReadLine());
 
@@ -685,7 +710,9 @@ namespace _1.Sem_EksamensProjekt
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("==========================================");
                 Console.WriteLine("Rediger Dyr - vælge en kategori:");
+                Console.WriteLine("==========================================");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. Opret et dyr");
                 Console.WriteLine("2. Slet dyr");
@@ -701,18 +728,24 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         dyrRep.Create();
+                        Console.Clear();
                         break;
                     case "2":
                         dyrRep.Delete();
+                        Console.Clear();
                         break;
                     case "3":
                         Updater(dyrRep);
+                        Console.Clear();
                         break;
                     case "4":
                         dyrRep.PrintDyretsLog();
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "5":
                         SøgDyr(dyrRep);
+                        Console.Clear();
                         break;
                     case "0":
                         fortsæt = false;
@@ -733,8 +766,10 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("1. Søg efter navn");
             Console.WriteLine("2. Søg efter ID");
             Console.WriteLine("3. Søg efter art");
+            
             string valg = Console.ReadLine();
             Console.WriteLine();
+
             switch (valg)
             {
                 case "1":
@@ -746,6 +781,7 @@ namespace _1.Sem_EksamensProjekt
                 case "3":
                     dyrRep.Read(SøgDyrType.Art);
                     break;
+                
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Ugyldigt valg, prøv igen.");
@@ -753,6 +789,7 @@ namespace _1.Sem_EksamensProjekt
                     Console.ResetColor();
                     break;
             }
+
         }
 
         static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
@@ -829,7 +866,37 @@ namespace _1.Sem_EksamensProjekt
                         Console.ReadKey();
                         break;
                     case "4":
-                        // afmeld aktivitet
+                        Console.Write("Indtast ID på aktivitet du vil afmelde: ");
+                        if (!int.TryParse(Console.ReadLine(), out int aktivitetId))
+                        {
+                            Console.WriteLine("Ugyldigt ID.");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        Console.Write("Indtast dit kunde-ID: ");
+                        if (!int.TryParse(Console.ReadLine(), out int kundeId))
+                        {
+                            Console.WriteLine("Ugyldigt kunde-ID.");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, kundeId);
+
+                        if (afmeldt)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Du er nu afmeldt fra aktiviteten.");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Kunne ikke finde aktivitet eller kunde.");
+                        }
+                        Console.ResetColor();
+                        Console.WriteLine("Tryk på en tast for at fortsætte...");
+                        Console.ReadKey();
                         break;
                     case "0":
                         fortsæt = false;
@@ -918,12 +985,20 @@ namespace _1.Sem_EksamensProjekt
         //TEST DATA:
         static void MogdataDyr(DyrRepo DyrRep)
         {
-            Dyr dyr1 = new Dyr("Max", ArtType.Hund, "Labrador", 30, new DateTime(2020, 5, 1), kønType.Hankøn, "Venlig hund");
-            Dyr dyr2 = new Dyr("Bella", ArtType.Kat, "Perser", 5, new DateTime(2021, 3, 15), kønType.Hunkøn, "Legesyg kat");
-            Dyr dyr3 = new Dyr("Charlie", ArtType.Fugl, "Parakit", 0.5, new DateTime(2022, 8, 10), kønType.Hankøn, "Sangfugl");
-            DyrRep.DyrList.Add(dyr1.ChipNummer, dyr1);
-            DyrRep.DyrList.Add(dyr2.ChipNummer, dyr2);
-            DyrRep.DyrList.Add(dyr3.ChipNummer, dyr3);
+            List<Dyr> dyrList = new List<Dyr>()
+            {
+                new Dyr("Max", ArtType.Hund, "Labrador", 30, new DateTime(2020, 5, 1), kønType.Hankøn, "Venlig hund"),
+                new Dyr("Bella", ArtType.Kat, "Perser", 5, new DateTime(2021, 3, 15), kønType.Hunkøn, "Legesyg kat"),
+                new Dyr("Charlie", ArtType.Fugl, "Parakit", 0.5, new DateTime(2022, 8, 10), kønType.Hankøn, "Sangfugl"),
+                new Dyr("Luna", ArtType.Hund, "Schæfer", 35, new DateTime(2019, 11, 20), kønType.Hunkøn, "Intelligent hund"),
+                new Dyr("Oliver", ArtType.Kat, "Maine", 7, new DateTime(2020, 1, 5), kønType.Hankøn, "Nysgerrig kat"),
+                new Dyr("Coco", ArtType.Hund, "Chihuahua", 3, new DateTime(2022, 6, 30), kønType.Hunkøn, "Lille og sød"),
+                new Dyr("Rocky", ArtType.Hund, "Bulldog", 25, new DateTime(2018, 4, 12), kønType.Hankøn, "Stærk og venlig"),
+            };
+            for (int i = 0; i < dyrList.Count(); i++)
+            {
+                DyrRep.DyrList.Add(dyrList[i].ChipNummer, dyrList[i]);
+            }
         }
         public static void TestDataAktivitet(AktivitetRepo repo)
         {
@@ -933,9 +1008,24 @@ namespace _1.Sem_EksamensProjekt
             string info = "Træning for hunde og ejere";
             repo.OpretAktivitet(Title, StartTid, SlutTid, info);
         }
-        #endregion
+        public static void TestDataKunder(KundeRepo kundeRepo)
+        {
+            Kunde NyKunde = new Kunde
+            {
+                KundeId = 1,
+                Navn = "Anders Jensen",
+                Email = "anders@example.com",
+                Mobil = "12345678",
+                DateOfBirth = new DateTime(1998, 5, 14),
+                RegistrationDate = DateTime.Now,
+                IsPremiumMember = true
+            };
 
-        #region Nyttige metoder
+            kundeRepo.TilføjKunde(NyKunde);
+        }  
+        
+            #endregion
+            #region Nyttige metoder
         public static DateTime GetDateTimeInput(string prompt)
         {
             DateTime dateTime;

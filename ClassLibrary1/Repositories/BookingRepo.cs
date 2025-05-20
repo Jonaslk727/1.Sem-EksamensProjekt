@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary1.Models; //Model klasserne kan tilgås
@@ -30,40 +31,44 @@ namespace ClassLibrary1.Services
 
                     string inputId;
                     int id;
+                    // sikre gyldigt Dyr ID
                     do
                     {
                         Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
                         inputId = Console.ReadLine();
-                    } while (!int.TryParse(inputId, out id));
+                        if (!int.TryParse(inputId, out id)) Console.WriteLine("du skal skrive et tal");// at input er et tal
+                        else if (dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false) break;
+                            
+                        Console.WriteLine("Dyr med dette Id findes ikke");
+                       
+                    } while (true);
 
-                    if (dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false)
-                    {   // får Id på kunden
-                        int bookerId;
-                        
-                        do
-                        {
-                            Console.WriteLine("Skriv Id'et på kunden der vil booke:");
-                            inputId = Console.ReadLine();
-
-
-                        } while (!int.TryParse(inputId, out bookerId) && kundeRep.HentKunde(bookerId) != null);
+                    // sikre gyldigt Kunde ID
+                    int bookerId;
+                    do
+                    {
+                        Console.WriteLine("Skriv Id'et på kunden der vil booke:");
+                        if (int.TryParse(Console.ReadLine(), out bookerId) && kundeRep.HentKunde(bookerId) != null) break;
+                        // fejlmeddelelser:
+                        else if (!int.TryParse(Console.ReadLine(), out bookerId)) Console.WriteLine("Ugyldigt ID. Prøv igen.");
+                        else if (kundeRep.HentKunde(bookerId) == null) Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
+                            
+                    } while (true);
 
                         booker = kundeRep.HentKunde(bookerId);// får kunden
                         booking.BookedDyr = dyrRep.DyrList[id]; // tilføjer dyret til bookingen
                         dyrRep.DyrList[id].IsBooked = true;
+
                         DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking formate(dd/mm/yyyy HH:mm)");
                         dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, booker);
-                        Console.WriteLine($"Succes Du har oprettet:\n{booking}");
+                        Console.WriteLine($"Succes Du har oprettet:\n{dyrRep.DyrList[id].Log.BesøgssLogs.Last()}");// udskriver det sidste element i besøgsloggen
+                        
                         AlleBokinger.Add(booking.BookingId, booking);// skal fikses
-                    }
-                    else
-                    {
-                        Console.WriteLine("Dyr med dette ID findes ikke eller er allerede booket.");
-                    }
-                    break;
+                        Console.ReadKey();  
+
+                break;
 
                 case BookingType.Aktivitet:
-
                     do
                     {
                         Console.WriteLine("Skriv Id'et på den Aktivitet du vil medles til:");
@@ -71,25 +76,28 @@ namespace ClassLibrary1.Services
 
                     if (AktivitetsRep.AlleAktiviteter.ContainsKey(id))
                     {   // her tiljøjes bookeren til aktiviteten
-                        bool isValid = false;
+                        
                         do
                         {
+                            id = 0;
                             Console.WriteLine("Skriv Id'et på kunden der vil tilmeldes til den givne Aktivitet:");
-                            int.TryParse(Console.ReadLine(), out id);
+                            if (!int.TryParse(Console.ReadLine(), out id)) Console.WriteLine("Du skal skrive et tal");
 
                             if (kundeRep.HentKunde(id) != null)
                             {
                                 booker = kundeRep.HentKunde(id);
-                                isValid = true;
+                                break;
                             }
-                        } while (!isValid);
+                            Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
+
+                        } while (true);
 
                         AktivitetsRep.AlleAktiviteter[id].Tilmeldte.Add(booker);
                         Console.WriteLine($"du er hermed tilmeldt til:\n{AktivitetsRep.AlleAktiviteter[id]}");
                         //////Tilføjer et ID, så hvis booking.BookingId er 5, så gemmes bookingen med nummeret. 
                         //////Det sikre hurtig adgang til bookinger via et unikt ID
                         AlleBokinger.Add(booking.BookingId, booking);
-                    }
+                    } 
                     else
                     {
                         Console.WriteLine("Aktivitet med dette Id findes ikke.");

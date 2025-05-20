@@ -76,6 +76,30 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        //Bruges i Program.cs til at afmelde en aktivitet
+        public bool AfmeldAktivitet(int aktivitetId, int kundeId)
+        {
+            if (AlleAktiviteter.TryGetValue(aktivitetId, out var aktivitet))
+            {
+                Kunde kundeAtFjerne = null;
+
+                foreach (var k in aktivitet.Tilmeldte)
+                {
+                    if (k.KundeId == kundeId)
+                    {
+                        kundeAtFjerne = k;
+                        break;
+                    }
+                }
+
+                if (kundeAtFjerne != null)
+                {
+                    aktivitet.Tilmeldte.Remove(kundeAtFjerne);
+                    return true;
+                }
+            }
+            return false;
+        }
         public bool RedigerAktivitet(int id, string nyTitle, DateTime nyStart, DateTime nySlut, string nyBeskrivelse)
         {
             if (AlleAktiviteter.TryGetValue(id, out Aktivitet aktivitet))

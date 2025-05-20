@@ -34,14 +34,14 @@ namespace ClassLibrary1.Services
         public string GetBesøgsLog()
         {
             StringBuilder sb = new StringBuilder();
-            if (LægeLogs.Count == 0)
+            if (BesøgssLogs.Count == 0)
             {
                 sb.AppendLine("´Der er ingen besøgsLogs");
                 return sb.ToString();
             }
             else
             {
-                foreach (var log in LægeLogs.Values)
+                foreach (var log in BesøgssLogs)
                 {
                     sb.AppendLine(log.ToString());
                 }

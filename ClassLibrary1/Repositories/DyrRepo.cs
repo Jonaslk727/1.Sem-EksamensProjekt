@@ -177,7 +177,7 @@ namespace ClassLibrary1.Services
             kønType? nyKøn = null,
             string? nyInfo = null
             )
-        {   // TryGetValue er en metode der kikker om id findes i dictionaryen og outputter objektet
+        {   // TryGetValue er en metode der kikker om id findes i dictionaryen og outputter objektet, hvis det er der
             if (DyrList.TryGetValue(id, out Dyr dyr))
             {
                 if (nyNavn != null) dyr.Navn = nyNavn;
@@ -241,10 +241,10 @@ namespace ClassLibrary1.Services
                 while (fortsæt)
                 {
                     Console.Clear();
-
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("1. Vis Dyrets LægeLog");
                     Console.WriteLine("2. Vis Dyrets BesøgsLog");
+                    Console.WriteLine("3 se alle kunder");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("0. Gå tilbage");
                     Console.ResetColor();
@@ -265,7 +265,6 @@ namespace ClassLibrary1.Services
                         default:
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Ugyldigt valg, prøv igen.");
-                            Console.ReadKey();
                             Console.ResetColor();
                             break;
                     }

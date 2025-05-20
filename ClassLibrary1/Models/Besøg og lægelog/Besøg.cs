@@ -9,20 +9,22 @@ namespace ClassLibrary1.Models.Besøg_og_lægelog
     public class Besøg
     {
         public DateTime BesøgsTidspunkt { get; set; }
+
+        private static int _nextId = 1;
         public Kunde Besøger { get; set; }
-        public int BesøgsId { get; set; }
+        public int BesøgsId { get; init; }
 
         public Besøg(DateTime besøgsTidspunkt, Kunde besøger)
         {
             BesøgsTidspunkt = besøgsTidspunkt;
             Besøger = besøger;
-
+            BesøgsId = _nextId++;
         }
 
         public override string ToString()
         {
             return $"------------------------------------------------------------------------------" +
-                $"BesøgsId: {BesøgsId} | BesøgsTidspunkt: {BesøgsTidspunkt} | Besøger: {Besøger}";
+                $"\n BesøgsId: {BesøgsId} |\n BesøgsTidspunkt: {BesøgsTidspunkt} |\n Besøger: {Besøger.Navn}";
         }
 
     }

@@ -6,7 +6,13 @@ public class KundeRepo
 {
     private List<Kunde> _kunder = new List<Kunde>();
 
-    // Tilføj en ny kunde
+    /// <summary>
+    /// Adds a new customer to the collection if the customer does not already exist.
+    /// </summary>
+    /// <remarks>If a customer with the same <c>Id</c> already exists in the collection, the method will not
+    /// add the customer and will display a message indicating that the customer already exists. Otherwise, the customer
+    /// is added to the collection, and a confirmation message is displayed.</remarks>
+    /// <param name="kunde">The customer to add. Must not be null and must have a unique <c>Id</c>.</param>
     public void TilføjKunde(Kunde kunde)
     {
         foreach (var eksisterendeKunde in _kunder)
@@ -30,7 +36,7 @@ public class KundeRepo
     {
         foreach (var kunde in _kunder)
         {
-            if (kunde.Id == id)
+            if (kunde.KundeId == id)
             {
                 return kunde;
             }
