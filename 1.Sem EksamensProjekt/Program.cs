@@ -718,7 +718,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("2. Slet dyr");
                 Console.WriteLine("3. Rediger et oprettet dyr");
                 Console.WriteLine("4. Vis DyretLogs");
-                Console.WriteLine("6. Søg efter dyr");
+                Console.WriteLine("5. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå tilbage");
                 Console.ResetColor();
