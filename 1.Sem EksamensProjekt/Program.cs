@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Runtime.InteropServices;
 using System.Text;
+using ClassLibrary1;
 using ClassLibrary1.Interfaces;
 using ClassLibrary1.Models;
 using ClassLibrary1.Repositories;
@@ -360,7 +361,7 @@ namespace _1.Sem_EksamensProjekt
                         string input = Console.ReadLine();
 
                         // Skal have numeric input
-                        if (int.TryParse(input, out medarbejderId))
+                        if (int.TryParse(input, out medarbejderId) )
                         {
                             nye.MedarbejderId = medarbejderId;
 
@@ -383,8 +384,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine("Enter et tal Id");
                             Console.ReadKey();
                         }
-
-                        
+                                                
                         break;
                     case "2":
                         repo.VisMedarbejder();
@@ -399,7 +399,7 @@ namespace _1.Sem_EksamensProjekt
                         Console.ResetColor();
 
                         Console.Write("Indtast ID på medarbejder du vil opdatere: ");
-                        int opdaterId = int.Parse(Console.ReadLine());
+                        int opdaterId = ValidateUserInput.GetInt(Console.ReadLine());
 
                         if (repo.FindMedarbejder(opdaterId))
                         {
@@ -434,7 +434,8 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "4":
                         Console.Write("Indtast ID på medarbejder du vil slette: ");
-                        int sletId = int.Parse(Console.ReadLine());
+                        int sletId = ValidateUserInput.GetInt(Console.ReadLine());
+
                         repo.SletMedarbejder(sletId);
                         Console.ReadKey();
                         break;
