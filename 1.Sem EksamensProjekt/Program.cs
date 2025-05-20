@@ -14,6 +14,7 @@ namespace _1.Sem_EksamensProjekt
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
             var AkRepo = new AktivitetRepo();
+            var KundeRep = new KundeRepo();
             var MedarbejderRep = new MedarbejderRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
@@ -47,7 +48,7 @@ namespace _1.Sem_EksamensProjekt
                 switch (valg)
                 {
                     case "1":
-                        MedarbejderMenu(AkRepo, DyrRep, MedarbejderRep);
+                        MedarbejderMenu(AkRepo, DyrRep, KundeRep, MedarbejderRep);
                         break;
                     case "2":
                         var kundeRepo = new KundeRepo();
@@ -65,7 +66,7 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, MedarbejderRepo medarbejderRepo)
+        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
 
 
@@ -113,7 +114,7 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderDyrMenu(dyrRep);
                         break;
                     case "2":
-                        MedarbejderKundeMenu();
+                        MedarbejderKundeMenu(kundeRep);
                         break;
                     case "3":
                         MedarbejderAktivitetMenu(AkRepo);
@@ -123,6 +124,9 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "0":
                         fortsæt = false;
+                        break;
+                    default:
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
                         break;
                 }
             }
@@ -216,7 +220,7 @@ namespace _1.Sem_EksamensProjekt
                         repo.TilføjKunde(ny);
 
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
+                        Console.WriteLine("\n Kunde tilføjet succesfuldt!");
                         Console.WriteLine("=====================================");
                         Console.ResetColor();
                         break;
