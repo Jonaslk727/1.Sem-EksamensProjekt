@@ -58,12 +58,12 @@ namespace ClassLibrary1.Repositories
         {
             foreach (Medarbejder medarbejder in medarbejdere)
             {
-                if (int.TryParse(Console.ReadLine(), out medarbejderId) && medarbejder.MedarbejderId == medarbejderId)
+                if (medarbejder.MedarbejderId == medarbejderId)
                 {
-                    return true;
+                    return true; // Found the employee with the given ID
                 }
             }
-            return false;
+            return false; // Employee not found
         }
 
         public void OpdaterMedarbejder(int medarbejderId, Medarbejder opdateretMedarbejder)
