@@ -217,7 +217,7 @@ namespace _1.Sem_EksamensProjekt
                         Console.Write("Email         : "); ny.Email = Console.ReadLine();
                         Console.Write("Telefon       : "); ny.Mobil = Console.ReadLine();
 
-                        repo.TilføjKunde(ny);
+                        kundeRep.TilføjKunde(ny);
 
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("\n Kunde tilføjet succesfuldt!");
@@ -226,7 +226,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
 
                     case "2":
-                        repo.HentAlleKunder();// Vis alle kunder
+                        kundeRep.HentAlleKunder();// Vis alle kunder
                         break;
 
                     case "3":
@@ -240,7 +240,7 @@ namespace _1.Sem_EksamensProjekt
                         Console.Write("Indtast ID på Kunde du vil opdatere: ");
                         int opdaterId = int.Parse(Console.ReadLine());
 
-                        if (repo.FindKunde(opdaterId))
+                        if (kundeRep.FindKunde(opdaterId))
                         {
                             Kunde opdateret = new Kunde { KundeId = opdaterId };
 
@@ -250,8 +250,8 @@ namespace _1.Sem_EksamensProjekt
                             Console.Write("Ny Email         : "); opdateret.Email = Console.ReadLine();
                             Console.Write("Nyt Telefonnummer: "); opdateret.Mobil = Console.ReadLine();
                             Console.WriteLine("------------------------------------------------");
-                            
-                            repo.OpdaterKunde(opdateret.KundeId, opdateret.Navn, opdateret.Email, opdateret.Mobil);
+
+                            kundeRep.OpdaterKunde(opdateret.KundeId, opdateret.Navn, opdateret.Email, opdateret.Mobil);
 
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("\n Kunde opdateret succesfuldt!");
@@ -272,7 +272,7 @@ namespace _1.Sem_EksamensProjekt
                         // Slet kunde
                         Console.Write("Indtast ID på Kunde du vil slette: ");
                         int sletId = int.Parse(Console.ReadLine());
-                        repo.SletKunde(sletId);
+                        kundeRep.SletKunde(sletId);
                         break;
 
                     case "0":
