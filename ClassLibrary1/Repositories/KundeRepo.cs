@@ -17,18 +17,20 @@ public class KundeRepo
     {
         foreach (var eksisterendeKunde in _kunder)
         {
-            if (eksisterendeKunde.Id == kunde.Id)
+            if (eksisterendeKunde.KundeId == kunde.KundeId)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n==========================================");
                 Console.WriteLine("Kunde findes allerede.");
                 Console.WriteLine("==========================================\n");
                 Console.ResetColor();
+                Console.ReadKey();  
                 return;
             }
         }
         _kunder.Add(kunde);
         Console.WriteLine("Kunde tilføjet.");
+        Console.ReadKey();
     }
 
     // Hent en kunde ved ID
@@ -49,7 +51,7 @@ public class KundeRepo
     {
         for (int i = 0; i < _kunder.Count; i++)
         {
-            if (_kunder[i].Id == id)
+            if (_kunder[i].KundeId == id)
             {
                 _kunder.RemoveAt(i);
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -72,7 +74,7 @@ public class KundeRepo
     {
         foreach (var kunde in _kunder)
         {
-            if (kunde.Id == id)
+            if (kunde.KundeId == id)
             {
                 kunde.Navn = opdateretKunde.Navn;
                 kunde.Email = opdateretKunde.Email;
@@ -110,7 +112,7 @@ public class KundeRepo
         Console.WriteLine("\n=== Liste over kunder ===");
         foreach (var kunde in _kunder)
         {
-            Console.WriteLine($"ID: {kunde.Id}, Navn: {kunde.Navn}, Email: {kunde.Email}, Mobil: {kunde.Mobil}");
+            Console.WriteLine($"ID: {kunde.KundeId}, Navn: {kunde.Navn}, Email: {kunde.Email}, Mobil: {kunde.Mobil}");
         }
     }
 
@@ -125,7 +127,7 @@ public class KundeRepo
     {
         foreach (var kunde in _kunder)
         {
-            if (kunde.Id == id)
+            if (kunde.KundeId == id)
             {
                 return true;
             }

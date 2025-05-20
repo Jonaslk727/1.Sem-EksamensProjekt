@@ -9,8 +9,7 @@ namespace ClassLibrary1.Models
 {
     public class Kunde : Person
     {
-        public int Id;
-
+      
         public int KundeId { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime RegistrationDate { get; set; }
@@ -44,12 +43,16 @@ namespace ClassLibrary1.Models
         {
 
         }
-        public Kunde(int kundeId, DateTime dateOfBirth, DateTime registrationDate, bool isPremiumMember)
+        public Kunde(int kundeId,string navn, string email, string mobil, DateTime dateOfBirth, DateTime registrationDate, bool isPremiumMember)
         {
             KundeId = kundeId;
+            Navn = navn;
+            Email = email;
+            Mobil = mobil;
             DateOfBirth = dateOfBirth;
             RegistrationDate = registrationDate;
             IsPremiumMember = isPremiumMember;
+            
         }
     }
 }

@@ -176,10 +176,6 @@ namespace _1.Sem_EksamensProjekt
         static void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
           
-            kundeRep.TilføjKunde(new Kunde { KundeId = 1, Navn = "John", Email = "JohnDeere@eksempel.com", Mobil = "20223420" });
-            kundeRep.TilføjKunde(new Kunde { KundeId = 2, Navn = "Søren", Email = "SørenBregne@eksempel.com", Mobil = "90100910" });
-
-
             bool kørKundeMenu = true;
             while (kørKundeMenu)
             {
@@ -226,7 +222,7 @@ namespace _1.Sem_EksamensProjekt
                         break;
 
                     case "2":
-                        kundeRep.HentAlleKunder();// Vis alle kunder
+                        kundeRep.VisKunder();// Vis alle kunder
                         break;
 
                     case "3":
@@ -381,9 +377,10 @@ namespace _1.Sem_EksamensProjekt
                         else
                         {
                             Console.WriteLine("Enter et tal Id");
+                            Console.ReadKey();
                         }
 
-                        Console.ReadKey();
+                        
                         break;
                     case "2":
                         repo.VisMedarbejder();
@@ -419,7 +416,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine("\n Medarbejder opdateret succesfuldt!");
                             Console.WriteLine("=====================================");
                             Console.ResetColor();
-                            Console.ReadKey();
+                           
                         }
                         else
                         {
@@ -1009,7 +1006,8 @@ namespace _1.Sem_EksamensProjekt
         }
         public static void TestDataKunder(KundeRepo kundeRepo)
         {
-            Kunde NyKunde = new Kunde
+            
+            Kunde Kunde1 = new Kunde()
             {
                 KundeId = 1,
                 Navn = "Anders Jensen",
@@ -1019,8 +1017,19 @@ namespace _1.Sem_EksamensProjekt
                 RegistrationDate = DateTime.Now,
                 IsPremiumMember = true
             };
+            Kunde Kunde2 = new Kunde()
+            {
+                KundeId = 2,
+                Navn = "Jonas Lolk",
+                Email = "joloknu@gmail.com",
+                Mobil = "987654321",
+                DateOfBirth = new DateTime(2002, 4, 16),
+                RegistrationDate = DateTime.Now,
+                IsPremiumMember = true
+            };
 
-            kundeRepo.TilføjKunde(NyKunde);
+            //kundeRepo.TilføjKunde(Kunde1);
+            //kundeRepo.TilføjKunde(Kunde2);
         }  
         
             #endregion
