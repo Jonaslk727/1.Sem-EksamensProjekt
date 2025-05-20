@@ -9,7 +9,7 @@ namespace ClassLibrary1.Models
 {
     public class Kunde : Person
     {
-        internal int Id;
+        public int Id;
 
         public int KundeId { get; set; }
         public DateTime DateOfBirth { get; set; }
