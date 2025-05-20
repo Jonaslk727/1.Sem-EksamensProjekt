@@ -20,7 +20,11 @@ namespace _1.Sem_EksamensProjekt
             var kundeRepo = new KundeRepo();
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
-            TestDataKunder(kundeRepo);
+            
+            // Tilføj testdata til KundeRepo
+            KundeRep.TilføjKunde(new Kunde(1, "Anders Jensen", "anders@example.com", "12345678", new DateTime(1998, 5, 14), DateTime.Now, true));
+            KundeRep.TilføjKunde(new Kunde(2, "Jonas Lolk", "jonas@example.com", "87654321", new DateTime(2002, 4, 16), DateTime.Now, false));
+
             //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
             bool kørProgram = true;
             while (kørProgram)
