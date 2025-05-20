@@ -1027,8 +1027,8 @@ namespace _1.Sem_EksamensProjekt
                 IsPremiumMember = true
             };
 
-            kundeRepo.TilføjKunde(Kunde1);
-            kundeRepo.TilføjKunde(Kunde2);
+            //kundeRepo.TilføjKunde(Kunde1);
+            //kundeRepo.TilføjKunde(Kunde2);
         }  
         
             #endregion
