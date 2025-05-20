@@ -175,10 +175,9 @@ namespace _1.Sem_EksamensProjekt
         }
         static void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
-            KundeRepo repo = new KundeRepo();
-
-            repo.TilføjKunde(new Kunde { KundeId = 1, Navn = "John", Email = "JohnDeere@eksempel.com", Mobil = "20223420" });
-            repo.TilføjKunde(new Kunde { KundeId = 2, Navn = "Søren", Email = "SørenBregne@eksempel.com", Mobil = "90100910" });
+          
+            kundeRep.TilføjKunde(new Kunde { KundeId = 1, Navn = "John", Email = "JohnDeere@eksempel.com", Mobil = "20223420" });
+            kundeRep.TilføjKunde(new Kunde { KundeId = 2, Navn = "Søren", Email = "SørenBregne@eksempel.com", Mobil = "90100910" });
 
 
             bool kørKundeMenu = true;

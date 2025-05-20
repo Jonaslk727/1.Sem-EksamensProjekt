@@ -94,14 +94,15 @@ public class KundeRepo
         if (_kunder.Count == 0)
         {
             Console.WriteLine("Ingen kunder fundet.");
+            Console.ReadKey();
             return;
         }
         else
         {
-            Console.WriteLine("Dyr i systemet:");
-            foreach (var dyr in _kunder)
+            Console.WriteLine("Kunder i systemet:");
+            foreach (var kunde in _kunder)
             {
-                Console.WriteLine(dyr);
+                Console.WriteLine(kunde.VisInfo());
             }
         }
         Console.ReadKey();

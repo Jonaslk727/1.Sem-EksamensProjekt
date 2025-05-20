@@ -17,12 +17,15 @@ namespace ClassLibrary1.Models
         public bool IsPremiumMember { get; set; }
         public string Mobil { get; set; } // Added this property to fix the issue
 
-        public void VisInfo()
+        public string VisInfo()
         {
-            Console.WriteLine($"Kunde ID: {KundeId}");
-            Console.WriteLine($"Navn: {Navn}");
-            Console.WriteLine($"Email: {Email}");
-            Console.WriteLine($"Telefon: {Mobil ?? "N/A"}");
+            return "===========================================================================" +
+                $"\nId : {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}" +
+                $"\n Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}" +
+                $"\n Premium medlem: {IsPremiumMember}" +
+                "\n============================================================================ " +
+                "\n";
+            
         }
 
         public void OpdaterMobil(string nyMobil)
