@@ -342,7 +342,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("=====================================");
                 Console.ResetColor();
                 Console.Write("Vælg en mulighed: ");
-                string medarbejderMenueValg = Console.ReadLine();
+                string medarbejderMenueValg = ValidateUserInput.GetString(Console.ReadLine());
 
                 switch (medarbejderMenueValg)
                 {
@@ -358,7 +358,7 @@ namespace _1.Sem_EksamensProjekt
 
                         // ID skal være tal
                         Console.Write("ID            : ");
-                        string input = Console.ReadLine();
+                        string input = ValidateUserInput.GetString(Console.ReadLine());
 
                         // Skal have numeric input
                         if (int.TryParse(input, out medarbejderId) )
