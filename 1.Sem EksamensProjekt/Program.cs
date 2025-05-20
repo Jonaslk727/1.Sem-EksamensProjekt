@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Runtime.InteropServices;
 using System.Text;
+using ClassLibrary1.Interfaces;
 using ClassLibrary1.Models;
 using ClassLibrary1.Repositories;
 using ClassLibrary1.Services;
@@ -349,20 +350,36 @@ namespace _1.Sem_EksamensProjekt
                         Console.ResetColor();
 
                         Medarbejder nye = new Medarbejder();
+                        int medarbejderId;
 
-                        Console.Write("ID            : "); nye.MedarbejderId = int.Parse(Console.ReadLine());
-                        Console.Write("Navn          : "); nye.Navn = Console.ReadLine();
-                        Console.Write("Afdeling      : "); nye.Afdeling = Console.ReadLine();
-                        Console.Write("Stilling      : "); nye.Stilling = Console.ReadLine();
-                        Console.Write("Email         : "); nye.Email = Console.ReadLine();
-                        Console.Write("Telefon       : "); nye.Telefonnummer = Console.ReadLine();
+                        // ID skal være tal
+                        Console.Write("ID            : ");
+                        string input = Console.ReadLine();
 
-                        repo.TilføjMedarbejder(nye);
+                        // Skal have numeric input
+                        if (int.TryParse(input, out medarbejderId))
+                        {
+                            nye.MedarbejderId = medarbejderId;
 
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
-                        Console.WriteLine("=====================================");
-                        Console.ResetColor();
+                            Console.Write("Navn          : "); nye.Navn = Console.ReadLine();
+                            Console.Write("Afdeling      : "); nye.Afdeling = Console.ReadLine();
+                            Console.Write("Stilling      : "); nye.Stilling = Console.ReadLine();
+                            Console.Write("Email         : "); nye.Email = Console.ReadLine();
+                            Console.Write("Telefon       : "); nye.Telefonnummer = Console.ReadLine();
+
+                            // Only add employee when ID input is valid
+                            repo.TilføjMedarbejder(nye);
+
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n Medarbejder tilføjet succesfuldt!");
+                            Console.WriteLine("=====================================");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter et tal Id");
+                        }
+
                         Console.ReadKey();
                         break;
                     case "2":

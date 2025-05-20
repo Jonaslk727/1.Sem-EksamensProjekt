@@ -58,7 +58,7 @@ namespace ClassLibrary1.Repositories
         {
             foreach (Medarbejder medarbejder in medarbejdere)
             {
-                if (medarbejder.MedarbejderId == medarbejderId)
+                if (int.TryParse(Console.ReadLine(), out medarbejderId) && medarbejder.MedarbejderId == medarbejderId)
                 {
                     return true;
                 }
