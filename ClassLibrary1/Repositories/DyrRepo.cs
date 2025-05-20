@@ -54,20 +54,15 @@ namespace ClassLibrary1.Services
 
             Dyr nytDyr = new(navn, artType, race, vægt, fødselsdag, køn, info);
             DyrList.Add(nytDyr.ChipNummer, nytDyr);
-
+            Console.WriteLine();
             Console.WriteLine($"Dyr med ID {nytDyr.ChipNummer} er blevet oprettet.");
             Console.ReadKey();
         }
 
         public bool Delete()
         {
-            int id;
-            do
-            {
-                Console.WriteLine("Indtast dyrets ID, som du vil slette::");
-
-            } while (!int.TryParse(Console.ReadLine(), out id));
-            
+            Console.WriteLine("Indtast ID'et på det dyr der skal slettes:");
+            int id = ValidateUserInput.GetInt(Console.ReadLine());
 
             if (DyrList.ContainsKey(id))
             {
@@ -98,7 +93,7 @@ namespace ClassLibrary1.Services
             {
                 case SøgDyrType.Navn:
                     Console.WriteLine("Indtast dyrets navn:");
-                    string name = Console.ReadLine();
+                    string name = ValidateUserInput.GetString(Console.ReadLine());
                     foreach (var dyr in DyrList.Values)
                     {   
                         string dyrNavn = dyr.Navn.ToLower();
@@ -111,7 +106,7 @@ namespace ClassLibrary1.Services
                     break;
                 case SøgDyrType.Id:
                     Console.WriteLine("Indtast dyrets ID:");
-                    int id = int.Parse(Console.ReadLine());
+                    int id = ValidateUserInput.GetInt(Console.ReadLine());
                     if (DyrList.ContainsKey(id))
                     {   // add dyr objektet med id til listen
                         dyrList.Add(DyrList[id]);
@@ -123,22 +118,17 @@ namespace ClassLibrary1.Services
                     break;
 
                 case SøgDyrType.Art:
+
                     Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
-                    string artInput = Console.ReadLine();
-                    // kikker efter om input er en gyldig enum værdi
-                    if (Enum.TryParse(artInput, true, out ArtType art))
+                    ArtType art = ValidateUserInput.GetArtType(Console.ReadLine());
+                        
+                    foreach (var dyr in DyrList.Values)
                     {
-                        foreach (var dyr in DyrList.Values)
-                        {
-                            if (dyr.Art == art)
-                            {
-                                dyrList.Add(dyr);
-                            }
-                        }
+                        if (dyr.Art == art) dyrList.Add(dyr);
                     }
                     break;
-
             }
+
             if (dyrList.Count == 0)
             {
                 Console.WriteLine("Ingen dyr fundet.");
@@ -229,9 +219,9 @@ namespace ClassLibrary1.Services
         /// <param name="id"></param>
         public void PrintDyretsLog()
         {
-            int id;
+            
             Console.WriteLine("Indtast dyrets ID:");
-            int.TryParse(Console.ReadLine(), out id);
+            int id = ValidateUserInput.GetInt(Console.ReadLine());
 
             if (DyrList.ContainsKey(id))
             {
