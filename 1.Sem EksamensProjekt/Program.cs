@@ -173,7 +173,7 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void MedarbejderKundeMenu()
+        static void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
             KundeRepo repo = new KundeRepo();
 
