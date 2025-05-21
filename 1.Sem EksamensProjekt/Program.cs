@@ -454,7 +454,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         KDyrMenu dyrMenu = new KDyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
-                        dyrMenu.KundeDyrMenu();
+                        dyrMenu.KundeDyrMenu(AktuelKunde);
                         break;
                     case "2":
                         KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo, aktuelKunde);
