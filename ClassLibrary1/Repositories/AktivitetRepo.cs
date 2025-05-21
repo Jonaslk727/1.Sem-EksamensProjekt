@@ -112,5 +112,39 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        public void VisDeltagerlisteForAktivitet()
+        {
+            Console.Write("Indtast ID på aktiviteten: ");
+            if (!int.TryParse(Console.ReadLine(), out int aktivitetId))
+            {
+                Console.WriteLine("Ugyldigt ID.");
+                return;
+            }
+
+            if (!AlleAktiviteter.TryGetValue(aktivitetId, out var aktivitet))
+            {
+                Console.WriteLine("Aktivitet med det ID findes ikke.");
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"\nDeltagere for '{aktivitet.Title}':");
+
+            if (aktivitet.Tilmeldte.Count == 0)
+            {
+                Console.WriteLine("Ingen tilmeldte deltagere.");
+            }
+            else
+            {
+                foreach (var kunde in aktivitet.Tilmeldte)
+                {
+                    Console.WriteLine($"- {kunde.Navn} (ID: {kunde.KundeId}, Email: {kunde.Email})");
+                }
+            }
+
+            Console.ResetColor();
+            Console.WriteLine("\nTryk på en tast for at vende tilbage...");
+            Console.ReadKey();
+        }
     }
 }

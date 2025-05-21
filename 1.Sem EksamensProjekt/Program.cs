@@ -219,6 +219,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Opret, Slet eller Rediger Aktivitet");
                 Console.WriteLine("2. Vis alle Aktiviteter");
+                Console.WriteLine("3. Vis deltagerliste for en aktivitet");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Tilbage");
                 Console.WriteLine("=====================================");
@@ -231,6 +232,9 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "2":
                         VisAlleAktivitet(AkRepo);
+                        break;
+                    case "3":
+                        AkRepo.VisDeltagerlisteForAktivitet();
                         break;
                     case "0":
                         kørAktivitetMenu = false; // Exit the activity menu
