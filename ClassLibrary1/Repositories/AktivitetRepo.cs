@@ -32,16 +32,6 @@ namespace ClassLibrary1.Services
             Console.WriteLine("Ingen aktivitet med dette ID");
             return false;
         }
-        public void VisAlleAktivitet()
-        {
-            foreach (var n in AlleAktiviteter)
-            {
-                Console.WriteLine();
-                Console.WriteLine(n.ToString());
-                Console.WriteLine();
-                Console.WriteLine("---------------------------");
-            }
-        }
         public void VisBookedeAktiviteter()
         {
             Console.WriteLine("=== Bookede Aktiviteter ===");
@@ -58,21 +48,6 @@ namespace ClassLibrary1.Services
 
             if (!found)
                 Console.WriteLine("Ingen aktiviteter er booket endnu.");
-        }
-        public bool TilmeldAktivitet(int id, List<Kunde> Kunder)
-        {
-            foreach (Aktivitet b in AlleAktiviteter.Values)
-            {
-                if (b.AktivitetID == id)
-                {
-                    foreach (Kunde k in Kunder)
-                    {
-                        b.Tilmeldte.Add(k);
-                    }
-                    return true;
-                }
-            }
-            return false;
         }
         //Bruges i Program.cs til at afmelde en aktivitet
         public bool AfmeldAktivitet(int aktivitetId, int kundeId)

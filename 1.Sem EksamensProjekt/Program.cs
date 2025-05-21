@@ -504,6 +504,24 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        public static void VisAlleAktivitet(AktivitetRepo AkRepo)
+        {
+            Console.WriteLine("Liste over aktiviteter:");
+            var Aktiviteter = AkRepo.AlleAktiviteter;
+            if (Aktiviteter.Count == 0)
+            {
+                Console.WriteLine("Ingen aktiviteter oprettet endnu.");
+            }
+            else
+            {
+                foreach (var aktivitet in Aktiviteter)
+                {
+                    Console.WriteLine(aktivitet);
+                }
+            }
+            Console.WriteLine("Tryk på en tast for at fortsætte...");
+            Console.ReadKey();
+        }
         public static void OpretAktivitet(AktivitetRepo AkRepo)
         {
             Console.WriteLine("Skriv en tittel til Aktiviteten:");
@@ -567,24 +585,6 @@ namespace _1.Sem_EksamensProjekt
 
             AkRepo.OpretAktivitet(title, startTid, slutTid, info);
             Console.WriteLine("Aktivitet oprettet");
-            Console.ReadKey();
-        }
-        public static void VisAlleAktivitet(AktivitetRepo AkRepo)
-        {
-            Console.WriteLine("Liste over aktiviteter:");
-            var Aktiviteter = AkRepo.AlleAktiviteter;
-            if (Aktiviteter.Count == 0)
-            {
-                Console.WriteLine("Ingen aktiviteter oprettet endnu.");
-            }
-            else
-            {
-                foreach (var aktivitet in Aktiviteter)
-                {
-                    Console.WriteLine(aktivitet);
-                }
-            }
-            Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
         static public void SletAktivitet(AktivitetRepo AkRepo)
