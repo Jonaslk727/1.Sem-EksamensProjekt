@@ -30,6 +30,7 @@ namespace ClassLibrary1.View
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("==========================================");
                 Console.WriteLine("               Besøg et dyr");
                 Console.WriteLine("==========================================");

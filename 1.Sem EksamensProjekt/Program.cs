@@ -387,7 +387,6 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("\n=========================================");
                 Console.WriteLine("       Kunde Menu - Vælg Kategori  ");
                 Console.WriteLine("=========================================");
-                Console.ResetColor();
 
                 // Section: Dyr
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -396,7 +395,6 @@ namespace _1.Sem_EksamensProjekt
                 // Section: Aktivitet
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("\n 2. Aktivitet");
-                Console.ForegroundColor = ConsoleColor.Yellow;
 
                 // Exit Option
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -404,7 +402,7 @@ namespace _1.Sem_EksamensProjekt
 
                 // Vis kommende aktiviteter
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("\n=== Min Oversigt ===");
+                Console.WriteLine("\n============= Min Oversigt =============");
 
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nDine kommende aktiviteter:");
@@ -432,9 +430,9 @@ namespace _1.Sem_EksamensProjekt
                     Console.WriteLine("Ingen tilmeldte aktiviteter.");
                 }
 
-                Console.ResetColor();
-
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
+                Console.ResetColor();
                 string valg = Console.ReadLine();
                 switch (valg)
                 {
@@ -960,11 +958,17 @@ namespace _1.Sem_EksamensProjekt
         }
         public static void TestDataAktivitet(AktivitetRepo repo)
         {
-            string Title = "Hundetræning";
-            DateTime StartTid = new(2025, 10, 1, 10, 0, 0);
-            DateTime SlutTid = new(2025, 10, 1, 12, 0, 0);
-            string info = "Træning for hunde og ejere";
-            repo.OpretAktivitet(Title, StartTid, SlutTid, info);
+            string Title1 = "Hundetræning";
+            DateTime StartTid1 = new(2025, 10, 1, 10, 0, 0);
+            DateTime SlutTid1 = new(2025, 10, 1, 12, 0, 0);
+            string info1 = "Træning for hunde og ejere";
+            repo.OpretAktivitet(Title1, StartTid1, SlutTid1, info1);
+
+            string Title2 = "Katteyoga";
+            DateTime StartTid2 = new(2025, 11, 5, 14, 30, 0);
+            DateTime SlutTid2 = new(2025, 11, 5, 15, 30, 0);
+            string info2 = "Afslapning og leg med katte";
+            repo.OpretAktivitet(Title2, StartTid2, SlutTid2, info2);
         }
         public static void TestDataKunder(KundeRepo kundeRepo)
         {
