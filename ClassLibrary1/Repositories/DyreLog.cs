@@ -11,17 +11,17 @@ using ClassLibrary1.Models;
 namespace ClassLibrary1.Services
 {
     public class DyreLog
-    {// Klasse til administration af dyrelægelog og besøgsregistrering  
+    {  
         public Dictionary<int, Lægelog> LægeLogs = new Dictionary<int, Lægelog>();
         public List<Besøg> BesøgssLogs = new List<Besøg>();
 
         public void CreateBesøgLog(DateTime Dato, Models.Kunde besøger)
-        {// Metode til at registrere et nyt besøg i systemet
+        {
             Besøg besøg = new Besøg(Dato, besøger);
             BesøgssLogs.Add(besøg);
         }
         public void CreateLægeLog(DateTime dato, string journal)
-        {// Metode til oprettelse af en ny lægelog og tilføjelse til loglisten
+        {
             Lægelog lægelog = new Lægelog(dato, journal);
             LægeLogs.Add(lægelog.Id, lægelog);
         }
@@ -32,7 +32,7 @@ namespace ClassLibrary1.Services
         }
 
         public string GetBesøgsLog()
-        {// Metode til hentning af alle besøgslogs 
+        {
             StringBuilder sb = new StringBuilder();
             if (BesøgssLogs.Count == 0)
             {
@@ -50,7 +50,7 @@ namespace ClassLibrary1.Services
         }
 
         public string GetLægeLog()
-        {// Metode til hentning af alle lægelogs 
+        {
             StringBuilder sb = new StringBuilder();
             if (LægeLogs.Count == 0)
             {

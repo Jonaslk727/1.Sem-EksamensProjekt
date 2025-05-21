@@ -8,22 +8,12 @@ using ClassLibrary1.Services;
 
 namespace ClassLibrary1.Models
 {
-    /// <summary>
-    /// Definerer dyrearter, som kan registreres i systemet.
-    /// </summary>
-
-
     public enum ArtType
     {
         Hund,
         Kat,
         Fugl,
     }
-
-    /// <summary>
-    /// Angiver mulige kønstyper for registrerede dyr.
-    /// </summary>
-
     public enum kønType
     {
         Hankøn,
@@ -61,7 +51,7 @@ namespace ClassLibrary1.Models
         /// </summary>
         /// <returns></returns>
         public override string ToString()
-        {////Override ToString metod til at returnere en formatteret string af Dyeret
+        {
             return $"===========================================================================" +
                 $"\nId : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn: {Køn}" +
                 $"\n Race: {Race} | Fødselsdag: {FødselsDag} | Vægt: {Vægt} kg" +

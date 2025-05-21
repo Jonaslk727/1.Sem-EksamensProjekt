@@ -17,17 +17,16 @@ namespace _1.Sem_EksamensProjekt
         public static Kunde AktuelKunde = null;
         static void Main(string[] args)
         {
-            //Opretter instanser af repository klasserne
             var DyrRep = new DyrRepo();
             var BookingRep = new BookingRepo();
             var AkRepo = new AktivitetRepo();
             var KundeRep = new KundeRepo();
             var MedarbejderRep = new MedarbejderRepo();
-            
+            //var kundeRepo = new KundeRepo();
             
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
-            
+
             // Tilføj testdata til KundeRepo
             bool status = false;
             KundeRep.TilføjKunde(new Kunde(1, "Oliver Thune", "anders@example.com", "12345678", new DateTime(1998, 5, 14), DateTime.Now, true),status);
@@ -60,7 +59,7 @@ namespace _1.Sem_EksamensProjekt
                 //Læser brugerens valg
                 string valg = Console.ReadLine();
                 switch (valg)
-                {//switch statement til at vælg hvilken menu der skal åbnes
+                {
                     case "1":
                         MedarbejderMenu(AkRepo, DyrRep, KundeRep, MedarbejderRep);
                         break;
@@ -102,14 +101,13 @@ namespace _1.Sem_EksamensProjekt
             }
         }
         static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
-        {//Denne metode er til at vise medarbejder menuen og dennes submenuer
+        {
             KundeMenu kundeMenu = new KundeMenu();
 
-            // Tilføj testdata til MedarbejderRepo
             medarbejderRepo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 1, Navn = "Tim", Afdeling = "IT", Stilling = "Udvikler", Email = "tim@example.com", Telefonnummer = "12345678" });
             medarbejderRepo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 2, Navn = "Sara Jensen", Afdeling = "HR", Stilling = "HR Chef", Email = "sara@example.com", Telefonnummer = "87654321" });
 
-            bool fortsæt = true;//bool til at køre menuen
+            bool fortsæt = true;
             while (fortsæt)
             {
                 Console.Clear();
@@ -145,7 +143,7 @@ namespace _1.Sem_EksamensProjekt
 
                 string valg = Console.ReadLine();
                 switch (valg)
-                {//switch stement til at vælg hvilken menu der skal åbnes
+                {
                     case "1":
                         MedarbejderDyrMenu(dyrRep);
                         break;
@@ -168,8 +166,8 @@ namespace _1.Sem_EksamensProjekt
             }
         }
         static void MedarbejderDyrMenu(DyrRepo dyrRep)
-        {// Denne metode er til at vise Dyr menuen og dens submenuer
-            bool kørDyrMenu = true;// bool til at køre menuen
+        {
+            bool kørDyrMenu = true;
             while (kørDyrMenu)
             {
                 Console.Clear();
@@ -225,10 +223,10 @@ namespace _1.Sem_EksamensProjekt
             }
         }
         static void MedarbejderAktivitetMenu(AktivitetRepo AkRepo)
-        {// denne metode er til at vise aktivitet menuen og dens submenuer
+        {
             bool kørAktivitetMenu = true;
             while (kørAktivitetMenu)
-            {   //Header section
+            {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=====================================");
@@ -244,7 +242,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.ResetColor();
                 string aktivitetValg = Console.ReadLine();
                 switch (aktivitetValg)
-                {// switch statemnt til at vælg hvilken menu der skal åbnes
+                {
                     case "1":
                         RedigerAktivitet(AkRepo);
                         break;
@@ -263,15 +261,11 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-       
         static void MedarbejderMedarbejderMenu(MedarbejderRepo repo)
-       //Denne metoder er til at vise medarbejder menuen
         {
-            bool kørMedarbejderMenu = true;// bool til at køre menuen
+            bool kørMedarbejderMenu = true;
             while (kørMedarbejderMenu)
-           
             {
-                // header Section
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=====================================");
@@ -288,28 +282,27 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("=====================================");
                 Console.ResetColor();
                 Console.Write("Vælg en mulighed: ");
-                
                 string medarbejderMenueValg = ValidateUserInput.GetString(Console.ReadLine());
-                // Her har jeg brugt denne metode fra vores validationsklasse
+
                 switch (medarbejderMenueValg)
-                {//switch staement til at vælg hvad der skal ske i menuen
-                        case "1":
+                {
+                    case "1":
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\n=====================================");
                         Console.WriteLine("        Opret NyMedarbejder         ");
                         Console.WriteLine("=====================================");
                         Console.ResetColor();
-                       
+
                         Medarbejder nye = new Medarbejder();
                         int medarbejderId;
 
                         // ID skal være tal
                         Console.Write("ID            : ");
-                        string input = ValidateUserInput.GetString(Console.ReadLine());// Her har jeg brugt denne metode fra vores validationsklasse
+                        string input = ValidateUserInput.GetString(Console.ReadLine());
 
                         // Skal have numeric input
                         if (int.TryParse(input, out medarbejderId) )
-                        { //tejk skal være et tal
+                        {
                             nye.MedarbejderId = medarbejderId;
 
                             Console.Write("Navn          : "); nye.Navn = Console.ReadLine();
@@ -318,7 +311,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.Write("Email         : "); nye.Email = Console.ReadLine();
                             Console.Write("Telefon       : "); nye.Telefonnummer = Console.ReadLine();
 
-                            // Tilføj kun medarbejder, når ID-input er gyldigt
+                            // Only add employee when ID input is valid
                             repo.TilføjMedarbejder(nye);
 
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -333,15 +326,12 @@ namespace _1.Sem_EksamensProjekt
                         }
                                                 
                         break;
-                   
                     case "2":
-                        //Vis medarbedejder 
                         repo.VisMedarbejder();
                         Console.WriteLine("\nTryk på en tast for at vende tilbage...");
                         Console.ReadKey();
                         break;
                     case "3":
-                        // Opdater medarbejder
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.WriteLine("\n=====================================");
                         Console.WriteLine("        Opdater Medarbejder           ");
@@ -349,10 +339,10 @@ namespace _1.Sem_EksamensProjekt
                         Console.ResetColor();
 
                         Console.Write("Indtast ID på medarbejder du vil opdatere: ");
-                        int opdaterId = ValidateUserInput.GetInt(Console.ReadLine()); // Her har jeg brugt denne metode fra vores validationsklasse
+                        int opdaterId = ValidateUserInput.GetInt(Console.ReadLine());
 
                         if (repo.FindMedarbejder(opdaterId))
-                        {   // Hvis medarbejder findes , så opdater
+                        {
                             Medarbejder opdateret = new Medarbejder { MedarbejderId = opdaterId };
 
                             Console.WriteLine("\nIndtast de nye oplysninger:");
@@ -365,7 +355,7 @@ namespace _1.Sem_EksamensProjekt
                             Console.WriteLine("------------------------------------------------");
 
                             repo.OpdaterMedarbejder(opdaterId, opdateret);
-                            //opdaterer medarbejder
+
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("\n Medarbejder opdateret succesfuldt!");
                             Console.WriteLine("=====================================");
@@ -385,7 +375,7 @@ namespace _1.Sem_EksamensProjekt
                     case "4":
                         Console.Write("Indtast ID på medarbejder du vil slette: ");
                         int sletId = ValidateUserInput.GetInt(Console.ReadLine());
-                        // Her har jeg brugt denne metode fra vores validationsklasse
+
                         repo.SletMedarbejder(sletId);
                         Console.ReadKey();
                         break;
@@ -399,7 +389,7 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
+        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
             while (fortsæt)
@@ -461,7 +451,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.ResetColor();
                 string valg = Console.ReadLine();
                 switch (valg)
-                {//switch statement til at vælg hvilken menu der skal åbnes
+                {
                     case "1":
                         KDyrMenu dyrMenu = new KDyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
                         dyrMenu.KundeDyrMenu(AktuelKunde);
@@ -483,10 +473,10 @@ namespace _1.Sem_EksamensProjekt
         }
         //METODER TIL FUNKTIONALITET I MENUER:
         static void RedigerAktivitet(AktivitetRepo AkRepo)
-        {//Denne metode er til at vise aktivitet menuen og dennes submenuer
+        {
             bool fortsæt = true;
             while (fortsæt)
-            {//Header section
+            {
                 Console.Clear();
                 // Header Section
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -508,7 +498,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("\n=========================================");
                 string valg = Console.ReadLine();
                 switch (valg)
-                {//switch statement til at vælg hvilken menu der skal åbnes
+                {
                     case "1":
                         OpretAktivitet(AkRepo);
                         break;
@@ -549,7 +539,7 @@ namespace _1.Sem_EksamensProjekt
             Console.ReadKey();
         }
         public static void OpretAktivitet(AktivitetRepo AkRepo)
-        {//Denne metode er til at oprette en aktivitet
+        {
             Console.WriteLine("Skriv en tittel til Aktiviteten:");
             string title = Console.ReadLine();
 
@@ -564,7 +554,7 @@ namespace _1.Sem_EksamensProjekt
                     input = Console.ReadLine();
 
                     if (input != null && input.Length == 4 && int.TryParse(input, out year))
-                    {// tejkker om input er et tal og om det er 4 cifre og om det er et gyldigt årstal
+                    {
                         fortsæt = true;
                     }
                     else
@@ -577,7 +567,7 @@ namespace _1.Sem_EksamensProjekt
                     Console.WriteLine("Skriv et gyldigt årstal");
                 }
             } while (!fortsæt);
-            
+
             Console.WriteLine("Indtast måned:");
             int month = int.Parse(Console.ReadLine());
 
@@ -586,7 +576,7 @@ namespace _1.Sem_EksamensProjekt
 
             Console.WriteLine("Indtast time:");
             int time = int.Parse(Console.ReadLine());
-            
+
             Console.WriteLine("Indtast minut:");
             int minute = int.Parse(Console.ReadLine());
 
@@ -600,41 +590,21 @@ namespace _1.Sem_EksamensProjekt
             int endTime = int.Parse(Console.ReadLine());
             Console.WriteLine("Indtast slut minut:");
             int endMinute = int.Parse(Console.ReadLine());
-            
+
             DateTime slutTid = new DateTime(year, endMonth, endDay, endTime, endMinute, 0);
-            
+
             Console.WriteLine($"Start Dato: {startTid:dd-MM-yyyy HH:mm}");
             Console.WriteLine($"Slut Dato: {slutTid:dd-MM-yyyy HH:mm}");
             Console.WriteLine();
             Console.WriteLine("Skriv mere info");
             string info = Console.ReadLine();
-            
+
             AkRepo.OpretAktivitet(title, startTid, slutTid, info);
-            // metode til at Opret Aktivitet
             Console.WriteLine("Aktivitet oprettet");
             Console.ReadKey();
         }
-        public static void VisAlleAktivitet(AktivitetRepo AkRepo)
-            // metode til at vis Aktivtietet
-        { 
-            Console.WriteLine("Liste over aktiviteter:");
-            var Aktiviteter = AkRepo.AlleAktiviteter;
-            if (Aktiviteter.Count == 0)
-            {
-                Console.WriteLine("Ingen aktiviteter oprettet endnu.");
-            }
-            else
-            {
-                foreach (var aktivitet in Aktiviteter)
-                {
-                    Console.WriteLine(aktivitet);
-                }
-            }
-            Console.WriteLine("Tryk på en tast for at fortsætte...");
-            Console.ReadKey();
-        }
         static public void SletAktivitet(AktivitetRepo AkRepo)
-        { // Denne metode er til at slette aktivitet
+        {
             Console.WriteLine("Skriv ID på aktiviteten du vil slette:");
             int id = int.Parse(Console.ReadLine());
             bool slettet = AkRepo.SletAktivitet(id);
@@ -648,7 +618,7 @@ namespace _1.Sem_EksamensProjekt
             }
         }
         static void RedigerOprettetAktivitet(AktivitetRepo AkRepo)
-        { //Denne metode er til at redigere aktivitet
+        {
             Console.Clear();
             Console.WriteLine("Indtast ID på aktivitet du vil redigere:");
             if (!int.TryParse(Console.ReadLine(), out int id))
@@ -658,7 +628,7 @@ namespace _1.Sem_EksamensProjekt
             }
 
             if (!AkRepo.AlleAktiviteter.TryGetValue(id, out var aktivitet))
-            {// tekker om aktiviteten findes
+            {
                 Console.WriteLine("Aktivitet med ID findes ikke.");
                 return;
             }
@@ -672,7 +642,6 @@ namespace _1.Sem_EksamensProjekt
             {
                 Console.Write("Ny startdato og tid (dd-MM-yyyy HH:mm): ");
                 if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out nyStart))
-                    //tekker om  start dato er gyldif
                     break;
                 Console.WriteLine("Ugyldigt format. Prøv igen.");
             }
@@ -682,7 +651,6 @@ namespace _1.Sem_EksamensProjekt
             {
                 Console.Write("Ny slutdato og tid (dd-MM-yyyy HH:mm): ");
                 if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy HH:mm", null, System.Globalization.DateTimeStyles.None, out nySlut))
-                   
                     break;
                 Console.WriteLine("Ugyldigt format. Prøv igen.");
             }
@@ -691,8 +659,8 @@ namespace _1.Sem_EksamensProjekt
             Console.Write("Ny beskrivelse: ");
             string nyBeskrivelse = Console.ReadLine();
 
-            bool succes = AkRepo.RedigerAktivitet(id, nyTitle, nyStart, nySlut, nyBeskrivelse);//Meode til atrediger aktivitet
-            
+            bool succes = AkRepo.RedigerAktivitet(id, nyTitle, nyStart, nySlut, nyBeskrivelse);
+
             if (succes)
             {
                 Console.WriteLine("Aktivitet er blevet opdateret!");
@@ -708,10 +676,10 @@ namespace _1.Sem_EksamensProjekt
 
         #region Dyr
         static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
-        {// Denne metode er til at Oprette, slette og rediger dyr
+        {
             bool fortsæt = true;
             while (fortsæt)
-            { //header section
+            {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("==========================================");
@@ -728,7 +696,7 @@ namespace _1.Sem_EksamensProjekt
 
                 string valg = Console.ReadLine();
                 switch (valg)
-                {//switch steament til at vælg hvilken menu der skal åbnes
+                {
                     case "1":
                         dyrRep.Create();
                         Console.Clear();
@@ -760,7 +728,7 @@ namespace _1.Sem_EksamensProjekt
         }
 
         static void SøgDyr(DyrRepo dyrRep)
-        { //Denne metode er til at søge efter dyr  
+        {   
             Console.WriteLine("Søg efter dyr:");
             Console.WriteLine("1. Søg efter navn");
             Console.WriteLine("2. Søg efter ID");
@@ -770,7 +738,7 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine();
 
             switch (valg)
-            {//switch steament til at vælg hvilken menu der skal åbnes
+            {
                 case "1":
                     dyrRep.Read(SøgDyrType.Navn);
                     break;
@@ -833,10 +801,10 @@ namespace _1.Sem_EksamensProjekt
             
         //}
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
-        {//Denne metode er til at vise aktivitet menuen og dens submenuer
+        {
             bool fortsæt = true;
             do
-            { //Header section
+            {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("==========================================");
@@ -867,7 +835,7 @@ namespace _1.Sem_EksamensProjekt
                     case "4":
                         Console.Write("Indtast ID på aktivitet du vil afmelde: ");
                         if (!int.TryParse(Console.ReadLine(), out int aktivitetId))
-                        {// tekker gyldig input
+                        {
                             Console.WriteLine("Ugyldigt ID.");
                             Console.ReadKey();
                             break;
@@ -875,14 +843,14 @@ namespace _1.Sem_EksamensProjekt
 
                         Console.Write("Indtast dit kunde-ID: ");
                         if (!int.TryParse(Console.ReadLine(), out int kundeId))
-                        {// tekker gyldig input
+                        {
                             Console.WriteLine("Ugyldigt kunde-ID.");
                             Console.ReadKey();
                             break;
                         }
 
                         bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, aktuelKunde.KundeId);
-                        //tekker om afmelding er succesfuld
+
                         if (afmeldt)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
@@ -910,16 +878,16 @@ namespace _1.Sem_EksamensProjekt
             } while (fortsæt);
         }
         static void Updater(DyrRepo dyrRep)
-        {// Denne metode er til at redigere dyret
+        {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
             if (!int.TryParse(Console.ReadLine(), out int id)) // prøver at parse id'et til int
-            {// tekker gyldig input
+            {
                 Console.WriteLine("Ugyldigt ID, prøv igen.");
                 Console.ReadKey();
                 return;
             }
             if (!dyrRep.DyrList.TryGetValue(id, out var dyr)) // prøver at finde dyret i listen
-            {// tekker gyldig input
+            {
                 Console.WriteLine("Dyr med ID findes ikke.");
                 Console.ReadKey();
                 return;
@@ -983,9 +951,9 @@ namespace _1.Sem_EksamensProjekt
         }
         //TEST DATA:
         static void MogdataDyr(DyrRepo DyrRep)
-        {//Denne metode er til at oprette test data til dyr
+        {
             List<Dyr> dyrList = new List<Dyr>()
-            {//Oprettelse af test data til dyr
+            {
                 new Dyr("Max", ArtType.Hund, "Labrador", 30, new DateTime(2020, 5, 1), kønType.Hankøn, "Venlig hund"),
                 new Dyr("Bella", ArtType.Kat, "Perser", 5, new DateTime(2021, 3, 15), kønType.Hunkøn, "Legesyg kat"),
                 new Dyr("Charlie", ArtType.Fugl, "Parakit", 0.5, new DateTime(2022, 8, 10), kønType.Hankøn, "Sangfugl"),
@@ -995,7 +963,7 @@ namespace _1.Sem_EksamensProjekt
                 new Dyr("Rocky", ArtType.Hund, "Bulldog", 25, new DateTime(2018, 4, 12), kønType.Hankøn, "Stærk og venlig"),
             };
             for (int i = 0; i < dyrList.Count(); i++)
-            {// for loop til at tilføje dyrene til listen
+            {
                 DyrRep.DyrList.Add(dyrList[i].ChipNummer, dyrList[i]);
             }
         }
@@ -1014,7 +982,7 @@ namespace _1.Sem_EksamensProjekt
             repo.OpretAktivitet(Title2, StartTid2, SlutTid2, info2);
         }
         public static void TestDataKunder(KundeRepo kundeRepo)
-        {//denne metode er til at oprette test data til kunder
+        {
             
             Kunde Kunde1 = new Kunde()
             {
@@ -1044,7 +1012,7 @@ namespace _1.Sem_EksamensProjekt
             #endregion
             #region Nyttige metoder
         public static DateTime GetDateTimeInput(string prompt)
-        {//Denne metode er til at få input fra brugeren
+        {
             DateTime dateTime;
             while (true)
             {
