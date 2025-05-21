@@ -8,24 +8,24 @@ using ClassLibrary1.Services;
 
 namespace ClassLibrary1.View
 {
-    public class DyrMenu
+    public class KDyrMenu
     {
         DyrRepo _dyrRep = new DyrRepo();
         BookingRepo _bookingRep = new BookingRepo();
         AktivitetRepo _aktivitetRep = new AktivitetRepo();
         KundeRepo _kundeRepo = new KundeRepo();
 
-        public DyrMenu(DyrRepo dyrRep, BookingRepo bookingRep, AktivitetRepo aktivitetRep, KundeRepo kundeRepo)
+        public KDyrMenu(DyrRepo dyrRep, BookingRepo bookingRep, AktivitetRepo aktivitetRep, KundeRepo kundeRepo)
         {
             _dyrRep = dyrRep;
             _bookingRep = bookingRep;
             _aktivitetRep = aktivitetRep;
             _kundeRepo = kundeRepo;
         }
-        
+
 
         public void KundeDyrMenu()
-        { 
+        {
             bool fortsæt = true;
             do
             {
@@ -62,7 +62,7 @@ namespace ClassLibrary1.View
                         break;
                 }
             } while (fortsæt);
-            
+
         }
     }
 }

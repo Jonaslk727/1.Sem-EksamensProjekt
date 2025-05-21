@@ -146,7 +146,8 @@ namespace _1.Sem_EksamensProjekt
         {
             bool kørDyrMenu = true;
             while (kørDyrMenu)
-            {   Console.Clear();
+            {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=====================================");
                 Console.WriteLine("       --- Dyr Menu ---      ");
@@ -379,7 +380,7 @@ namespace _1.Sem_EksamensProjekt
                 switch (valg)
                 {
                     case "1":
-                        DyrMenu dyrMenu = new DyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
+                        KDyrMenu dyrMenu = new KDyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
                         dyrMenu.KundeDyrMenu();
                         break;
                     case "2":
