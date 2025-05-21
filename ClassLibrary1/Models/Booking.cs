@@ -13,7 +13,7 @@ namespace ClassLibrary1.Models
     }
     public class Booking
     {   
-        private static int _nextId = 1;
+        private static int _nextId = 0;
         public int BookingId { get; set; }
         public BookingType Type { get; set; }
         public DateTime StartTid {  get; set; }
@@ -24,7 +24,7 @@ namespace ClassLibrary1.Models
 
         public Booking(BookingType type, DateTime startTid, int varighed, Kunde booker)
         {
-            BookingId = _nextId++;
+            BookingId = ++_nextId;
             Type = type;
             StartTid = startTid;
             Varighed = varighed;

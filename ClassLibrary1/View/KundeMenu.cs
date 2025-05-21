@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ClassLibrary1.Models;
+using ClassLibrary1.Services;
+
+namespace ClassLibrary1.View
+{
+    public class KundeMenu
+    {
+        public void MedarbejderKundeMenu(KundeRepo kundeRep)
+        {
+
+            
+            bool kørKundeMenu = true;
+            while (kørKundeMenu)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n=====================================");
+                Console.WriteLine("       --- Kunde Menu ---      ");
+                Console.WriteLine("=====================================");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("1. Tilføj Kunder");
+                Console.WriteLine("2. Vis alle Kunder");
+                Console.WriteLine("3. Opdater Kunder");
+                Console.WriteLine("4. Slet Kunder");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("0. Tilbage");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("=====================================");
+                Console.ResetColor();
+                Console.Write("Vælg en mulighed: ");
+                string kundeValg = Console.ReadLine();
+
+                switch (kundeValg)
+                {
+                    case "1":
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\n=====================================");
+                        Console.WriteLine("        Opret Ny Kunde         ");
+                        Console.WriteLine("=====================================");
+                        Console.ResetColor();
+
+                        Kunde ny = new Kunde();
+
+                        Console.Write("ID            : "); ny.KundeId = int.Parse(Console.ReadLine());
+                        Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
+                        Console.Write("Email         : "); ny.Email = Console.ReadLine();
+                        Console.Write("Telefon       : "); ny.Mobil = Console.ReadLine();
+
+                        kundeRep.TilføjKunde(ny, true);
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\n Kunde tilføjet succesfuldt!");
+                        Console.WriteLine("=====================================");
+                        Console.ResetColor();
+                        break;
+
+                    case "2":
+                        kundeRep.VisKunder();// Vis alle kunder
+                        break;
+
+                    case "3":
+                        // Opdater kunde
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\n=====================================");
+                        Console.WriteLine("        Opdater Kunde           ");
+                        Console.WriteLine("=====================================");
+                        Console.ResetColor();
+
+                        Console.Write("Indtast ID på Kunde du vil opdatere: ");
+                        int opdaterId = int.Parse(Console.ReadLine());
+
+                        if (kundeRep.FindKunde(opdaterId))
+                        {
+                            Kunde opdateret = new Kunde { KundeId = opdaterId };
+
+                            Console.WriteLine("\nIndtast de nye oplysninger:");
+                            Console.WriteLine("------------------------------------------------");
+                            Console.Write("Nyt navn         : "); opdateret.Navn = Console.ReadLine();
+                            Console.Write("Ny Email         : "); opdateret.Email = Console.ReadLine();
+                            Console.Write("Nyt Telefonnummer: "); opdateret.Mobil = Console.ReadLine();
+                            Console.WriteLine("------------------------------------------------");
+
+                            kundeRep.OpdaterKunde(opdateret.KundeId, opdateret.Navn, opdateret.Email, opdateret.Mobil);
+
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n Kunde opdateret succesfuldt!");
+                            Console.WriteLine("=====================================");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n=====================================");
+                            Console.WriteLine($" Ingen Kunde fundet med ID {opdaterId}.");
+                            Console.WriteLine("=====================================");
+                            Console.ResetColor();
+                        }
+                        break;
+
+                    case "4":
+                        // Slet kunde
+                        Console.Write("Indtast ID på Kunde du vil slette: ");
+                        int sletId = int.Parse(Console.ReadLine());
+                        kundeRep.SletKunde(sletId);
+                        break;
+
+                    case "0":
+                        kørKundeMenu = false; //forlad kunde menuen
+                        break;
+
+                    default:
+                        Console.WriteLine("Ugyldigt valg, prøv igen.");
+                        break;
+                }
+            }
+        }
+    }
+}

@@ -48,11 +48,15 @@ namespace ClassLibrary1.Services
                     do
                     {
                         Console.WriteLine("Skriv Id'et på kunden der vil booke:");
-                        if (int.TryParse(Console.ReadLine(), out bookerId) && kundeRep.HentKunde(bookerId) != null) break;
+                        inputId = Console.ReadLine();
+                        if (!int.TryParse(inputId, out bookerId)) Console.WriteLine("Ugyldigt ID. Prøv igen med et nummer.");                        
+                        else if (kundeRep.HentKunde(bookerId) != null) break;
                         // fejlmeddelelser:
-                        else if (!int.TryParse(Console.ReadLine(), out bookerId)) Console.WriteLine("Ugyldigt ID. Prøv igen.");
-                        else if (kundeRep.HentKunde(bookerId) == null) Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
-                            
+                        //else if (!int.TryParse(Console.ReadLine(), out bookerId)) Console.WriteLine("Ugyldigt ID. Prøv igen.");
+                        //else if (kundeRep.HentKunde(bookerId) == null) Console.WriteLine("Kunde med dette ID findes ikke. Prøv igen.");
+
+                        Console.WriteLine("Dette Id findes ikke, Prøv igen");
+
                     } while (true);
 
                         booker = kundeRep.HentKunde(bookerId);// får kunden

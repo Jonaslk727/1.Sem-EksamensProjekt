@@ -13,7 +13,7 @@ public class KundeRepo
     /// add the customer and will display a message indicating that the customer already exists. Otherwise, the customer
     /// is added to the collection, and a confirmation message is displayed.</remarks>
     /// <param name="kunde">The customer to add. Must not be null and must have a unique <c>Id</c>.</param>
-    public void TilføjKunde(Kunde kunde)
+    public void TilføjKunde(Kunde kunde, bool status)
     {
         foreach (var eksisterendeKunde in _kunder)
         {
@@ -24,13 +24,16 @@ public class KundeRepo
                 Console.WriteLine("Kunde findes allerede.");
                 Console.WriteLine("==========================================\n");
                 Console.ResetColor();
-                Console.ReadKey();  
+                Console.ReadKey();
                 return;
             }
         }
         _kunder.Add(kunde);
-        Console.WriteLine("Kunde tilføjet.");
-        Console.ReadKey();
+        if (status)
+        { 
+            Console.WriteLine("Kunde tilføjet.");
+            Console.ReadKey();
+        }
     }
 
     // Hent en kunde ved ID
@@ -69,25 +72,42 @@ public class KundeRepo
         Console.ResetColor();
     }
 
-    // Opdater en kunde
-    public void OpdaterKunde(int id, string? navn, string? email, Kunde opdateretKunde)
+    // Opdaterer en kunde
+    public void OpdaterKunde(int kundeid, string? navn, string? email, string? mobil)
     {
-        foreach (var kunde in _kunder)
+        try
         {
-            if (kunde.KundeId == id)
+            //Gennemgår listen for at finde kunedn med edt angivne ID
+            foreach (var kunde in _kunder)
             {
-                kunde.Navn = opdateretKunde.Navn;
-                kunde.Email = opdateretKunde.Email;
-                kunde.Mobil = opdateretKunde.Mobil;
-                Console.WriteLine("Kunde opdateret.");
-                return;
+                if (kunde.KundeId == kundeid)
+                {
+                    //opdaterer kundens oplysninger, hvis de ikke er null
+                    if (!string.IsNullOrEmpty(navn)) kunde.Navn = navn;
+                    if (!string.IsNullOrEmpty(email)) kunde.Email = email;
+                    if (!string.IsNullOrEmpty(mobil)) kunde.Mobil = mobil;
+
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nKunde opdateret succesfuldt!");
+                    Console.ResetColor();
+                    return;
+                }
             }
+
+            //Hvis kunden ikke blev fundet
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nIngen kunde fundet med ID " + kundeid + ".");
+            Console.ResetColor();
         }
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("\n==========================================");
-        Console.WriteLine("Ingen kunde fundet med ID " + id + ".");
-        Console.WriteLine("==========================================\n");
-        Console.ResetColor();
+        catch (Exception ex)
+        {
+            //Håndter eventuelle fejl
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nEn fejl opstod under opdatering af kunden:");
+            Console.WriteLine(ex.Message);
+            Console.ResetColor();
+        }
     }
 
     // Vis alle kunder
@@ -107,6 +127,7 @@ public class KundeRepo
                 Console.WriteLine(kunde.VisInfo());
             }
         }
+        Console.WriteLine("\nTryk på en tast for at vende tilbage...");
         Console.ReadKey();
 
         Console.WriteLine("\n=== Liste over kunder ===");
@@ -157,8 +178,4 @@ public class KundeRepo
         return null;
     }
 
-    public void OpdaterKunde(int kundeId, string? navn, string? email, string? mobil)
-    {
-        throw new NotImplementedException();
-    }
 }
