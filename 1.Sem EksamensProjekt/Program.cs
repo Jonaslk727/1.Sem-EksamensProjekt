@@ -375,7 +375,9 @@ namespace _1.Sem_EksamensProjekt
             while (fortsæt)
             {
                 Console.Clear();
-
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Logget ind som: {aktuelKunde.Navn} (ID: {aktuelKunde.KundeId})");
+                Console.ResetColor();
                 // Title Header
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
@@ -427,7 +429,6 @@ namespace _1.Sem_EksamensProjekt
             while (fortsæt)
             {
                 Console.Clear();
-
                 // Header Section
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
