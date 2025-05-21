@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ClassLibrary1.Models
 {
     public class Aktivitet
-    {
+    { //Model klasse til aktivitet
         #region Properties
         public int AktivitetID { get; set; } //Unik identifikator for aktiviteten 
         private static int nextId = 0; //Statisk tæller til generer unik ID for ny aktivitet
@@ -33,7 +33,7 @@ namespace ClassLibrary1.Models
         }
         //Returner en formateret tekst af aktiviteten
         public override string ToString()
-        {
+        { // Overskriver ToString-metoden for at returnere en formatteret string af aktivitiet
             return
                 "---------------------------\n" +
                 $"          {AktivitetID}: {Title}\n" +

@@ -182,7 +182,7 @@ namespace ClassLibrary1.Services
         }
 
         public void PrintDyrList()
-        {
+        {// Metode til udskrivning af alle registrerede dyr i systemet
 
             if (DyrList.Count() == 0)
             {

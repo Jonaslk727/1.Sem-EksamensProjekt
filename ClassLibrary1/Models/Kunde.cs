@@ -8,7 +8,7 @@ using ClassLibrary1.Models;
 namespace ClassLibrary1.Models
 {
     public class Kunde : Person
-    {
+    {// Model for kunde og den avnede arvede klasse Person
       
         public int KundeId { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -17,7 +17,7 @@ namespace ClassLibrary1.Models
         public string Mobil { get; set; } // Added this property to fix the issue
 
         public string VisInfo()
-        {
+        {// Meode til at vise kundens oplysninger
             return "===========================================================================" +
                 $"\nId : {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}" +
                 $"\n Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}" +
@@ -28,9 +28,9 @@ namespace ClassLibrary1.Models
         }
 
         public void OpdaterMobil(string nyMobil)
-        {
+        {// Metode til at ipdatere mobilnummer
             if (!string.IsNullOrEmpty(nyMobil))
-            {
+            {//Validerer at det nye nummer er gyldigt
                 Mobil = nyMobil;
                 Console.WriteLine($"Telefon opdateret til: {Mobil}");
             }
@@ -44,7 +44,7 @@ namespace ClassLibrary1.Models
 
         }
         public Kunde(int kundeId,string navn, string email, string mobil, DateTime dateOfBirth, DateTime registrationDate, bool isPremiumMember)
-        {
+        {//Constructor til oprettelese af ny kunde
             KundeId = kundeId;
             Navn = navn;
             Email = email;

@@ -9,10 +9,11 @@ namespace ClassLibrary1.Services
 {
     //Dele af denne klasse er lavet ved hjælp af vores egen udarbejdet 3. Obligatoriske opgave
     public class AktivitetRepo
-    {
+    {// Repositoryklasse til administration af aktiviteter, gemt i en ordbog med unikke ID'er
         public Dictionary<int, Aktivitet> AlleAktiviteter = new Dictionary<int, Aktivitet>();
     
-        public bool OpretAktivitet(string Title, DateTime start, DateTime slut, string beskrivelse)
+    public bool OpretAktivitet(string Title, DateTime start, DateTime slut, string beskrivelse)
+        // Metoder til oprettelse og sletning af aktiviteter i systemet
         {
             Aktivitet n = new(Title, start, slut, beskrivelse);
             AlleAktiviteter.Add(n.AktivitetID, n);
@@ -33,7 +34,7 @@ namespace ClassLibrary1.Services
             return false;
         }
         public void VisBookedeAktiviteter()
-        {
+        {// Metoder til at vise bookede aktiviteter i systemet
             Console.WriteLine("=== Bookede Aktiviteter ===");
             bool found = false;
 
@@ -74,7 +75,7 @@ namespace ClassLibrary1.Services
             return false;
         }
         public bool RedigerAktivitet(int id, string nyTitle, DateTime nyStart, DateTime nySlut, string nyBeskrivelse)
-        {
+        {// A bool Metoder til at redigere activitet i systemet
             if (AlleAktiviteter.TryGetValue(id, out Aktivitet aktivitet))
             {
                 aktivitet.Title = nyTitle;

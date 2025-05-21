@@ -88,7 +88,7 @@ namespace ClassLibrary1.Services
         // Rediger en booking  
         public bool EditBooking(int bookingId, BookingType newType, DateTime newStartTid,
             int newVarighed)
-        {
+        {// Metode til redigering af en eksisterende booking med nye oplysninger
             if (!AlleBokinger.TryGetValue(bookingId, out var booking))
             {
                 Console.WriteLine($"Booking {bookingId} ikke fundet");
@@ -106,7 +106,7 @@ namespace ClassLibrary1.Services
         
         #region Vis Bookinger
         public void VisAlleBookinger()
-        {
+        {// Metode til at vise alle eksisterende bookinger
             if (AlleBokinger.Count == 0)
             {
                 Console.WriteLine("Ingen bookinger at vise");
@@ -123,7 +123,7 @@ namespace ClassLibrary1.Services
         }
 
         public void VisBooking(int bookingId)
-        {
+        {// Metode til visning af bookingdetaljer baseret på booking-ID
             if (AlleBokinger.TryGetValue(bookingId, out var booking))
             {
                 Console.WriteLine("\nBOOKING DETALJER:");
@@ -139,7 +139,7 @@ namespace ClassLibrary1.Services
         #endregion        
 
         public DateTime GetDateTimeInput(string prompt)
-        {
+        {// Metode til at validere og indhente en korrekt dato/tid fra brugerinput
             bool isValid = true;
             DateTime dateTime = default;
             while (isValid)

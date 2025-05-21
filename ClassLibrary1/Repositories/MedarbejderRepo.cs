@@ -6,6 +6,9 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary1.Repositories
 {
+    /// <summary>
+    /// Repositoryklasse til håndtering af medarbejderdata i en liste.
+    /// </summary>
     public class MedarbejderRepo : IMedarbejder
     {
         private List<Medarbejder> medarbejdere = new List<Medarbejder>();
@@ -37,9 +40,12 @@ namespace ClassLibrary1.Repositories
                 Console.ResetColor();
             }
         }
-        // Hent medarbejder ved Id
+        /// <summary>
+        /// Tilføjer en medarbejder til listen, hvis ID'et ikke allerede findes.
+        /// </summary>
+        
         public void VisMedarbejder()
-        {
+        {// Hent medarbejder ved Id
             List<Medarbejder> medarbejdere = HentAlleMedarbejdere();
 
             if (medarbejdere.Count == 0)
