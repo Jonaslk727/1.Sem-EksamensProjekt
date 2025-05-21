@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using ClassLibrary1;
 using ClassLibrary1.Interfaces;
@@ -9,10 +10,11 @@ using ClassLibrary1.Services;
 using ClassLibrary1.View;
 
 namespace _1.Sem_EksamensProjekt
-{ //TODO: Rykke menuer til interfaces mappe
+{
     internal class Program
     {
-        
+        //Global variabel til den aktuelt loggede kunde
+        public static Kunde AktuelKunde = null;
         static void Main(string[] args)
         {
             var DyrRep = new DyrRepo();
@@ -62,8 +64,29 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep, KundeRep, MedarbejderRep);
                         break;
                     case "2":
-                        //KundeMenu(DyrRep, BookingRep, AkRepo, kundeRepo);
-                        KundeMenu(DyrRep, BookingRep, AkRepo, KundeRep);
+                        Console.Write("Indtast dit kunde-ID:");
+                        if (int.TryParse(Console.ReadLine(), out int kundeId))
+                        {
+                            var kunde = KundeRep.HentKunde(kundeId);
+                            if (kunde != null)
+                            {
+                                KundeMenu(DyrRep, BookingRep, AkRepo, KundeRep, kunde);
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Ingen kunde fundet med dette ID.");
+                                Console.ResetColor();
+                                Console.ReadKey();
+                            }
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Ugyldigt input. Indtast et tal.");
+                            Console.ResetColor();
+                            Console.ReadKey();
+                        }
                         break;
                     case "0":
                         kørProgram = false;
@@ -346,7 +369,7 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
+        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
             while (fortsæt)
@@ -380,10 +403,10 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         DyrMenu dyrMenu = new DyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
-                        dyrMenu.KundeDyrMenu();
+                        dyrMenu.KundeDyrMenu(aktuelKunde);
                         break;
                     case "2":
-                        KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
+                        KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo, aktuelKunde);
                         break;
                     case "0":
                         fortsæt = false;
@@ -732,7 +755,7 @@ namespace _1.Sem_EksamensProjekt
         //    } while (fortsæt);
             
         //}
-        static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
+        static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
             do
@@ -757,7 +780,7 @@ namespace _1.Sem_EksamensProjekt
                         VisAlleAktivitet(AktivitetRep);
                         break;
                     case "2":
-                        BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
+                        BookingRep.OpretAktivitetsBookingMedKunde(AktivitetRep, aktuelKunde);
                         break;
                     case "3":
                         AktivitetRep.VisBookedeAktiviteter();
@@ -781,7 +804,7 @@ namespace _1.Sem_EksamensProjekt
                             break;
                         }
 
-                        bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, kundeId);
+                        bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, aktuelKunde.KundeId);
 
                         if (afmeldt)
                         {
