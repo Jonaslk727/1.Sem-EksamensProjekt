@@ -35,14 +35,11 @@ namespace ClassLibrary1.Models
         public override string ToString()
         {
             return
+                "---------------------------\n" +
+                $"          {AktivitetID}: {Title}\n" +
                 "-------------------------------\n" +
-                "          Aktivitet            \n" +
-                "-------------------------------\n" +
-                $"ID         : {AktivitetID}\n" +
-                $"Titel      : {Title}\n" +
                 $"Start tid  : {StartTid:dd-MM-yyyy HH:mm}\n" +
                 $"Slut tid   : {SlutTid:dd-MM-yyyy HH:mm}\n" +
-                $"Booket     : {(IsBooked ? "Ja" : "Nej")}\n" +
                 $"Beskrivelse:\n{Beskrivelse}\n" +
                 "-------------------------------";
         }
