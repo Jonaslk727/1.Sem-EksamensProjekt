@@ -12,7 +12,7 @@ namespace ClassLibrary1.Services
     {
         public Dictionary<int, Aktivitet> AlleAktiviteter = new Dictionary<int, Aktivitet>();
     
-    public bool OpretAktivitet(string Title, DateTime start, DateTime slut, string beskrivelse)
+        public bool OpretAktivitet(string Title, DateTime start, DateTime slut, string beskrivelse)
         {
             Aktivitet n = new(Title, start, slut, beskrivelse);
             AlleAktiviteter.Add(n.AktivitetID, n);
@@ -32,16 +32,6 @@ namespace ClassLibrary1.Services
             Console.WriteLine("Ingen aktivitet med dette ID");
             return false;
         }
-        public void VisAlleAktivitet()
-        {
-            foreach (var n in AlleAktiviteter)
-            {
-                Console.WriteLine();
-                Console.WriteLine(n.ToString());
-                Console.WriteLine();
-                Console.WriteLine("---------------------------");
-            }
-        }
         public void VisBookedeAktiviteter()
         {
             Console.WriteLine("=== Bookede Aktiviteter ===");
@@ -57,24 +47,7 @@ namespace ClassLibrary1.Services
             }
 
             if (!found)
-            {
                 Console.WriteLine("Ingen aktiviteter er booket endnu.");
-            }
-        }
-        public bool TilmeldAktivitet(int id, List<Kunde> Kunder)
-        {
-            foreach (Aktivitet b in AlleAktiviteter.Values)
-            {
-                if (b.AktivitetID == id)
-                {
-                    foreach (Kunde k in Kunder)
-                    {
-                        b.Tilmeldte.Add(k);
-                    }
-                    return true;
-                }
-            }
-            return false;
         }
         //Bruges i Program.cs til at afmelde en aktivitet
         public bool AfmeldAktivitet(int aktivitetId, int kundeId)
@@ -111,6 +84,39 @@ namespace ClassLibrary1.Services
                 return true;
             }
             return false;
+        }
+        public void VisDeltagerlisteForAktivitet()
+        {
+            Console.Write("Indtast ID på aktiviteten: ");
+            if (!int.TryParse(Console.ReadLine(), out int aktivitetId))
+            {
+                Console.WriteLine("Ugyldigt ID.");
+                return;
+            }
+
+            if (!AlleAktiviteter.TryGetValue(aktivitetId, out var aktivitet))
+            {
+                Console.WriteLine("Aktivitet med det ID findes ikke.");
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"\nDeltagere for '{aktivitet.Title}':");
+
+            if (aktivitet.Tilmeldte.Count == 0)
+            {
+                Console.WriteLine("Ingen tilmeldte deltagere.");
+            }
+            else
+            {
+                foreach (var kunde in aktivitet.Tilmeldte)
+                {
+                    Console.WriteLine($"- {kunde.Navn} (ID: {kunde.KundeId}, Email: {kunde.Email})");
+                }
+            }
+            Console.ResetColor();
+            Console.WriteLine("\nTryk på en tast for at vende tilbage...");
+            Console.ReadKey();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using ClassLibrary1;
 using ClassLibrary1.Interfaces;
@@ -9,10 +10,11 @@ using ClassLibrary1.Services;
 using ClassLibrary1.View;
 
 namespace _1.Sem_EksamensProjekt
-{ //TODO: Rykke menuer til interfaces mappe
+{
     internal class Program
     {
-        
+        //Global variabel til den aktuelt loggede kunde
+        public static Kunde AktuelKunde = null;
         static void Main(string[] args)
         {
             var DyrRep = new DyrRepo();
@@ -62,8 +64,29 @@ namespace _1.Sem_EksamensProjekt
                         MedarbejderMenu(AkRepo, DyrRep, KundeRep, MedarbejderRep);
                         break;
                     case "2":
-                        //KundeMenu(DyrRep, BookingRep, AkRepo, kundeRepo);
-                        KundeMenu(DyrRep, BookingRep, AkRepo, KundeRep);
+                        Console.Write("Indtast dit kunde-ID:");
+                        if (int.TryParse(Console.ReadLine(), out int kundeId))
+                        {
+                            var kunde = KundeRep.HentKunde(kundeId);
+                            if (kunde != null)
+                            {
+                                KundeMenu(DyrRep, BookingRep, AkRepo, KundeRep, kunde);
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Ingen kunde fundet med dette ID.");
+                                Console.ResetColor();
+                                Console.ReadKey();
+                            }
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Ugyldigt input. Indtast et tal.");
+                            Console.ResetColor();
+                            Console.ReadKey();
+                        }
                         break;
                     case "0":
                         kørProgram = false;
@@ -197,6 +220,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Opret, Slet eller Rediger Aktivitet");
                 Console.WriteLine("2. Vis alle Aktiviteter");
+                Console.WriteLine("3. Vis deltagerliste for en aktivitet");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Tilbage");
                 Console.WriteLine("=====================================");
@@ -209,6 +233,9 @@ namespace _1.Sem_EksamensProjekt
                         break;
                     case "2":
                         VisAlleAktivitet(AkRepo);
+                        break;
+                    case "3":
+                        AkRepo.VisDeltagerlisteForAktivitet();
                         break;
                     case "0":
                         kørAktivitetMenu = false; // Exit the activity menu
@@ -347,19 +374,20 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
+        static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
             while (fortsæt)
             {
                 Console.Clear();
-
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Logget ind som: {aktuelKunde.Navn} (ID: {aktuelKunde.KundeId})");
+                Console.ResetColor();
                 // Title Header
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
                 Console.WriteLine("       Kunde Menu - Vælg Kategori  ");
                 Console.WriteLine("=========================================");
-                Console.ResetColor();
 
                 // Section: Dyr
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -368,14 +396,44 @@ namespace _1.Sem_EksamensProjekt
                 // Section: Aktivitet
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("\n 2. Aktivitet");
-                Console.ForegroundColor = ConsoleColor.Yellow;
 
                 // Exit Option
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n 0. Gå tilbage");
-                Console.ResetColor();
 
+                // Vis kommende aktiviteter
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n============= Min Oversigt =============");
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nDine kommende aktiviteter:");
+
+                bool harAktiviteter = false;
+
+                foreach (var aktivitet in AktivitetRep.AlleAktiviteter.Values)
+                {
+                    if (aktivitet.StartTid > DateTime.Now)
+                    {
+                        foreach (var kunde in aktivitet.Tilmeldte)
+                        {
+                            if (kunde.KundeId == aktuelKunde.KundeId)
+                            {
+                                Console.WriteLine($"- {aktivitet.Title} ({aktivitet.StartTid:g})");
+                                harAktiviteter = true;
+                                break; // Stop indre loop – vi har fundet kunden
+                            }
+                        }
+                    }
+                }
+
+                if (!harAktiviteter)
+                {
+                    Console.WriteLine("Ingen tilmeldte aktiviteter.");
+                }
+
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
+                Console.ResetColor();
                 string valg = Console.ReadLine();
                 switch (valg)
                 {
@@ -384,7 +442,7 @@ namespace _1.Sem_EksamensProjekt
                         dyrMenu.KundeDyrMenu();
                         break;
                     case "2":
-                        KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
+                        KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo, aktuelKunde);
                         break;
                     case "0":
                         fortsæt = false;
@@ -405,7 +463,6 @@ namespace _1.Sem_EksamensProjekt
             while (fortsæt)
             {
                 Console.Clear();
-
                 // Header Section
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
@@ -447,6 +504,24 @@ namespace _1.Sem_EksamensProjekt
                         break;
                 }
             }
+        }
+        public static void VisAlleAktivitet(AktivitetRepo AkRepo)
+        {
+            Console.WriteLine("Liste over aktiviteter:");
+            var Aktiviteter = AkRepo.AlleAktiviteter;
+            if (Aktiviteter.Count == 0)
+            {
+                Console.WriteLine("Ingen aktiviteter oprettet endnu.");
+            }
+            else
+            {
+                foreach (var aktivitet in Aktiviteter)
+                {
+                    Console.WriteLine(aktivitet);
+                }
+            }
+            Console.WriteLine("Tryk på en tast for at fortsætte...");
+            Console.ReadKey();
         }
         public static void OpretAktivitet(AktivitetRepo AkRepo)
         {
@@ -511,24 +586,6 @@ namespace _1.Sem_EksamensProjekt
 
             AkRepo.OpretAktivitet(title, startTid, slutTid, info);
             Console.WriteLine("Aktivitet oprettet");
-            Console.ReadKey();
-        }
-        public static void VisAlleAktivitet(AktivitetRepo AkRepo)
-        {
-            Console.WriteLine("Liste over aktiviteter:");
-            var Aktiviteter = AkRepo.AlleAktiviteter;
-            if (Aktiviteter.Count == 0)
-            {
-                Console.WriteLine("Ingen aktiviteter oprettet endnu.");
-            }
-            else
-            {
-                foreach (var aktivitet in Aktiviteter)
-                {
-                    Console.WriteLine(aktivitet);
-                }
-            }
-            Console.WriteLine("Tryk på en tast for at fortsætte...");
             Console.ReadKey();
         }
         static public void SletAktivitet(AktivitetRepo AkRepo)
@@ -733,7 +790,7 @@ namespace _1.Sem_EksamensProjekt
         //    } while (fortsæt);
             
         //}
-        static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
+        static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
             do
@@ -758,7 +815,7 @@ namespace _1.Sem_EksamensProjekt
                         VisAlleAktivitet(AktivitetRep);
                         break;
                     case "2":
-                        BookingRep.OpretBooking(BookingType.Aktivitet, DyrRep, KundeRepo, AktivitetRep);
+                        BookingRep.OpretAktivitetsBookingMedKunde(AktivitetRep, aktuelKunde);
                         break;
                     case "3":
                         AktivitetRep.VisBookedeAktiviteter();
@@ -782,7 +839,7 @@ namespace _1.Sem_EksamensProjekt
                             break;
                         }
 
-                        bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, kundeId);
+                        bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, aktuelKunde.KundeId);
 
                         if (afmeldt)
                         {
@@ -902,11 +959,17 @@ namespace _1.Sem_EksamensProjekt
         }
         public static void TestDataAktivitet(AktivitetRepo repo)
         {
-            string Title = "Hundetræning";
-            DateTime StartTid = new(2025, 10, 1, 10, 0, 0);
-            DateTime SlutTid = new(2025, 10, 1, 12, 0, 0);
-            string info = "Træning for hunde og ejere";
-            repo.OpretAktivitet(Title, StartTid, SlutTid, info);
+            string Title1 = "Hundetræning";
+            DateTime StartTid1 = new(2025, 10, 1, 10, 0, 0);
+            DateTime SlutTid1 = new(2025, 10, 1, 12, 0, 0);
+            string info1 = "Træning for hunde og ejere";
+            repo.OpretAktivitet(Title1, StartTid1, SlutTid1, info1);
+
+            string Title2 = "Katteyoga";
+            DateTime StartTid2 = new(2025, 11, 5, 14, 30, 0);
+            DateTime SlutTid2 = new(2025, 11, 5, 15, 30, 0);
+            string info2 = "Afslapning og leg med katte";
+            repo.OpretAktivitet(Title2, StartTid2, SlutTid2, info2);
         }
         public static void TestDataKunder(KundeRepo kundeRepo)
         {

@@ -49,7 +49,7 @@ namespace ClassLibrary1
             DateTime result;
             while (!DateTime.TryParse(input, out result))
             {
-                Console.WriteLine("Ugyldigt datoformat. Indtast venligst (dd/mm/yyyy HH:mm).");
+                Console.WriteLine("Ugyldigt datoformat. Indtast venligst (dd/mm/yyyy).");
                 input = GetString(Console.ReadLine());
             }
             return result;

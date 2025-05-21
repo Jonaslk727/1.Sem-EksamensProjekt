@@ -9,7 +9,8 @@ namespace ClassLibrary1.Repositories
     public class MedarbejderRepo : IMedarbejder
     {
         private List<Medarbejder> medarbejdere = new List<Medarbejder>();
-
+      
+        //Tilføj medarbejder og tejk om den findes
         public void TilføjMedarbejder(Medarbejder medarbejder)
         {
             try
@@ -36,7 +37,7 @@ namespace ClassLibrary1.Repositories
                 Console.ResetColor();
             }
         }
-
+        // Hent medarbejder ved Id
         public void VisMedarbejder()
         {
             List<Medarbejder> medarbejdere = HentAlleMedarbejdere();
@@ -53,7 +54,7 @@ namespace ClassLibrary1.Repositories
                 Console.WriteLine(medarbejder);
             }
         }
-
+        // Find medarbejder ved Id
         public bool FindMedarbejder(int medarbejderId)
         {
             foreach (Medarbejder medarbejder in medarbejdere)
@@ -66,6 +67,7 @@ namespace ClassLibrary1.Repositories
             return false; // Employee not found
         }
 
+        // Opdater medarbejder og tejk om den findes
         public void OpdaterMedarbejder(int medarbejderId, Medarbejder opdateretMedarbejder)
         {
             try
@@ -100,6 +102,7 @@ namespace ClassLibrary1.Repositories
             }
         }
 
+        //slet medarbejder og tek om den findes
         public void SletMedarbejder(int medarbejderId)
         {
             try
@@ -128,7 +131,7 @@ namespace ClassLibrary1.Repositories
             }
         }
 
-
+        // hent alle medarbejdere
         public List<Medarbejder> HentAlleMedarbejdere()
         {
             return medarbejdere;

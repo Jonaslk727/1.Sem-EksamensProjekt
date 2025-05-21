@@ -24,12 +24,13 @@ namespace ClassLibrary1.View
         }
 
 
-        public void KundeDyrMenu()
-        {
+        public void KundeDyrMenu(Kunde aktuelKunde)
+        { 
             bool fortsæt = true;
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("==========================================");
                 Console.WriteLine("               Besøg et dyr");
                 Console.WriteLine("==========================================");
@@ -49,7 +50,7 @@ namespace ClassLibrary1.View
                         break;
                     case "2":
                         // booking logik
-                        _bookingRep.OpretBooking(BookingType.Besøg, _dyrRep, _kundeRepo, _aktivitetRep);
+                        _bookingRep.OpretBesøgBookingMedKunde(_dyrRep, aktuelKunde);
                         break;
                     case "0":
                         fortsæt = false;
