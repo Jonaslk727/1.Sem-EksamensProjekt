@@ -177,7 +177,9 @@ namespace _1.Sem_EksamensProjekt
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Opret, slet eller redigr dyr");
                 Console.WriteLine("2. Vis alle dyr");
-                Console.WriteLine("3. Søg efter dyr");
+                Console.WriteLine("3. DyreLog Menu");
+                Console.WriteLine("4. Vis alle kommende Besøg" );
+                Console.WriteLine("5. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Tilbage");
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -194,6 +196,19 @@ namespace _1.Sem_EksamensProjekt
                         dyrRep.PrintDyrList();
                         break;
                     case "3":
+                        // videre føres til Dyrelog menu
+                        dyrRep.PrintDyretsLog();
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case "4":
+                        // Vis alle kommende besøg
+                        dyrRep.PrintAlleDyrsBesøg();
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case "5":
                         // Søg efter dyr
                         SøgDyr(dyrRep);
                         break;
@@ -671,7 +686,6 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("1. Opret et dyr");
                 Console.WriteLine("2. Slet dyr");
                 Console.WriteLine("3. Rediger et oprettet dyr");
-                Console.WriteLine("4. Vis DyretLogs");
                 Console.WriteLine("5. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Gå tilbage");
@@ -692,11 +706,7 @@ namespace _1.Sem_EksamensProjekt
                         Updater(dyrRep);
                         Console.Clear();
                         break;
-                    case "4":
-                        dyrRep.PrintDyretsLog();
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+               
                     case "5":
                         SøgDyr(dyrRep);
                         Console.Clear();

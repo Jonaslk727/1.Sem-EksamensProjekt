@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using ClassLibrary1.Interfaces;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary1.Services
 {
@@ -86,7 +87,7 @@ namespace ClassLibrary1.Services
         /// <param name="type"></param>
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-        public void Read (SøgDyrType type)
+        public void Read(SøgDyrType type)
         {
             List<Dyr> dyrList = new List<Dyr>();
             switch (type)
@@ -95,7 +96,7 @@ namespace ClassLibrary1.Services
                     Console.WriteLine("Indtast dyrets navn:");
                     string name = ValidateUserInput.GetString(Console.ReadLine());
                     foreach (var dyr in DyrList.Values)
-                    {   
+                    {
                         string dyrNavn = dyr.Navn.ToLower();
                         // kikker efter om inputtet er en del af dyrets navn
                         if (dyrNavn.Contains(name.ToLower()))
@@ -121,7 +122,7 @@ namespace ClassLibrary1.Services
 
                     Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
                     ArtType art = ValidateUserInput.GetArtType(Console.ReadLine());
-                        
+
                     foreach (var dyr in DyrList.Values)
                     {
                         if (dyr.Art == art) dyrList.Add(dyr);
@@ -182,7 +183,7 @@ namespace ClassLibrary1.Services
 
         public void PrintDyrList()
         {
-            
+
             if (DyrList.Count() == 0)
             {
                 Console.WriteLine("Ingen dyr i systemet.");
@@ -219,7 +220,7 @@ namespace ClassLibrary1.Services
         /// <param name="id"></param>
         public void PrintDyretsLog()
         {
-            
+
             Console.WriteLine("Indtast dyrets ID:");
             int id = ValidateUserInput.GetInt(Console.ReadLine());
 
@@ -232,7 +233,7 @@ namespace ClassLibrary1.Services
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("1. Vis Dyrets LægeLog");
                     Console.WriteLine("2. Vis Dyrets BesøgsLog");
-                    Console.WriteLine("3. se alle kunder");
+                    Console.WriteLine("3. Opret en lægeLog");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("0. Gå tilbage");
                     Console.ResetColor();
@@ -245,6 +246,15 @@ namespace ClassLibrary1.Services
                             break;
                         case "2":
                             Console.WriteLine(DyrList[id].GetLogs(2));
+                            Console.ReadKey();
+                            break;
+                        case "3":
+                            Console.WriteLine("Indtast dato for visitationen (dd/MM/yyyy):");
+                            DateTime dato = ValidateUserInput.GetDateTime(Console.ReadLine());
+                            Console.WriteLine("Indtast journal:");
+                            string journal = ValidateUserInput.GetString(Console.ReadLine());
+                            DyrList[id].AddLægeLog(dato, journal);
+                            Console.WriteLine("Læge log oprettet.");
                             Console.ReadKey();
                             break;
                         case "0":
@@ -263,7 +273,32 @@ namespace ClassLibrary1.Services
                 Console.WriteLine("Dyr med dette ID findes ikke.");
                 Console.ReadKey();
             }
+
+
         }
 
+        /// <summary>
+        /// Udskriver alle dyr og alle deres besøg.
+        /// </summary>
+        public void PrintAlleDyrsBesøg()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var dyr in DyrList.Values)
+            {
+                if (dyr.Log.BesøgssLogs.Count != 0)
+                {
+                    sb.AppendLine($"Dyr med ID {dyr.ChipNummer} har følgende besøg:");
+                    sb.AppendLine(dyr.Log.GetBesøgsLog());
+                }
+                else
+                {
+                    sb.AppendLine($"Dyr med ID {dyr.ChipNummer} har ingen besøg.");
+                }
+
+            }
+            Console.WriteLine(sb);
+            
+        }
     }
 }
