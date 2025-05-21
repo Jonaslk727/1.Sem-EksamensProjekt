@@ -400,24 +400,34 @@ namespace _1.Sem_EksamensProjekt
 
                 // Vis kommende aktiviteter
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("\n===Min Over sigt===");
-                var kommendeAktiviteter = AktivitetRep.AlleAktiviteter.Values
-                    .Where(a => a.Tilmeldte.Any(k => k.KundeId == aktuelKunde.KundeId) && a.StartTid > DateTime.Now)
-                    .ToList();
+                Console.WriteLine("\n=== Min Oversigt ===");
 
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nDine kommende aktiviteter:");
-                if (kommendeAktiviteter.Count == 0)
+
+                bool harAktiviteter = false;
+
+                foreach (var aktivitet in AktivitetRep.AlleAktiviteter.Values)
+                {
+                    if (aktivitet.StartTid > DateTime.Now)
+                    {
+                        foreach (var kunde in aktivitet.Tilmeldte)
+                        {
+                            if (kunde.KundeId == aktuelKunde.KundeId)
+                            {
+                                Console.WriteLine($"- {aktivitet.Title} ({aktivitet.StartTid:g})");
+                                harAktiviteter = true;
+                                break; // Stop indre loop – vi har fundet kunden
+                            }
+                        }
+                    }
+                }
+
+                if (!harAktiviteter)
                 {
                     Console.WriteLine("Ingen tilmeldte aktiviteter.");
                 }
-                else
-                {
-                    foreach (var aktivitet in kommendeAktiviteter)
-                    {
-                        Console.WriteLine($"- {aktivitet.Title} ({aktivitet.StartTid:g})");
-                    }
-                }
+
                 Console.ResetColor();
 
                 Console.WriteLine("\n=========================================");
