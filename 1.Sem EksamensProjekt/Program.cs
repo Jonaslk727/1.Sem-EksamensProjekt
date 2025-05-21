@@ -397,6 +397,27 @@ namespace _1.Sem_EksamensProjekt
                 // Exit Option
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n 0. Gå tilbage");
+
+                // Vis kommende aktiviteter
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n===Min Over sigt===");
+                var kommendeAktiviteter = AktivitetRep.AlleAktiviteter.Values
+                    .Where(a => a.Tilmeldte.Any(k => k.KundeId == aktuelKunde.KundeId) && a.StartTid > DateTime.Now)
+                    .ToList();
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\nDine kommende aktiviteter:");
+                if (kommendeAktiviteter.Count == 0)
+                {
+                    Console.WriteLine("Ingen tilmeldte aktiviteter.");
+                }
+                else
+                {
+                    foreach (var aktivitet in kommendeAktiviteter)
+                    {
+                        Console.WriteLine($"- {aktivitet.Title} ({aktivitet.StartTid:g})");
+                    }
+                }
                 Console.ResetColor();
 
                 Console.WriteLine("\n=========================================");
