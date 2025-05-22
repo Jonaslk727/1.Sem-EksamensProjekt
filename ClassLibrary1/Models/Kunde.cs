@@ -11,13 +11,12 @@
 
         public string VisInfo()
         {
-            return "===========================================================================" +
-                $"\nId : {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}" +
-                $"\n Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}" +
-                $"\n Premium medlem: {IsPremiumMember}" +
-                "\n============================================================================ " +
-                "\n";
-            
+            return "==================================================\n" +
+        $" Id: {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}\n" +
+        $" Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}\n" +
+        $" Premium medlem: {IsPremiumMember}\n" +
+        "==================================================\n";
+
         }
 
         public void OpdaterMobil(string nyMobil)

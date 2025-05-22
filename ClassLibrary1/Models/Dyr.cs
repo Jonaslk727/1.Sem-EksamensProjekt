@@ -46,12 +46,11 @@ namespace ClassLibrary1.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return $"===========================================================================" +
-                $"\nId : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn: {Køn}" +
-                $"\n Race: {Race} | Fødselsdag: {FødselsDag} | Vægt: {Vægt} kg" +
-                $"\n Mere info: {Info}" +
-                "\n============================================================================ " +
-                "\n";
+            return "---------------------------------------------------------------\n" +
+       $"Id: {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn: {Køn}\n" +
+       $"Race: {Race} | Fødselsdag: {FødselsDag} | Vægt: {Vægt} kg\n" +
+       $"Mere info: {Info}\n" +
+       "---------------------------------------------------------------\n";
         }
 
         /// <summary>
