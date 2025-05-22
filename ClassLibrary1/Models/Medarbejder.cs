@@ -1,6 +1,12 @@
 ﻿namespace ClassLibrary1.Models
 {
-    public class Medarbejder
+    /// <summary>
+    /// Klasse: Medarbejder  
+    /// Håndterer oplysninger om medarbejdere, herunder ID, navn,  
+    /// afdeling, stilling, kontaktoplysninger og email.  
+    /// Indeholder en metode til formateret visning af medarbejderdata.  
+    /// </summary>
+        public class Medarbejder
     {
         public string Navn { get; set; } = string.Empty;
         public int MedarbejderId { get; set; } = 0;
@@ -9,12 +15,14 @@
         public string Email { get; set; } = string.Empty;
         public string Telefonnummer { get; set; } = string.Empty;
 
-
+        /// <summary>
+        /// Standardkonstruktør til oprettelse af en tom medarbejderprofil.
+        /// </summary>
 
         public Medarbejder()
         {
         }
-
+        /// Konstruktør til oprettelse af en medarbejder med specifikke oplysninger.
         public Medarbejder(string navn, int medarbejderId, string afdeling, string stilling, string email, string telefonnummer)
         {
             Navn = navn;
@@ -25,6 +33,7 @@
             Telefonnummer = telefonnummer;
 
         }
+        /// Returnerer en formateret streng med medarbejderens oplysninger.
         public override string ToString()
         {
             return "----------------------------------\n" + // Separator line
@@ -36,9 +45,6 @@
                    "Telefon   : " + Telefonnummer + "\n" +
                    "----------------------------------"; // Separator line
         }
-
-
-
     }
 }
 

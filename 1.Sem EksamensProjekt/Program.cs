@@ -603,12 +603,10 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Skriv ID på aktiviteten du vil slette:");
             int id = int.Parse(Console.ReadLine());
             bool slettet = AkRepo.SletAktivitet(id);
-            if (slettet)
-            {
+            if (slettet) {
                 Console.WriteLine($"Aktivitet med ID {id} er slettet.");
             }
-            else
-            {
+            else {
                 Console.WriteLine($"Ingen aktivitet med ID {id} fundet.");
             }
         }
@@ -622,8 +620,7 @@ namespace _1.Sem_EksamensProjekt
                 return;
             }
 
-            if (!AkRepo.AlleAktiviteter.TryGetValue(id, out var aktivitet))
-            {
+            if (!AkRepo.AlleAktiviteter.TryGetValue(id, out var aktivitet)) {
                 Console.WriteLine("Aktivitet med ID findes ikke.");
                 return;
             }
@@ -657,16 +654,11 @@ namespace _1.Sem_EksamensProjekt
             bool succes = AkRepo.RedigerAktivitet(id, nyTitle, nyStart, nySlut, nyBeskrivelse);
 
             if (succes)
-            {
                 Console.WriteLine("Aktivitet er blevet opdateret!");
-            }
             else
-            {
                 Console.WriteLine("Noget gik galt under opdatering.");
-            }
-
-            Console.WriteLine("Tryk på en tast for at fortsætte...");
-            Console.ReadKey();
+                Console.WriteLine("Tryk på en tast for at fortsætte...");
+                Console.ReadKey();
         }
 
         #region Dyr
@@ -735,13 +727,13 @@ namespace _1.Sem_EksamensProjekt
             switch (valg)
             {
                 case "1":
-                    dyrRep.Read(SøgDyrType.Navn);
+                    dyrRep.Søg(SøgDyrType.Navn);
                     break;
                 case "2":
-                    dyrRep.Read(SøgDyrType.Id);
+                    dyrRep.Søg(SøgDyrType.Id);
                     break;
                 case "3":
-                    dyrRep.Read(SøgDyrType.Art);
+                    dyrRep.Søg(SøgDyrType.Art);
                     break;
                 
                 default:
@@ -892,13 +884,11 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine("Indtast ny info:");
             string info = Console.ReadLine();
 
-            if (!dyrRep.Update(id, navn, artType, race, vægt, fødselsdag, køn, info))
-            {
+            if (!dyrRep.Update(id, navn, artType, race, vægt, fødselsdag, køn, info)) {
                 Console.WriteLine("noget gik galt");
                 Console.ReadKey();
             }
-            else
-            {
+            else {
                 Console.WriteLine("Dyret er blevet opdateret!");
                 Console.ReadKey();
             }
@@ -937,7 +927,6 @@ namespace _1.Sem_EksamensProjekt
         }
         public static void TestDataKunder(KundeRepo kundeRepo)
         {
-            
             Kunde Kunde1 = new Kunde()
             {
                 KundeId = 1,
@@ -962,7 +951,6 @@ namespace _1.Sem_EksamensProjekt
             //kundeRepo.TilføjKunde(Kunde1);
             //kundeRepo.TilføjKunde(Kunde2);
         }  
-        
             #endregion
             #region Nyttige metoder
         public static DateTime GetDateTimeInput(string prompt)

@@ -4,9 +4,11 @@ namespace ClassLibrary1.Models
 {
     public enum ArtType
     {
+        
         Hund,
         Kat,
         Fugl,
+
     }
     public enum kønType
     {
@@ -29,6 +31,10 @@ namespace ClassLibrary1.Models
         public string Info { get; set; } = "None";
         public DyreLog Log { get; set; } = new DyreLog();
         #endregion
+        /// Konstruktør for Dyr-klassen.  
+        /// Initialiserer et nyt dyr med navn, art, race, vægt, fødselsdag, køn og information.  
+        /// Tildeler automatisk et unikt chipnummer til dyret.  
+
         public Dyr(string navn, ArtType art, string race, double vægt, DateTime fødselsdag, kønType køn, string info)
         {
             ChipNummer = _nextId++;
@@ -52,7 +58,6 @@ namespace ClassLibrary1.Models
        $"Mere info: {Info}\n" +
        "---------------------------------------------------------------\n";
         }
-
         /// <summary>
         /// 1 Returnerer læge loggen, 2 returnerer besøgs loggen.
         /// </summary>
@@ -72,17 +77,15 @@ namespace ClassLibrary1.Models
                     return Log.GetBesøgsLog();
                     break;
                 default:
-                    throw new AggregateException();
+                    throw new ArgumentException("The getLogs method needs a parameter 1 or 2");
                     break;
             }
 
         }
-
         public bool AddLægeLog(DateTime dato, string journal)
         {
             Log.CreateLægeLog(dato, journal);
             return true;
         }
-
     }
 }

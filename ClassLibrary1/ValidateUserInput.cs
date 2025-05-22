@@ -104,7 +104,7 @@ namespace ClassLibrary1
             while (!Enum.TryParse(input, true, out result))
             {
                 Console.WriteLine("Ugyldigt input. Indtast venligst 'Hund', 'Kat' eller 'Fugl'.");
-                input = GetString(Console.ReadLine());
+                input = Console.ReadLine();
             }
             return result;
         }

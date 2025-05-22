@@ -1,4 +1,5 @@
-﻿using ClassLibrary1.Models;
+﻿using ClassLibrary1.Interfaces;
+using ClassLibrary1.Models;
 using System.Text;
 
 namespace ClassLibrary1.Services
@@ -13,7 +14,6 @@ namespace ClassLibrary1.Services
     public class DyrRepo
     {
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
-
 
         public void Create()
         {   // input til dyrets navn
@@ -71,6 +71,7 @@ namespace ClassLibrary1.Services
             }
         }
 
+        #region Søgning
         /// <summary>
         /// En søge method der tager en eneum SøgeDyrType [Navn, Id, Art] 
         /// og søger via den valgte type.
@@ -78,7 +79,7 @@ namespace ClassLibrary1.Services
         /// <param name="type"></param>
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-        public void Read(SøgDyrType type)
+        public void Søg(SøgDyrType type)
         {
             List<Dyr> dyrList = new List<Dyr>();
             switch (type)
@@ -133,6 +134,9 @@ namespace ClassLibrary1.Services
             }
             Console.ReadKey();
         }
+        #endregion
+
+        #region update
         /// <summary>
         /// man skal indsætte id'et på det dyr der skal ændres og de værdier der skal ændres.
         /// Du insætter derefter de værdier du vil ændre og de vil blive opdateret i objektet.
@@ -161,8 +165,10 @@ namespace ClassLibrary1.Services
             if (DyrList.TryGetValue(id, out Dyr dyr))
             {
                 if (nyNavn != null) dyr.Navn = nyNavn;
-                if (!nyArt.HasValue) dyr.Art = nyArt.Value;
+                // Denne update fungere ikke, kan løses men kræver at alle ArtType enum bliver sat til nullyble, som kan give en null reference exception.
+                if (nyArt.HasValue) dyr.Art = nyArt.Value;
                 if (nyRace != null) dyr.Race = nyRace;
+                // Denne update fungere ikke, kan løses men kræver at alle ArtType enum bliver sat til nullyble, som kan give en null reference exception.
                 if (nyVægt.HasValue) dyr.Vægt = nyVægt.Value;
                 if (nyFødselsdag.HasValue) dyr.FødselsDag = nyFødselsdag.Value;
                 if (!nyKøn.HasValue) dyr.Køn = nyKøn.Value;
@@ -171,7 +177,9 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        #endregion
 
+        #region Print Methods
         public void PrintDyrList()
         {
 
@@ -189,7 +197,9 @@ namespace ClassLibrary1.Services
             }
             Console.ReadKey();
         }
-
+        /// <summary>
+        /// Udpringter alle dyr der ikke er booket.
+        /// </summary>
         public void PrintLedigeDyr()
         {
             List<Dyr> ledigeDyr = new List<Dyr>();
@@ -264,8 +274,6 @@ namespace ClassLibrary1.Services
                 Console.WriteLine("Dyr med dette ID findes ikke.");
                 Console.ReadKey();
             }
-
-
         }
 
         /// <summary>
@@ -291,5 +299,6 @@ namespace ClassLibrary1.Services
             Console.WriteLine(sb);
             
         }
+        #endregion
     }
 }

@@ -117,13 +117,13 @@ namespace ClassLibrary1.View
             switch (valg)
             {
                 case "1":
-                    dyrRep.Read(SøgDyrType.Navn);
+                    dyrRep.Søg(SøgDyrType.Navn);
                     break;
                 case "2":
-                    dyrRep.Read(SøgDyrType.Id);
+                    dyrRep.Søg(SøgDyrType.Id);
                     break;
                 case "3":
-                    dyrRep.Read(SøgDyrType.Art);
+                    dyrRep.Søg(SøgDyrType.Art);
                     break;
 
                 default:
