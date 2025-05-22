@@ -18,7 +18,6 @@
         "==================================================\n";
 
         }
-
         public void OpdaterMobil(string nyMobil)
         {
             if (!string.IsNullOrEmpty(nyMobil))
@@ -44,7 +43,6 @@
             DateOfBirth = dateOfBirth;
             RegistrationDate = registrationDate;
             IsPremiumMember = isPremiumMember;
-            
         }
     }
 }

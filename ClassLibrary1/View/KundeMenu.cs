@@ -6,8 +6,6 @@ namespace ClassLibrary1.View
     {
         public void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
-
-            
             bool kørKundeMenu = true;
             while (kørKundeMenu)
             {
@@ -52,11 +50,9 @@ namespace ClassLibrary1.View
                         Console.WriteLine("=====================================");
                         Console.ResetColor();
                         break;
-
                     case "2":
                         kundeRep.VisKunder();// Vis alle kunder
                         break;
-
                     case "3":
                         // Opdater kunde
                         Console.ForegroundColor = ConsoleColor.Cyan;
