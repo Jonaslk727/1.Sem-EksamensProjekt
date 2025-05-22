@@ -191,7 +191,9 @@ namespace ClassLibrary1.Services
             }
             Console.ReadKey();
         }
-
+        /// <summary>
+        /// Udpringter alle dyr der ikke er booket.
+        /// </summary>
         public void PrintLedigeDyr()
         {
             List<Dyr> ledigeDyr = new List<Dyr>();
