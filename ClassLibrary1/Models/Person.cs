@@ -6,8 +6,6 @@
         public string Email { get; set; }
         public int Mobil { get; set; }
 
-
-
         public Person(string navn, string email, int mobil)
         {
             Navn = navn;

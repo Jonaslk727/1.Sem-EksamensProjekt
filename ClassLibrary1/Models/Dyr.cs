@@ -54,7 +54,6 @@ namespace ClassLibrary1.Models
        $"Mere info: {Info}\n" +
        "---------------------------------------------------------------\n";
         }
-
         /// <summary>
         /// 1 Returnerer læge loggen, 2 returnerer besøgs loggen.
         /// </summary>
@@ -79,12 +78,10 @@ namespace ClassLibrary1.Models
             }
 
         }
-
         public bool AddLægeLog(DateTime dato, string journal)
         {
             Log.CreateLægeLog(dato, journal);
             return true;
         }
-
     }
 }

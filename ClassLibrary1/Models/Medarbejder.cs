@@ -9,8 +9,6 @@
         public string Email { get; set; } = string.Empty;
         public string Telefonnummer { get; set; } = string.Empty;
 
-
-
         public Medarbejder()
         {
         }
@@ -36,9 +34,6 @@
                    "Telefon   : " + Telefonnummer + "\n" +
                    "----------------------------------"; // Separator line
         }
-
-
-
     }
 }
 

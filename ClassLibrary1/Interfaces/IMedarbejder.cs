@@ -3,6 +3,12 @@
 namespace ClassLibrary1.Interfaces
 
 {
+    // -------------------------------------------------------------
+    // IMedarbejder interface:  
+    // Håndterer medarbejderadministration, inkl. oprettelse,  
+    // redigering, søgning og sletning. Sikrer en struktureret  
+    // tilgang til datahåndtering i systemet.  
+    // -------------------------------------------------------------
     public interface IMedarbejder
     {
         void TilføjMedarbejder(Medarbejder medarbejder);
