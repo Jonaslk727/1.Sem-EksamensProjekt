@@ -10,9 +10,11 @@ namespace ClassLibrary1.Models
 {
     public enum ArtType
     {
+        
         Hund,
         Kat,
         Fugl,
+
     }
     public enum kønType
     {
@@ -79,7 +81,7 @@ namespace ClassLibrary1.Models
                     return Log.GetBesøgsLog();
                     break;
                 default:
-                    throw new AggregateException();
+                    throw new ArgumentException("The getLogs method needs a parameter 1 or 2");
                     break;
             }
 

@@ -170,8 +170,10 @@ namespace ClassLibrary1.Services
             if (DyrList.TryGetValue(id, out Dyr dyr))
             {
                 if (nyNavn != null) dyr.Navn = nyNavn;
-                if (!nyArt.HasValue) dyr.Art = nyArt.Value;
+                // Denne update fungere ikke, kan løses men kræver at alle ArtType enum bliver sat til nullyble, som kan give en null reference exception.
+                if (nyArt.HasValue) dyr.Art = nyArt.Value;
                 if (nyRace != null) dyr.Race = nyRace;
+                // Denne update fungere ikke, kan løses men kræver at alle ArtType enum bliver sat til nullyble, som kan give en null reference exception.
                 if (nyVægt.HasValue) dyr.Vægt = nyVægt.Value;
                 if (nyFødselsdag.HasValue) dyr.FødselsDag = nyFødselsdag.Value;
                 if (!nyKøn.HasValue) dyr.Køn = nyKøn.Value;
