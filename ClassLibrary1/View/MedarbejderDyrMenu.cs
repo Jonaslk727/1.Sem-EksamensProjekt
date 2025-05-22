@@ -146,9 +146,7 @@ namespace ClassLibrary1.View
             }
 
         }
-
-
-        /// Opdaterer information om et eksisterende dyr baseret på dets ID
+       /// Opdaterer information om et eksisterende dyr baseret på dets ID
         static void Updater(DyrRepo dyrRep)
         {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
@@ -224,3 +222,4 @@ namespace ClassLibrary1.View
     }
 
 }
+////////////////////
