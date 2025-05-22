@@ -6,10 +6,21 @@ using ClassLibrary1.View;
 
 namespace _1.Sem_EksamensProjekt
 {
+    /// <summary>
+    /// Hovedklasse for programmet, håndterer opstart og hovedmenu.
+    /// </summary>
     public static class Program
     {
-        //Global variabel til den aktuelt loggede kunde
+        /// <summary>
+        /// Global variabel til den aktuelt loggede kunde.
+        /// Bliver opdateret, når en kunde logger ind.
+        /// </summary>
         public static Kunde AktuelKunde = null;
+        
+        /// <summary>
+        /// Programmet starter her. Initialiserer repositories og kører hovedmenuen.
+        /// </summary>
+        /// <param name="args">Kommandolinjeargumenter (ikke i brug).</param>
         static void Main(string[] args)
         {
             var DyrRep = new DyrRepo();
@@ -18,7 +29,8 @@ namespace _1.Sem_EksamensProjekt
             var KundeRep = new KundeRepo();
             var MedarbejderRep = new MedarbejderRepo();
             //var kundeRepo = new KundeRepo();
-            
+
+            // Initialiserer testdata til systemet
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
 
@@ -27,7 +39,10 @@ namespace _1.Sem_EksamensProjekt
             KundeRep.TilføjKunde(new Kunde(1, "Oliver Thune", "anders@example.com", "12345678", new DateTime(1998, 5, 14), DateTime.Now, true),status);
             KundeRep.TilføjKunde(new Kunde(2, "Marcus Zola", "jonas@example.com", "87654321", new DateTime(2002, 4, 16), DateTime.Now, false),status);
 
-            //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
+            /// <summary>
+            /// Hovedmenuen kører i en loop indtil brugeren vælger at stoppe programmet.
+            /// Brugeren præsenteres for forskellige valgmuligheder.
+            /// </summary>
             bool kørProgram = true;
             while (kørProgram)
             {
