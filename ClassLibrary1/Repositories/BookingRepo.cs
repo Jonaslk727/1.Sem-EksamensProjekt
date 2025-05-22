@@ -12,7 +12,7 @@ namespace ClassLibrary1.Services
     public class BookingRepo
     {
 
-        /// Dictionary til lagring af alle bookinger baseret på deres unikke 
+        /// Dictionary til lagring af alle bookinger baseret på deres unikke
 
         public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
 

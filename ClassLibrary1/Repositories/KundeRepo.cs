@@ -135,12 +135,7 @@ public class KundeRepo
         }
     }
 
-    // Hent alle kunder
-    public List<Kunde> HentAlleKunder()
-    {
-        return _kunder;
-    }
-
+   
     // Find en kunde ved ID
     public bool FindKunde(int id)
     {
@@ -152,29 +147,6 @@ public class KundeRepo
             }
         }
         return false;
-    }
-    //Bruges i KundeMenu - tilmeld aktivitet
-    public Kunde VælgKunde() 
-    {
-        Console.Write("Indtast dit kunde-ID: ");
-        if (int.TryParse(Console.ReadLine(), out int id))
-        {
-            foreach (Kunde k in _kunder)
-            {
-                if (k.KundeId == id)
-                {
-                    Console.WriteLine($"Velkommen, {k.Navn}!");
-                    return k;
-                }
-            }
-            Console.WriteLine("Kunde ikke fundet.");
-        }
-        else
-        {
-            Console.WriteLine("Ugyldigt input.");
-        }
-
-        return null;
     }
 
 }
