@@ -1,9 +1,4 @@
-﻿using System.Data;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using ClassLibrary1;
-using ClassLibrary1.Interfaces;
+﻿using ClassLibrary1;
 using ClassLibrary1.Models;
 using ClassLibrary1.Repositories;
 using ClassLibrary1.Services;

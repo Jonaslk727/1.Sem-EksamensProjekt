@@ -1,14 +1,5 @@
 ﻿using ClassLibrary1.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.AccessControl;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using ClassLibrary1.Interfaces;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary1.Services
 {

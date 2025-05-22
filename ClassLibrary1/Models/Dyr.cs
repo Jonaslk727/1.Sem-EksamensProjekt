@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Models.Besøg_og_lægelog;
-using ClassLibrary1.Services;
+﻿using ClassLibrary1.Services;
 
 namespace ClassLibrary1.Models
 {
