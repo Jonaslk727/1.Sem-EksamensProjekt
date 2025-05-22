@@ -153,7 +153,8 @@ public class KundeRepo
         }
         return false;
     }
-    public Kunde VælgKunde() //Bruges i KundeMenu - tilmeld aktivitet
+    //Bruges i KundeMenu - tilmeld aktivitet
+    public Kunde VælgKunde() 
     {
         Console.Write("Indtast dit kunde-ID: ");
         if (int.TryParse(Console.ReadLine(), out int id))

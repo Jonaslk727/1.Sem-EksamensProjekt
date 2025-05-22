@@ -3,8 +3,14 @@ using ClassLibrary1.Interfaces;
 
 namespace ClassLibrary1.Repositories
 {
+    /// <summary>
+    /// Repository-klasse til håndtering af medarbejdere.
+    /// Implementerer IMedarbejder og administrerer en liste over medarbejdere.
+    /// </summary>
     public class MedarbejderRepo : IMedarbejder
     {
+        /// En liste der gemmer registrerede medarbejdere.
+        /// Muliggør administration af medarbejderdata som tilføjelse, opdatering o
         private List<Medarbejder> medarbejdere = new List<Medarbejder>();
       
         //Tilføj medarbejder og tejk om den findes
