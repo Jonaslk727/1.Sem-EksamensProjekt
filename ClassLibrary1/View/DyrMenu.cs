@@ -3,13 +3,22 @@ using ClassLibrary1.Services;
 
 namespace ClassLibrary1.View
 {
+    /// <summary>
+    /// Klasse der håndterer dyremenuen for kunder.
+    /// Muliggør visning af ledige dyr og booking af besøg.
+    /// </summary>
+   
+    /// Repository til håndtering af dyredata.
     public class KDyrMenu
-    {
+    { 
+
         DyrRepo _dyrRep = new DyrRepo();
         BookingRepo _bookingRep = new BookingRepo();
         AktivitetRepo _aktivitetRep = new AktivitetRepo();
         KundeRepo _kundeRepo = new KundeRepo();
 
+        
+        /// Constructor der initialiserer repositorierne til at håndtere data.
         public KDyrMenu(DyrRepo dyrRep, BookingRepo bookingRep, AktivitetRepo aktivitetRep, KundeRepo kundeRepo)
         {
             _dyrRep = dyrRep;
@@ -19,6 +28,10 @@ namespace ClassLibrary1.View
         }
 
 
+        // <summary>
+        /// Menu til kundeinteraktion med dyrebesøg.
+        /// Tillader kunden at se ledige dyr og booke besøg.
+        /// </summary>
         public void KundeDyrMenu(Kunde aktuelKunde)
         { 
             bool fortsæt = true;

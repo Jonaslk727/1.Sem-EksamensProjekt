@@ -53,7 +53,6 @@ namespace ClassLibrary1.Services
                     found = true;
                 }
             }
-
             if (!found)
                 Console.WriteLine("Ingen aktiviteter er booket endnu.");
         }
@@ -72,7 +71,6 @@ namespace ClassLibrary1.Services
                         break;
                     }
                 }
-
                 if (kundeAtFjerne != null)
                 {
                     aktivitet.Tilmeldte.Remove(kundeAtFjerne);
@@ -121,9 +119,7 @@ namespace ClassLibrary1.Services
             else
             {
                 foreach (var kunde in aktivitet.Tilmeldte)
-                {
                     Console.WriteLine($"- {kunde.Navn} (ID: {kunde.KundeId}, Email: {kunde.Email})");
-                }
             }
             Console.ResetColor();
             Console.WriteLine("\nTryk på en tast for at vende tilbage...");

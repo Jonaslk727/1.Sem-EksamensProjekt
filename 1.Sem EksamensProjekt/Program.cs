@@ -6,10 +6,21 @@ using ClassLibrary1.View;
 
 namespace _1.Sem_EksamensProjekt
 {
+    /// <summary>
+    /// Hovedklasse for programmet, håndterer opstart og hovedmenu.
+    /// </summary>
     public static class Program
     {
-        //Global variabel til den aktuelt loggede kunde
+        /// <summary>
+        /// Global variabel til den aktuelt loggede kunde.
+        /// Bliver opdateret, når en kunde logger ind.
+        /// </summary>
         public static Kunde AktuelKunde = null;
+        
+        /// <summary>
+        /// Programmet starter her. Initialiserer repositories og kører hovedmenuen.
+        /// </summary>
+        /// <param name="args">Kommandolinjeargumenter (ikke i brug).</param>
         static void Main(string[] args)
         {
             var DyrRep = new DyrRepo();
@@ -18,7 +29,8 @@ namespace _1.Sem_EksamensProjekt
             var KundeRep = new KundeRepo();
             var MedarbejderRep = new MedarbejderRepo();
             //var kundeRepo = new KundeRepo();
-            
+
+            // Initialiserer testdata til systemet
             MogdataDyr(DyrRep);
             TestDataAktivitet(AkRepo);
 
@@ -27,7 +39,10 @@ namespace _1.Sem_EksamensProjekt
             KundeRep.TilføjKunde(new Kunde(1, "Oliver Thune", "anders@example.com", "12345678", new DateTime(1998, 5, 14), DateTime.Now, true),status);
             KundeRep.TilføjKunde(new Kunde(2, "Marcus Zola", "jonas@example.com", "87654321", new DateTime(2002, 4, 16), DateTime.Now, false),status);
 
-            //Hovedmenu kører i loop indtil brugeren vælger at stoppe programmet
+            /// <summary>
+            /// Hovedmenuen kører i en loop indtil brugeren vælger at stoppe programmet.
+            /// Brugeren præsenteres for forskellige valgmuligheder.
+            /// </summary>
             bool kørProgram = true;
             while (kørProgram)
             {
@@ -95,7 +110,13 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen, hvor medarbejdere kan administrere forskellige aspekter af systemet.
+        /// Menuen giver valgmuligheder for at administrere dyr, kunder, aktiviteter og medarbejdere.
+        /// Brugeren navigerer gennem menuen ved at indtaste et tal, og den tilsvarende funktion kaldes.
+        /// Metoden kører , indtil brugeren vælger at gå tilbage.
+        /// </summary>
+            static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
             KundeMenu kundeMenu = new KundeMenu();
 
@@ -160,6 +181,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen for administration af dyre.
+        /// Medarbejdere kan vælge mellem oprettelse, sletning, redigering af dyr, visning af dyrelog og kommende besøg,
+        /// samt søgning efter dyr. Brugeren navigerer gennem menuen ved at indtaste et nummer,
+        /// hvorefter den tilsvarende funktion kaldes. Menuen kører vider, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void MedarbejderDyrMenu(DyrRepo dyrRep)
         {
             bool kørDyrMenu = true;
@@ -203,7 +230,6 @@ namespace _1.Sem_EksamensProjekt
                         Console.ReadKey();
                         Console.Clear();
                         break;
-
                     case "5":
                         // Søg efter dyr
                         SøgDyr(dyrRep);
@@ -217,6 +243,13 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen for dyreadministration.
+        /// Medarbejdere kan vælge mellem forskellige handlinger såsom oprettelse, sletning, redigering af dyr,
+        /// visning af alle dyr, adgang til dyrets log, visning af kommende besøg og søgning efter dyr.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion kaldes.
+        /// Menuen kører , indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void MedarbejderAktivitetMenu(AktivitetRepo AkRepo)
         {
             bool kørAktivitetMenu = true;
@@ -256,6 +289,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen, hvor medarbejdere kan administrere deres kolleger.
+        /// Menuen giver mulighed for at tilføje, vise, opdatere og slette medarbejdere.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører , indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void MedarbejderMedarbejderMenu(MedarbejderRepo repo)
         {
             bool kørMedarbejderMenu = true;
@@ -318,8 +357,7 @@ namespace _1.Sem_EksamensProjekt
                         {
                             Console.WriteLine("Enter et tal Id");
                             Console.ReadKey();
-                        }
-                                                
+                        }                  
                         break;
                     case "2":
                         repo.VisMedarbejder();
@@ -384,6 +422,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer kundemenuen, hvor en kunde kan interagere med systemet.
+        /// Menuen giver mulighed for at besøge dyr, deltage i aktiviteter og se kommende aktiviteter.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører i en løkke, indtil kunden vælger at gå tilbage.
+        /// </summary>
         static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
@@ -466,7 +510,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        //METODER TIL FUNKTIONALITET I MENUER:
+        /// <summary>
+        /// Denne metode håndterer redigering af aktiviteter i systemet.
+        /// Menuen giver medarbejdere mulighed for at oprette, slette og redigere eksisterende aktiviteter.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void RedigerAktivitet(AktivitetRepo AkRepo)
         {
             bool fortsæt = true;
@@ -515,6 +564,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer administrationen af aktiviteter i systemet.
+        /// Brugeren kan vælge at vise alle aktiviteter, oprette en ny aktivitet eller slette en eksisterende aktivitet.
+        /// Menuen sikrer, at brugeren angiver gyldige input ved oprettelse af en aktivitet.
+        /// Funktionen kører, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         public static void VisAlleAktivitet(AktivitetRepo AkRepo)
         {
             Console.WriteLine("Liste over aktiviteter:");
@@ -619,12 +674,10 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("Ugyldigt ID, prøv igen.");
                 return;
             }
-
             if (!AkRepo.AlleAktiviteter.TryGetValue(id, out var aktivitet)) {
                 Console.WriteLine("Aktivitet med ID findes ikke.");
                 return;
             }
-
             Console.WriteLine($"Nuværende titel: {aktivitet.Title}");
             Console.Write("Ny titel: ");
             string nyTitle = Console.ReadLine();
@@ -660,9 +713,14 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("Tryk på en tast for at fortsætte...");
                 Console.ReadKey();
         }
-
         #region Dyr
-        static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
+        /// <summary>
+        /// Denne metode håndterer forskellige dyreadministrationsfunktioner,
+        /// såsom oprettelse, sletning, redigering og søgning efter dyr.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// </summary>
+            static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
         {
             bool fortsæt = true;
             while (fortsæt)
@@ -713,7 +771,10 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-
+        /// <summary>
+        /// Denne metode håndterer søgning efter dyr baseret på navn, ID eller art.
+        /// Brugeren vælger en søgemetode, hvorefter systemet udfører den relevante søgefunktion.
+        /// </summary>
         static void SøgDyr(DyrRepo dyrRep)
         {   
             Console.WriteLine("Søg efter dyr:");
@@ -743,9 +804,12 @@ namespace _1.Sem_EksamensProjekt
                     Console.ResetColor();
                     break;
             }
-
         }
-        
+        /// <summary>
+        /// Kundeaktivitetsmenuen giver kunden mulighed for at se kommende aktiviteter,
+        /// tilmelde sig, se tilmeldte aktiviteter og afmelde sig fra en aktivitet.
+        /// Menuen kører i en løkke, indtil kunden vælger at gå tilbage.
+        /// </summary>
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
@@ -786,7 +850,6 @@ namespace _1.Sem_EksamensProjekt
                             Console.ReadKey();
                             break;
                         }
-
                         Console.Write("Indtast dit kunde-ID: ");
                         if (!int.TryParse(Console.ReadLine(), out int kundeId))
                         {
@@ -794,7 +857,6 @@ namespace _1.Sem_EksamensProjekt
                             Console.ReadKey();
                             break;
                         }
-
                         bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, aktuelKunde.KundeId);
 
                         if (afmeldt)
@@ -823,6 +885,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             } while (fortsæt);
         }
+        /// <summary>
+        /// Denne metode håndterer opdatering af information for et eksisterende dyr.
+        /// Brugeren indtaster dyrets ID, hvorefter systemet søger efter Id.
+        /// Hvis dyret findes, kan brugeren ændre dets navn, art, køn, race, vægt, fødselsdato og info.
+        /// Systemet sikrer, at gyldige værdier indtastes, og opdateringen gennemføres kun, hvis input er korrekte.
+        /// </summary>
         static void Updater(DyrRepo dyrRep)
         {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
@@ -893,7 +961,13 @@ namespace _1.Sem_EksamensProjekt
                 Console.ReadKey();
             }
         }
-        //TEST DATA:
+        /// <summary>
+        /// Initialiserer testdata for dyr, aktiviteter og kunder i systemet.
+        ///  `MogdataDyr(DyrRepo DyrRep)`: Tilføjer en liste over testdyr til dyrelisten.
+        ///  `TestDataAktivitet(AktivitetRepo repo)`: Opretter testaktiviteter med titler, start- og sluttidspunkter.
+        ///  `TestDataKunder(KundeRepo kundeRepo)`: Registrerer eksemplariske kunder med ID, navn, email og registreringsdato.
+        /// Disse metoder bruges til at fylde systemet med eksempler, så funktionaliteter kan testes korrekt.
+        /// </summary>
         static void MogdataDyr(DyrRepo DyrRep)
         {
             List<Dyr> dyrList = new List<Dyr>()
@@ -948,11 +1022,15 @@ namespace _1.Sem_EksamensProjekt
                 IsPremiumMember = true
             };
 
-            //kundeRepo.TilføjKunde(Kunde1);
-            //kundeRepo.TilføjKunde(Kunde2);
-        }  
-            #endregion
-            #region Nyttige metoder
+        }
+        #endregion
+        #region Nyttige metoder
+        /// <summary>
+        /// Denne metode håndterer brugerinput til dato og tid.
+        /// Brugeren bliver bedt om at indtaste en dato med et angivet prompt.
+        /// Systemet validerer inputformatet og gentager anmodningen, hvis input er ugyldigt.
+        /// Metoden fortsætter, indtil et gyldigt datoformat er indtastet, hvorefter værdien returneres.
+        /// </summary>
         public static DateTime GetDateTimeInput(string prompt)
         {
             DateTime dateTime;
@@ -969,4 +1047,4 @@ namespace _1.Sem_EksamensProjekt
         }
     }
 }
-        #endregion
+            #endregion
