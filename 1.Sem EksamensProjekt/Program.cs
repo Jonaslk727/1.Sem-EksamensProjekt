@@ -110,6 +110,13 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen, hvor medarbejdere kan administrere forskellige aspekter af systemet.
+        /// Menuen giver valgmuligheder for at administrere dyr, kunder, aktiviteter og medarbejdere.
+        /// Brugeren navigerer gennem menuen ved at indtaste et tal, og den tilsvarende funktion kaldes.
+        /// Metoden kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// </summary>
+
         static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
             KundeMenu kundeMenu = new KundeMenu();
