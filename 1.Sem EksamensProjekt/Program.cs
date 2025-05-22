@@ -116,8 +116,7 @@ namespace _1.Sem_EksamensProjekt
         /// Brugeren navigerer gennem menuen ved at indtaste et tal, og den tilsvarende funktion kaldes.
         /// Metoden kører i en løkke, indtil brugeren vælger at gå tilbage.
         /// </summary>
-
-        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
+            static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
             KundeMenu kundeMenu = new KundeMenu();
 
@@ -238,6 +237,13 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen for dyreadministration.
+        /// Medarbejdere kan vælge mellem forskellige handlinger såsom oprettelse, sletning, redigering af dyr,
+        /// visning af alle dyr, adgang til dyrets log, visning af kommende besøg og søgning efter dyr.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion kaldes.
+        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void MedarbejderAktivitetMenu(AktivitetRepo AkRepo)
         {
             bool kørAktivitetMenu = true;
@@ -277,6 +283,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen, hvor medarbejdere kan administrere deres kolleger.
+        /// Menuen giver mulighed for at tilføje, vise, opdatere og slette medarbejdere.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void MedarbejderMedarbejderMenu(MedarbejderRepo repo)
         {
             bool kørMedarbejderMenu = true;
@@ -404,6 +416,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer kundemenuen, hvor en kunde kan interagere med systemet.
+        /// Menuen giver mulighed for at besøge dyr, deltage i aktiviteter og se kommende aktiviteter.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører i en løkke, indtil kunden vælger at gå tilbage.
+        /// </summary>
         static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
