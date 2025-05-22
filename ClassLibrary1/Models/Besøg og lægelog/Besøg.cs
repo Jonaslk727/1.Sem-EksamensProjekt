@@ -24,7 +24,7 @@ namespace ClassLibrary1.Models.Besøg_og_lægelog
         public override string ToString()
         {
             return $"------------------------------------------------------------------------------" +
-                   $"\n BesøgsId: {BesøgsId} |\n BesøgsTidspunkt: {BesøgsTidspunkt} |\n Besøger: {(Besøger != null ? Besøger.Navn : "Ingen besøger")}";
+                   $"\n BesøgsId: {BesøgsId} |\n BesøgsTidspunkt: {BesøgsTidspunkt} |\n Besøger: {Besøger.Navn}";
         }
 
     }

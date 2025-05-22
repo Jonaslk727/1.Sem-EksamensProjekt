@@ -11,7 +11,7 @@ using ClassLibrary1.View;
 
 namespace _1.Sem_EksamensProjekt
 {
-    internal class Program
+    public static class Program
     {
         //Global variabel til den aktuelt loggede kunde
         public static Kunde AktuelKunde = null;
@@ -454,7 +454,7 @@ namespace _1.Sem_EksamensProjekt
                 {
                     case "1":
                         KDyrMenu dyrMenu = new KDyrMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo);
-                        dyrMenu.KundeDyrMenu(AktuelKunde);
+                        dyrMenu.KundeDyrMenu(aktuelKunde);
                         break;
                     case "2":
                         KundeAktivitetMenu(DyrRep, BookingRep, AktivitetRep, KundeRepo, aktuelKunde);
