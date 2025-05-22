@@ -1,12 +1,22 @@
-﻿using ClassLibrary1.Models; //Model klasserne kan tilgås
+﻿using ClassLibrary1.Models; 
 
 namespace ClassLibrary1.Services
 {
+    /// <summary>
+    /// Model klasserne kan tilgås
+    /// Klasse: BookingRepo  
+    /// Håndterer bookingadministration, herunder oprettelse, sletning,  
+    /// redigering og visning af bookinger.  
+    /// Understøtter både aktivitets- og besøgsspecifikke bookinger.  
+    /// </summary>
     public class BookingRepo
     {
 
+        /// Dictionary til lagring af alle bookinger baseret på deres unikke 
+
         public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
 
+        /// Opretter en besøg-booking for en kunde, der ønsker at besøge et dyr.
         public void OpretBesøgBookingMedKunde(DyrRepo dyrRep, Kunde kunde)
         {
             Booking booking = new Booking();
@@ -41,6 +51,7 @@ namespace ClassLibrary1.Services
             AlleBokinger.Add(booking.BookingId, booking);
             Console.ReadKey();
         }
+        /// Opretter en aktivitetsbooking for en kunde
         public void OpretAktivitetsBookingMedKunde(AktivitetRepo aktivitetRep, Kunde kunde)
         {
             Booking booking = new Booking();
@@ -97,8 +108,9 @@ namespace ClassLibrary1.Services
             return true;
         }
         #endregion
-        
+
         #region Vis Bookinger
+        /// Viser alle bookinger i systemet.
         public void VisAlleBookinger()
         {
             if (AlleBokinger.Count == 0)
@@ -116,6 +128,7 @@ namespace ClassLibrary1.Services
             }
         }
 
+        /// Viser detaljer for en specifik booking baseret på ID.
         public void VisBooking(int bookingId)
         {
             if (AlleBokinger.TryGetValue(bookingId, out var booking))
@@ -132,6 +145,7 @@ namespace ClassLibrary1.Services
         }
         #endregion        
 
+        /// Henter og validerer en datoindgang fra brugeren.
         public DateTime GetDateTimeInput(string prompt)
         {
             bool isValid = true;
