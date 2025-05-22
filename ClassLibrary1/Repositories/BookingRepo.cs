@@ -3,11 +3,11 @@
 namespace ClassLibrary1.Services
 {
     /// <summary>
-    /// Model klasserne kan tilgås
-    /// Klasse: BookingRepo  
-    /// Håndterer bookingadministration, herunder oprettelse, sletning,  
-    /// redigering og visning af bookinger.  
-    /// Understøtter både aktivitets- og besøgsspecifikke bookinger.  
+    /// Model klasserne kan tilgås <br></br>
+    /// Klasse: BookingRepo  <br></br>
+    /// Håndterer bookingadministration, herunder oprettelse, sletning,<br></br>
+    /// redigering og visning af bookinger.  <br></br>
+    /// Understøtter både aktivitets- og besøgsspecifikke bookinger.  <br></br>
     /// </summary>
     public class BookingRepo
     {
