@@ -203,7 +203,6 @@ namespace _1.Sem_EksamensProjekt
                         Console.ReadKey();
                         Console.Clear();
                         break;
-
                     case "5":
                         // Søg efter dyr
                         SøgDyr(dyrRep);
@@ -318,8 +317,7 @@ namespace _1.Sem_EksamensProjekt
                         {
                             Console.WriteLine("Enter et tal Id");
                             Console.ReadKey();
-                        }
-                                                
+                        }                  
                         break;
                     case "2":
                         repo.VisMedarbejder();
@@ -619,12 +617,10 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("Ugyldigt ID, prøv igen.");
                 return;
             }
-
             if (!AkRepo.AlleAktiviteter.TryGetValue(id, out var aktivitet)) {
                 Console.WriteLine("Aktivitet med ID findes ikke.");
                 return;
             }
-
             Console.WriteLine($"Nuværende titel: {aktivitet.Title}");
             Console.Write("Ny titel: ");
             string nyTitle = Console.ReadLine();
@@ -660,7 +656,6 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("Tryk på en tast for at fortsætte...");
                 Console.ReadKey();
         }
-
         #region Dyr
         static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
         {
@@ -713,7 +708,6 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-
         static void SøgDyr(DyrRepo dyrRep)
         {   
             Console.WriteLine("Søg efter dyr:");
@@ -743,9 +737,7 @@ namespace _1.Sem_EksamensProjekt
                     Console.ResetColor();
                     break;
             }
-
         }
-        
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
@@ -786,7 +778,6 @@ namespace _1.Sem_EksamensProjekt
                             Console.ReadKey();
                             break;
                         }
-
                         Console.Write("Indtast dit kunde-ID: ");
                         if (!int.TryParse(Console.ReadLine(), out int kundeId))
                         {
@@ -794,7 +785,6 @@ namespace _1.Sem_EksamensProjekt
                             Console.ReadKey();
                             break;
                         }
-
                         bool afmeldt = AktivitetRep.AfmeldAktivitet(aktivitetId, aktuelKunde.KundeId);
 
                         if (afmeldt)
@@ -969,4 +959,4 @@ namespace _1.Sem_EksamensProjekt
         }
     }
 }
-        #endregion
+            #endregion
