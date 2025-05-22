@@ -558,6 +558,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer administrationen af aktiviteter i systemet.
+        /// Brugeren kan vælge at vise alle aktiviteter, oprette en ny aktivitet eller slette en eksisterende aktivitet.
+        /// Menuen sikrer, at brugeren angiver gyldige input ved oprettelse af en aktivitet.
+        /// Funktionen kører, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         public static void VisAlleAktivitet(AktivitetRepo AkRepo)
         {
             Console.WriteLine("Liste over aktiviteter:");
@@ -702,7 +708,13 @@ namespace _1.Sem_EksamensProjekt
                 Console.ReadKey();
         }
         #region Dyr
-        static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
+        /// <summary>
+        /// Denne metode håndterer forskellige dyreadministrationsfunktioner,
+        /// såsom oprettelse, sletning, redigering og søgning efter dyr.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// </summary>
+            static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
         {
             bool fortsæt = true;
             while (fortsæt)
@@ -753,6 +765,10 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer søgning efter dyr baseret på navn, ID eller art.
+        /// Brugeren vælger en søgemetode, hvorefter systemet udfører den relevante søgefunktion.
+        /// </summary>
         static void SøgDyr(DyrRepo dyrRep)
         {   
             Console.WriteLine("Søg efter dyr:");
@@ -783,6 +799,11 @@ namespace _1.Sem_EksamensProjekt
                     break;
             }
         }
+        /// <summary>
+        /// Kundeaktivitetsmenuen giver kunden mulighed for at se kommende aktiviteter,
+        /// tilmelde sig, se tilmeldte aktiviteter og afmelde sig fra en aktivitet.
+        /// Menuen kører i en løkke, indtil kunden vælger at gå tilbage.
+        /// </summary>
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
