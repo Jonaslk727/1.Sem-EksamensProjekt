@@ -274,8 +274,6 @@ namespace ClassLibrary1.Services
                 Console.WriteLine("Dyr med dette ID findes ikke.");
                 Console.ReadKey();
             }
-
-
         }
 
         /// <summary>
