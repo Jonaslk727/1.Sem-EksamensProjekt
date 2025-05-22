@@ -114,7 +114,7 @@ namespace _1.Sem_EksamensProjekt
         /// Denne metode håndterer medarbejdermenuen, hvor medarbejdere kan administrere forskellige aspekter af systemet.
         /// Menuen giver valgmuligheder for at administrere dyr, kunder, aktiviteter og medarbejdere.
         /// Brugeren navigerer gennem menuen ved at indtaste et tal, og den tilsvarende funktion kaldes.
-        /// Metoden kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// Metoden kører , indtil brugeren vælger at gå tilbage.
         /// </summary>
             static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
@@ -181,6 +181,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+        /// <summary>
+        /// Denne metode håndterer medarbejdermenuen for administration af dyre.
+        /// Medarbejdere kan vælge mellem oprettelse, sletning, redigering af dyr, visning af dyrelog og kommende besøg,
+        /// samt søgning efter dyr. Brugeren navigerer gennem menuen ved at indtaste et nummer,
+        /// hvorefter den tilsvarende funktion kaldes. Menuen kører vider, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void MedarbejderDyrMenu(DyrRepo dyrRep)
         {
             bool kørDyrMenu = true;
@@ -242,7 +248,7 @@ namespace _1.Sem_EksamensProjekt
         /// Medarbejdere kan vælge mellem forskellige handlinger såsom oprettelse, sletning, redigering af dyr,
         /// visning af alle dyr, adgang til dyrets log, visning af kommende besøg og søgning efter dyr.
         /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion kaldes.
-        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// Menuen kører , indtil brugeren vælger at gå tilbage.
         /// </summary>
         static void MedarbejderAktivitetMenu(AktivitetRepo AkRepo)
         {
@@ -287,7 +293,7 @@ namespace _1.Sem_EksamensProjekt
         /// Denne metode håndterer medarbejdermenuen, hvor medarbejdere kan administrere deres kolleger.
         /// Menuen giver mulighed for at tilføje, vise, opdatere og slette medarbejdere.
         /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
-        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// Menuen kører , indtil brugeren vælger at gå tilbage.
         /// </summary>
         static void MedarbejderMedarbejderMenu(MedarbejderRepo repo)
         {
@@ -879,6 +885,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             } while (fortsæt);
         }
+        /// <summary>
+        /// Denne metode håndterer opdatering af information for et eksisterende dyr.
+        /// Brugeren indtaster dyrets ID, hvorefter systemet søger efter Id.
+        /// Hvis dyret findes, kan brugeren ændre dets navn, art, køn, race, vægt, fødselsdato og info.
+        /// Systemet sikrer, at gyldige værdier indtastes, og opdateringen gennemføres kun, hvis input er korrekte.
+        /// </summary>
         static void Updater(DyrRepo dyrRep)
         {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
@@ -949,7 +961,13 @@ namespace _1.Sem_EksamensProjekt
                 Console.ReadKey();
             }
         }
-        //TEST DATA:
+        /// <summary>
+        /// Initialiserer testdata for dyr, aktiviteter og kunder i systemet.
+        ///  `MogdataDyr(DyrRepo DyrRep)`: Tilføjer en liste over testdyr til dyrelisten.
+        ///  `TestDataAktivitet(AktivitetRepo repo)`: Opretter testaktiviteter med titler, start- og sluttidspunkter.
+        ///  `TestDataKunder(KundeRepo kundeRepo)`: Registrerer eksemplariske kunder med ID, navn, email og registreringsdato.
+        /// Disse metoder bruges til at fylde systemet med eksempler, så funktionaliteter kan testes korrekt.
+        /// </summary>
         static void MogdataDyr(DyrRepo DyrRep)
         {
             List<Dyr> dyrList = new List<Dyr>()
@@ -1004,11 +1022,15 @@ namespace _1.Sem_EksamensProjekt
                 IsPremiumMember = true
             };
 
-            //kundeRepo.TilføjKunde(Kunde1);
-            //kundeRepo.TilføjKunde(Kunde2);
-        }  
-            #endregion
-            #region Nyttige metoder
+        }
+        #endregion
+        #region Nyttige metoder
+        /// <summary>
+        /// Denne metode håndterer brugerinput til dato og tid.
+        /// Brugeren bliver bedt om at indtaste en dato med et angivet prompt.
+        /// Systemet validerer inputformatet og gentager anmodningen, hvis input er ugyldigt.
+        /// Metoden fortsætter, indtil et gyldigt datoformat er indtastet, hvorefter værdien returneres.
+        /// </summary>
         public static DateTime GetDateTimeInput(string prompt)
         {
             DateTime dateTime;
