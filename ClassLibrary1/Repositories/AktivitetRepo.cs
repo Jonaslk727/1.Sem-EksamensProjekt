@@ -2,17 +2,29 @@
 
 namespace ClassLibrary1.Services
 {
-    //Dele af denne klasse er lavet ved hjælp af vores egen udarbejdet 3. Obligatoriske opgave
+
+
+    /// <summary>
+    /// Dele af denne klasse er lavet ved hjælp af vores egen udarbejdet 3. Obligatoriske opgave
+    /// Klasse: AktivitetRepo  
+    /// Håndterer administration af aktiviteter, herunder oprettelse, sletning,  
+    /// redigering og visning af bookede aktiviteter.  
+    /// Understøtter funktionalitet til afmelding og deltagerstyring.  
+    /// </summary>
     public class AktivitetRepo
     {
+        /// Dictionary til at lagre alle aktiviteter med deres unikke ID.
         public Dictionary<int, Aktivitet> AlleAktiviteter = new Dictionary<int, Aktivitet>();
-    
+
+
+        /// Opretter en ny aktivitet og tilføjer den til systemet.
         public bool OpretAktivitet(string Title, DateTime start, DateTime slut, string beskrivelse)
         {
             Aktivitet n = new(Title, start, slut, beskrivelse);
             AlleAktiviteter.Add(n.AktivitetID, n);
             return true;
         }
+        /// Sletter en aktivitet baseret på ID.
         public bool SletAktivitet(int id)
         {
             foreach (var aktivitet in AlleAktiviteter)
@@ -27,6 +39,7 @@ namespace ClassLibrary1.Services
             Console.WriteLine("Ingen aktivitet med dette ID");
             return false;
         }
+       /// Viser alle bookede aktiviteter i systemet.
         public void VisBookedeAktiviteter()
         {
             Console.WriteLine("=== Bookede Aktiviteter ===");
@@ -68,6 +81,7 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        /// Redigerer en aktivitet baseret på ID.
         public bool RedigerAktivitet(int id, string nyTitle, DateTime nyStart, DateTime nySlut, string nyBeskrivelse)
         {
             if (AlleAktiviteter.TryGetValue(id, out Aktivitet aktivitet))
@@ -80,6 +94,8 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        
+        /// Viser deltagerlisten for en aktivitet baseret på ID.
         public void VisDeltagerlisteForAktivitet()
         {
             Console.Write("Indtast ID på aktiviteten: ");
