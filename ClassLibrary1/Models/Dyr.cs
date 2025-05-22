@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Models.Besøg_og_lægelog;
-using ClassLibrary1.Services;
+﻿using ClassLibrary1.Services;
 
 namespace ClassLibrary1.Models
 {
@@ -54,12 +48,11 @@ namespace ClassLibrary1.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return $"===========================================================================" +
-                $"\nId : {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn: {Køn}" +
-                $"\n Race: {Race} | Fødselsdag: {FødselsDag} | Vægt: {Vægt} kg" +
-                $"\n Mere info: {Info}" +
-                "\n============================================================================ " +
-                "\n";
+            return "---------------------------------------------------------------\n" +
+       $"Id: {ChipNummer} | Dyr: {Art} | Navn: {Navn} | Køn: {Køn}\n" +
+       $"Race: {Race} | Fødselsdag: {FødselsDag} | Vægt: {Vægt} kg\n" +
+       $"Mere info: {Info}\n" +
+       "---------------------------------------------------------------\n";
         }
 
         /// <summary>

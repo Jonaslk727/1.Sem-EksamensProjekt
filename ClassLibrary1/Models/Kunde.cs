@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Models;
-
-namespace ClassLibrary1.Models
+﻿namespace ClassLibrary1.Models
 {
     public class Kunde : Person
     {
@@ -18,13 +11,12 @@ namespace ClassLibrary1.Models
 
         public string VisInfo()
         {
-            return "===========================================================================" +
-                $"\nId : {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}" +
-                $"\n Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}" +
-                $"\n Premium medlem: {IsPremiumMember}" +
-                "\n============================================================================ " +
-                "\n";
-            
+            return "==================================================\n" +
+        $" Id: {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}\n" +
+        $" Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}\n" +
+        $" Premium medlem: {IsPremiumMember}\n" +
+        "==================================================\n";
+
         }
 
         public void OpdaterMobil(string nyMobil)

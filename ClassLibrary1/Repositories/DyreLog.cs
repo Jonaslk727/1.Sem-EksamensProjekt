@@ -1,13 +1,5 @@
-﻿using ClassLibrary1.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using ClassLibrary1.Models.Besøg_og_lægelog;
-using ClassLibrary1.Models;
-
 namespace ClassLibrary1.Services
 {
     public class DyreLog

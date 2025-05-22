@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Models; //Så vi kan tilgå vores model klasser
+﻿using ClassLibrary1.Models; //Så vi kan tilgå vores model klasser
 
 namespace ClassLibrary1.Services
 {

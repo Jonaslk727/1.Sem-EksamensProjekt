@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ClassLibrary1.Models;
+﻿using ClassLibrary1.Models;
 
 public class KundeRepo
 {

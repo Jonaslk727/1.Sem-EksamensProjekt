@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using ClassLibrary1.Models;
+﻿using ClassLibrary1.Models;
 using ClassLibrary1.Interfaces;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary1.Repositories
 {
