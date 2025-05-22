@@ -2,8 +2,16 @@
 
 namespace ClassLibrary1.View
 {
+    /// <summary>
+    /// Klasse der håndterer kundeadministration for medarbejdere.
+    /// Tillader oprettelse, visning, opdatering og sletning af kunder.
+    /// </summary>
     public class KundeMenu
     {
+        
+        /// Menu til medarbejderstyring af kunder.
+        /// Brugeren kan vælge mellem forskellige kundeadministrationsfunktioner.
+        /// <param name="kundeRep">Repository til håndtering af kundeinformation.</param>
         public void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
             bool kørKundeMenu = true;
