@@ -758,48 +758,7 @@ namespace _1.Sem_EksamensProjekt
             }
 
         }
-
-        //static void KundeDyrMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo)
-        //{
-            
-        //    bool fortsæt = true;
-        //    do
-        //    {
-        //        Console.Clear();
-        //        Console.WriteLine("==========================================");
-        //        Console.WriteLine("               Besøg et dyr");
-        //        Console.WriteLine("==========================================");
-        //        Console.ForegroundColor = ConsoleColor.Yellow;
-        //        Console.WriteLine("1. hvis alle ledige dyr:");
-        //        Console.WriteLine("2. book et besøg:");
-        //        Console.ResetColor();
-        //        Console.ForegroundColor = ConsoleColor.Red;
-        //        Console.WriteLine("0. gå tilbage:");
-        //        Console.ResetColor();
-        //        string input = Console.ReadLine();
-        //        switch (input)
-        //        {
-        //            case "1":
-        //                // viser ledige dyr
-        //                DyrRep.PrintLedigeDyr();
-        //                break;
-        //            case "2":
-        //                // booking logik
-        //                BookingRep.OpretBooking(BookingType.Besøg, DyrRep, KundeRepo, AktivitetRep);
-        //                break;
-        //            case "0":
-        //                fortsæt = false;
-        //                break;
-        //            default:
-        //                Console.ForegroundColor = ConsoleColor.Red;
-        //                Console.WriteLine("Ugyldigt valg, prøv igen.");
-        //                Console.ReadKey();
-        //                Console.ResetColor();
-        //                break;
-        //        }
-        //    } while (fortsæt);
-            
-        //}
+        
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
