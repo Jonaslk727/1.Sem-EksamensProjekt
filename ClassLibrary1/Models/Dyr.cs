@@ -31,6 +31,10 @@ namespace ClassLibrary1.Models
         public string Info { get; set; } = "None";
         public DyreLog Log { get; set; } = new DyreLog();
         #endregion
+        /// Konstruktør for Dyr-klassen.  
+        /// Initialiserer et nyt dyr med navn, art, race, vægt, fødselsdag, køn og information.  
+        /// Tildeler automatisk et unikt chipnummer til dyret.  
+
         public Dyr(string navn, ArtType art, string race, double vægt, DateTime fødselsdag, kønType køn, string info)
         {
             ChipNummer = _nextId++;

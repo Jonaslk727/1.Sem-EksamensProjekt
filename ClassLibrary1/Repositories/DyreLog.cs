@@ -17,12 +17,6 @@ namespace ClassLibrary1.Services
             Lægelog lægelog = new Lægelog(dato, journal);
             LægeLogs.Add(lægelog.Id, lægelog);
         }
-
-        public void Delete()
-        {
-            // Implementer logik til at slette loggen
-        }
-
         public string GetBesøgsLog()
         {
             StringBuilder sb = new StringBuilder();
@@ -58,7 +52,5 @@ namespace ClassLibrary1.Services
                 return sb.ToString();
             }
         }
-
-
     }
 }
