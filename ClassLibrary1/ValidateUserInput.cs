@@ -5,6 +5,7 @@ namespace ClassLibrary1
     static public class ValidateUserInput
     {
         /// <summary>
+        /// en specialklass til at vliderer input fra brugeren og at sikker at det er gyldigt
         /// Validerer input og sikrer at det er et heltal.
         /// </summary>
         /// <param name="input"></param>
