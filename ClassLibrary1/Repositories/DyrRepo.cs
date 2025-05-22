@@ -71,6 +71,7 @@ namespace ClassLibrary1.Services
             }
         }
 
+        #region Søgning
         /// <summary>
         /// En søge method der tager en eneum SøgeDyrType [Navn, Id, Art] 
         /// og søger via den valgte type.
@@ -133,6 +134,9 @@ namespace ClassLibrary1.Services
             }
             Console.ReadKey();
         }
+        #endregion
+
+        #region update
         /// <summary>
         /// man skal indsætte id'et på det dyr der skal ændres og de værdier der skal ændres.
         /// Du insætter derefter de værdier du vil ændre og de vil blive opdateret i objektet.
@@ -173,7 +177,9 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        #endregion
 
+        #region Read Methods (Print)
         public void PrintDyrList()
         {
 
@@ -295,5 +301,6 @@ namespace ClassLibrary1.Services
             Console.WriteLine(sb);
             
         }
+        #endregion
     }
 }
