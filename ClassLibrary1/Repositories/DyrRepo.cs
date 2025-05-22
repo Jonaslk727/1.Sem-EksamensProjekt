@@ -4,6 +4,10 @@ using System.Text;
 
 namespace ClassLibrary1.Services
 {
+    /// <summary>
+    /// Enum der definerer søgetyper for dyr.
+    /// Bruges til at specificere om søgningen skal ske efter navn, ID eller art.
+    /// </summary>
     public enum SøgDyrType
     {
         Navn,
@@ -11,10 +15,21 @@ namespace ClassLibrary1.Services
         Art,
     }
 
+    /// <summary>
+    /// Repository-klasse til håndtering af dyredata.
+    /// Gemmer og administrerer en liste over dyr med unikt ID.
+    /// </summary>
     public class DyrRepo
     {
+        /// En dictionary der gemmer registrerede dyr med et integer ID som nøgle.
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
 
+
+        /// <summary>
+        /// Opretter et nyt dyr baseret på brugerinput.
+        /// Validerer og konverterer brugerinput til de korrekte typer.
+        /// Tilføjer det nye dyr til listen med et unikt ID.
+        /// </summary>
         public void Create()
         {   // input til dyrets navn
             Console.WriteLine("Indtast dyrets navn:");
@@ -51,6 +66,11 @@ namespace ClassLibrary1.Services
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Sletter et dyr fra listen baseret på dets unikke ID.
+        /// Informerer brugeren, hvis ID'et ikke findes.
+        /// </summary>
+        /// <returns>Returnerer true, hvis dyret blev slettet, ellers false.</ret
         public bool Delete()
         {
             Console.WriteLine("Indtast ID'et på det dyr der skal slettes:");
