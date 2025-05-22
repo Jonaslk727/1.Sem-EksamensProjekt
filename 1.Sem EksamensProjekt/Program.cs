@@ -504,7 +504,12 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
-        //METODER TIL FUNKTIONALITET I MENUER:
+        /// <summary>
+        /// Denne metode håndterer redigering af aktiviteter i systemet.
+        /// Menuen giver medarbejdere mulighed for at oprette, slette og redigere eksisterende aktiviteter.
+        /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
+        /// Menuen kører i en løkke, indtil brugeren vælger at gå tilbage.
+        /// </summary>
         static void RedigerAktivitet(AktivitetRepo AkRepo)
         {
             bool fortsæt = true;
