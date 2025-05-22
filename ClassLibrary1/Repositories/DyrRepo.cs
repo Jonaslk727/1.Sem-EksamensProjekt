@@ -1,4 +1,5 @@
-﻿using ClassLibrary1.Models;
+﻿using ClassLibrary1.Interfaces;
+using ClassLibrary1.Models;
 using System.Text;
 
 namespace ClassLibrary1.Services
@@ -13,7 +14,6 @@ namespace ClassLibrary1.Services
     public class DyrRepo
     {
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
-
 
         public void Create()
         {   // input til dyrets navn
@@ -79,7 +79,7 @@ namespace ClassLibrary1.Services
         /// <param name="type"></param>
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-        public void Read(SøgDyrType type)
+        public void Søg(SøgDyrType type)
         {
             List<Dyr> dyrList = new List<Dyr>();
             switch (type)
@@ -179,7 +179,7 @@ namespace ClassLibrary1.Services
         }
         #endregion
 
-        #region Read Methods (Print)
+        #region Print Methods
         public void PrintDyrList()
         {
 
