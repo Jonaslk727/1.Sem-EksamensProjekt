@@ -104,7 +104,7 @@ namespace ClassLibrary1.Repositories
             }
         }
 
-        //slet medarbejder og tek om den findes
+        //slet medarbejder og tek om den findes også brugth try/catch
         public void SletMedarbejder(int medarbejderId)
         {
             try
