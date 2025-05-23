@@ -1021,7 +1021,6 @@ namespace _1.Sem_EksamensProjekt
                 RegistrationDate = DateTime.Now,
                 IsPremiumMember = true
             };
-
         }
         #endregion
         #region Nyttige metoder

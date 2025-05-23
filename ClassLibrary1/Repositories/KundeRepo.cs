@@ -85,7 +85,6 @@ public class KundeRepo
                     if (!string.IsNullOrEmpty(email)) kunde.Email = email;
                     if (!string.IsNullOrEmpty(mobil)) kunde.Mobil = mobil;
 
-
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\nKunde opdateret succesfuldt!");
                     Console.ResetColor();
@@ -135,7 +134,6 @@ public class KundeRepo
         }
     }
 
-   
     // Find en kunde ved ID
     public bool FindKunde(int id)
     {
@@ -148,5 +146,4 @@ public class KundeRepo
         }
         return false;
     }
-
 }
