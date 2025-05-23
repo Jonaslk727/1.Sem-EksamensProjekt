@@ -98,11 +98,9 @@ namespace ClassLibrary1.Services
         /// <param name="type"></param>
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-        public void Søg(SøgDyrType type)
-        {
+        public void Søg(SøgDyrType type) {
             List<Dyr> dyrList = new List<Dyr>();
-            switch (type)
-            {
+            switch (type) {
                 case SøgDyrType.Navn:
                     Console.WriteLine("Indtast dyrets navn:");
                     string name = ValidateUserInput.GetString(Console.ReadLine());
@@ -111,36 +109,25 @@ namespace ClassLibrary1.Services
                         string dyrNavn = dyr.Navn.ToLower();
                         // kikker efter om inputtet er en del af dyrets navn
                         if (dyrNavn.Contains(name.ToLower()))
-                        {
                             dyrList.Add(dyr);
-                        }
                     }
                     break;
                 case SøgDyrType.Id:
                     Console.WriteLine("Indtast dyrets ID:");
                     int id = ValidateUserInput.GetInt(Console.ReadLine());
                     if (DyrList.ContainsKey(id))
-                    {   // add dyr objektet med id til listen
-                        dyrList.Add(DyrList[id]);
-                    }
+                        dyrList.Add(DyrList[id]); // add dyr objektet med id til listen
                     else
-                    {
                         Console.WriteLine("Dyr med dette ID findes ikke.");
-                    }
                     break;
-
                 case SøgDyrType.Art:
-
                     Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
                     ArtType art = ValidateUserInput.GetArtType(Console.ReadLine());
 
                     foreach (var dyr in DyrList.Values)
-                    {
                         if (dyr.Art == art) dyrList.Add(dyr);
-                    }
                     break;
             }
-
             if (dyrList.Count == 0)
             {
                 Console.WriteLine("Ingen dyr fundet.");
@@ -148,9 +135,8 @@ namespace ClassLibrary1.Services
                 return;
             }
             foreach (var dyr in dyrList)
-            {
                 Console.WriteLine(dyr);
-            }
+
             Console.ReadKey();
         }
         #endregion
