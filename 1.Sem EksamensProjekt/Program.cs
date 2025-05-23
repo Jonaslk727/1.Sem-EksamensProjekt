@@ -119,7 +119,7 @@ namespace _1.Sem_EksamensProjekt
         static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
             KundeMenu kundeMenu = new KundeMenu();
-
+            //Tilføj testdata til medarbedejderRepo
             medarbejderRepo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 1, Navn = "Tim", Afdeling = "IT", Stilling = "Udvikler", Email = "tim@example.com", Telefonnummer = "12345678" });
             medarbejderRepo.TilføjMedarbejder(new Medarbejder { MedarbejderId = 2, Navn = "Sara Jensen", Afdeling = "HR", Stilling = "HR Chef", Email = "sara@example.com", Telefonnummer = "87654321" });
 
