@@ -116,7 +116,7 @@ namespace _1.Sem_EksamensProjekt
         /// Brugeren navigerer gennem menuen ved at indtaste et tal, og den tilsvarende funktion kaldes.
         /// Metoden kører , indtil brugeren vælger at gå tilbage.
         /// </summary>
-            static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
+        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
             KundeMenu kundeMenu = new KundeMenu();
 
