@@ -75,40 +75,6 @@ namespace ClassLibrary1.Services
             }
         }
 
-        #region SletBooking  
-        // Slet en booking  
-        public bool DeleteBooking(int bookingID)
-        {
-            if (AlleBokinger.Remove(bookingID))
-            {
-                Console.WriteLine($"Booking {bookingID} slettet"); // Fixed variable name  
-                return true;
-            }
-            Console.WriteLine($"Booking {bookingID} ikke fundet"); // Fixed variable name  
-            return false;
-        }
-        #endregion
-
-        #region RedigerBooking  
-        // Rediger en booking  
-        public bool EditBooking(int bookingId, BookingType newType, DateTime newStartTid,
-            int newVarighed)
-        {
-            if (!AlleBokinger.TryGetValue(bookingId, out var booking))
-            {
-                Console.WriteLine($"Booking {bookingId} ikke fundet");
-                return false;
-            }
-
-            booking.Type = newType;
-            booking.StartTid = newStartTid;
-            booking.Varighed = newVarighed;
-
-            Console.WriteLine($"Booking {bookingId} opdateret");
-            return true;
-        }
-        #endregion
-             
 
         /// Henter og validerer en datoindgang fra brugeren.
         public DateTime GetDateTimeInput(string prompt)
