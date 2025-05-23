@@ -4,7 +4,7 @@
     /// Klasse: Medarbejder  
     /// Arver fra `Person` og tilføjer specifikke egenskaber såsom ID, afdeling og stilling.  
     /// </summary>
-    public class Medarbejder : Person // ✅ Inherit from `Person`
+    public class Medarbejder : Person //  Inherit from `Person`
     {
         public int MedarbejderId { get; set; }
         public string Afdeling { get; set; } = string.Empty;
