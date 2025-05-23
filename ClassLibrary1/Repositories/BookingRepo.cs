@@ -103,40 +103,7 @@ namespace ClassLibrary1.Services
             return true;
         }
         #endregion
-        
-        #region Vis Bookinger
-        public void VisAlleBookinger()
-        {
-            if (AlleBokinger.Count == 0)
-            {
-                Console.WriteLine("Ingen bookinger at vise");
-                return;
-            }
-
-            Console.WriteLine("\nALLE BOOKINGER:");
-            Console.WriteLine("----------------------------------");
-            foreach (var booking in AlleBokinger.Values)
-            {
-                Console.WriteLine(booking.ToString());
-                Console.WriteLine("----------------------------------");
-            }
-        }
-
-        public void VisBooking(int bookingId)
-        {
-            if (AlleBokinger.TryGetValue(bookingId, out var booking))
-            {
-                Console.WriteLine("\nBOOKING DETALJER:");
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine(booking.ToString());
-                Console.WriteLine("----------------------------------");
-            }
-            else
-            {
-                Console.WriteLine($"Booking {bookingId} ikke fundet");
-            }
-        }
-        #endregion        
+             
 
         public DateTime GetDateTimeInput(string prompt)
         {
