@@ -1,7 +1,6 @@
 ﻿namespace ClassLibrary1.Models
 {
-    /// <summary>
-    /// Klasse: Booking  
+    /// <summary> 
     /// Håndterer booking af aktiviteter og besøg på Roskilde Dyreinternat.  
     /// Indeholder information om bookingtype, tidsramme, varighed,  
     /// bookende kunde og eventuelt tilknyttet dyr.  
