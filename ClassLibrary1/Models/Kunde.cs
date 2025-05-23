@@ -16,14 +16,14 @@ namespace ClassLibrary1.Models
         public DateTime DateOfBirth { get; set; }
         public DateTime RegistrationDate { get; set; }
         public bool IsPremiumMember { get; set; }
-        public string Mobil { get; set; } // Added this property to fix the issue
+       
 
         /// Returnerer en formateret streng med kundens oplysninger.
 
         public string VisInfo()
         {
             return "==================================================\n" +
-        $" Id: {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}\n" +
+        $" Id: {KundeId} | Navn: {Navn} | Email: {Email}\n" +
         $" Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}\n" +
         $" Premium medlem: {IsPremiumMember}\n" +
         "==================================================\n";
@@ -32,18 +32,7 @@ namespace ClassLibrary1.Models
         
         /// Opdaterer kundens mobilnummer, hvis det nye nummer er gyldigt.
         /// <param name="nyMobil">Det nye mobilnummer.</param>
-        public void OpdaterMobil(string nyMobil)
-        {
-            if (!string.IsNullOrEmpty(nyMobil))
-            {
-                Mobil = nyMobil;
-                Console.WriteLine($"Telefon opdateret til: {Mobil}");
-            }
-            else
-            {
-                Console.WriteLine("Ugyldigt telefonnummer!");
-            }
-        }
+       
         public Kunde()
         {
 
@@ -55,7 +44,6 @@ namespace ClassLibrary1.Models
             KundeId = kundeId;
             Navn = navn;
             Email = email;
-            Mobil = mobil;
             DateOfBirth = dateOfBirth;
             RegistrationDate = registrationDate;
             IsPremiumMember = isPremiumMember;

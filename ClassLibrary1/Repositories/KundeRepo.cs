@@ -70,21 +70,23 @@ public class KundeRepo
         Console.ResetColor();
     }
 
-    // Opdaterer en kunde
+    // Fixing the type mismatch issue by converting the string 'mobil' to an integer using int.TryParse.
     public void OpdaterKunde(int kundeid, string? navn, string? email, string? mobil)
     {
         try
         {
-            //Gennemgår listen for at finde kunedn med edt angivne ID
             foreach (var kunde in _kunder)
             {
                 if (kunde.KundeId == kundeid)
                 {
-                    //opdaterer kundens oplysninger, hvis de ikke er null
                     if (!string.IsNullOrEmpty(navn)) kunde.Navn = navn;
                     if (!string.IsNullOrEmpty(email)) kunde.Email = email;
-                    if (!string.IsNullOrEmpty(mobil)) kunde.Mobil = mobil;
 
+                    // Convert 'mobil' to an integer if it is not null or empty
+                    if (!string.IsNullOrEmpty(mobil) && int.TryParse(mobil, out int mobilInt))
+                    {
+                        kunde.Mobil = mobilInt;
+                    }
 
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\nKunde opdateret succesfuldt!");
@@ -93,14 +95,12 @@ public class KundeRepo
                 }
             }
 
-            //Hvis kunden ikke blev fundet
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nIngen kunde fundet med ID " + kundeid + ".");
             Console.ResetColor();
         }
         catch (Exception ex)
         {
-            //Håndter eventuelle fejl
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nEn fejl opstod under opdatering af kunden:");
             Console.WriteLine(ex.Message);

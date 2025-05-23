@@ -8,10 +8,8 @@ namespace ClassLibrary1.View
     /// </summary>
     public class KundeMenu
     {
-        
-        /// Menu til medarbejderstyring af kunder.
-        /// Brugeren kan vælge mellem forskellige kundeadministrationsfunktioner.
-        /// <param name="kundeRep">Repository til håndtering af kundeinformation.</param>
+        private string Mobil; // Add this field to resolve the CS0103 error
+
         public void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
             bool kørKundeMenu = true;
@@ -49,8 +47,7 @@ namespace ClassLibrary1.View
                         Console.Write("ID            : "); ny.KundeId = int.Parse(Console.ReadLine());
                         Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
                         Console.Write("Email         : "); ny.Email = Console.ReadLine();
-                        Console.Write("Telefon       : "); ny.Mobil = Console.ReadLine();
-
+                        Console.Write("Telefon       : "); ny.Mobil = int.Parse(Console.ReadLine());
                         kundeRep.TilføjKunde(ny, true);
 
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -74,17 +71,22 @@ namespace ClassLibrary1.View
 
                         if (kundeRep.FindKunde(opdaterId))
                         {
-                            Kunde opdateret = new Kunde { KundeId = opdaterId };
+                            Kunde opdateret = kundeRep.HentKunde(opdaterId); // Fix: Retrieve the 'opdateret' object from the repository
 
                             Console.WriteLine("\nIndtast de nye oplysninger:");
                             Console.WriteLine("------------------------------------------------");
                             Console.Write("Nyt navn         : "); opdateret.Navn = Console.ReadLine();
                             Console.Write("Ny Email         : "); opdateret.Email = Console.ReadLine();
-                            Console.Write("Nyt Telefonnummer: "); opdateret.Mobil = Console.ReadLine();
+                            Console.Write("Nyt Telefonnummer: ");
+                            opdateret.Mobil = int.Parse(Console.ReadLine());
                             Console.WriteLine("------------------------------------------------");
 
-                            kundeRep.OpdaterKunde(opdateret.KundeId, opdateret.Navn, opdateret.Email, opdateret.Mobil);
-
+                            // Fix for CS1503: Convert 'opdateret.Mobil' from int to string before passing it to the method
+                            kundeRep.OpdaterKunde(opdateret.KundeId, opdateret.Navn, opdateret.Email, opdateret.Mobil.ToString());
+                           
+ 
+                            Console.Write("Nyt Telefonnummer: ");
+                            opdateret.Mobil = int.Parse(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("\n Kunde opdateret succesfuldt!");
                             Console.WriteLine("=====================================");
@@ -115,6 +117,19 @@ namespace ClassLibrary1.View
                         Console.WriteLine("Ugyldigt valg, prøv igen.");
                         break;
                 }
+            }
+        }
+
+        public void OpdaterMobil(string nyMobil)
+        {
+            if (!string.IsNullOrEmpty(nyMobil))
+            {
+                Mobil = nyMobil;
+                Console.WriteLine($"Telefon opdateret til: {Mobil}");
+            }
+            else
+            {
+                Console.WriteLine("Ugyldigt telefonnummer!");
             }
         }
     }

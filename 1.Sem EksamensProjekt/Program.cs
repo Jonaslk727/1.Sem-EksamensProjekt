@@ -1006,7 +1006,7 @@ namespace _1.Sem_EksamensProjekt
                 KundeId = 1,
                 Navn = "Anders Jensen",
                 Email = "anders@example.com",
-                Mobil = "12345678",
+                Mobil = 12345678, // Changed from string to int
                 DateOfBirth = new DateTime(1998, 5, 14),
                 RegistrationDate = DateTime.Now,
                 IsPremiumMember = true
@@ -1016,12 +1016,11 @@ namespace _1.Sem_EksamensProjekt
                 KundeId = 2,
                 Navn = "Jonas Lolk",
                 Email = "joloknu@gmail.com",
-                Mobil = "987654321",
+                Mobil = 987654321, // Changed from string to int
                 DateOfBirth = new DateTime(2002, 4, 16),
                 RegistrationDate = DateTime.Now,
                 IsPremiumMember = true
             };
-
         }
         #endregion
         #region Nyttige metoder
