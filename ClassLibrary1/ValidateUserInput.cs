@@ -1,7 +1,7 @@
 ﻿using ClassLibrary1.Models;
 
 namespace ClassLibrary1
-{
+{   // er en klasse til at validere brugerens input
     static public class ValidateUserInput
     {
         /// <summary>
