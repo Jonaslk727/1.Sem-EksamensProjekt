@@ -115,7 +115,7 @@ namespace ClassLibrary1.Services
             else
             {
                 foreach (var kunde in aktivitet.Tilmeldte)
-                    Console.WriteLine($"- {kunde.Navn} (ID: {kunde.KundeId}, Email: {kunde.Email})");
+                Console.WriteLine($"- {kunde.Navn} (ID: {kunde.KundeId}, Email: {kunde.Email})");
             }
             Console.ResetColor();
             Console.WriteLine("\nTryk på en tast for at vende tilbage...");

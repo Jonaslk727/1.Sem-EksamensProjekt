@@ -70,7 +70,7 @@ namespace ClassLibrary1.Repositories
             return false; // Employee not found
         }
 
-        // Opdater medarbejder og tejk om den findes
+        // Opdater medarbejder og tejk om den findes brugt også try/catch
         public void OpdaterMedarbejder(int medarbejderId, Medarbejder opdateretMedarbejder)
         {
             try
