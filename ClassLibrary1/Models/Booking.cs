@@ -1,18 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassLibrary1.Models
+﻿namespace ClassLibrary1.Models
 {
+    /// <summary>
+    /// Klasse: Booking  
+    /// Håndterer booking af aktiviteter og besøg på Roskilde Dyreinternat.  
+    /// Indeholder information om bookingtype, tidsramme, varighed,  
+    /// bookende kunde og eventuelt tilknyttet dyr.  
+    /// Genererer automatisk et unikt BookingId.  
+    /// </summary>
+
+    /// Enum: BookingType  
+    /// Definerer de mulige bookingtyper i systemet:
     public enum BookingType
     {
         Aktivitet,
         Besøg
     }
     public class Booking
-    {   
+    {
+        #region properties
         private static int _nextId = 0;
         public int BookingId { get; set; }
         public BookingType Type { get; set; }
@@ -21,6 +26,9 @@ namespace ClassLibrary1.Models
         public int Varighed { get; set; } // i timer
         public Kunde Booker { get;}
         public Dyr BookedDyr { get; set; } // Dyr der bookes til aktiviteten
+        #endregion
+        /// Konstruktør til oprettelse af en booking med angivne værdier.
+        /// Initialiserer bookingens type, starttid, varighed og bookende
 
         public Booking(BookingType type, DateTime startTid, int varighed, Kunde booker)
         {
@@ -35,6 +43,7 @@ namespace ClassLibrary1.Models
             BookingId = _nextId++;
         }
 
+        /// Returnerer en formateret tekst med detaljer om bookingen.
         public override string ToString()
         {
             return $"BookingId: {BookingId} | StartTid: {StartTid} | SlutTid: {SlutTid} | Varighed: {Varighed} timer " +

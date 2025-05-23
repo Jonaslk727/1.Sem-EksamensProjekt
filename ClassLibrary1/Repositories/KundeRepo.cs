@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using ClassLibrary1.Models;
+﻿using ClassLibrary1.Models;
 
 public class KundeRepo
 {
     private List<Kunde> _kunder = new List<Kunde>();
 
     /// <summary>
-    /// Adds a new customer to the collection if the customer does not already exist.
+    /// Tilføjer en ny kunde til samlingen, hvis kunden ikke allerede eksisterer.
     /// </summary>
-    /// <remarks>If a customer with the same <c>Id</c> already exists in the collection, the method will not
-    /// add the customer and will display a message indicating that the customer already exists. Otherwise, the customer
-    /// is added to the collection, and a confirmation message is displayed.</remarks>
-    /// <param name="kunde">The customer to add. Must not be null and must have a unique <c>Id</c>.</param>
+    /// <remarks>Hvis en kunde med det samme <c>Id</c> allerede findes i samlingen, vil metoden ikke
+    /// tilføje kunden og vil vise en besked, der indikerer, at kunden allerede eksisterer. Ellers bliver kunden
+    /// tilføjet til samlingen, og en bekræftelsesbesked vises.</remarks>
+    /// <param name="kunde">Kunden, der skal tilføjes. Må ikke være null og skal have et unikt <c>Id</c>.</param>
     public void TilføjKunde(Kunde kunde, bool status)
     {
         foreach (var eksisterendeKunde in _kunder)
@@ -87,7 +85,6 @@ public class KundeRepo
                     if (!string.IsNullOrEmpty(email)) kunde.Email = email;
                     if (!string.IsNullOrEmpty(mobil)) kunde.Mobil = mobil;
 
-
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\nKunde opdateret succesfuldt!");
                     Console.ResetColor();
@@ -137,12 +134,6 @@ public class KundeRepo
         }
     }
 
-    // Hent alle kunder
-    public List<Kunde> HentAlleKunder()
-    {
-        return _kunder;
-    }
-
     // Find en kunde ved ID
     public bool FindKunde(int id)
     {
@@ -155,27 +146,4 @@ public class KundeRepo
         }
         return false;
     }
-    public Kunde VælgKunde() //Bruges i KundeMenu - tilmeld aktivitet
-    {
-        Console.Write("Indtast dit kunde-ID: ");
-        if (int.TryParse(Console.ReadLine(), out int id))
-        {
-            foreach (Kunde k in _kunder)
-            {
-                if (k.KundeId == id)
-                {
-                    Console.WriteLine($"Velkommen, {k.Navn}!");
-                    return k;
-                }
-            }
-            Console.WriteLine("Kunde ikke fundet.");
-        }
-        else
-        {
-            Console.WriteLine("Ugyldigt input.");
-        }
-
-        return null;
-    }
-
 }

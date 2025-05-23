@@ -1,17 +1,13 @@
-﻿using ClassLibrary1.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.AccessControl;
+﻿using ClassLibrary1.Interfaces;
+using ClassLibrary1.Models;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using ClassLibrary1.Interfaces;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary1.Services
 {
+    /// <summary>
+    /// Enum der definerer søgetyper for dyr.
+    /// Bruges til at specificere om søgningen skal ske efter navn, ID eller art.
+    /// </summary>
     public enum SøgDyrType
     {
         Navn,
@@ -19,11 +15,20 @@ namespace ClassLibrary1.Services
         Art,
     }
 
+    /// <summary>
+    /// Repository-klasse til håndtering af dyredata.
+    /// Gemmer og administrerer en liste over dyr med unikt ID.
+    /// </summary>
     public class DyrRepo
     {
+        /// En dictionary der gemmer registrerede dyr med et integer ID som nøgle.
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
 
-
+        /// <summary>
+        /// Opretter et nyt dyr baseret på brugerinput.
+        /// Validerer og konverterer brugerinput til de korrekte typer.
+        /// Tilføjer det nye dyr til listen med et unikt ID.
+        /// </summary>
         public void Create()
         {   // input til dyrets navn
             Console.WriteLine("Indtast dyrets navn:");
@@ -60,6 +65,11 @@ namespace ClassLibrary1.Services
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Sletter et dyr fra listen baseret på dets unikke ID.
+        /// Informerer brugeren, hvis ID'et ikke findes.
+        /// </summary>
+        /// <returns>Returnerer true, hvis dyret blev slettet, ellers false.</ret
         public bool Delete()
         {
             Console.WriteLine("Indtast ID'et på det dyr der skal slettes:");
@@ -80,6 +90,7 @@ namespace ClassLibrary1.Services
             }
         }
 
+        #region Søgning
         /// <summary>
         /// En søge method der tager en eneum SøgeDyrType [Navn, Id, Art] 
         /// og søger via den valgte type.
@@ -87,11 +98,9 @@ namespace ClassLibrary1.Services
         /// <param name="type"></param>
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-        public void Read(SøgDyrType type)
-        {
+        public void Søg(SøgDyrType type) {
             List<Dyr> dyrList = new List<Dyr>();
-            switch (type)
-            {
+            switch (type) {
                 case SøgDyrType.Navn:
                     Console.WriteLine("Indtast dyrets navn:");
                     string name = ValidateUserInput.GetString(Console.ReadLine());
@@ -100,36 +109,25 @@ namespace ClassLibrary1.Services
                         string dyrNavn = dyr.Navn.ToLower();
                         // kikker efter om inputtet er en del af dyrets navn
                         if (dyrNavn.Contains(name.ToLower()))
-                        {
                             dyrList.Add(dyr);
-                        }
                     }
                     break;
                 case SøgDyrType.Id:
                     Console.WriteLine("Indtast dyrets ID:");
                     int id = ValidateUserInput.GetInt(Console.ReadLine());
                     if (DyrList.ContainsKey(id))
-                    {   // add dyr objektet med id til listen
-                        dyrList.Add(DyrList[id]);
-                    }
+                        dyrList.Add(DyrList[id]); // add dyr objektet med id til listen
                     else
-                    {
                         Console.WriteLine("Dyr med dette ID findes ikke.");
-                    }
                     break;
-
                 case SøgDyrType.Art:
-
                     Console.WriteLine("Indtast dyrets art (Hund, Kat, Fugl):");
                     ArtType art = ValidateUserInput.GetArtType(Console.ReadLine());
 
                     foreach (var dyr in DyrList.Values)
-                    {
                         if (dyr.Art == art) dyrList.Add(dyr);
-                    }
                     break;
             }
-
             if (dyrList.Count == 0)
             {
                 Console.WriteLine("Ingen dyr fundet.");
@@ -137,11 +135,13 @@ namespace ClassLibrary1.Services
                 return;
             }
             foreach (var dyr in dyrList)
-            {
                 Console.WriteLine(dyr);
-            }
+
             Console.ReadKey();
         }
+        #endregion
+
+        #region update
         /// <summary>
         /// man skal indsætte id'et på det dyr der skal ændres og de værdier der skal ændres.
         /// Du insætter derefter de værdier du vil ændre og de vil blive opdateret i objektet.
@@ -170,8 +170,10 @@ namespace ClassLibrary1.Services
             if (DyrList.TryGetValue(id, out Dyr dyr))
             {
                 if (nyNavn != null) dyr.Navn = nyNavn;
-                if (!nyArt.HasValue) dyr.Art = nyArt.Value;
+                // Denne update fungere ikke, kan løses men kræver at alle ArtType enum bliver sat til nullyble, som kan give en null reference exception.
+                if (nyArt.HasValue) dyr.Art = nyArt.Value;
                 if (nyRace != null) dyr.Race = nyRace;
+                // Denne update fungere ikke, kan løses men kræver at alle ArtType enum bliver sat til nullyble, som kan give en null reference exception.
                 if (nyVægt.HasValue) dyr.Vægt = nyVægt.Value;
                 if (nyFødselsdag.HasValue) dyr.FødselsDag = nyFødselsdag.Value;
                 if (!nyKøn.HasValue) dyr.Køn = nyKøn.Value;
@@ -180,7 +182,9 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        #endregion
 
+        #region Print Methods
         public void PrintDyrList()
         {
 
@@ -198,7 +202,9 @@ namespace ClassLibrary1.Services
             }
             Console.ReadKey();
         }
-
+        /// <summary>
+        /// Udpringter alle dyr der ikke er booket.
+        /// </summary>
         public void PrintLedigeDyr()
         {
             List<Dyr> ledigeDyr = new List<Dyr>();
@@ -220,7 +226,6 @@ namespace ClassLibrary1.Services
         /// <param name="id"></param>
         public void PrintDyretsLog()
         {
-
             Console.WriteLine("Indtast dyrets ID:");
             int id = ValidateUserInput.GetInt(Console.ReadLine());
 
@@ -273,8 +278,6 @@ namespace ClassLibrary1.Services
                 Console.WriteLine("Dyr med dette ID findes ikke.");
                 Console.ReadKey();
             }
-
-
         }
 
         /// <summary>
@@ -300,5 +303,6 @@ namespace ClassLibrary1.Services
             Console.WriteLine(sb);
             
         }
+        #endregion
     }
 }

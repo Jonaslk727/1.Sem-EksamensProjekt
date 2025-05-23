@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Models; //Så vi kan tilgå vores model klasser
+﻿using ClassLibrary1.Models; //Så vi kan tilgå vores model klasser
 
 namespace ClassLibrary1.Services
 {
-    //Dele af denne klasse er lavet ved hjælp af vores egen udarbejdet 3. Obligatoriske opgave
+    /// <summary>
+    /// Dele af denne klasse er lavet ved hjælp af vores egen udarbejdet 3. Obligatoriske opgave
+    /// Klasse: AktivitetRepo  
+    /// Håndterer administration af aktiviteter, herunder oprettelse, sletning,  
+    /// redigering og visning af bookede aktiviteter.  
+    /// Understøtter funktionalitet til afmelding og deltagerstyring.  
+    /// </summary>
     public class AktivitetRepo
     {
+        /// Dictionary til at lagre alle aktiviteter med deres unikke ID.
         public Dictionary<int, Aktivitet> AlleAktiviteter = new Dictionary<int, Aktivitet>();
-    
+
+        /// Opretter en ny aktivitet og tilføjer den til systemet.
         public bool OpretAktivitet(string Title, DateTime start, DateTime slut, string beskrivelse)
         {
             Aktivitet n = new(Title, start, slut, beskrivelse);
             AlleAktiviteter.Add(n.AktivitetID, n);
             return true;
         }
+        /// Sletter en aktivitet baseret på ID.
         public bool SletAktivitet(int id)
         {
             foreach (var aktivitet in AlleAktiviteter)
@@ -32,6 +36,7 @@ namespace ClassLibrary1.Services
             Console.WriteLine("Ingen aktivitet med dette ID");
             return false;
         }
+       /// Viser alle bookede aktiviteter i systemet.
         public void VisBookedeAktiviteter()
         {
             Console.WriteLine("=== Bookede Aktiviteter ===");
@@ -45,7 +50,6 @@ namespace ClassLibrary1.Services
                     found = true;
                 }
             }
-
             if (!found)
                 Console.WriteLine("Ingen aktiviteter er booket endnu.");
         }
@@ -64,7 +68,6 @@ namespace ClassLibrary1.Services
                         break;
                     }
                 }
-
                 if (kundeAtFjerne != null)
                 {
                     aktivitet.Tilmeldte.Remove(kundeAtFjerne);
@@ -73,6 +76,7 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        /// Redigerer en aktivitet baseret på ID.
         public bool RedigerAktivitet(int id, string nyTitle, DateTime nyStart, DateTime nySlut, string nyBeskrivelse)
         {
             if (AlleAktiviteter.TryGetValue(id, out Aktivitet aktivitet))
@@ -85,6 +89,7 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
+        /// Viser deltagerlisten for en aktivitet baseret på ID.
         public void VisDeltagerlisteForAktivitet()
         {
             Console.Write("Indtast ID på aktiviteten: ");
@@ -110,9 +115,7 @@ namespace ClassLibrary1.Services
             else
             {
                 foreach (var kunde in aktivitet.Tilmeldte)
-                {
                     Console.WriteLine($"- {kunde.Navn} (ID: {kunde.KundeId}, Email: {kunde.Email})");
-                }
             }
             Console.ResetColor();
             Console.WriteLine("\nTryk på en tast for at vende tilbage...");

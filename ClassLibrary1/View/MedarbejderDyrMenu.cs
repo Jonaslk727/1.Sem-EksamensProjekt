@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Services;
+﻿using ClassLibrary1.Services;
 using ClassLibrary1.Models;
 
 namespace ClassLibrary1.View
 {
+    /// <summary>
+    /// Klasse der håndterer menuen for administration af dyredata.
+    /// Muliggør oprettelse, sletning, redigering og søgning efter dyr.
+    /// </summary>
     public class DyrMenu
     {
-        public void MedarbejderDyrMenu(DyrRepo dyrRep)
+        // <summary>
+        /// Menu til medarbejderstyring af dyr.
+        /// Brugeren kan vælge mellem forskellige dyreadministrationsfunktioner.
+        /// </summary>
+        /// <param name="dyrRep">Repository til håndtering af dyreinformation.</param>
+    public void MedarbejderDyrMenu(DyrRepo dyrRep)
         {
 
             bool kørDyrMenu = true;
@@ -52,6 +56,7 @@ namespace ClassLibrary1.View
                 }
             }
         }
+        /// Menu der håndterer oprettelse, sletning og redigering af dyredata.
         public static void SletRedigerOpretDyrMeny(DyrRepo dyrRep)
         {
             bool fortsæt = true;
@@ -109,6 +114,7 @@ namespace ClassLibrary1.View
             }
         }
 
+        /// Søgefunktion til at finde dyr baseret på navn, ID eller art.
         static void SøgDyr(DyrRepo dyrRep)
         {
             Console.WriteLine("Søg efter dyr:");
@@ -122,13 +128,13 @@ namespace ClassLibrary1.View
             switch (valg)
             {
                 case "1":
-                    dyrRep.Read(SøgDyrType.Navn);
+                    dyrRep.Søg(SøgDyrType.Navn);
                     break;
                 case "2":
-                    dyrRep.Read(SøgDyrType.Id);
+                    dyrRep.Søg(SøgDyrType.Id);
                     break;
                 case "3":
-                    dyrRep.Read(SøgDyrType.Art);
+                    dyrRep.Søg(SøgDyrType.Art);
                     break;
 
                 default:
@@ -138,10 +144,8 @@ namespace ClassLibrary1.View
                     Console.ResetColor();
                     break;
             }
-
         }
-
-
+       /// Opdaterer information om et eksisterende dyr baseret på dets ID
         static void Updater(DyrRepo dyrRep)
         {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
@@ -215,5 +219,4 @@ namespace ClassLibrary1.View
             }
         }
     }
-
 }

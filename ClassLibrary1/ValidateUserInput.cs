@@ -1,16 +1,11 @@
 ﻿using ClassLibrary1.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
     static public class ValidateUserInput
     {
         /// <summary>
+        /// en specialklass til at vliderer input fra brugeren og at sikker at det er gyldigt
         /// Validerer input og sikrer at det er et heltal.
         /// </summary>
         /// <param name="input"></param>
@@ -110,7 +105,7 @@ namespace ClassLibrary1
             while (!Enum.TryParse(input, true, out result))
             {
                 Console.WriteLine("Ugyldigt input. Indtast venligst 'Hund', 'Kat' eller 'Fugl'.");
-                input = GetString(Console.ReadLine());
+                input = Console.ReadLine();
             }
             return result;
         }

@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassLibrary1.Models
+﻿namespace ClassLibrary1.Models
 {
+    /// <summary>
+    /// Klasse: Aktivitet  
+    /// Håndterer oprettelse og administration af aktiviteter  
+    /// på Roskilde Dyreinternat. Indeholder oplysninger som  
+    /// titel, tidsrum, beskrivelse og tilmeldte deltagere.  
+    /// Leverer en metode til formatert visning af aktiviteten.  
+    /// </summary>
+
     public class Aktivitet
     {
         #region Properties

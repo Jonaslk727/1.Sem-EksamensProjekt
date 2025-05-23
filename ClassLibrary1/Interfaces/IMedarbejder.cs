@@ -1,13 +1,14 @@
 ﻿using ClassLibrary1.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassLibrary1.Interfaces
 
 {
+    // -------------------------------------------------------------
+    // IMedarbejder interface:  
+    // Håndterer medarbejderadministration, inkl. oprettelse,  
+    // redigering, søgning og sletning. Sikrer en struktureret  
+    // tilgang til datahåndtering i systemet.  
+    // -------------------------------------------------------------
     public interface IMedarbejder
     {
         void TilføjMedarbejder(Medarbejder medarbejder);

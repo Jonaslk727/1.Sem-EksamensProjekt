@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Models; //Model klasserne kan tilgås
+﻿using ClassLibrary1.Models; 
 
 namespace ClassLibrary1.Services
 {
+    /// <summary>
+    /// Model klasserne kan tilgås <br></br>
+    /// Klasse: BookingRepo  <br></br>
+    /// Håndterer bookingadministration, herunder oprettelse, sletning,<br></br>
+    /// redigering og visning af bookinger.  <br></br>
+    /// Understøtter både aktivitets- og besøgsspecifikke bookinger.  <br></br>
+    /// </summary>
     public class BookingRepo
     {
 
+        /// Dictionary til lagring af alle bookinger baseret på deres unikke
+
         public Dictionary<int, Booking> AlleBokinger = new Dictionary<int, Booking>();
 
+        /// Opretter en besøg-booking for en kunde, der ønsker at besøge et dyr.
         public void OpretBesøgBookingMedKunde(DyrRepo dyrRep, Kunde kunde)
         {
             Booking booking = new Booking();
@@ -47,6 +51,7 @@ namespace ClassLibrary1.Services
             AlleBokinger.Add(booking.BookingId, booking);
             Console.ReadKey();
         }
+        /// Opretter en aktivitetsbooking for en kunde
         public void OpretAktivitetsBookingMedKunde(AktivitetRepo aktivitetRep, Kunde kunde)
         {
             Booking booking = new Booking();
@@ -105,6 +110,7 @@ namespace ClassLibrary1.Services
         #endregion
              
 
+        /// Henter og validerer en datoindgang fra brugeren.
         public DateTime GetDateTimeInput(string prompt)
         {
             bool isValid = true;

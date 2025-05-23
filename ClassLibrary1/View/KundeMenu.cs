@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1.Models;
-using ClassLibrary1.Services;
+﻿using ClassLibrary1.Models;
 
 namespace ClassLibrary1.View
 {
+    /// <summary>
+    /// Klasse der håndterer kundeadministration for medarbejdere.
+    /// Tillader oprettelse, visning, opdatering og sletning af kunder.
+    /// </summary>
     public class KundeMenu
     {
+        
+        /// Menu til medarbejderstyring af kunder.
+        /// Brugeren kan vælge mellem forskellige kundeadministrationsfunktioner.
+        /// <param name="kundeRep">Repository til håndtering af kundeinformation.</param>
         public void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
-
-            
             bool kørKundeMenu = true;
             while (kørKundeMenu)
             {
@@ -58,11 +58,9 @@ namespace ClassLibrary1.View
                         Console.WriteLine("=====================================");
                         Console.ResetColor();
                         break;
-
                     case "2":
                         kundeRep.VisKunder();// Vis alle kunder
                         break;
-
                     case "3":
                         // Opdater kunde
                         Console.ForegroundColor = ConsoleColor.Cyan;
