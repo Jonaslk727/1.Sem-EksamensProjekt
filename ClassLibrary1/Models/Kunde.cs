@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary1.Models
+﻿using ClassLibrary1.Interfaces;
+
+namespace ClassLibrary1.Models
 {
     /// <summary>
     /// Klasse: Kunde  
