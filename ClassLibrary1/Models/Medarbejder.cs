@@ -2,49 +2,46 @@
 {
     /// <summary>
     /// Klasse: Medarbejder  
-    /// Håndterer oplysninger om medarbejdere, herunder ID, navn,  
-    /// afdeling, stilling, kontaktoplysninger og email.  
-    /// Indeholder en metode til formateret visning af medarbejderdata.  
+    /// Arver fra `Person` og tilføjer specifikke egenskaber såsom ID, afdeling og stilling.  
     /// </summary>
-        public class Medarbejder
+    public class Medarbejder : Person // ✅ Inherit from `Person`
     {
-        public string Navn { get; set; } = string.Empty;
-        public int MedarbejderId { get; set; } = 0;
+        public int MedarbejderId { get; set; }
         public string Afdeling { get; set; } = string.Empty;
         public string Stilling { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Telefonnummer { get; set; } = string.Empty;
+        public string Telefonnummer { get; set; } = string.Empty; // Mobil already exists in Person
 
         /// <summary>
         /// Standardkonstruktør til oprettelse af en tom medarbejderprofil.
         /// </summary>
+        public Medarbejder() { }
 
-        public Medarbejder()
-        {
-        }
+        /// <summary>
         /// Konstruktør til oprettelse af en medarbejder med specifikke oplysninger.
-        public Medarbejder(string navn, int medarbejderId, string afdeling, string stilling, string email, string telefonnummer)
+        /// </summary>
+        public Medarbejder(string navn, string email, int mobil, int medarbejderId,
+                           string afdeling, string stilling, string telefonnummer)
+            : base(navn, email, mobil) //  Call base class constructor
         {
-            Navn = navn;
             MedarbejderId = medarbejderId;
             Afdeling = afdeling;
             Stilling = stilling;
-            Email = email;
             Telefonnummer = telefonnummer;
-
         }
+
+        /// <summary>
         /// Returnerer en formateret streng med medarbejderens oplysninger.
+        /// </summary>
         public override string ToString()
         {
-            return "----------------------------------\n" + // Separator line
-                   "Navn      : " + Navn + "\n" +
-                   "ID        : " + MedarbejderId + "\n" +
-                   "Afdeling  : " + Afdeling + "\n" +
-                   "Stilling  : " + Stilling + "\n" +
-                   "Email     : " + Email + "\n" +
-                   "Telefon   : " + Telefonnummer + "\n" +
-                   "----------------------------------"; // Separator line
+            return "----------------------------------\n" +
+                   $"Navn      : {Navn}\n" +       //  Inherited from Person
+                   $"ID        : {MedarbejderId}\n" +
+                   $"Afdeling  : {Afdeling}\n" +
+                   $"Stilling  : {Stilling}\n" +
+                   $"Email     : {Email}\n" +     // Inherited from Person
+                   $"Telefon   : {Telefonnummer}\n" +
+                   "----------------------------------";
         }
     }
 }
-
