@@ -133,7 +133,6 @@ namespace ClassLibrary1.Repositories
                 Console.ResetColor();
             }
         }
-
         // hent alle medarbejdere
         public List<Medarbejder> HentAlleMedarbejdere()
         {
