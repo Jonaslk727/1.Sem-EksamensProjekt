@@ -131,7 +131,7 @@ namespace ClassLibrary1.Repositories
                 Console.ResetColor();
             }
         }
-        // hent alle medarbejdere
+        // hent List af alle medarbejdere
         public List<Medarbejder> HentAlleMedarbejdere()
         {
             return medarbejdere;

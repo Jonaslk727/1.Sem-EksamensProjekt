@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using ClassLibrary1.Models.Besøg_og_lægelog;
+
 namespace ClassLibrary1.Services
 {
     /// <summary>
@@ -8,7 +9,6 @@ namespace ClassLibrary1.Services
     /// Indeholder metoder til oprettelse af logs samt visning af  
     /// besøgs- og lægejournaler.  
     /// </summary>
-
 
     public class DyreLog
     {

@@ -86,7 +86,7 @@ namespace ClassLibrary1.View
                            
  
                             Console.Write("Nyt Telefonnummer: ");
-                            opdateret.Mobil = int.Parse(Console.ReadLine());
+                            opdateret.Mobil = ValidateUserInput.GetInt(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("\n Kunde opdateret succesfuldt!");
                             Console.WriteLine("=====================================");
