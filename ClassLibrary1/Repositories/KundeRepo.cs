@@ -135,7 +135,6 @@ public class KundeRepo
         }
     }
 
-   
     // Find en kunde ved ID
     public bool FindKunde(int id)
     {
@@ -148,5 +147,4 @@ public class KundeRepo
         }
         return false;
     }
-
 }

@@ -31,7 +31,7 @@ namespace ClassLibrary1.Services
             LægeLogs.Add(lægelog.Id, lægelog);
         }
         // Henter og returnerer alle besøgslogs som en formateret tekststreng
-            public string GetBesøgsLog()
+        public string GetBesøgsLog()
         {
             StringBuilder sb = new StringBuilder();
             if (BesøgssLogs.Count == 0)

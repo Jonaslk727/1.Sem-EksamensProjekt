@@ -70,7 +70,7 @@ namespace ClassLibrary1.Repositories
             return false; // Employee not found
         }
 
-        // Opdater medarbejder og tejk om den findes
+        // Opdater medarbejder og tejk om den findes brugt også try/catch
         public void OpdaterMedarbejder(int medarbejderId, Medarbejder opdateretMedarbejder)
         {
             try
@@ -94,7 +94,6 @@ namespace ClassLibrary1.Repositories
                         return;
                     }
                 }
-
                 Console.WriteLine("Medarbejder ikke fundet.");
             }
             catch (Exception ex)
@@ -105,7 +104,7 @@ namespace ClassLibrary1.Repositories
             }
         }
 
-        //slet medarbejder og tek om den findes
+        //slet medarbejder og tek om den findes også brugth try/catch
         public void SletMedarbejder(int medarbejderId)
         {
             try
@@ -123,7 +122,6 @@ namespace ClassLibrary1.Repositories
                         return;
                     }
                 }
-
                 Console.WriteLine("Medarbejder med ID " + medarbejderId + " blev ikke fundet.");
             }
             catch (Exception ex)
@@ -133,7 +131,6 @@ namespace ClassLibrary1.Repositories
                 Console.ResetColor();
             }
         }
-
         // hent alle medarbejdere
         public List<Medarbejder> HentAlleMedarbejdere()
         {

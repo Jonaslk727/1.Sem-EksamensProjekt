@@ -116,7 +116,7 @@ namespace _1.Sem_EksamensProjekt
         /// Brugeren navigerer gennem menuen ved at indtaste et tal, og den tilsvarende funktion kaldes.
         /// Metoden kører , indtil brugeren vælger at gå tilbage.
         /// </summary>
-            static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
+        static void MedarbejderMenu(AktivitetRepo AkRepo, DyrRepo dyrRep, KundeRepo kundeRep, MedarbejderRepo medarbejderRepo)
         {
             KundeMenu kundeMenu = new KundeMenu();
 
@@ -998,29 +998,6 @@ namespace _1.Sem_EksamensProjekt
             DateTime SlutTid2 = new(2025, 11, 5, 15, 30, 0);
             string info2 = "Afslapning og leg med katte";
             repo.OpretAktivitet(Title2, StartTid2, SlutTid2, info2);
-        }
-        public static void TestDataKunder(KundeRepo kundeRepo)
-        {
-            Kunde Kunde1 = new Kunde()
-            {
-                KundeId = 1,
-                Navn = "Anders Jensen",
-                Email = "anders@example.com",
-                Mobil = 12345678, // Changed from string to int
-                DateOfBirth = new DateTime(1998, 5, 14),
-                RegistrationDate = DateTime.Now,
-                IsPremiumMember = true
-            };
-            Kunde Kunde2 = new Kunde()
-            {
-                KundeId = 2,
-                Navn = "Jonas Lolk",
-                Email = "joloknu@gmail.com",
-                Mobil = 987654321, // Changed from string to int
-                DateOfBirth = new DateTime(2002, 4, 16),
-                RegistrationDate = DateTime.Now,
-                IsPremiumMember = true
-            };
         }
         #endregion
         #region Nyttige metoder

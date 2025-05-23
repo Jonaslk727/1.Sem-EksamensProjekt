@@ -1,7 +1,7 @@
 ﻿using ClassLibrary1.Models;
 
 namespace ClassLibrary1
-{
+{   // er en klasse til at validere brugerens input
     static public class ValidateUserInput
     {
         /// <summary>
@@ -65,7 +65,7 @@ namespace ClassLibrary1
             return result;
         }
         /// <summary>
-        /// for at sikre at input er et gyldigt boolsk værdi.
+        /// Proof of concept: for at sikre at input er et gyldigt boolsk værdi.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -109,7 +109,5 @@ namespace ClassLibrary1
             }
             return result;
         }
-
-
     }
 }
