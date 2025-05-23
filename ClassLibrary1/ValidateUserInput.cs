@@ -109,7 +109,5 @@ namespace ClassLibrary1
             }
             return result;
         }
-
-
     }
 }

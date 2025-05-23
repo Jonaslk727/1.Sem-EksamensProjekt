@@ -94,7 +94,6 @@ namespace ClassLibrary1.Repositories
                         return;
                     }
                 }
-
                 Console.WriteLine("Medarbejder ikke fundet.");
             }
             catch (Exception ex)
@@ -123,7 +122,6 @@ namespace ClassLibrary1.Repositories
                         return;
                     }
                 }
-
                 Console.WriteLine("Medarbejder med ID " + medarbejderId + " blev ikke fundet.");
             }
             catch (Exception ex)
