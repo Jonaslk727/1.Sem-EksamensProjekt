@@ -41,6 +41,7 @@
                    $"Stilling  : {Stilling}\n" +
                    $"Email     : {Email}\n" +     // Inherited from Person
                    $"Telefon   : {Telefonnummer}\n" +
+                   $"Mobil     : {Mobil}\n" +
                    "----------------------------------";
         }
     }
