@@ -24,7 +24,6 @@ namespace ClassLibrary1.Services
         /// En dictionary der gemmer registrerede dyr med et integer ID som nøgle.
         public Dictionary<int, Dyr> DyrList { get; set; } = new Dictionary<int, Dyr>();
 
-
         /// <summary>
         /// Opretter et nyt dyr baseret på brugerinput.
         /// Validerer og konverterer brugerinput til de korrekte typer.
@@ -241,7 +240,6 @@ namespace ClassLibrary1.Services
         /// <param name="id"></param>
         public void PrintDyretsLog()
         {
-
             Console.WriteLine("Indtast dyrets ID:");
             int id = ValidateUserInput.GetInt(Console.ReadLine());
 

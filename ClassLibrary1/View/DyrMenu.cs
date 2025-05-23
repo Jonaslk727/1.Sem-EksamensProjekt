@@ -27,7 +27,6 @@ namespace ClassLibrary1.View
             _kundeRepo = kundeRepo;
         }
 
-
         // <summary>
         /// Menu til kundeinteraktion med dyrebesøg.
         /// Tillader kunden at se ledige dyr og booke besøg.
@@ -71,7 +70,6 @@ namespace ClassLibrary1.View
                         break;
                 }
             } while (fortsæt);
-
         }
     }
 }

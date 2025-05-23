@@ -8,7 +8,6 @@
     /// Leverer en metode til formatert visning af aktiviteten.  
     /// </summary>
 
-
     public class Aktivitet
     {
         #region Properties

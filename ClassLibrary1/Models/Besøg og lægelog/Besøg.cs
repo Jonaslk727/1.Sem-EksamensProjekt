@@ -14,7 +14,6 @@ namespace ClassLibrary1.Models.Besøg_og_lægelog
     /// Indeholder en ToString()-metode for let visning af besøg.  
     /// </summary>
 
-
     public class Besøg
     {
         public DateTime BesøgsTidspunkt { get; set; }
@@ -37,6 +36,5 @@ namespace ClassLibrary1.Models.Besøg_og_lægelog
             return $"------------------------------------------------------------------------------" +
                    $"\n BesøgsId: {BesøgsId} |\n BesøgsTidspunkt: {BesøgsTidspunkt} |\n Besøger: {Besøger.Navn}";
         }
-
     }
 }

@@ -2,8 +2,6 @@
 
 namespace ClassLibrary1.Services
 {
-
-
     /// <summary>
     /// Dele af denne klasse er lavet ved hjælp af vores egen udarbejdet 3. Obligatoriske opgave
     /// Klasse: AktivitetRepo  
@@ -15,7 +13,6 @@ namespace ClassLibrary1.Services
     {
         /// Dictionary til at lagre alle aktiviteter med deres unikke ID.
         public Dictionary<int, Aktivitet> AlleAktiviteter = new Dictionary<int, Aktivitet>();
-
 
         /// Opretter en ny aktivitet og tilføjer den til systemet.
         public bool OpretAktivitet(string Title, DateTime start, DateTime slut, string beskrivelse)
@@ -92,7 +89,6 @@ namespace ClassLibrary1.Services
             }
             return false;
         }
-        
         /// Viser deltagerlisten for en aktivitet baseret på ID.
         public void VisDeltagerlisteForAktivitet()
         {

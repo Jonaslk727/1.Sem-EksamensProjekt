@@ -13,7 +13,6 @@ namespace ClassLibrary1.Models.Besøg_og_lægelog
     /// Tilbyder en metode til visning af besøg.  
     /// </summary>
 
-
     public class Lægelog
     {
         static private int _next = 0;

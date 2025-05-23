@@ -1,13 +1,11 @@
 ﻿namespace ClassLibrary1.Models
 {
-
     /// <summary>
     /// Klasse: Person  
     /// Baseklasse for medarbejdere og kunder, der indeholder fælles egenskaber  
     /// såsom navn, email og telefonnummer.  
     /// Sikrer en struktureret tilgang til datahåndtering i systemet.  
     /// </summary>
-
 
     public class Person
     {

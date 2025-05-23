@@ -1,7 +1,5 @@
 ﻿namespace ClassLibrary1.Models
 {
-
-
     /// <summary>
     /// Klasse: Booking  
     /// Håndterer booking af aktiviteter og besøg på Roskilde Dyreinternat.  
@@ -9,7 +7,6 @@
     /// bookende kunde og eventuelt tilknyttet dyr.  
     /// Genererer automatisk et unikt BookingId.  
     /// </summary>
-
 
     /// Enum: BookingType  
     /// Definerer de mulige bookingtyper i systemet:

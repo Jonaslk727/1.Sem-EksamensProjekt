@@ -144,7 +144,6 @@ namespace ClassLibrary1.View
                     Console.ResetColor();
                     break;
             }
-
         }
        /// Opdaterer information om et eksisterende dyr baseret på dets ID
         static void Updater(DyrRepo dyrRep)
@@ -220,5 +219,4 @@ namespace ClassLibrary1.View
             }
         }
     }
-
 }
