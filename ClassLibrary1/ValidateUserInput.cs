@@ -65,7 +65,7 @@ namespace ClassLibrary1
             return result;
         }
         /// <summary>
-        /// for at sikre at input er et gyldigt boolsk værdi.
+        /// Proof of concept: for at sikre at input er et gyldigt boolsk værdi.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
