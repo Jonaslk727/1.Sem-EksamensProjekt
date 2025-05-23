@@ -8,7 +8,7 @@ namespace ClassLibrary1.View
     /// </summary>
     public class KundeMenu
     {
-        private string Mobil; // Add this field to resolve the CS0103 error
+        private string Mobil;
 
         public void MedarbejderKundeMenu(KundeRepo kundeRep)
         {
@@ -132,5 +132,6 @@ namespace ClassLibrary1.View
                 Console.WriteLine("Ugyldigt telefonnummer!");
             }
         }
+
     }
 }

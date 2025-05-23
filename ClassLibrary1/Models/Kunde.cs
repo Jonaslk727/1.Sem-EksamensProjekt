@@ -23,7 +23,7 @@ namespace ClassLibrary1.Models
         public string VisInfo()
         {
             return "==================================================\n" +
-        $" Id: {KundeId} | Navn: {Navn} | Email: {Email}\n" +
+        $" Id: {KundeId} | Navn: {Navn} | Email: {Email} | Mobil: {Mobil}\n" +
         $" Fødselsdag: {DateOfBirth} | Registreringsdato: {RegistrationDate}\n" +
         $" Premium medlem: {IsPremiumMember}\n" +
         "==================================================\n";
@@ -41,9 +41,7 @@ namespace ClassLibrary1.Models
         /// Konstruktør til oprettelse af en kunde med specifikke oplysninger.
         public Kunde(int kundeId,string navn, string email, string mobil, DateTime dateOfBirth, DateTime registrationDate, bool isPremiumMember)
         {
-            KundeId = kundeId;
-            Navn = navn;
-            Email = email;
+            KundeId = kundeId;          
             DateOfBirth = dateOfBirth;
             RegistrationDate = registrationDate;
             IsPremiumMember = isPremiumMember;
