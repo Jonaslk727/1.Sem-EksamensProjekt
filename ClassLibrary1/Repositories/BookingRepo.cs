@@ -20,30 +20,26 @@ namespace ClassLibrary1.Services
         public void OpretBesøgBookingMedKunde(DyrRepo dyrRep, Kunde kunde)
         {
             Booking booking = new Booking();
-            string inputId;
             int id;
 
-            // Vælg et ledigt dyr
-            do
+            // Væliderer at brugeren indtaster et gyldigt heltal for dyrets Id
+            Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
+            id = ValidateUserInput.GetInt(Console.ReadLine());
+            
+            // Validerer at dyret findes og ikke allerede er booket
+            if (!dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == true)
             {
-                Console.WriteLine("Skriv Id'et på dyret du vil besøge:");
-                inputId = Console.ReadLine();
-                if (!int.TryParse(inputId, out id))
-                {
-                    Console.WriteLine("Du skal skrive et tal");
-                    continue;
-                }
-
-                if (dyrRep.DyrList.ContainsKey(id) && dyrRep.DyrList[id].IsBooked == false)
-                    break;
-
                 Console.WriteLine("Dyr med dette Id findes ikke eller er allerede booket.");
-            } while (true);
+                Console.ReadKey();
+                return;
+            }   
 
             booking.BookedDyr = dyrRep.DyrList[id];
             dyrRep.DyrList[id].IsBooked = true;
+            booking.Booker = kunde;
 
-            DateTime startTid = GetDateTimeInput("Indtast dato og tid for din booking (dd/MM/yyyy HH:mm):");
+            Console.WriteLine("Indtast starttidspunkt for besøget (dd/mm/yyyy hh:mm):");
+            DateTime startTid = ValidateUserInput.GetDateTime(Console.ReadLine());
             dyrRep.DyrList[id].Log.CreateBesøgLog(startTid, kunde);
 
             Console.WriteLine($"Succes! Du har oprettet:\n{dyrRep.DyrList[id].Log.BesøgssLogs.Last()}");

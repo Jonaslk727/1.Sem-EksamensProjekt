@@ -17,6 +17,7 @@ namespace ClassLibrary1
             {
                 Console.WriteLine("Ugyldigt input. Indtast venligst et heltal.");
                 input = GetString(Console.ReadLine());
+               
             }
             return result;
         }
@@ -29,7 +30,7 @@ namespace ClassLibrary1
         {
             while (string.IsNullOrWhiteSpace(input))
             {
-                Console.WriteLine("Ugyldigt input. Indtast venligst en gyldig tekst.");
+                Console.WriteLine("Ugyldigt input. Feltet må ikke stå tomt!");
                 input = Console.ReadLine();
             }
             return input.Trim();

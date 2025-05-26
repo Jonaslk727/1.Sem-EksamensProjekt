@@ -23,7 +23,7 @@
         public DateTime StartTid {  get; set; }
         public DateTime SlutTid { get { return StartTid.AddHours(Varighed); } }
         public int Varighed { get; set; } // i timer
-        public Kunde Booker { get;}
+        public Kunde Booker { get; set; }
         public Dyr BookedDyr { get; set; } // Dyr der bookes til aktiviteten
         #endregion
         /// Konstruktør til oprettelse af en booking med angivne værdier.

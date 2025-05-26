@@ -43,17 +43,22 @@ namespace ClassLibrary1.View
                         Console.ResetColor();
 
                         Kunde ny = new Kunde();
+                        try { 
+                                Console.Write("ID        : "); ny.KundeId = int.Parse(Console.ReadLine());
+                            Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
+                            Console.Write("Email         : "); ny.Email = Console.ReadLine();
+                            Console.Write("Telefon       : "); ny.Mobil = int.Parse(Console.ReadLine());
+                            kundeRep.TilføjKunde(ny, true);
 
-                        Console.Write("ID            : "); ny.KundeId = int.Parse(Console.ReadLine());
-                        Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
-                        Console.Write("Email         : "); ny.Email = Console.ReadLine();
-                        Console.Write("Telefon       : "); ny.Mobil = int.Parse(Console.ReadLine());
-                        kundeRep.TilføjKunde(ny, true);
-
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\n Kunde tilføjet succesfuldt!");
-                        Console.WriteLine("=====================================");
-                        Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n Kunde tilføjet succesfuldt!");
+                            Console.WriteLine("=====================================");
+                            Console.ResetColor();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Noget gik galt i oprettelsen af Kunde");
+                        }
                         break;
                     case "2":
                         kundeRep.VisKunder();// Vis alle kunder
