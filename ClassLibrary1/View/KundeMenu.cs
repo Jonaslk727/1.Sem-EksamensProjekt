@@ -83,7 +83,7 @@ namespace ClassLibrary1.View
                             Console.Write("Nyt navn         : "); opdateret.Navn = Console.ReadLine();
                             Console.Write("Ny Email         : "); opdateret.Email = Console.ReadLine();
                             Console.Write("Nyt Telefonnummer: ");
-                            opdateret.Mobil = int.Parse(Console.ReadLine());
+                            opdateret.Mobil = ValidateUserInput.GetInt(Console.ReadLine());
                             Console.WriteLine("------------------------------------------------");
 
                             // Fix for CS1503: Convert 'opdateret.Mobil' from int to string before passing it to the method

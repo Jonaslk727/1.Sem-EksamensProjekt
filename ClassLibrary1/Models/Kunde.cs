@@ -39,12 +39,12 @@ namespace ClassLibrary1.Models
         }
 
         /// Konstruktør til oprettelse af en kunde med specifikke oplysninger.
-        public Kunde(int kundeId, string navn, string email, string mobil, DateTime dateOfBirth, DateTime registrationDate, bool isPremiumMember)
+        public Kunde(int kundeId, string navn, string email, int mobil, DateTime dateOfBirth, DateTime registrationDate, bool isPremiumMember)
         {
             KundeId = kundeId;
             Navn = navn;              // from base class Person
             Email = email;            // from base class Person
-            Mobil = ( mobil);            // from base class Person
+            Mobil = mobil;            // from base class Person
 
             DateOfBirth = dateOfBirth;
             RegistrationDate = registrationDate;
