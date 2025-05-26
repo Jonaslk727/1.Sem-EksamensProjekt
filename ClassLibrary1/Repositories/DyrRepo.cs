@@ -1,5 +1,6 @@
 ﻿using ClassLibrary1.Interfaces;
 using ClassLibrary1.Models;
+using ClassLibrary1.Models.Besøg_og_lægelog;
 using System.Text;
 
 namespace ClassLibrary1.Services
@@ -90,18 +91,13 @@ namespace ClassLibrary1.Services
             }
         }
 
-        public Dyr GetDyrById(int id)
-        {
-            if (DyrList.TryGetValue(id, out Dyr dyr))
-            {
-                return dyr;
-            }
-            else
-            {
-                Console.WriteLine("Dyr med dette ID findes ikke.");
-                return null;
-            }
-        }
+        /// <summary>
+        /// Returnere en liste af dyr der er booket af en given kunde.
+        /// </summary>
+        /// <param name="kunde"></param>
+        /// <returns></returns>
+
+        
 
         #region Søgning
         /// <summary>
@@ -111,7 +107,7 @@ namespace ClassLibrary1.Services
         /// <param name="type"></param>
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-         void Søg(SøgDyrType type) {
+        public void Søg(SøgDyrType type) {
             List<Dyr> dyrList = new List<Dyr>();
             switch (type) {
                 case SøgDyrType.Navn:

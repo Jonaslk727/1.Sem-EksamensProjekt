@@ -14,7 +14,7 @@ namespace ClassLibrary1.Services
     {
         /// Dictionary til lagring af lægejournaler, indeholdende ID og journal
         public Dictionary<int, Lægelog> LægeLogs = new Dictionary<int, Lægelog>();
-        
+
         /// Liste til lagring af alle besøgslogs.
         public List<Besøg> BesøgssLogs = new List<Besøg>();
 
@@ -24,7 +24,7 @@ namespace ClassLibrary1.Services
             Besøg besøg = new Besøg(Dato, besøger);
             BesøgssLogs.Add(besøg);
         }
-       //Opretter en ny lægelog med dato og journal
+        //Opretter en ny lægelog med dato og journal
         public void CreateLægeLog(DateTime dato, string journal)
         {
             Lægelog lægelog = new Lægelog(dato, journal);
@@ -70,16 +70,28 @@ namespace ClassLibrary1.Services
 
         public bool DeleteBesøgLog(int id)
         {
-            
-           foreach (var besøg in BesøgssLogs)
-           {
+
+            foreach (var besøg in BesøgssLogs)
+            {
                 if (besøg.BesøgsId == id)
                 {
                     BesøgssLogs.Remove(besøg);
                     return true;
                 }
-           }
-           return false;
+            }
+            return false;
+        }
+
+        public Besøg GetBesøgById(int id)
+        {
+            foreach (var besøg in BesøgssLogs)
+            {
+                if (besøg.BesøgsId == id)
+                {
+                    return besøg;
+                }
+            }
+            return null; // Returnerer null hvis ingen besøg med det angivne ID findes
         }
     }
 }

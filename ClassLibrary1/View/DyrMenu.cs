@@ -61,7 +61,8 @@ namespace ClassLibrary1.View
                         _bookingRep.OpretBesøgBookingMedKunde(_dyrRep, aktuelKunde);
                         break;
                     case "3":
-
+                        _bookingRep.AfmeldBookingBesøg(_dyrRep, aktuelKunde);
+                        break;
                     case "0":
                         fortsæt = false;
                         break;

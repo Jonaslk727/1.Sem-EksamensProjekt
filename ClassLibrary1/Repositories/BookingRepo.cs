@@ -1,4 +1,6 @@
-﻿using ClassLibrary1.Models; 
+﻿using ClassLibrary1.Models;
+using ClassLibrary1.Models.Besøg_og_lægelog;
+using System.Text;
 
 namespace ClassLibrary1.Services
 {
@@ -71,20 +73,61 @@ namespace ClassLibrary1.Services
             }
         }
 
-        public void AfmeldBesøg(kudne kunde)
+        public void AfmeldBookingBesøg(DyrRepo DyrRep, Kunde aktuelKunde)
         {
+            Console.WriteLine("");
+            Console.WriteLine("Dine kommende DyreBesøg:");
 
-            if (AlleBokinger.ContainsKey(bookingId))
+            bool harBesøg = false; // genbruges fra ovenstående logik
+
+            foreach (var dyr in DyrRep.DyrList.Values)
             {
-                AlleBokinger.Remove(bookingId);
-                Console.WriteLine($"Booking med ID {bookingId} er blevet afmeldt.");
+                foreach (var besøg in dyr.Log.BesøgssLogs)
+                {
+                    if (besøg.BesøgsTidspunkt > DateTime.Now && besøg.Besøger.KundeId == aktuelKunde.KundeId)
+                    {
+                        Console.WriteLine($"{besøg})");
+                        harBesøg = true;
+                        break; // Stop indre loop – vi har fundet et kommende besøg
+                    }
+                }
             }
-            else
+            if (!harBesøg)
             {
-                Console.WriteLine("Ingen booking fundet med det angivne ID.");
+                Console.WriteLine("Ingen Besøg Booket.");
+                Console.ReadLine();
+                return;
             }
+            
+            Console.WriteLine("");
+            Console.WriteLine("Indtast ID'et på det besøg, du vil afmelde:");
+            int besøgId = ValidateUserInput.GetInt(Console.ReadLine());
+
+            foreach (var booking in AlleBokinger.Values)
+            {
+                if (booking.Booker == aktuelKunde && booking.Type == BookingType.Besøg)
+                {
+                    foreach (var log in booking.BookedDyr.Log.BesøgssLogs)
+                    {
+                        if (log.BesøgsId == besøgId)
+                        {
+                            // Fjern besøget fra dyrets log
+                            booking.BookedDyr.Log.BesøgssLogs.Remove(log);
+                            booking.BookedDyr.IsBooked = false; // Opdaterer dyrets status
+                            
+                            // Fjern bookingen fra vores dictionary
+                            AlleBokinger.Remove(booking.BookingId);
+                            
+                            Console.WriteLine($"Besøget med ID {besøgId} er nu afmeldt.");
+                            Console.ReadKey();
+                            return;
+                        }
+                    }
+                }
+            }
+
+
         }
-
 
     }
 }
