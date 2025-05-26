@@ -44,10 +44,10 @@ namespace ClassLibrary1.View
 
                         Kunde ny = new Kunde();
                         try { 
-                                Console.Write("ID        : "); ny.KundeId = int.Parse(Console.ReadLine());
-                            Console.Write("Navn          : "); ny.Navn = Console.ReadLine();
-                            Console.Write("Email         : "); ny.Email = Console.ReadLine();
-                            Console.Write("Telefon       : "); ny.Mobil = int.Parse(Console.ReadLine());
+                                Console.Write("ID        : "); ny.KundeId = ValidateUserInput.GetInt(Console.ReadLine());
+                            Console.Write("Navn          : "); ny.Navn = ValidateUserInput.GetString(Console.ReadLine());
+                            Console.Write("Email         : "); ny.Email = ValidateUserInput.GetString(Console.ReadLine());
+                            Console.Write("Telefon       : "); ny.Mobil = ValidateUserInput.GetInt(Console.ReadLine());
                             kundeRep.TilføjKunde(ny, true);
 
                             Console.ForegroundColor = ConsoleColor.Green;
