@@ -17,7 +17,10 @@
         public DateTime StartTid { get; set; } 
         public DateTime SlutTid { get; set; }
         public string Beskrivelse { get; set; }
-        public bool IsBooked => Tilmeldte.Count > 0; //Returnerer true hvis der er tilmeldte kunder
+        public bool IsBooked
+        {
+            get { return Tilmeldte.Count > 0; }
+        } //Returnerer true hvis der er tilmeldte kunder
         #endregion
 
         public List<Kunde> Tilmeldte { get; set; } = new List<Kunde>(); //Liste over kunder tilmeldt aktivitet
