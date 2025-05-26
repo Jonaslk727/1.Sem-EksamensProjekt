@@ -113,7 +113,7 @@ namespace ClassLibrary1.Services
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
         
-        void Søg(SøgDyrType type) {
+         public void Søg(SøgDyrType type) {
             List<Dyr> dyrList = new List<Dyr>();
             switch (type) {
                 case SøgDyrType.Navn:
