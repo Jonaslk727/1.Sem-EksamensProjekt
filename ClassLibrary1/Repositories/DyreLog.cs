@@ -67,5 +67,19 @@ namespace ClassLibrary1.Services
                 return sb.ToString();
             }
         }
+
+        public bool DeleteBesøgLog(int id)
+        {
+            
+           foreach (var besøg in BesøgssLogs)
+           {
+                if (besøg.BesøgsId == id)
+                {
+                    BesøgssLogs.Remove(besøg);
+                    return true;
+                }
+           }
+           return false;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace ClassLibrary1.Services
         /// Opretter en besøg-booking for en kunde, der ønsker at besøge et dyr.
         public void OpretBesøgBookingMedKunde(DyrRepo dyrRep, Kunde kunde)
         {
-            Booking booking = new Booking();
+            Booking booking = new Booking(BookingType.Besøg);
             int id;
 
             // Væliderer at brugeren indtaster et gyldigt heltal for dyrets Id
@@ -50,7 +50,7 @@ namespace ClassLibrary1.Services
         /// Opretter en aktivitetsbooking for en kunde
         public void OpretAktivitetsBookingMedKunde(AktivitetRepo aktivitetRep, Kunde kunde)
         {
-            Booking booking = new Booking();
+            Booking booking = new Booking(BookingType.Aktivitet);
             int id;
 
             do

@@ -37,8 +37,9 @@
             Varighed = varighed;
             Booker = booker;
         }
-        public Booking()
+        public Booking(BookingType type)
         {
+            Type = type;
             BookingId = _nextId++;
         }
 

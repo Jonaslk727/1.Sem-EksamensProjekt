@@ -485,6 +485,29 @@ namespace _1.Sem_EksamensProjekt
                     Console.WriteLine("Ingen tilmeldte aktiviteter.");
                 }
 
+                // visning af kommende dyrebesøg
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine("");
+                Console.WriteLine("Dine kommende DyreBesøg:");
+
+                harAktiviteter = false; // genbruges fra ovenstående logik
+
+                foreach (var  dyr in DyrRep.DyrList.Values)
+                {
+                    foreach (var  besøg in dyr.Log.BesøgssLogs)
+                    {
+                        if (besøg.BesøgsTidspunkt > DateTime.Now && besøg.Besøger.KundeId == aktuelKunde.KundeId)
+                        {
+                            Console.WriteLine($"{besøg})");
+                            harAktiviteter = true;
+                            break; // Stop indre loop – vi har fundet et kommende besøg
+                        }
+                    }
+                }
+                if (!harAktiviteter)
+                {
+                    Console.WriteLine("Ingen Besøg Booket.");
+                }
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
                 Console.ResetColor();

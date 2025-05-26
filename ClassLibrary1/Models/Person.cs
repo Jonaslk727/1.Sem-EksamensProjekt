@@ -9,9 +9,9 @@
 
     public class Person
     {
-        public string Navn { get; set; }
-        public string Email { get; set; }
-        public int Mobil { get; set; }
+        public string Navn { get; set; } = "Ikke angivet";
+        public string Email { get; set; } = "Ikke angivet";
+        public int Mobil { get; set; } 
 
         /// Konstruktør til initialisering af en person med specifikke oplysning
 

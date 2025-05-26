@@ -21,6 +21,7 @@ namespace ClassLibrary1
             }
             return result;
         }
+
         /// <summary>
         /// Validerer input og sikrer at det ikke er null eller tomt.
         /// </summary>
