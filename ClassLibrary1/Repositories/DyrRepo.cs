@@ -114,6 +114,7 @@ namespace ClassLibrary1.Services
                             dyrList.Add(dyr);
                     }
                     break;
+
                 case SøgDyrType.Id:
                     Console.WriteLine("Indtast dyrets ID:");
                     int id = ValidateUserInput.GetInt(Console.ReadLine());
@@ -178,7 +179,7 @@ namespace ClassLibrary1.Services
                 // Denne update fungere ikke, kan løses men kræver at alle ArtType enum bliver sat til nullyble, som kan give en null reference exception.
                 if (nyVægt.HasValue) dyr.Vægt = nyVægt.Value;
                 if (nyFødselsdag.HasValue) dyr.FødselsDag = nyFødselsdag.Value;
-                if (!nyKøn.HasValue) dyr.Køn = nyKøn.Value;
+                if (nyKøn.HasValue) dyr.Køn = nyKøn.Value;
                 if (nyInfo != null) dyr.Info = nyInfo;
                 return true;
             }
