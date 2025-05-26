@@ -9,7 +9,6 @@ namespace ClassLibrary1.Services
     /// Indeholder metoder til oprettelse af logs samt visning af  
     /// besøgs- og lægejournaler.  
     /// </summary>
-
     public class DyreLog
     {
         /// Dictionary til lagring af lægejournaler, indeholdende ID og journal

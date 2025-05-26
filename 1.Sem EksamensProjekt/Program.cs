@@ -43,6 +43,7 @@ namespace _1.Sem_EksamensProjekt
             /// Hovedmenuen kører i en loop indtil brugeren vælger at stoppe programmet.
             /// Brugeren præsenteres for forskellige valgmuligheder.
             /// </summary>
+            
             bool kørProgram = true;
             while (kørProgram)
             {
@@ -422,12 +423,14 @@ namespace _1.Sem_EksamensProjekt
                 }
             }
         }
+
         /// <summary>
         /// Denne metode håndterer kundemenuen, hvor en kunde kan interagere med systemet.
         /// Menuen giver mulighed for at besøge dyr, deltage i aktiviteter og se kommende aktiviteter.
         /// Brugeren navigerer gennem menuen ved at indtaste et nummer, hvorefter den relevante funktion udføres.
         /// Menuen kører i en løkke, indtil kunden vælger at gå tilbage.
         /// </summary>
+        
         static void KundeMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
@@ -834,6 +837,7 @@ namespace _1.Sem_EksamensProjekt
         /// tilmelde sig, se tilmeldte aktiviteter og afmelde sig fra en aktivitet.
         /// Menuen kører i en løkke, indtil kunden vælger at gå tilbage.
         /// </summary>
+        
         static void KundeAktivitetMenu(DyrRepo DyrRep, BookingRepo BookingRep, AktivitetRepo AktivitetRep, KundeRepo KundeRepo, Kunde aktuelKunde)
         {
             bool fortsæt = true;
@@ -915,6 +919,7 @@ namespace _1.Sem_EksamensProjekt
         /// Hvis dyret findes, kan brugeren ændre dets navn, art, køn, race, vægt, fødselsdato og info.
         /// Systemet sikrer, at gyldige værdier indtastes, og opdateringen gennemføres kun, hvis input er korrekte.
         /// </summary>
+        
         static void Updater(DyrRepo dyrRep)
         {
             Console.WriteLine("Indtast ID på dyret du vil redigere:");
@@ -935,9 +940,11 @@ namespace _1.Sem_EksamensProjekt
             Console.WriteLine($"Nuværende navn: {dyr.Navn}");
             Console.WriteLine("Indtast det nye navn:");
             string navn = Console.ReadLine();
+
             // indput til dyrets Art
             // baggrund for at tillade null er at update kikker efter om et parameter er null 
             // og hvis det er så ændres det ikke
+           
             string artInput;
             string kønInput;
             kønType køn = default;
