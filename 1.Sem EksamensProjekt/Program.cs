@@ -36,8 +36,8 @@ namespace _1.Sem_EksamensProjekt
 
             // Tilføj testdata til KundeRepo
             bool status = false;
-            KundeRep.TilføjKunde(new Kunde(1, "Oliver Thune", "anders@example.com", "12345678", new DateTime(1998, 5, 14), DateTime.Now, true),status);
-            KundeRep.TilføjKunde(new Kunde(2, "Marcus Zola", "jonas@example.com", "87654321", new DateTime(2002, 4, 16), DateTime.Now, false),status);
+            KundeRep.TilføjKunde(new Kunde(1, "Oliver Thune", "anders@example.com", 12345678, new DateTime(1998, 5, 14), DateTime.Now, true),status);
+            KundeRep.TilføjKunde(new Kunde(2, "Marcus Zola", "jonas@example.com", 87654321, new DateTime(2002, 4, 16), DateTime.Now, false),status);
 
             /// <summary>
             /// Hovedmenuen kører i en loop indtil brugeren vælger at stoppe programmet.
