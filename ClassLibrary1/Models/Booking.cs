@@ -47,7 +47,7 @@
         public override string ToString()
         {
             return $"BookingId: {BookingId} | StartTid: {StartTid} | SlutTid: {SlutTid} | Varighed: {Varighed} timer " +
-                $"| Booker: {Booker}";
+                   $"| Booker: {Booker}";
         }
     }
 }

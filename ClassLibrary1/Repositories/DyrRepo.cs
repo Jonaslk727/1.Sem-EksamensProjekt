@@ -30,6 +30,7 @@ namespace ClassLibrary1.Services
         /// Validerer og konverterer brugerinput til de korrekte typer.
         /// Tilføjer det nye dyr til listen med et unikt ID.
         /// </summary>
+        
         public void Create()
         {   // input til dyrets navn
             Console.WriteLine("Indtast dyrets navn:");
