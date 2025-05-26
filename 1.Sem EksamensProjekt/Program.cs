@@ -201,7 +201,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.WriteLine("1. Opret, slet eller rediger dyr");
                 Console.WriteLine("2. Vis alle dyr");
                 Console.WriteLine("3. DyreLog Menu");
-                Console.WriteLine("4. Vis alle kommende Besøg" );
+                Console.WriteLine("4. Vis alle kommende Besøg");
                 Console.WriteLine("5. Søg efter dyr");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. Tilbage");
