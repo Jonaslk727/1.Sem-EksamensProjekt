@@ -1029,7 +1029,7 @@ namespace _1.Sem_EksamensProjekt
         /// Denne metode håndterer brugerinput til dato og tid.
         /// Brugeren bliver bedt om at indtaste en dato med et angivet prompt.
         /// Systemet validerer inputformatet og gentager anmodningen, hvis input er ugyldigt.
-        /// Metoden fortsætter, indtil et gyldigt datoformat er indtastet, hvorefter værdien returneres.
+        /// Metoden fortsætter, indtil et gyldigt datoformat er indtastet, hvorefter værdien returneres.vi har også in bookingRepo
         /// </summary>
         public static DateTime GetDateTimeInput(string prompt)
         {
