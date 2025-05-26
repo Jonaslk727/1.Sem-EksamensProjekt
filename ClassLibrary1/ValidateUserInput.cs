@@ -44,9 +44,16 @@ namespace ClassLibrary1
         public static DateTime GetDateTime(string input)
         {
             DateTime result;
-            while (!DateTime.TryParse(input, out result) && result > DateTime.Now)
+            while (!DateTime.TryParse(input, out result) || result.Date < DateTime.Today)
             {
-                Console.WriteLine("Ugyldigt datoformat. Indtast venligst (dd/mm/yyyy).");
+                if (!DateTime.TryParse(input, out result))
+                {
+                    Console.WriteLine("Ugyldigt datoformat. Indtast venligst (dd/mm/yyyy).");
+                }
+                else if (result.Date < DateTime.Today)
+                {
+                    Console.WriteLine("Datoen må ikke være i fortiden. Indtast en gyldig fremtidig dato.");
+                }
                 input = GetString(Console.ReadLine());
             }
             return result;
