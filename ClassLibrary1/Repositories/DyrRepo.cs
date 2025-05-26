@@ -69,7 +69,7 @@ namespace ClassLibrary1.Services
         /// Sletter et dyr fra listen baseret på dets unikke ID.
         /// Informerer brugeren, hvis ID'et ikke findes.
         /// </summary>
-        /// <returns>Returnerer true, hvis dyret blev slettet, ellers false.</ret
+    
         public bool Delete()
         {
             Console.WriteLine("Indtast ID'et på det dyr der skal slettes:");
@@ -100,7 +100,7 @@ namespace ClassLibrary1.Services
         /// <param name="type"></param>
         /// Prints Listen af dyr der matcher søgningen.
         /// </summary>
-        public void Søg(SøgDyrType type) {
+         void Søg(SøgDyrType type) {
             List<Dyr> dyrList = new List<Dyr>();
             switch (type) {
                 case SøgDyrType.Navn:
