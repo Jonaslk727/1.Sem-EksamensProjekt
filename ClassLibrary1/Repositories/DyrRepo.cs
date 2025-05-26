@@ -90,6 +90,8 @@ namespace ClassLibrary1.Services
             }
         }
 
+        public
+
         #region Søgning
         /// <summary>
         /// En søge method der tager en eneum SøgeDyrType [Navn, Id, Art] 

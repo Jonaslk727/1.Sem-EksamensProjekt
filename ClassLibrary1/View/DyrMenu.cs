@@ -44,6 +44,7 @@ namespace ClassLibrary1.View
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("1. hvis alle ledige dyr:");
                 Console.WriteLine("2. book et besøg:");
+                Console.WriteLine("3. Afmeld et besøg");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("0. gå tilbage:");
@@ -59,6 +60,8 @@ namespace ClassLibrary1.View
                         // booking logik
                         _bookingRep.OpretBesøgBookingMedKunde(_dyrRep, aktuelKunde);
                         break;
+                    case "3":
+
                     case "0":
                         fortsæt = false;
                         break;

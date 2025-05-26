@@ -72,19 +72,5 @@ namespace ClassLibrary1.Services
         }
 
 
-        /// Henter og validerer en datoindgang fra brugeren.
-        public DateTime GetDateTimeInput(string prompt)
-        {
-            bool isValid = true;
-            DateTime dateTime = default;
-            while (isValid)
-            {
-                Console.WriteLine(prompt);
-                string input = Console.ReadLine();
-                if (DateTime.TryParse(input, out dateTime)) isValid = false;
-                else { Console.WriteLine("Ugyldigt format. Prøv igen."); }
-            }
-            return dateTime;
-        }
     }
 }

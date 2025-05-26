@@ -511,6 +511,7 @@ namespace _1.Sem_EksamensProjekt
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\n=========================================");
                 Console.ResetColor();
+
                 string valg = Console.ReadLine();
                 switch (valg)
                 {
