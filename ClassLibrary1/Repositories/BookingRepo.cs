@@ -71,7 +71,7 @@ namespace ClassLibrary1.Services
             }
         }
 
-        public void AfmeldBesøg(kudne kunde)
+        public void AfmeldBesøg(Kunde kunde)
         {
 
             if (AlleBokinger.ContainsKey(bookingId))
