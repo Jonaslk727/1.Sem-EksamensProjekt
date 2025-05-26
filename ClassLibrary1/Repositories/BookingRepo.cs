@@ -71,6 +71,20 @@ namespace ClassLibrary1.Services
             }
         }
 
+        public void AfmeldBesøg(kudne kunde)
+        {
+
+            if (AlleBokinger.ContainsKey(bookingId))
+            {
+                AlleBokinger.Remove(bookingId);
+                Console.WriteLine($"Booking med ID {bookingId} er blevet afmeldt.");
+            }
+            else
+            {
+                Console.WriteLine("Ingen booking fundet med det angivne ID.");
+            }
+        }
+
 
     }
 }

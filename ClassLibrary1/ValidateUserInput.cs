@@ -44,7 +44,7 @@ namespace ClassLibrary1
         public static DateTime GetDateTime(string input)
         {
             DateTime result;
-            while (!DateTime.TryParse(input, out result))
+            while (!DateTime.TryParse(input, out result) && result > DateTime.Now)
             {
                 Console.WriteLine("Ugyldigt datoformat. Indtast venligst (dd/mm/yyyy).");
                 input = GetString(Console.ReadLine());

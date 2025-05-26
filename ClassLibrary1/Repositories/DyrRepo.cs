@@ -90,7 +90,18 @@ namespace ClassLibrary1.Services
             }
         }
 
-        public
+        public Dyr GetDyrById(int id)
+        {
+            if (DyrList.TryGetValue(id, out Dyr dyr))
+            {
+                return dyr;
+            }
+            else
+            {
+                Console.WriteLine("Dyr med dette ID findes ikke.");
+                return null;
+            }
+        }
 
         #region Søgning
         /// <summary>
